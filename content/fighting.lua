@@ -12,9 +12,9 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
-module("content.fighting", package.seeall)
+local M = {}
 
 --[[
     Returns the attack value of a race wrestling
@@ -22,7 +22,7 @@ module("content.fighting", package.seeall)
     @param  int requested race
     @return int attack value
 ]]
-function GetWrestlingAttack(Race)
+function M.GetWrestlingAttack(Race)
      return 10;
 end;
 
@@ -32,7 +32,7 @@ end;
     @param  int requested race
     @return int movepoints
 ]]
-function GetWrestlingMovepoints( Race )
+function M.GetWrestlingMovepoints( Race )
      return 25;
 end;
 
@@ -42,7 +42,7 @@ end;
     @param  int requested race
     @return int parry value
 ]]
-function GetWrestlingParry(Race)
+function M.GetWrestlingParry(Race)
      return 10;
 end;
 
@@ -52,7 +52,7 @@ end;
     @param  int requested race
     @return int accuracy
 ]]
-function GetWrestlingAccuracy( Race )
+function M.GetWrestlingAccuracy( Race )
     return 50;
 end
 
@@ -62,10 +62,10 @@ end
     @param  CharacterTable  Character table of the attacking character
     @return int ID if the gfx for the wrestling attack
 ]]
-function GetWrestlingGFX( Attacker )
+function M.GetWrestlingGFX( Attacker )
     if ( Attacker.Race == 25 ) and ( Attacker.Char:getType() == 1 ) then
         local monID = Attacker.Char:getMonsterType();
-        if (monID == 501 or monID == 502) then
+        if (monID == 515 or monID == 516) then
             return 44;
         elseif (monID == 503 or monID == 504) then
             return 3;
@@ -99,7 +99,7 @@ end
     @param  int race ID
     @return boolean true if it is a unholy race, false if not
 ]]
-function GetUnholyRace(Race)
+function M.GetUnholyRace(Race)
     if (Race == 10) then return true;     -- mummy
     elseif (Race == 11) then return true; -- skeleton
     elseif (Race == 12) then return true; -- beholder
@@ -119,7 +119,7 @@ end
     @param  int race ID
     @return int weakness modifier
 ]]
-function GetWeaknessCopper( Race )
+function M.GetWeaknessCopper( Race )
     if ( Race == 0 )      then return 13; --human
     elseif ( Race == 1 )  then return 13; --dwarf
     elseif ( Race == 2 )  then return 13; --halfling
@@ -164,7 +164,7 @@ end
     @param  int race ID
     @return int weakness modifier
 ]]
-function GetWeaknessSilver( Race )
+function M.GetWeaknessSilver( Race )
     if ( Race == 0 )      then return -3; --human
     elseif ( Race == 1 )  then return -3; --dwarf
     elseif ( Race == 2 )  then return -3; --halfling
@@ -204,7 +204,7 @@ end
     @param  int race ID
     @return int weakness modifier
 ]]
-function GetWeaknessGold( Race )
+function M.GetWeaknessGold( Race )
     if ( Race == 4 )      then return 7 ; --orc
     elseif ( Race == 5 )  then return 13; --lizard
     elseif ( Race == 6 )  then return 7 ; --gnome
@@ -252,7 +252,7 @@ end
     @param  int race ID
     @return int weakness modifier
 ]]
-function GetWeaknessMerinium( Race )
+function M.GetWeaknessMerinium( Race )
     if ( Race == 0 )      then return 7 ; --human
     elseif ( Race == 1 )  then return 7 ; --dwarf
     elseif ( Race == 2 )  then return 7 ; --halfling
@@ -284,22 +284,12 @@ function GetWeaknessMerinium( Race )
 end
 
 --[[
-    Returns if the weapon with the ID is a plated weapon
-
-    @param  int ID of the Item
-    @return boolean plated weapon or not
-]]
-function IsPlatedWeapon( ItemID )
-    return ( IsMeriniumPlatedWeapon( ItemID ) or IsGoldPlatedWeapon( ItemID ) or IsSilverPlatedWeapon( ItemID ) or IsCopperPlatedWeapon( ItemID ) );
-end
-
---[[
     Returns if the weapon with the ID is a merinium plated weapon
 
     @param  int ID of the Item
     @return boolean merinium plated weapon or not
 ]]
-function IsMeriniumPlatedWeapon( ItemID )
+function M.IsMeriniumPlatedWeapon( ItemID )
     return (
         ItemID == 444 or
         ItemID == 296 or
@@ -313,7 +303,7 @@ end
     @param  int ID of the Item
     @return boolean gold plated weapon or not
 ]]
-function IsGoldPlatedWeapon( ItemID )
+function M.IsGoldPlatedWeapon( ItemID )
     return (
         ItemID == 297 or
         ItemID == 124 or
@@ -327,7 +317,7 @@ end
     @param  int ID of the Item
     @return boolean silver plated weapon or not
 ]]
-function IsSilverPlatedWeapon( ItemID )
+function M.IsSilverPlatedWeapon( ItemID )
     return (
         ItemID == 389 or
         ItemID == 229 or
@@ -341,7 +331,7 @@ end
     @param  int ID of the Item
     @return boolean copper plated weapon or not
 ]]
-function IsCopperPlatedWeapon( ItemID )
+function M.IsCopperPlatedWeapon( ItemID )
     return (
         ItemID == 398 or
         ItemID == 192 or
@@ -350,12 +340,21 @@ function IsCopperPlatedWeapon( ItemID )
 end
 
 --[[
+    Returns if the weapon with the ID is a plated weapon
+
+    @param  int ID of the Item
+    @return boolean plated weapon or not
+]]
+function M.IsPlatedWeapon( ItemID )
+    return ( M.IsMeriniumPlatedWeapon( ItemID ) or M.IsGoldPlatedWeapon( ItemID ) or M.IsSilverPlatedWeapon( ItemID ) or M.IsCopperPlatedWeapon( ItemID ) );
+end
+--[[
     Returns the ID of the item that is the base item of a plated weapon or 0
 
     @param  int ID of the Item
     @return int ID of the base item in case its a plated weapon or 0
 ]]
-function GetPlatedBaseWeapon( ItemID )
+function M.GetPlatedBaseWeapon( ItemID )
     if ( ItemID == 444 or ItemID == 398 or ItemID == 389 or ItemID == 297 ) then
         return 190;
     elseif ( ItemID == 192 or ItemID == 229 or ItemID == 296 or ItemID == 124 ) then
@@ -372,15 +371,17 @@ end
     @param  int ID of the Item
     @return boolean training weapon or not
 ]]
-function IsTrainingWeapon( ItemID )
-    return ( ItemID == 445 );
+function M.IsTrainingWeapon( ItemID )
+    local woodenSword = 445;
+    local woodenDagger = 1045;
+    return ( ItemID == woodenSword or ItemID == woodenDagger );
 end;
 
 --- Get a area that is hit during a attack. Depending on the race the areas that
 -- can be hit can alter.
 -- @param Race the race of the character who receives the hit
 -- @return The area that is hit
-function GetHitArea(Race)
+function M.GetHitArea(Race)
     local randomValue = math.random(100);
     if ( randomValue < 15 ) then
         return Character.head;
@@ -398,13 +399,15 @@ end;
 --- This function is supposed to calculate the bonus on the hit chance.
 -- @param Attacker The table of the attacker values
 -- @param Defender The table of the defender values
-function BonusHitChance(Attacker, Defender)
+function M.BonusHitChance(Attacker, Defender)
     return 0;
 end;
 
 --- This function is supposed to calculate the bonus on the dodge chance.
 -- @param Attacker The table of the attacker values
 -- @param Defender The table of the defender values
-function BonusDodgeChance(Attacker, Defender)
+function M.BonusDodgeChance(Attacker, Defender)
     return 0;
 end;
+
+return M

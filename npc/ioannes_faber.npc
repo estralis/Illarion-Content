@@ -16,8 +16,8 @@
 -- NPC Name: Ioannes Faber                                            Cadomyr --
 -- NPC Job:  Royal treasurer                                                  --
 --                                                                            --
--- NPC Race: human                      NPC Position:  129, 529, 0            --
--- NPC Sex:  male                       NPC Direction: west                   --
+-- NPC Race: human                      NPC Position:  116, 519, 0            --
+-- NPC Sex:  male                       NPC Direction: south                  --
 --                                                                            --
 -- Author:   Estralis Seborian/Ardian                                         --
 --                                                     easyNPC Parser v1.23.1 --
@@ -26,8 +26,8 @@
 name = "Ioannes Faber"
 race = human
 sex = male
-position = 129, 529, 0
-direction = west
+position = 116, 519, 0
+direction = south
 affiliation = "Cadomyr"
 job = "Royal treasurer"
 
@@ -76,7 +76,7 @@ itemShoes = 53
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Hail and may Malachín bless you. I assume you obey the Queen?"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Malachín zum Gruße. Ich nehme an, ihr gehorcht der Königin."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Malachín zum Gruße. Ich nehme an, ihr gehorcht der Königin."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Hail and may Malachín bless you. I assume you obey the Queen?"
 "Hiho", "Hallo", "Hey", "Greeb" -> "Malachín zum Gruße. Ich nehme an, ihr gehorcht der Königin."
 "Farewell", "Bye", "Fare well", "See you" -> "Go forth and do as the Queen tells you.", "Farewell and may your journey be a pleasant one.", "Good bye and don't forget to come back."
@@ -86,9 +86,11 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Go forth and do as the Quee
 "How are you", "How feel", "How do you do" -> "The smile of the Queen makes me spin, spinning within.", "Every word of the Queen is like caress."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Das Lächeln der Königin macht mich ganz wuschig im Inneren.", "Jedes Wort der Königin ist wie eine Liebkosung."
 "your name", "who are you", "who art thou" -> "Faber. Ioannes Faber. I am the royal treasurer, do not underestimate my importance at the palace.", "My name is Ioannes Faber, the royal treasurer of Cadomyr. The Queen relies on me, indeed.", "You don't know my name? Better write it down then: Ioannes Faber."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Faber. Ioannes Faber. Ich bin der königliche Kämmerer, ihr solltet meine Bedeutung am Hofe nicht unterschätzen.", "Mein Name ist Ioannes Faber, der königliche Kämmerer von Cadomyr. Die Königin hält große Stücke auf mich.", "Ihr kennt meinen Namen nicht? Schreibt ihn euch besser auf: Ioannes Faber."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Faber. Ioannes Faber. Ich bin der königliche Kämmerer, ihr solltet meine Bedeutung am Hofe nicht unterschätzen.", "Mein Name ist Ioannes Faber, der königliche Kämmerer von Cadomyr. Die Königin hält große Stücke auf mich.", "Ihr kennt meinen Namen nicht? Schreibt ihn euch besser auf: Ioannes Faber."
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin kein Händler."
 
--- Catching quest triggers of other factions' members. Outlaws are ignored.
+-- Catching quest triggers of other factions' members.
 english, town = Galmair, "quest", "mission" -> "I doubt you came to the right place for a mission. How about you try the sewers?"
 town = Galmair, "quest", "mission" -> "Dies dürfte nicht der richtige Ort für eure Mission sein. Schaut doch mal im Abwasserkanal nach."
 town = Galmair, "task", "adventure", "order" -> "I doubt you came to the right place for a mission. How about you try the sewers?"
@@ -97,6 +99,10 @@ english, town = Runewick, "quest", "mission" -> "While I admire the wisdom of Ru
 town = Runewick, "quest", "mission" -> "Ich bewundere zwar die Weisheit Runewicks aber ich habe meine Befehle und vergebe keine Aufgaben an Bürger von dort."
 town = Runewick, "task", "adventure", "order", "order" -> "While I admire the wisdom of Runewick, I have my orders not to issue any tasks to its citizens."
 town = Runewick, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ich bewundere zwar die Weisheit Runewicks aber ich habe meine Befehle und vergebe keine Aufgaben an Bürger von dort."
+english, town = none, "quest", "mission" -> "We have no use for outlaws. Leave the palace immediately!"
+town = none, "quest", "mission" -> "Wir können hier keine Gesetzlosen gebrauchen! Verlasse den Palast umgehend!"
+town = none, "task", "adventure", "order"-> "We have no use for outlaws. Leave the palace immediately!"
+town = none, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Wir können hier keine Gesetzlosen gebrauchen! Verlasse den Palast umgehend!"
 
 -- Quest 1: Donate something to the treasury
 -- 1: Quest 1 taken, donate something to the treasury, reward: 20 rankpoints
@@ -106,8 +112,8 @@ queststatus(151) = 0, town = Cadomyr, "task", "adventure", "order" -> inform("[N
 queststatus(151) = 0, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> inform("[Neues Quest] Die Schatzkammer Cadomyrs"), queststatus(151) = 1, "Als loyaler Bürger Cadomyrs ist es eure Pflicht, einen Teil eures Reichtums an die Schatzkammer zu spenden. Der Spendenplatz ist genau neben dem Thron ihrer Majestät, bringt eure Spende dorthin. Aber wagt es nicht, einfach nur Almosen zu spenden!"
 
 -- Quest 1 solved, reward: 20 rankpoints
-queststatus(151) = 2, english, town = Cadomyr, ".*" -> inform("[Quest solved] You advance in Queen Rosaline Edwards' favour."), queststatus(151) = 3, rankpoints + 20, "I see that you have learnt how you can donate your wealth to the treasury. Next time, donate more! I will mention your name when talking to the Queen next time."
-queststatus(151) = 2, town = Cadomyr, ".*" -> inform("[Quest gelöst] Dein Ansehen bei Königin Rosaline Edwards steigt."), queststatus(151) = 3, rankpoints + 20, "Nun, ihr habt verstanden, wie man etwas an die Schatzkammer spendet. Das nächste Mal spendet ihr aber gefälligst mehr! Ich werde euren Namen in meinem nächsten Gespräch mit der Königin erwähnen."
+queststatus(151) = 2, english, town = Cadomyr, ".*" -> inform("[Quest solved] Ioannes is satisfied."), queststatus(151) = 3, rankpoints + 20, "I see that you have learnt how you can donate your wealth to the treasury. Next time, donate more! I will mention your name when talking to the Queen next time."
+queststatus(151) = 2, town = Cadomyr, ".*" -> inform("[Quest gelöst] Ioannes ist zufrieden."), queststatus(151) = 3, rankpoints + 20, "Nun, ihr habt verstanden, wie man etwas an die Schatzkammer spendet. Das nächste Mal spendet ihr aber gefälligst mehr! Ich werde euren Namen in meinem nächsten Gespräch mit der Königin erwähnen."
 
 -- Quest 1 taken but not solved, repeat the instructions
 queststatus(151) = 1, english, town = Cadomyr, "quest", "mission" -> "Donating is quite easy, just drop your items on the donation place. Obey!"
@@ -138,7 +144,7 @@ english, "Gobaith", "Gobiath" -> "Well, I heard many refugees came from Gobaith 
 "mein Name" -> "Willkommen im Palast. Ich hoffe, ihr seid nicht hier, um die Schatzkammer zu plündern."
 
 -- More small talk; add at least five triggers
-"treasurer", "treasury" -> "The office of treasurer requires loyality, integrity and meekness, and you won't find anyone in Cadomyr who suits the office better than Ioannes Faber."
+"treasurer", "treasury" -> "The office of treasurer requires loyalty, integrity and meekness, and you won't find anyone in Cadomyr who suits the office better than Ioannes Faber."
 english, "gold" -> "Gold is important for Cadomyr's wealth, but more important is our honour. For honour, you cannot buy but just sell."
 "jewel" -> "Jewels, gems, diamonds, only the brightest ones for the crown of Cadomyr. Got some?"
 english, "glas" -> "The Queen uses to have banquets with her nobley from time to time, thus, the finest tableware is needed frequently."
@@ -198,10 +204,6 @@ english, "Irmorom" -> "The dwarves pray to Irmorom to gain wealth, so far, so go
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Ioannes", "Faber" -> "I am the royal treasurer Ioannes Faber. I obey Her Majesty and only Her Majesty."
 "Ioannes", "Faber" -> "Ich bin der königliche Kämmerer Ioannes Faber. Ich gehorche ihrer Majestät und nur ihrere Majestät."
-"Yes" -> "Good to hear.", "Pardon me?", "Indeed.", "I agree."
-"Ja" -> "Gut zu wissen.", "Entschuldigt?", "So, so.", "Meine vollste Zustimmung."
-"No" -> "Maybe you reconsider.", "An interesting point of view.", "How comes?"
-"Nein" -> "Vielleicht überlegt ihr es euch nochmal.", "Eine interessante Sichtweise.", "Wieso das?"
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.

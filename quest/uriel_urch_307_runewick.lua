@@ -16,21 +16,21 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- INSERT INTO "quests" ("qst_id", "qst_script") VALUES (307, 'quest.uriel_urch_307_runewick');
 
-require("base.common")
-require("base.factions")
-module("quest.uriel_urch_307_runewick", package.seeall)
+local common = require("base.common")
+local factions = require("base.factions")
+local M = {}
 
-GERMAN = Player.german
-ENGLISH = Player.english
+local GERMAN = Player.german
+local ENGLISH = Player.english
 
 -- Insert the quest title here, in both languages
-Title = {}
+local Title = {}
 Title[GERMAN] = "Geschichten und Schwerter"
 Title[ENGLISH] = "Tales and Swords"
 
 -- Insert an extensive description of each status here, in both languages
 -- Make sure that the player knows exactly where to go and what to do
-Description = {}
+local Description = {}
 Description[GERMAN] = {}
 Description[ENGLISH] = {}
 Description[GERMAN][1] = "Besorge einen Bierkrug und bringe ihn Uriel. Du kannst einen Bierkrug vom Händler kaufen oder fülle Bier aus einer Flasche in einen leeren Krug. Bier kann man mit einen Kochlöffel am Weinfass herstellen."
@@ -50,51 +50,53 @@ Description[ENGLISH][7] = "You have brought beer to Uriel and have listened his 
 
 
 -- Insert the position of the quest start here (probably the position of an NPC or item)
-Start = {902, 773, 0}
+local Start = {940, 766, 0}
 
 
 
 -- For each status insert a list of positions where the quest will continue, i.e. a new status can be reached there
-QuestTarget = {}
-QuestTarget[1] = {position(902, 773, 0), position(899, 772, 0), position (906, 841, 0)}
-QuestTarget[2] = {position(902, 773, 0)} 
-QuestTarget[3] = {position(902, 773, 0), position(899, 772, 0), position (906, 841, 0)} 
-QuestTarget[4] = {position(902, 773, 0)} 
-QuestTarget[5] = {position(902, 773, 0), position(899, 772, 0), position (906, 841, 0)} 
-QuestTarget[6] = {position(902, 773, 0)} 
-QuestTarget[7] = {position(902, 773, 0)}
+local QuestTarget = {}
+QuestTarget[1] = {position(940, 766, 0), position(919, 823, 0), position (920, 822, 0)}
+QuestTarget[2] = {position(940, 766, 0)} 
+QuestTarget[3] = {position(940, 766, 0), position(919, 823, 0), position (920, 822, 0)} 
+QuestTarget[4] = {position(940, 766, 0)} 
+QuestTarget[5] = {position(940, 766, 0), position(919, 823, 0), position (920, 822, 0)} 
+QuestTarget[6] = {position(940, 766, 0)} 
+QuestTarget[7] = {position(940, 766, 0)}
 
 -- Insert the quest status which is reached at the end of the quest
-FINAL_QUEST_STATUS = 7
+local FINAL_QUEST_STATUS = 7
 
 
-function QuestTitle(user)
-    return base.common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
+function M.QuestTitle(user)
+    return common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
 end
 
-function QuestDescription(user, status)
+function M.QuestDescription(user, status)
     local german = Description[GERMAN][status] or ""
     local english = Description[ENGLISH][status] or ""
 
-    return base.common.GetNLS(user, german, english)
+    return common.GetNLS(user, german, english)
 end
 
-function QuestStart()
+function M.QuestStart()
     return Start
-	end
+    end
 
-function QuestTargets(user, status)
+function M.QuestTargets(user, status)
     return QuestTarget[status]
 end
 
-function QuestFinalStatus()
+function M.QuestFinalStatus()
     return FINAL_QUEST_STATUS
 end
 
-function QuestAvailability(user, status)
-    if base.factions.isRunewickCitizen(user) and status == 0 then
+function M.QuestAvailability(user, status)
+    if factions.isRunewickCitizen(user) and status == 0 then
         return Player.questAvailable
     else
         return Player.questNotAvailable
     end
 end
+
+return M

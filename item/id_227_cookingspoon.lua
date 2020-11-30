@@ -12,25 +12,80 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- UPDATE common SET com_script='item.id_227_cookingspoon' WHERE com_itemid IN (227);
+-- UPDATE items SET itm_script='item.id_227_cookingspoon' WHERE itm_id IN (227);
 
-require("content.craft.cooking")
-require("base.licence")
-require("base.lookat")
+local common = require("base.common")
+local cooking = require("craft.final.cooking")
+local brewing = require("craft.final.brewing")
+local wood = require("item.general.wood")
 
-module("item.id_227_cookingspoon", package.seeall)
+local M = {}
 
-function UseItem(User, SourceItem, ltstate)
-	if base.licence.licence(User) then --checks if user is citizen or has a licence 
-		return -- avoids crafting if user is neither citizen nor has a licence
-	end
+M.LookAtItem = wood.LookAtItem
 
-    content.craft.cooking.cooking:showDialog(User, SourceItem)
+local function getBarrel(User)
+
+    local BARRELS = {339, 1410, 1411}
+    local foundItem
+    local frontItem = common.GetFrontItem(User)
+    
+    for i, barrel in pairs(BARRELS) do
+        if (frontItem ~= nil and frontItem.id == barrel) then
+            foundItem = frontItem
+            break
+        end
+    end
+
+    if not foundItem then
+        for i, barrel in pairs(BARRELS) do
+            foundItem = common.GetItemInArea(User.pos, barrel)
+            if foundItem then
+                break
+            end
+        end
+    end
+    
+    return foundItem
+    
 end
 
-function LookAtItem(User, Item)
-    world:itemInform(User, Item, base.lookat.GetItemDescription(User, Item, base.lookat.WOOD))
+local function getKettle(User)
+
+    local KETTLE = 3581
+    local item = common.GetFrontItem(User)
+    if (item ~= nil and item.id == KETTLE) then
+        return item
+    end
+    item = common.GetItemInArea(User.pos, KETTLE)
+    return item
 end
+
+function M.UseItem(User, SourceItem, ltstate)
+
+    local target
+    
+    -- check for barrel
+    target = getBarrel(User)
+    if (target ~= nil) then
+        brewing.brewing:showDialog(User, SourceItem)
+        return
+    end
+
+    -- check for kettle
+    target = getKettle(User)
+    if (target ~= nil) then
+        cooking.cooking:showDialog(User, SourceItem)
+        return
+    end
+
+    -- there is nothing to work with
+    common.HighInformNLS( User,
+    "Du stehst nicht neben dem benötigten Werkzeug: Weinfass oder Kessel",
+    "There is no wine barrel or kettle close by to work with." )
+    
+ end
+
+return M
 

@@ -16,8 +16,8 @@
 -- NPC Name: William Daloire                                             None --
 -- NPC Job:  herbalist                                                        --
 --                                                                            --
--- NPC Race: human                      NPC Position:  897, 794, 1            --
--- NPC Sex:  male                       NPC Direction: south                  --
+-- NPC Race: human                      NPC Position:  952, 828, 0            --
+-- NPC Sex:  male                       NPC Direction: southwest              --
 --                                                                            --
 -- Author:   Miriam                                                           --
 --                                                     easyNPC Parser v1.23.1 --
@@ -26,9 +26,9 @@
 name = "William Daloire"
 race = human
 sex = male
-position = 897, 794, 1
-direction = south
-affiliation = "None"
+position = 951, 829, 0
+direction = southwest
+affiliation = "Runewick"
 job = "herbalist"
 
 language = common
@@ -63,37 +63,26 @@ itemShoes = 53
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItems = 58, 429, 126, 43, 391, 52, 753, 759, 767, 133, 134, 135, 136, 137, 140, 141, 142, 143, 144, 145, 148, 153, 154, 155, 156, 157, 431, 463, 2745, 158, 159, 160, 161, 162, 163
-buyPrimaryItems = 58, 429, 126, 43, 391, 52, 753, 754, 755, 756, 757, 758, 759, 760, 761, 762, 763, 764, 765, 766, 767, 768, 769, 133, 134, 135, 136, 137, 138, 140, 141, 142, 143, 144, 145, 146, 148, 152, 153, 154, 155, 156, 157, 431, 463, 2745, 158, 159, 160, 161, 162, 163
-tradeNotEnoughMoneyMsg "Oh, ich fürchte Ihr könnt Euch das nicht leisten.", "Oh, I fear, you can not afford that."
-tradeFinishedMsg "Vielen Dank, beehrt mich bald wieder!", "Thank you, please come again!"
-tradeFinishedWithoutTradingMsg "Auf Bald!", "Farewell!"
-tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
+sellItems = 126, 799, 133, 134, 135, 136, 137, 140, 141, 142, 143, 144, 145, 147, 148, 149, 151, 153, 155, 156, 157, 158, 159, 160, 161, 162, 163, 405, 406, 407, 752, 753, 759, 763, 767, 3787
+-- sickle
+-- wicker basket
+-- sun herb, fourleafed oneberry, yellow weed, anger berry, flamegoblet blossom, donf blade, black thistle, sandberry, red elder, virgin's weed, heath flower, blackberry, firnis blossom, fir tree sprout, strawberry, foot leaf, sibanac leaf, steppe fern, rotten tree bark, bulbsponge mushroom, toadstool, red head, herder's mushroom, birth mushroom, champignon, fairy ring mushroom, stinkhorn, elf caps, mandrake, blue birdsberry, nuts, marsh flower, water blossom, silk
+buyPrimaryItems = 133, 134, 135, 136, 137, 140, 141, 142, 143, 144, 145, 147, 148, 149, 151, 153, 155, 156, 157, 158, 159, 160, 161, 162, 163, 405, 406, 407, 752, 753, 759, 763, 767, 3787
+-- sun herb, fourleafed oneberry, yellow weed, anger berry, flamegoblet blossom, donf blade, black thistle, sandberry, red elder, virgin's weed, heath flower, blackberry, firnis blossom, fir tree sprout, strawberry, foot leaf, sibanac leaf, steppe fern, rotten tree bark, bulbsponge mushroom, toadstool, red head, herder's mushroom, birth mushroom, champignon, fairy ring mushroom, stinkhorn, elf caps, mandrake, blue birdsberry, nuts, marsh flower, water blossom, silk
+tradeNotEnoughMoneyMsg "Das könnt ihr euch nicht leisten.", "You can not afford that."
+tradeFinishedMsg "Vielen Dank.", "Thank you."
+tradeFinishedWithoutTradingMsg "Auf Wiedersehen.", "Goodbye."
+tradeWrongItemMsg "No thanks.", "Nein danke."
 
 -- Template Version 1.03 by Estralis Seborian
--- Instructions: Replace all talk consequences with strings ending with a full stop, maximum length is 250 characters. Try to provide more than one answer, one is chosen at random.
--- Valid races: human, elf, dwarf, lizardman, orc, halfling
--- Valid directions: north, northeast, east, southeast, south, southwest, west, northwest
--- Appearance: If you don't change it your NPC will wear a blue shirt, black trousers, leather glowes and leather boots at least. S/he will also have fair skin and brown hairs. Please use red-green-blue values as indicator. Ex.: colorHair = 123 (red), 62 (green), 9 (blue) = brown hair.
--- Keep radius=0 and the NPC won't walk around, a value greater than 0 will make the NPC run around his position randomly.
--- When you are done, please hit the "Rebuild Script" button.
-
--- This NPC is supposed to trade (all goods are sold and bought, percentage indicates ratio of price bought/sold):
--- 10% Tools (Alchemist): 58
--- 10% Tools (Candle maker): 429
--- 10% Tools (Herb gatherer): 126
--- 10% Candles, torches: 43, 391
--- 10% Herbs II: 752, 753, 754, 755, 756, 757, 758, 759, 760, 761, 762, 763, 764, 765, 766, 767, 768, 769
--- 10% Herbs: 133, 134, 135, 136, 137, 138, 140, 141, 142, 143, 144, 145, 146, 148, 152, 153, 154, 155, 156, 157
--- 10% Wax: 431
--- 10% Writing stuff: 463, 2745
--- 10% Mushrooms: 158, 159, 160, 161, 162, 163
-"sell", "buy", "wares", "price", "trade", "purchase" -> "Ah, so you are interested in my wares.", "Take your time to look around.", trade
-"kauf", "waren", "preis", "Handel", "veräußer", "erwerb" -> "Ah, dann interessiert Ihr Euch also für meine Waren.", "Schaut Euch ruhig in Ruhe um.", trade
 
 -- Help
-"Help" -> inform("[Game Help]This NPC is William Daloire the herbalist. Keywords: trade, buy, sell, greetings, profession, tell something.")
+"Help" -> inform("[Game Help] This NPC is William Daloire the herbalist. Keywords: trade, buy, sell, greetings, profession, tell something.")
 "Hilfe" -> inform("[Spielhilfe] Dieser NPC ist William Daloire der Kräuterkundige. Schlüsselwörter: Handel, kaufe, verkaufe, Grüße, Beruf, erzähl was.")
+
+-- Trade
+"sell", "buy", "wares", "price", "trade", "purchase" -> "Best goods!", "I have best herbs for all kinds of purposes.", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Beste Waren!", "Ich habe die besten Kräuter für alle möglichen Verwendungen.", trade
 
 -- Mandatory: General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Oldra.", "Greetings.", "Be greeted."
@@ -104,20 +93,22 @@ english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greetings.", "Be greeted."
 "Tschüß", "Tschüss", "Wiedersehen", "Gehab wohl" -> "Lebt wohl! Möge Oldra über Euch wachen!", "Lebt wohl! Und schaut mal wieder vorbei."
 english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Adé!", "A bientôt!", "May Oldra be with you."
 "Ciao", "Adieu", "Au revoir", "Farebba" -> "Adé!", "A bientôt!", "Möge Oldra über Euch wachen!"
-"How are you", "How feel", "How do you do" -> "Thank you for asking. Since I stopped smoking Sibanac I feel great!", " I drank some herbal tea for my headache, now I feel better."
-"Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Danke der Nachfrage. Seitdem ich kein Sibanac mehr rauche geht es mir ausgezeichnet!", "I trank Tee gegen meine Kopfschmerzen, und nun  geht es mir wieder gut."
-"your name", "who are you", "who art thou" -> "I'm a merchant, I sell fresh herbs. I am called William Deloire.", "I'm William Deloire, at you service."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin ein Händler der frische Kräuter verkauft. Ich werde William Deloire genannt.", "Ich heiße William Deloire, was kann ich für Euch tun?"
+"How are you", "How feel", "How do you do" -> "Thank you for asking. Since I stopped smoking Sibanac I feel great!", "I drank some herbal tea for my headache, now I feel better."
+"Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Danke der Nachfrage. Seitdem ich kein Sibanac mehr rauche geht es mir ausgezeichnet!", "I trank Tee gegen meine Kopfschmerzen und nun geht es mir wieder gut."
+"your name", "who are you", "who art thou" -> "I'm a merchant, I sell fresh herbs. I am called William Daloire.", "I'm William Daloire, at you service."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich bin ein Händler der frische Kräuter verkauft. Ich werde William Daloire genannt.", "Ich heiße William Daloire, was kann ich für Euch tun?"
 
 -- Optional: Catching quest triggers. Modify if the NPC does quests
-english, "quest", "mission" -> "Nah I don't sell quests. I mean.. sorry.. I don't *have any* quests for you, rather."
-"quest", "mission" -> "Soetwas verkaufe ich nicht. Ähm...Ich wollte sagen, ich biete soetwas nicht an."
-"task", "adventure", "order" -> "Nah I don't sell quests. I mean.. sorry.. I don't *have any* quests for you, rather."
-"Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Soetwas verkaufe ich nicht. Ähm...Ich wollte sagen, ich biete soetwas nicht an."
+english, "quest", "mission" -> "Nah I don't sell quests. I mean, sorry. I don't have any quests for you, rather."
+"quest", "mission" -> "Soetwas verkaufe ich nicht. Ähm... Ich wollte sagen, ich biete soetwas nicht an."
+"task", "adventure", "order" -> "Nah I don't sell quests. I mean, sorry. I don't have any quests for you, rather."
+"Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Soetwas verkaufe ich nicht. Ähm... Ich wollte sagen, ich biete soetwas nicht an."
 
 -- Quest by NPC mirarie Bragolin (Writing history IV)
-queststatus(317) = 9, english, "Mirarie", "Bragolin", "letter", "message" -> queststatus(317) = 10, "Oh? A letter for me? Hrm... Ah, I see. Please tell Miss Bragolin I'll send her a letter to answer her question."
-queststatus(317) = 9, "Mirarie", "Bragolin", "Brief", "Nachricht" -> queststatus(317) = 10, "Oh?... ein Brief für mich? ... Ah, ich verstehe. Bitte sagt Fräulein Bragolin ich werde ihr einen Brief schreiben um ihre Fragen zu beantworten."
+queststatus(317) = 9, english, "Mirarie", "Bragolin" -> queststatus(317) = 10, "Oh? A letter for me? Hrm... Ah, I see. Please tell Miss Bragolin I'll send her a letter to answer her question."
+queststatus(317) = 9, "letter", "message" -> queststatus(317) = 10, "Oh? A letter for me? Hrm... Ah, I see. Please tell Miss Bragolin I'll send her a letter to answer her question."
+queststatus(317) = 9, "Mirarie", "Bragolin" -> queststatus(317) = 10, "Oh? Ein Brief für mich? Ah, ich verstehe. Bitte sagt Fräulein Bragolin ich werde ihr einen Brief schreiben um ihre Fragen zu beantworten."
+queststatus(317) = 9, "Brief", "Nachricht" -> queststatus(317) = 10, "Oh? Ein Brief für mich? Ah, ich verstehe. Bitte sagt Fräulein Bragolin ich werde ihr einen Brief schreiben um ihre Fragen zu beantworten."
 
 -- Optional: Small talk - The talk here should focus on possible questions. Feel free to add more!
 "profession" -> "I'm a herbalist, so as you might expect: I sell herbs. Want to take a look?", "I don't just sell herbs: I also sell useful tools. Come have a look.", "I sell herbs and tools too. Want to see?"
@@ -196,16 +187,8 @@ english, "Gobaith", "Gobiath" -> "Goba.. Gobi-what? I've never heard of that her
 -- Optional: Last catch - Think about keywords the player might say and that are not caught until here
 "my name" -> "A pleasure to meet you,%CHARNAME."
 "mein Name" -> "Es ist eine Freude Eure Bekanntschaft zu machen, %CHARNAME."
-english, "William", "Deloire" -> "Yes, that's me. I'm William Deloire, at you service."
-"William", "Deloire" -> "Ja, das bin ich. William Deloire, was kann ich für Euch tun?"
-"Yes" -> "I should think so too!", "Perhaps..."
-"Ja" -> "Das sehe ich genau so.", "Nun..."
-"No" -> "Ah. Alright, I suppose.", "Ah.."
-"Nein" -> "Ah. Das verstehe ich ...", "Nun..."
-
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-english, chance(20.0), ".*" -> "I fear I didn't catch your drift."
-german, chance(20.0), ".*" -> "Ich fürchte, ich habe Euch nicht verstanden."
+english, "William", "Daloire" -> "Yes, that's me. I'm William Daloire, at you service."
+"William", "Daloire" -> "Ja, das bin ich. William Daloire, was kann ich für Euch tun?"
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.

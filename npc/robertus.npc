@@ -58,42 +58,32 @@ itemShoes = 53
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItems = 24, 26, 23, 737, 734, 736, 2588, 733, 735, 1266
-buyPrimaryItems = 24, 26
-buySecondaryItems = 23, 737, 734, 736, 2588, 733, 735, 1266
-tradeNotEnoughMoneyMsg "Oh, ich fürchte Ihr könnt Euch das nicht leisten.", "Oh, I fear you can not afford that."
-tradeFinishedMsg "Vielen Dank, beehrt mich bald wieder!", "Thank you, please come again!"
-tradeFinishedWithoutTradingMsg "Auf Bald!", "Farewell!"
-tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
+sellItems = 24, 312, 2710, 2751, 737, 2763, 26, 726, 316, 2535, 2550, 104, 236, 2571, 21, 22, 2536, 1062, 234, 2534, 251, 255, 252, 253, 256, 257, 254, 1266, 733, 735
+-- shovel, wooden shovel, mould, crucible-pincers, chisel, pick-axe
+-- clay, coarse sand, quartz sand
+-- iron ingot, copper ingot, silver ingot, gold ingot, merinium ingot, coal, iron ore, copper ore, silver ore, gold nuggets, merinium ore, raw amethyst, raw ruby, raw obsidian, raw sapphire, raw emerald, raw topaz, raw diamond, stone, stone block, raw stone
+buyPrimaryItems = 26, 726, 316 
+-- clay, coarse sand, quartz sand
+buySecondaryItems = 2535, 2550, 104, 236, 2571, 21, 22, 2536, 1062, 234, 2534, 251, 255, 252, 253, 256, 257, 254, 1266, 733, 735
+-- iron ingot, copper ingot, silver ingot, gold ingot, merinium ingot, coal, iron ore, copper ore, silver ore, gold nuggets, merinium ore, raw amethyst, raw ruby, raw obsidian, raw sapphire, raw emerald, raw topaz, raw diamond, stone, stone block, raw stone
+tradeNotEnoughMoneyMsg "Das könnt ihr euch nicht leisten.", "You can't afford that."
+tradeFinishedMsg "Im Namen Ihrer Majestät danke ich.", "In lieu of her Royal Majesty: I thank you."
+tradeFinishedWithoutTradingMsg "Bringt bitte mehr Steine.", "Please bring more stones."
+tradeWrongItemMsg "Das benötige ich nicht.", "I do not need that."
 
 -- Template Version 1.03, 01/05/2011 by Estralis Seborian
--- Instructions: Replace all talk consequences with strings ending with a full stop, maximum length is 250 characters. Try to provide more than one answer, one is chosen at random.
--- Valid races: human, elf, dwarf, lizardman, orc, halfling
--- Valid directions: north, northeast, east, southeast, south, southwest, west, northwest
--- Appearance: If you don't change it your NPC will wear a blue shirt, black trousers, leather glowes and leather boots at least. S/he will also have fair skin and brown hairs. Please use red-green-blue values as indicator. Ex.: colorHair = 123 (red), 62 (green), 9 (blue) = brown hair.
--- Keep radius=0 and the NPC won't walk around, a value greater than 0 will make the NPC run around his position randomly.
--- When you are done, please hit the "Rebuild Script" button.
-
--- NPC by Estralis Seborian
-
--- This NPC is supposed to trade (all goods are sold and bought, percentage indicates ratio of price bough/sold):
-
--- 10% Tools (Digger): 24
--- 5% Tools (Mason): 23, 737
--- 5% Tools (Brick maker): 734
--- 5% Bricks: 736, 2588
--- 5% Stones: 733, 735, 1266
--- 10% Clay: 26
-"sell", "buy", "wares", "price", "trade", "purchase" -> "I trade with building materials. I'll purchase anything that can help building Her Majesty's... place of peaceful rest.", "Bricks, stone blocks, marble... all the workers need.", "I can sell you the tools you need to serve the Queen. On, on!", trade
-"kauf", "waren", "preis", "Handel", "veräußer", "erwerb" -> "Ich handele mit Baumaterialien. Ich werde alles erwerben, was benötigt wird um für ihre Majestät... einen Ort der letzten Ruhe zu bauen.", "Ziegelsteine, Steinblöcke, Marmor... Ich handele mit allem, was die Arbeiter brauchen.", "Ich kann euch die Werkzeuge verkaufen, die ihr braucht, um Königin Rosaline zu dienen. Los, los!", trade
 
 -- Help
 "Help" -> inform("[Game Help] This NPC is the royal builder Robertus. Keywords: buy, sell, trade, Hello, builder.")
 "Hilfe" -> inform("[Spielhilfe] Dieser NPC ist der königliche Baumeister Robertus. Schlüsselwörter: kaufe, verkaufe, Handel, Hallo, Baumeister.")
 
+-- Trade
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I trade with building materials. I'll purchase anything that can help building Her Majesty's... place of peaceful rest.", "Bricks, stone blocks, marble... all the workers need.", "I can sell you the tools you need to serve the Queen. On, on!", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich handele mit Baumaterialien. Ich werde alles erwerben, was benötigt wird um für ihre Majestät... einen Ort der letzten Ruhe zu bauen.", "Steinblöcke, Marmor... Ich handele mit allem, was die Arbeiter brauchen.", "Ich kann euch die Werkzeuge verkaufen, die ihr braucht, um Königin Rosaline zu dienen. Los, los!", trade
+
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Ah, you must be the marble deliverer. Put it just next to the stack of bricks.", "Welcome, stranger. Do you have any building materials for me?", "Be greeted, in the name of the Queen."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Ah, ihr müßt der Marmorlieferant sein. Lagert es neben den Ziegelsteinen.", "Willkommen, Fremdling. Habt ihr Baumaterial für mich?", "Seid im Namen der Königin gegrüßt."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Ah, ihr müßt der Marmorlieferant sein. Lagert es neben den Ziegelsteinen.", "Willkommen, Fremdling. Habt ihr Baumaterial für mich?", "Seid im Namen der Königin gegrüßt."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Ah, you must be the marble deliverer. Put it just next to the stack of bricks.", "Welcome, stranger. Do you have any building materials for me?", "Be greeted, in the name of the Queen."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Ah, ihr müßt der Marmorlieferant sein. Lagert es neben den Ziegelsteinen.", "Willkommen, Fremdling. Habt ihr Baumaterial für mich?", "Seid im Namen der Königin gegrüßt."
 "Farewell", "Good bye", "Bye", "Fare well", "see you" -> "Farewell.", "Goodbye.", "Until next time!"
@@ -103,7 +93,7 @@ english, "Ciao", "Adieu", "Au revoir" -> "Farewell.", "Goodbye.", "Until next ti
 "How are you", "How feel", "How do you do" -> "As long as the Queen is content, I am happy, and I'd do anything to please her.", "I just need to finish this calculation, then we can talk.", "Every day is a great day to serve under Queen Rosaline."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Solange die Königin zufrieden ist, bin ich es auch. Und ich werde alles tun, um sie zufrieden zu stellen.", "Ich muss nur noch grad diese Berechnung abschließen, dann können wir reden.", "Jeder Tag ist der richtige, um Königin Rosaline zu dienen."
 "your name", "who are you", "who art thou" -> "Robertus.", "My name is Robertus, I am the royal builder. I serve the Queen with every fibre of my body.", "They call me Robertus. I'm the royal builder of Cadomyr, loyal to the Queen."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Robertus.", "Mein Name ist Robertus, ich bin der königliche Baumeister. Ich diene der Königin mit jeder Faser meines Körpers.", "Man nennt mich Robertus. Ich bin der königliche Baumeister Cadomyrs, stets der Königin ergeben."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Robertus.", "Mein Name ist Robertus, ich bin der königliche Baumeister. Ich diene der Königin mit jeder Faser meines Körpers.", "Man nennt mich Robertus. Ich bin der königliche Baumeister Cadomyrs, stets der Königin ergeben."
 
 -- Quest 108: A message from Hector Valerion
 queststatus(108) = 3, "message", "news", "letter", "scroll", "parchment", "task", "adventure", "order" -> inform("[Quest status] Delayed Mail II: You deliver the message from Hector Valerion to Robertus."), queststatus(108) = 4, "Oh! Her Majesty has drawn a sketch showing how she'd like her grave to be! What a marvellous plan! A cube in the desert!"
@@ -194,10 +184,6 @@ english, "Cherga" -> "I'll never let Cherga take away our Queen. If she departs 
 "bob der baumeister" -> "Ich ziehe den Namen Robertus vor, bitte schön."
 
 -- Last catch: Think about keywords the player might say and that are not caught until here
-"Yes" -> "It's good that you said this. Hail the Queen!", "Really? I should tell the Queen about this."
-"Ja" -> "Es ist gut, dass ihr dies gesagt habt. Lang lebe die Königin!", "Wirklich? Ich sollte dies der Königin mitteilen."
-"No" -> "Do you have any further information?", "You make me curious. Should I report to the Queen?"
-"Nein" -> "Habt ihr weitere Informationen?", "Ihr macht mich neugierig. Sollte ich dies der Königin berichten?"
 "ass", "arse" -> "Same to you."
 "arsch" -> "Ihr mich auch."
 english, "Robertus" -> "Indeed, I am Robertus, the royal builder. And no, I don't have a nickname."
@@ -214,7 +200,7 @@ cycletext "Hoch lebe die Königin!", "Hail the Queen!"
 cycletext "#me beugt sich über eine große Zeichnung und macht sorgfältig Korrekturen an einzelnen Linien.", "#me leans over a huge drawing and corrects individual lines carefully."
 cycletext "#me schlägt mit seiner Faust auf eine auf dem Tisch liegende Zeichnung. 'Nein! So nicht!'", "#me slams his fist on a drawing lying on the table. 'No! Not this way!'"
 cycletext "#me murmelt vor sich hin und streicht mit einem Federkiel an seinem Kinn entlang.", "#me murmurs to himself and strokes his chin with the feather of a quill."
-cycletext "Wir könnten eine Säuler hier hinzufügen... und da auch...", "We could add a pillar here... and there..."
+cycletext "Wir könnten eine Säule hier hinzufügen... und da auch...", "We could add a pillar here... and there..."
 cycletext "Sie wird beeindruckt sein, ich hoffe nur, die Königin wird ihr Grab nie brauchen.", "She will be impressed, I just hope the Queen will never need her grave."
 cycletext "Dient ihrer Hohheit!", "Serve Her Majesty!"
 cycletext "#me kratzt sich am Kopf.", "#me scratches his forehead."

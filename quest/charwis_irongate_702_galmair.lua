@@ -16,21 +16,21 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- INSERT INTO quests SET qst_script = 'quest.charwis_irongate_702_galmair' WHERE qst_id = 702;
 
-require("base.common")
-require("base.factions")
-module("quest.charwis_irongate_702_galmair", package.seeall)
+local common = require("base.common")
+local factions = require("base.factions")
+local M = {}
 
-GERMAN = Player.german
-ENGLISH = Player.english
+local GERMAN = Player.german
+local ENGLISH = Player.english
 
 -- Insert the quest title here, in both languages
-Title = {}
+local Title = {}
 Title[GERMAN] = "Nachrichten Überbringen"
 Title[ENGLISH] = "Message Delivery"
 
 -- Insert an extensive description of each status here, in both languages
 -- Make sure that the player knows exactly where to go and what to do
-Description = {}
+local Description = {}
 Description[GERMAN] = {}
 Description[ENGLISH] = {}
 Description[GERMAN][1] = "Charwis Irongate bat dich eine Nachricht an Nik Nilo zu überbringen, einem Händler in Galmair der seine Waren auf dem Marktplatz in Galmair verkauft."
@@ -52,7 +52,7 @@ Description[ENGLISH][8] = "You should talk to Charwis Irongate again to collect 
 Description[GERMAN][9] = "Rede erneut mit Charwis Irongate. Er hat sicher noch eine Aufgabe für dich."
 Description[ENGLISH][9] = "Talk to Charwis Irongate again, he probably has another task for you to do."
 Description[GERMAN][10] = "Charwis Irongate bat dich, den großen Goldnugget zu nehmen und ihn Pheritaleth aus Cadomyr zu zeigen, um seine Ehre zu verteidigen."
-Description[ENGLISH][10] = "Charwis Irongate asked you to show the big gold nugget to Pheritaleth of Cadomyr to restore his honor."
+Description[ENGLISH][10] = "Charwis Irongate asked you to show the big gold nugget to Pheritaleth of Cadomyr to restore his honour."
 Description[GERMAN][11] = "Du solltest zu Charwis Irongate gehen und dir deine Belohnung für deinen Dienst abholen."
 Description[ENGLISH][11] = "You should talk to Charwis Irongate again to collect the reward for your service."
 Description[GERMAN][12] = "Rede erneut mit Charwis Irongate. Er hat sicher noch eine Aufgabe für dich."
@@ -66,10 +66,10 @@ Description[ENGLISH][15] = "You have fulfilled all tasks of Charwis Irongate."
 
 
 -- Insert the position of the quest start here (probably the position of an NPC or item)
-Start = {360, 281, 0}
+local Start = {360, 281, 0}
 
 -- For each status insert a list of positions where the quest will continue, i.e. a new status can be reached there
-QuestTarget = {}
+local QuestTarget = {}
 QuestTarget[1] = {position(366, 275, 0)} -- Nik Nilo
 QuestTarget[2] = {position(360, 281, 0)}
 QuestTarget[3] = {position(360, 281, 0)}
@@ -82,41 +82,43 @@ QuestTarget[9] = {position(360, 281, 0)}
 QuestTarget[10] = {position(111, 599, 0)} -- Pheritaleth
 QuestTarget[11] = {position(360, 281, 0)}
 QuestTarget[12] = {position(360, 281, 0)}
-QuestTarget[13] = {position(898, 775, 2)} -- Elvaine Morgan
+QuestTarget[13] = {position(951, 788, 1), position(1002, 813, 0)} -- Portal, Elvaine Morgan
 QuestTarget[14] = {position(360, 281, 0)}
 QuestTarget[15] = {position(360, 281, 0)}
 
 -- Insert the quest status which is reached at the end of the quest
-FINAL_QUEST_STATUS = 15
+local FINAL_QUEST_STATUS = 15
 
 
-function QuestTitle(user)
-    return base.common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
+function M.QuestTitle(user)
+    return common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
 end
 
-function QuestDescription(user, status)
+function M.QuestDescription(user, status)
     local german = Description[GERMAN][status] or ""
     local english = Description[ENGLISH][status] or ""
 
-    return base.common.GetNLS(user, german, english)
+    return common.GetNLS(user, german, english)
 end
 
-function QuestStart()
+function M.QuestStart()
     return Start
 end
 
-function QuestTargets(user, status)
+function M.QuestTargets(user, status)
     return QuestTarget[status]
 end
 
-function QuestFinalStatus()
+function M.QuestFinalStatus()
     return FINAL_QUEST_STATUS
 end
 
-function QuestAvailability(user, status)
-    if base.factions.isGalmairCitizen(user) and status == 0 then
+function M.QuestAvailability(user, status)
+    if factions.isGalmairCitizen(user) and status == 0 then
         return Player.questAvailable
     else
         return Player.questNotAvailable
     end
 end
+
+return M

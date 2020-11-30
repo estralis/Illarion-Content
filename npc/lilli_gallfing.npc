@@ -37,9 +37,10 @@ defaultLanguage = common
 autointroduce = on
 
 author = "Zot"
+author = "Estralis Seborian"
 
-lookatDE = ""
-lookatUS = ""
+lookatDE = "Dieser NPC ist Lilli Gallfing die Schneiderin."
+lookatUS = "This NPC is Lilli Gallfing the tailor."
 useMsgDE = "Fass mich nicht an!"
 useMsgUS = "Hands off!"
 wrongLangDE = "#me schaut dich verwirrt an."
@@ -47,109 +48,227 @@ wrongLangUS = "#me looks at you confused."
 radius = 0
 hairID = 7
 beardID = 0
-colorHair = 255, 20, 147
+colorHair = 205, 92, 92
 colorSkin = 245, 200, 145
 itemHead = 0
-itemChest = 182
-itemCoat = 2418
+itemChest = 834
+itemCoat = 0
 itemMainHand = 0
 itemSecondHand = 0
 itemHands = 0
-itemTrousers = 844
-itemShoes = 0
+itemTrousers = 0
+itemShoes = 369
+
+-- Quest 1: Gathering. Player gets a gathering tool. Player gathers materials for 10 intermediate products.
+-- Quest 2: Intermediate production. Player gets a tool for intermediate production. Player produces 10 intermediate products.
+-- Quest 3: Final production. Player gets a tool for final production. Player delivers final products made of 10 intermediate products. Reward: 50 % of item.worth. Rank Layman / Laie
+-- Rank quests:
+-- Level 10: Novice / Anfänger. Reward: 10 Raw materials (e.g. coal)
+-- Level 20: Apprentice / Lehrling. Reward: 20 Raw materials (e.g. wool)
+-- Level 30: Initiate / Initiat. Reward: 10 Intermediate products (e.g. boards)
+-- Level 40: Journeyman / Geselle. Reward: 20 Intermediate products (e.g. thread), journeyman's certificate
+-- Level 50: Specialist / Spezialist. Reward: 10 Uncommon resources (e.g. handles)
+-- Level 60: Expert / Experte. Reward: 20 Uncommon resources (e.g. gold ingots)
+-- Level 70: Adept / Adept. Reward: 5 Rare resources (e.g. merinium ingots)
+-- Level 80: Artisan / Artisane. Reward: 10 Rare resources (e.g. heartwood)
+-- Level 90: Master / Meister. Reward: 5 Pure elements, master's tool
+-- Level 100: Grandmaster / Großmeister. Reward: 10 Pure elements, grandmaster's medal
 
 -- Help
-"Help" -> inform("[Game Help] This NPC is Lilli Gallfing the tailor. Keywords: quest")
-"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Lilli Gallfing die Schneiderin. Schlüsselwörter: Quest")
+"Help" -> inform("[Game Help] This NPC is Lilli Gallfing the tailor. Keywords: Hello, Quest, Tailoring.")
+"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Lilli Gallfing die Schneiderin. Schlüsselwörter: Hallo, Quest, Schneidern.")
 
 -- General speech
-"Hello", "Greet", "Hail", "Good day", "Good morning", "Good Evening" -> "Hello, can I help you?", "Nice to meet you, I'm Lilli Gallfing."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Hallo, kann ich Euch helfen?", "Freut mich, Euch zu treffen. Ich bin Lilli Gallfing."
-english, "Hiho", "Hallo", "Hey", "Greeb" -> "Hello, can I help you?", "Nice to meet you, I'm Lilli Gallfing."
-"Hiho", "Hallo", "Hey", "Greeb" -> "Hallo, kann ich Euch helfen?", "Freut mich, Euch zu treffen. Ich bin Lilli Gallfing"
-"Farewell", "Bye", "Fare well", "See you" -> "I wish you a nice day.", "I hope we meet again, goodbye."
-"Tschüß", "Tschüss", "Wiedersehen" -> "Ich wünsche Euch noch einen schönen Tag.", "Ich hoffe wir sehen uns wieder, auf bald!"
-english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "I wish you a nice day.", "I hope we meet again, goodbye."
-"Ciao", "Adieu", "Au revoir", "Farebba" -> "Ich wünsche Euch noch einen schönen Tag.", "Ich hoffe wir sehen uns wieder, auf bald!"
-"How are you", "How feel", "How do you do" -> "I feel fine, thank you for asking."
-"Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Mir geht es gut, danke für die Nachfrage."
-"your name", "who are you", "who art thou" -> "I'm Lilli Gallfing, who are you?"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin Lilli Gallfing. Wer bist du?"
+"Hello", "Greet", "Hail", "Good day", "Good morning", "Good Evening" -> "So nice of you to visit me. What can I do for you on this lovely day?", "I like talking to people like you. So, what shall we talk about?"
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Das ist ja nett von dir, mich zu besuchen. Was kann ich an diesem schönen Tag für dich tun?", "Ich mag es, mit Leuten wir dir zu reden. Also, über was wollen wir uns unterhalten?"
+english, "Hiho", "Hallo", "Hey", "Greeb" -> "So nice of you to visit me. What can I do for you on this lovely day?", "I like talking to people like you. So, what shall we talk about?"
+"Hiho", "Hallo", "Hey", "Greeb" -> "Das ist ja nett von dir, mich zu besuchen. Was kann ich an diesem schönen Tag für dich tun?", "Ich mag es, mit Leuten wir dir zu reden. Also, über was wollen wir uns unterhalten?"
+"Farewell", "Bye", "Fare well", "See you" -> "Thank you and see you soon. Visit me again.", "See you later."
+"Tschüß", "Tschüss", "Wiedersehen" -> "Danke und auf Wiedersehen. Schau bald mal wieder rein.", "Bis bald!"
+english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Thank you and see you soon. Visit me again.", "See you later."
+"Ciao", "Adieu", "Au revoir", "Farebba" -> "Danke und auf Wiedersehen. Schau bald mal wieder rein.", "Bis bald!"
+"How are you", "How feel", "How do you do" -> "All is fine, as usual. Why should I complain, anyway?"
+"Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Alles bestens, wie immer. Warum sollte ich auch klagen?"
+"your name", "who are you", "who art thou" -> "I'm Lilli Gallfing, but you can also call me Miss Moonshine. I provide her Majesty with her gowns."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich bin Lilli Gallfing, aber du kannst mich auch Fräulein Mondschein nennen. Ich versorge ihre Majestät mit Gewändern."
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader. But I can teach you how to tailor."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin keine Marktfrau. Aber ich kann dir das Schneiderhandwerk beibringen."
 
 -- Small talk: The talk here should focus on possible questions. Feel free to add more!
-"profession" -> "I'm a tailor. Do you want to know more about it? Then just ask me for a task!"
-"beruf" -> "Ich bin Schneiderin. Wollt Ihr mehr darüber wissen? Dann fragt mich einfach nach einer Aufgabe!"
-english, "job" -> "I'm a tailor. Do you want to know more about it? Then just ask me for a task!"
-"job" -> "Ich bin Schneiderin. Wollt Ihr mehr darüber wissen? Dann fragt mich einfach nach einer Aufgabe!"
+"profession" -> "Tailoring is my passion. To craft marvellous robes that cover beautiful bodies is just amazing, isn't it?"
+"beruf" -> "Schneidern ist meine Leidenschaft. Wunderbare Roben zu nähen, die schöne Körper umschmeicheln, ist das nicht klasse?"
+english, "job" -> "Tailoring is my passion. To craft marvellous robes that cover beautiful bodies is just amazing, isn't it?"
+"job" -> "Schneidern ist meine Leidenschaft. Wunderbare Roben zu nähen, die schöne Körper umschmeicheln, ist das nicht klasse?"
 
--- Quests
-queststatus(705) = 0, town = Cadomyr, english, "quest", "mission" -> "Oh, you want to learn something about tailoring? Well, let's start with something simple. Could you collect twenty bales of wool for me? You can find sheep if you leave the city and follow the street to the west. You can have my old scissors to collect the wool.", item(6, 1, 477), queststatus(705) = 1
-queststatus(705) = 0, town = Cadomyr, "quest", "mission" -> "Oh, Ihr wollt etwas über das Schneidern lernen? Nun gut, fangen wir mit etwas Einfachem an. Bringt mir doch bitte 20 Wollballen. Schafe solltet Ihr finden, wenn Ihr die Stadt verlasst und nach Westen geht. Hier noch eine Schere, um die Schafe zu scheren.", item(6, 1, 477), queststatus(705) = 1
-queststatus(705) = 0, town = Cadomyr, "task", "adventure", "order" -> "Oh, you want to learn something about tailoring? Well, let's start with something simple. Could you collect twenty bales of wool for me? You can find sheep if you leave the city and follow the street to the west. You can have my old scissors to collect the wool.", item(6, 1, 477), queststatus(705) = 1
-queststatus(705) = 0, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Oh, Ihr wollt etwas über das Schneidern lernen? Nun gut, fangen wir mit etwas Einfachem an. Bringt mir doch bitte 20 Wollballen. Schafe solltet Ihr finden, wenn Ihr die Stadt verlasst und nach Westen geht. Hier noch eine Schere um, die Schafe zu scheren.", item(6, 1, 477), queststatus(705) = 1
-queststatus(705) = 1, item(170, all) > 19, town = Cadomyr, english, "quest", "mission", "wool", "bale" -> "Ah, so you have found the sheep, well done. Keep the bales of wool for your next task.", queststatus(705) = 2
-queststatus(705) = 1, item(170, all) > 19, town = Cadomyr, "quest", "mission", "wolle", "ballen" -> "Ah, also habt Ihr die Schafe gefunden, gut gemacht. Behaltet die Wollballen für die nächste Aufgabe.", queststatus(705) = 2
-queststatus(705) = 1, item(170, all) > 19, town = Cadomyr, "task", "adventure", "order" -> "Ah, so you have found the sheep, well done. Keep the bales of wool for your next task.", queststatus(705) = 2
-queststatus(705) = 1, item(170, all) > 19, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ah, also habt Ihr die Schafe gefunden, gut gemacht. Behaltet die Wollballen für die nächste Aufgabe.", queststatus(705) = 2
-queststatus(705) = 1, item(170, all) < 20, town = Cadomyr, english, ".+" -> "That isn't twenty bales of wool yet, please come back once you've finished this task."
-queststatus(705) = 1, item(170, all) < 20, town = Cadomyr, ".+" -> "Das sind noch keine 20 Wollballen, die ich haben wollte. Kommt wiede, wenn Ihr die Aufgabe erledigt habt."
-queststatus(705) = 2, town = Cadomyr, english, "quest", "mission" -> "You want another task? Alright, please go to the loom behind me and weave two bolts of grey cloth. Furthermore, go to the spinning wheel over there and produce five spools of thread from the remaining wool.", queststatus(705) = 3
-queststatus(705) = 2, town = Cadomyr, "quest", "mission" -> "Ihr wollt noch eine Aufgabe? Von mir aus gerne. Bitte geht zum Webstuhl hinter mir und macht aus den zwei übrigen Knäulen grauen Stoff und aus den anderen zehn Knäulen beim Spinnrad da vorne Garn.", queststatus(705) = 3
-queststatus(705) = 2, town = Cadomyr, "task", "adventure", "order" -> "You want another task? Alright, please go to the loom behind me and weave two bolts of grey cloth. Furthermore, go to the spinning wheel over there and produce five spools of thread from the remaining wool.", queststatus(705) = 3
-queststatus(705) = 2, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ihr wollt noch eine Aufgabe? Von mir aus gerne. Bitte geht zum Webstuhl hinter mir und macht aus den zwei übrigen Knäulen grauen Stoff und aus den anderen zehn Knäulen beim Spinnrad da vorne Garn.", queststatus(705) = 3
-queststatus(705) = 3, item(176, all) > 1, item(50, all) > 4, town = Cadomyr, english, "quest", "mission", "thread", "cloth", "grey" -> "Well done, thank you. Do you want another task?", deleteItem(176, 2), deleteItem(50, 5), queststatus(705) = 4
-queststatus(705) = 3, item(176, all) > 1, item(50, all) > 4, town = Cadomyr, "quest", "mission", "garn", "stoff", "grau" -> "Gut gemacht, danke. Wollt Ihr eine weitere Aufgabe?", deleteItem(176, 2), deleteItem(50, 5), queststatus(705) = 4
-queststatus(705) = 3, item(176, all) > 1, item(50, all) > 4, town = Cadomyr, "task", "adventure", "order" -> "Well done, thank you. Do you want another task?", deleteItem(176, 2), deleteItem(50, 5), queststatus(705) = 4
-queststatus(705) = 3, item(176, all) > 1, item(50, all) > 4, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Gut gemacht, danke. Wollt Ihr eine weitere Aufgabe?", deleteItem(176, 2), deleteItem(50, 5), queststatus(705) = 4
-queststatus(705) = 3, item(176, all) < 2, town = Cadomyr, english, ".+" -> "Could you produce two bolts of grey cloth and five spools of thread from the remaining twenty bales of wool for me please?"
-queststatus(705) = 3, item(176, all) < 2, town = Cadomyr, ".+" -> "Stellt doch bitte aus den übrigen 20 Wollballen fünf Garnrollen und zwei Rollen grauen Stoff her."
-queststatus(705) = 3, item(50, all) < 5, town = Cadomyr, english, ".+" -> "Could you produce two bolts of grey cloth and five spools of thread from the remaining twenty bales of wool for me please?"
-queststatus(705) = 3, item(50, all) < 5, town = Cadomyr, ".+" -> "Stellt doch bitte aus den übrigen 20 Wollballen fünf Garnrollen und zwei Rollen grauen Stoff her."
-queststatus(705) = 4, town = Cadomyr, english, "quest", "mission" -> "You want another task? Well alright, could you produce a grey dress for me please? Here take this needle, some thread and grey cloth to produce the dress.", item(47, 1, 555), item(176, 3, 333), item(50, 6, 333), queststatus(705) = 5
-queststatus(705) = 4, town = Cadomyr, "quest", "mission" -> "Ihr wollt noch eine weitere Aufgabe? Nun gut, meinetwegen. Geht zum Schneidertisch da vorne und stellt mir bitte ein graues Gewand her. Hier habt Ihr eine Nadel, etwas grauen Stoff und einige Garnrollen, um das Gewand herzustellen.", item(47, 1, 555), item(176, 3, 333), item(50, 6, 333), queststatus(705) = 5
-queststatus(705) = 4, town = Cadomyr, "task", "adventure", "order" -> "You want another task? Well alright, could you produce a grey dress for me please? Here take this needle, some thread and grey cloth to produce the dress.", item(47, 1, 555), item(176, 3, 333), item(50, 6, 333), queststatus(705) = 5
-queststatus(705) = 4, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ihr wollt noch eine weitere Aufgabe? Nun gut, meinetwegen. Geht zum Schneidertisch da vorne und stellt mir bitte ein graues Gewand her. Hier habt Ihr eine Nadel, etwas grauen Stoff und einige Garnrollen, um das Gewand herzustellen.", item(47, 1, 555), item(176, 3, 333), item(50, 6, 333), queststatus(705) = 5
-queststatus(705) = 5, item(802, all) > 0, town = Cadomyr, english, "quest", "mission", "dress", "grey" -> "Well done, thank you very much. If you have more time I can give you another task.", deleteItem(802, 1), queststatus(705) = 6
-queststatus(705) = 5, item(802, all) > 0, town = Cadomyr, "quest", "mission", "grau", "gewand" -> "Gut gemacht, vielen Dank. Wenn Ihr noch etwas Zeit erübrigen könnt, hätte ich eine weitere Aufgabe für Euch.", deleteItem(802, 1), queststatus(705) = 6
-queststatus(705) = 5, item(802, all) > 0, town = Cadomyr, "task", "adventure", "order" -> "Well done, thank you very much. If you have more time I can give you another task.", deleteItem(802, 1), queststatus(705) = 6
-queststatus(705) = 5, item(802, all) > 0, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Gut gemacht, vielen Dank. Wenn Ihr noch etwas Zeit erübrigen könnt, hätte ich eine weitere Aufgabe für Euch.", deleteItem(802, 1), queststatus(705) = 6
-queststatus(705) = 5, item(802, all) = 0, town = Cadomyr, english, ".+" -> "You haven't solved the task yet. Come back once you've the grey dress I'm looking for."
-queststatus(705) = 5, item(802, all) = 0, town = Cadomyr, ".+" -> "Ihr habt die Aufgabe noch nicht erfüllt, wie ich sehe. Bitte bringt mir ein graues Gewand."
-queststatus(705) = 6, town = Cadomyr, english, "quest", "mission" -> "Let's produce some dye now, you will need dye for tailoring as well. Please go outside and make a little fire with the wood which you get from me and produce five buckets of red dye. You need a mortar, five buckets filled with water and fifteen cherries to make the dye. I'll give you these things, just this once.", item(58, 1, 555), item(52, 5, 555), item(302, 15, 555), item(544, 3, 555), queststatus(705) = 7
-queststatus(705) = 6, town = Cadomyr, "quest", "mission" -> "Lasst uns nun etwas Farbe herstellen. Bitte geht hinaus, macht ein kleines Feuer mit dem dem Holz, das ich Euch gebe, und stellt fünf Eimer mit roter Farbe her. Dafür braucht Ihr außerdem noch einen Mörser, 5 Eimer mit Wasser darin und 15 Kirschen. Dies kriegt Ihr heute ausnahmsweise alles von mir.", item(58, 1, 555), item(52, 5, 555), item(302, 15, 555), item(544, 3, 555), queststatus(705) = 7
-queststatus(705) = 6, town = Cadomyr, "task", "adventure", "order" -> "Let's produce some dye now, you will need dye for tailoring as well. Please go outside and make a little fire with the wood which you get from me and produce five buckets of red dye. You need a mortar, five buckets filled with water and fifteen cherries to make the dye. I'll give you these things, just this once.", item(58, 1, 555), item(52, 5, 555), item(302, 15, 555), item(544, 3, 555), queststatus(705) = 7
-queststatus(705) = 6, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Lasst uns nun etwas Farbe herstellen. Bitte geht hinaus, macht ein kleines Feuer mit dem dem Holz, das ich Euch gebe, und stellt fünf Eimer mit roter Farbe her. Dafür braucht Ihr außerdem noch einen Mörser, 5 Eimer mit Wasser darin und 15 Kirschen. Dies kriegt Ihr heute ausnahmsweise alles von mir.", item(58, 1, 555), item(52, 5, 555), item(302, 15, 555), item(544, 3, 555), queststatus(705) = 7
-queststatus(705) = 7, item(2681, all) > 4, town = Cadomyr, english, "quest", "mission", "dye" -> "Well done, thank you very much. Please keep the buckets of dye for your next task.", queststatus(705) = 8
-queststatus(705) = 7, item(2681, all) > 4, town = Cadomyr, "quest", "mission", "farbe" -> "Gut gemacht, vielen Dank. Bitte behaltet die Eimer mit Farbe für Eure nächste Aufgabe.", queststatus(705) = 8
-queststatus(705) = 7, item(2681, all) > 4, town = Cadomyr, "task", "adventure", "order" -> "Well done, thank you very much. Please keep the buckets of dye for your next task.", queststatus(705) = 8
-queststatus(705) = 7, item(2681, all) > 4, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Gut gemacht, vielen Dank. Bitte behaltet die Eimer mit Farbe für Eure nächste Aufgabe.", queststatus(705) = 8
-queststatus(705) = 7, item(2681, all) < 5, town = Cadomyr, english, ".+" -> "You haven't solved the task yet. Come back once you've filled all five buckets with red dye."
-queststatus(705) = 7, item(2681, all) < 5, town = Cadomyr, ".+" -> "Ihr habt die Aufgabe noch nicht erfüllt, wie ich sehe. Bitte bringt mir die fünf Eimer mit roter Farbe."
-queststatus(705) = 8, town = Cadomyr, english, "quest", "mission" -> "Alright, one last task. Please bring me five bolts of red cloth. You need a dyeing rod, white cloth and of course the buckets of dye. You can get white cloth if you place grey cloth on the ground and let it bleach in the sun. I'll give you my old dyeing rod and some white cloth. Please bring me five bolts of red cloth back.", item(2781, 1, 555), item(178, 5, 555), queststatus(705) = 9
-queststatus(705) = 8, town = Cadomyr, "quest", "mission" -> "Nun gut eine letzte Aufgabe für Euch. Ihr sollt mir fünf rote Stoffe färben. Dazu braucht Ihr einen Färbestab, weißen Stoff und natürlich die Eimer mit Farbe. Wenn Ihr grauen Stoff lang genug in der Sonne liegen lasst, wird er weiß. Hier ich gebe euch meinen alten Färbestab, außerdem noch etwas weißen Stoff. Geht zum schwarzen Fass da vorne und stellt mir die fünf Rollen roten Stoff her.", item(2781, 1, 555), item(178, 5, 555), queststatus(705) = 9
-queststatus(705) = 8, town = Cadomyr, "task", "adventure", "order" -> "Alright, one last task. Please bring me five bolts of red cloth. You need a dyeing rod, white cloth and of course the buckets of dye. You can get white cloth if you place grey cloth on the ground and let it bleach in the sun. I'll give you my old dyeing rod and some white cloth. Please bring me five bolts of red cloth back.", item(2781, 1, 555), item(178, 5, 555), queststatus(705) = 9
-queststatus(705) = 8, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Nun gut eine letzte Aufgabe für Euch. Ihr sollt mir fünf rote Stoffe färben. Dazu braucht Ihr einen Färbestab, weißen Stoff und natürlich die Eimer mit Farbe. Wenn Ihr grauen Stoff lang genug in der Sonne liegen lasst, wird er weiß. Hier ich gebe euch meinen alten Färbestab außerdem noch etwas weißen Stoff. Geht zum schwarzen Fass da vorne und stellt mir die fünf Rollen roten Stoff her.", item(2781, 1, 555), item(178, 5, 555), queststatus(705) = 9
-queststatus(705) = 9, item(174, all) > 4, town = Cadomyr, english, "quest", "mission", "cloth" -> "Well done, thank you very much. You helped me a lot, I hope I was able to teach you the basics of tailoring.", deleteItem(174, 5), queststatus(705) = 10
-queststatus(705) = 9, item(174, all) > 4, town = Cadomyr, "quest", "mission", "stoff" -> "Gut gemacht, vielen Dank. Ihr wart mir eine wirklich große Hilfe. Ich hoffe, ich konnte Euch auch etwas beibringen.", deleteItem(174, 5), queststatus(705) = 10
-queststatus(705) = 9, item(174, all) > 4, town = Cadomyr, "task", "adventure", "order" -> "Well done, thank you very much. You helped me a lot, I hope I was able to teach you the basics of tailoring.", deleteItem(174, 5), queststatus(705) = 10
-queststatus(705) = 9, item(174, all) > 4, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Gut gemacht, vielen Dank. Ihr wart mir eine wirklich große Hilfe. Ich hoffe, ich konnte Euch auch etwas beibringen.", deleteItem(174, 5), queststatus(705) = 10
-queststatus(705) = 9, item(174, all) < 5, town = Cadomyr, english, ".+" -> "You haven't solved the task yet. Come back once you have five bolts of red cloth for me."
-queststatus(705) = 9, item(174, all) < 5, town = Cadomyr, ".+" -> "Ihr habt die Aufgabe noch nicht erfüllt, wie ich sehe. Kommt doch bitte wieder, wenn Ihr die fünf Rollen roten Stoff zusammen habt."
+-- Help triggers
+"tailor", "craft" -> "So you think tailoring just takes a needle and some practice? Ha! You need various tools and a lot of experience in different actions to get anywhere. Scissors for cutting, a dye rod for dyeing and do not forget the razor blade for tanning."
+"Schneider", "Handwerk" -> "Du denkst also, dass man für das Schneidern nur eine Nadel und etwas Übung braucht? Ha! Du wirst viele Werkzeuge und viel Erfahrung brauchen, um irgendetwas zu erreichen. Du brauchst eine Schere fürs Zuschneiden, einen Färberstab zum Einfärben und vergiss nicht die das Rasiermesser fürs Gerben."
 
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-queststatus(705) = 10, town = Cadomyr, english, ".*" -> "I don't have anything more for you to do. Thank you for the help though!"
-queststatus(705) = 10, town = Cadomyr, german, ".*" -> "Ich habe nichts weiter für Euch zu tun. Aber danke nochmals für Eure Hilfe!"
-queststatus(705) < 10, town = Cadomyr, english, ".*" -> "I could use some help, just ask me for a task."
-queststatus(705) < 10, town = Cadomyr, german, ".*" -> "Ich könnte etwas Hilfe gebrauchen, fragt mich ruhig nach einer Aufgabe. Ich habe sicher etwas für Euch zu tun."
-english, ".*" -> "You are not a citizen of Cadomyr. I don't have anything for you to do."
-german, ".*" -> "Ihr scheint kein Bürger Cadomyr zu sein. Ich habe nichts für Euch zu tun."
+-- Quest 1: Gathering. Player gets a gathering tool. Player gathers materials for 10 intermediate products. 
+queststatus(705) = 0, english, town = Cadomyr, "quest", "mission" -> item(6, 1, 333), queststatus(705) = 1, "Oh, you want to join the Royal Tailors? Well, let's start with something simple. Collect twenty bales of wool. You can find sheep if you leave the city and follow the road to the west. You can have my old scissors to collect the wool.", inform("[Guild Quest] The Royal Tailors of Cadomyr I. For more information see the quest log (Q).")
+queststatus(705) = 0, town = Cadomyr, "task", "adventure", "order" -> item(6, 1, 333), queststatus(705) = 1, "Oh, you want to join the Royal Tailors? Well, let's start with something simple. Collect twenty bales of wool. You can find sheep if you leave the city and follow the road to the west. You can have my old scissors to collect the wool.", inform("[Guild Quest] The Royal Tailors of Cadomyr I. For more information see the quest log (Q).")
+queststatus(705) = 0, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> item(6, 1, 333), queststatus(705) = 1, "Oh, du willst den königlichen Schneidern beitreten? Nun gut, fangen wir mit etwas Einfachem an. Bringt mir doch bitte zwanzig Wollballen. Schafe solltest du finden, wenn du die Stadt verlässt und nach Westen gehst. Hier noch eine Schere, um die Schafe zu scheren.", inform("[Gildenquest] Die königlichen Schneider von Cadomyr I. Detaillierte Informationen findest du im Questlog (Q).")
+
+-- Quest 1: Solved
+queststatus(705) = 1, item(170, all) > 19, english, town = Cadomyr, "quest", "mission" -> queststatus(705) = 2, "Ah, so you have found the sheep, well done. Keep the bales of wool for your next task.", inform("[Guild Quest] Ask Lilli Gallfing for your next task.")
+queststatus(705) = 1, item(170, all) > 19, town = Cadomyr, "task", "adventure", "order", "wool"  -> queststatus(705) = 2, "Ah, so you have found the sheep, well done. Keep the bales of wool for your next task.", inform("[Guild Quest] Ask Lilli Gallfing for your next task.")
+queststatus(705) = 1, item(170, all) > 19, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Woll" -> queststatus(705) = 2, "Ah, also hast du die Schafe gefunden, gut gemacht. Behalte die Wollballen für die nächste Aufgabe.", inform("[Gildenquest] Frage Lilli Gallfing nach deiner nächsten Aufgaben.")
+
+-- Quest 1: Not enough items
+queststatus(705) = 1, english, town = Cadomyr, "quest", "mission" -> "That isn't twenty bales of wool yet. Please come back once you've finished this task."
+queststatus(705) = 1, town = Cadomyr, "task", "adventure", "order", "wool" -> "That isn't twenty bales of wool yet. Please come back once you've finished this task."
+queststatus(705) = 1, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Woll" -> "Das sind noch keine zwanzig Wollballen. Komm wieder, wenn du die Aufgabe erledigt hast."
+
+-- Quest 2: Intermediate production. Player gets a tool for intermediate production. Player produces 10 intermediate products.
+queststatus(705) = 2, english, town = Cadomyr, "quest", "mission" -> queststatus(705) = 3, "You want to learn more? Alright, please go to the loom behind me and weave ten bolts of grey cloth. Furthermore, go to the spinning wheel over there and produce ten spools of thread from the remaining wool.", inform("[Guild Quest] The Royal Tailors of Cadomyr II. For more information see the quest log (Q).")
+queststatus(705) = 2, town = Cadomyr, "task", "adventure", "order" -> queststatus(705) = 3, "You want to learn more? Alright, please go to the loom behind me and weave ten bolts of grey cloth. Furthermore, go to the spinning wheel over there and produce ten spools of thread from the remaining wool.", inform("[Guild Quest] The Royal Tailors of Cadomyr II. For more information see the quest log (Q).")
+queststatus(705) = 2, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> queststatus(705) = 3, "Du willst mehr lernen? Bitte geh zum Webstuhl hinter mir und webe zehn Bahnen grauen Stoff und aus der restlichen Wolle beim Spinnrad da vorne zehn Spulen Garn.", inform("[Gildenquest] Die königlichen Schneider von Cadomyr II. Detaillierte Informationen findest du im Questlog (Q).")
+
+-- Quest 2: Solved
+queststatus(705) = 3, item(176, all) > 9, item(50, all) > 9, english, town = Cadomyr, "quest", "mission" -> queststatus(705) = 4, "I see you made great progress. Now you have everything for your final task. Upon completion, I can accept in the ranks of the Royal Tailors.", inform("[Guild Quest] Ask Lilli Gallfing for your next task.")
+queststatus(705) = 3, item(176, all) > 9, item(50, all) > 9, town = Cadomyr, "task", "adventure", "order", "cloth", "thread" -> queststatus(705) = 4, "I see you made great progress. Now you have everything for your final task. Upon completion, I can accept in the ranks of the Royal Tailors.", inform("[Guild Quest] Ask Lilli Gallfing for your next task.")
+queststatus(705) = 3, item(176, all) > 9, item(50, all) > 9, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Stoff", "Garn" -> queststatus(705) = 4, "Wie ich sehe, hast du gute Fortschritte gemacht. Du hast nun alles für deine letzte Aufgabe. Wenn du sie erledigt hast, kann ich dich bei den königlichen Schneider willkommen heißen.", inform("[Gildenquest] Frage Lilli Gallfing nach deiner nächsten Aufgaben.")
+
+-- Quest 2: Not enough items
+queststatus(705) = 3, english, town = Cadomyr, "quest", "mission" -> "Thread and cloth is the minimum you need to become a successful tailor."
+queststatus(705) = 3, town = Cadomyr, "task", "adventure", "order", "cloth", "thread" -> "Thread and cloth is the minimum you need to become a successful tailor."
+queststatus(705) = 3, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Stoff", "Garn" -> "Garn und Stoff ist das Mindeste, was du brauchst, um ein erfolgreicher Schneider zu werden."
+
+-- Quest 3: Final production. Player gets a tool for final production. Player delivers final products made of 10 intermediate products. Reward: 50 % of item.worth. Rank Layman / Laie
+queststatus(705) = 4, english, town = Cadomyr, "quest", "mission" -> item(47, 1, 333), queststatus(705) = 5, "I think you are ready for real tailoring work, aren't you? Take this needle and sew ten pairs of grey cloth gloves. They are fairly easy to make but you'll see once you go to the tailoring table.", inform("[Guild Quest] The Royal Tailors of Cadomyr III. For more information see the quest log (Q).")
+queststatus(705) = 4, town = Cadomyr, "task", "adventure", "order" -> item(47, 1, 333), queststatus(705) = 5, "I think you are ready for real tailoring work, aren't you? Take this needle and sew ten pairs of grey cloth gloves. They are fairly easy to make but you'll see once you go to the tailoring table.", inform("[Guild Quest] The Royal Tailors of Cadomyr III. For more information see the quest log (Q).")
+queststatus(705) = 4, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> item(47, 1, 333), queststatus(705) = 5, "Ich denke, du bist bereit für echte Schneiderarbeit, richtig? Nimm diese Nadel und nähe zehn Paar graue Stoffhandschuhe. Sind recht einfach herzustellen, aber das wirst du schon am Schneidertisch selbst herausfinden.", inform("[Gildenquest] Die königlichen Schneider von Cadomyr III. Detaillierte Informationen findest du im Questlog (Q).")
+
+-- Quest 3: Solved
+queststatus(705) = 5, item(1447, all) > 9, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Layman with the Royal Tailors of Cadomyr. You are awarded twenty silver coins."), deleteItem(1447, 10), queststatus(705) = 6, money + 2000, "You are now a valuable member of the Royal Tailors of Cadomyr. For advanced products, you'll have to learn dyeing. But I am sure you can manage that without my help. I'll have a little something for you when you improved your skills."
+queststatus(705) = 5, item(1447, all) > 9, town = Cadomyr, "task", "adventure", "order", "cloth", "glove" -> inform("[Guild rank] You advance to the rank of Layman with the Royal Tailors of Cadomyr. You are awarded twenty silver coins."), deleteItem(1447, 10), queststatus(705) = 6, money + 2000, "You are now a valuable member of the Royal Tailors of Cadomyr. For advanced products, you'll have to learn dyeing. But I am sure you can manage that without my help. I'll have a little something for you when you improved your skills."
+queststatus(705) = 5, item(1447, all) > 9, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Stoff", "Handschuh" -> inform("[Gildenrang] Die königlichen Schneider von Cadomyr erheben dich in den Rang eines Laiens. Du erhältst zwanzig Silberstücke."), deleteItem(1447, 10), queststatus(705) = 6, money + 2000, "Du bist nun ein geschätztes Mitglied der königlichen Schneider. Für fortgeschrittene Produkte wirst du Färben lernen müssen. Aber das bekommst du auch ohne meine Hilfe hin. Ich habe eine kleine Überraschung für dich, sobald du deine Fertigkeiten verbessert hast."
+
+-- Quest 3: Not enough items
+queststatus(705) = 5, english, town = Cadomyr, "quest", "mission" -> "Do you have any problems sewing ten pairs of cloth gloves? If you need any more resources, just shear some more wool and spin thread or weave cloth. Thomas Dalenus also sells all you need - at a price."
+queststatus(705) = 5, town = Cadomyr, "task", "adventure", "order", "cloth", "glove" -> "Do you have any problems sewing ten pairs of cloth gloves? If you need any more resources, just shear some more wool and spin thread or weave cloth. Thomas Dalenus also sells all you need - at a price."
+queststatus(705) = 5, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Stoff", "Handschuh" -> "Gibt es Probleme beim Nähen von zehn Paaren Stoffhandschuhe? Wenn du mehr Material brauchst, schere etwas mehr Wolle und spinne Garn oder webe Stoff. Thomas Dalenus verkauft auch alles, was du benötigst - aber nicht gerade günstig."
+
+-- Level 10: Novice / Anfänger. Reward: 10 Raw materials (e.g. coal)
+skill(tailoring) > 9, queststatus(705) = 6, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Novice with the Royal Tailors of Cadomyr. You are awarded ten bales of wool."), item(170, 10, 333), queststatus(705) = 7, "I am so excited about you making progress. The Royal Tailors sponsor you with some wool. Once you learned more, just come back to me."
+skill(tailoring) > 9, queststatus(705) = 6, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Novice with the Royal Tailors of Cadomyr. You are awarded ten bales of wool."), item(170, 10, 333), queststatus(705) = 7, "I am so excited about you making progress. The Royal Tailors sponsor you with some wool. Once you learned more, just come back to me."
+skill(tailoring) > 9, queststatus(705) = 6, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die königlichen Schneider von Cadomyr erheben dich in den Rang eines Anfängers. Du erhältst zehn Ballen Wolle."), item(170, 10, 333), queststatus(705) = 7, "Ich freue mich so zu sehen, dass du Fortschritte gemacht hast. Die königlichen Schneider geben dir etwas Wolle. Wenn du etwas dazugelernt hast, schau doch mal wieder vorbei."
+
+-- Level < 10: Not experienced enough
+skill(tailoring) < 10, queststatus(705) = 6, english, town = Cadomyr, "quest", "mission" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Layman.", inform("[Guild rank] You need skill level 10 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 10, queststatus(705) = 6, town = Cadomyr, "task", "adventure", "order", "rank" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Layman.", inform("[Guild rank] You need skill level 10 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 10, queststatus(705) = 6, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Es tut mir leid, aber um bei den königlichen Schneidern aufzusteigen, musst du noch Erfahrung sammeln. Du wirst im Rang eines Laiens geführt.", inform("[Gildenrang] Du brauchst Level 10 in Schneidern um bei den königlichen Schneider aufzusteigen.")
+
+-- Level 20: Apprentice / Lehrling. Reward: 20 Raw materials (e.g. wool)
+skill(tailoring) > 19, queststatus(705) = 7, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Apprentice with the Royal Tailors of Cadomyr. You are awarded twenty hides of raw leather."), item(69, 20, 333), queststatus(705) = 8, "I am so excited about you making progress. The Royal Tailors sponsor you with some raw leather. Once you learned more, just come back to me."
+skill(tailoring) > 19, queststatus(705) = 7, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Apprentice with the Royal Tailors of Cadomyr. You are awarded twenty hides of raw leather."), item(69, 20, 333), queststatus(705) = 8, "I am so excited about you making progress. The Royal Tailors sponsor you with some raw leather. Once you learned more, just come back to me."
+skill(tailoring) > 19, queststatus(705) = 7, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die königlichen Schneider von Cadomyr erheben dich in den Rang eines Lehrlings. Du erhältst zwanzig Häute Rohleder."), item(69, 20, 333), queststatus(705) = 8, "Ich freue mich so zu sehen, dass du Fortschritte gemacht hast. Die königlichen Schneider geben dir etwas Rohleder. Wenn du etwas dazugelernt hast, schau doch mal wieder vorbei."
+
+-- Level < 20: Not experienced enough
+skill(tailoring) < 20, queststatus(705) = 7, english, town = Cadomyr, "quest", "mission" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Novice.", inform("[Guild rank] You need skill level 20 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 20, queststatus(705) = 7, town = Cadomyr, "task", "adventure", "order", "rank" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Novice.", inform("[Guild rank] You need skill level 20 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 20, queststatus(705) = 7, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Es tut mir leid, aber um bei den königlichen Schneidern aufzusteigen, musst du noch Erfahrung sammeln. Du wirst im Rang eines Anfängers geführt.", inform("[Gildenrang] Du brauchst Level 20 in Schneidern um bei den königlichen Schneider aufzusteigen.")
+
+-- Level 30: Initiate / Initiat. Reward: 10 Intermediate products (e.g. boards)
+skill(tailoring) > 29, queststatus(705) = 8, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Initiate with the Royal Tailors of Cadomyr. You are awarded ten spools of thread."), item(50, 10, 333), queststatus(705) = 9, "I am so excited about you making progress. The Royal Tailors sponsor you with some thread. Once you learned more, just come back to me."
+skill(tailoring) > 29, queststatus(705) = 8, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Initiate with the Royal Tailors of Cadomyr. You are awarded spools of thread."), item(50, 10, 333), queststatus(705) = 9, "I am so excited about you making progress. The Royal Tailors sponsor you with some thread. Once you learned more, just come back to me."
+skill(tailoring) > 29, queststatus(705) = 8, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die königlichen Schneider von Cadomyr erheben dich in den Rang eines Initiatens. Du erhältst zehn Spulen Garn."), item(50, 10, 333), queststatus(705) = 9, "Ich freue mich so zu sehen, dass du Fortschritte gemacht hast. Die königlichen Schneider geben dir etwas Garn. Wenn du etwas dazugelernt hast, schau doch mal wieder vorbei."
+
+-- Level < 30: Not experienced enough
+skill(tailoring) < 30, queststatus(705) = 8, english, town = Cadomyr, "quest", "mission" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Apprentice.", inform("[Guild rank] You need skill level 30 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 30, queststatus(705) = 8, town = Cadomyr, "task", "adventure", "order", "rank" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Apprentice.", inform("[Guild rank] You need skill level 30 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 30, queststatus(705) = 8, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Es tut mir leid, aber um bei den königlichen Schneidern aufzusteigen, musst du noch Erfahrung sammeln. Du wirst im Rang eines Lehrlings geführt.", inform("[Gildenrang] Du brauchst Level 30 in Schneidern um bei den königlichen Schneider aufzusteigen.")
+
+-- Level 40: Journeyman / Geselle. Reward: 20 Intermediate products (e.g. thread), journeyman's certificate
+skill(tailoring) > 39, queststatus(705) = 9, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Journeyman with the Royal Tailors of Cadomyr. You are awarded twenty hides of leather and a journeyman's certificate."), item(2547, 20, 333), queststatus(705) = 10, "I am so excited about you making progress. The Royal Tailors sponsor you with some leather. Once you learned more, just come back to me.", item(3109, 1, 333, "nameDe" = "Gesellenbrief", "nameEn" = "Journeyman's Certificate", "rareness" = "1", "descriptionEn" = "The owner of this certificate has successfully passed the examination as Journeyman. Lilli Gallfing - Royal Tailors of Cadomyr", "descriptionDe" = "Der Inhaber dieses Gesellenbriefes hat erfolgreich das Examen zum Gesellen bestanden. Lilli Gallfing - Die königlichen Schneider von Cadomyr")
+skill(tailoring) > 39, queststatus(705) = 9, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Journeyman with the Royal Tailors of Cadomyr. You are awarded twenty hides of leather and a journeyman's certificate."), item(2547, 20, 333), queststatus(705) = 10, "I am so excited about you making progress. The Royal Tailors sponsor you with some leather. Once you learned more, just come back to me.", item(3109, 1, 333, "nameDe" = "Gesellenbrief", "nameEn" = "Journeyman's Certificate", "rareness" = "1", "descriptionEn" = "The owner of this certificate has successfully passed the examination as Journeyman. Lilli Gallfing - Royal Tailors of Cadomyr", "descriptionDe" = "Der Inhaber dieses Gesellenbriefes hat erfolgreich das Examen zum Gesellen bestanden. Lilli Gallfing - Die königlichen Schneider von Cadomyr")
+skill(tailoring) > 39, queststatus(705) = 9, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die königlichen Schneider von Cadomyr erheben dich in den Rang eines Gesellens. Du erhältst zwanzig Lederhäute und einen Gesellenbrief."), item(2547, 20, 333), queststatus(705) = 10, "Ich freue mich so zu sehen, dass du Fortschritte gemacht hast. Die königlichen Schneider geben dir etwas Leder. Wenn du etwas dazugelernt hast, schau doch mal wieder vorbei.", item(3109, 1, 333, "nameDe" = "Gesellenbrief", "nameEn" = "Journeyman's Certificate", "rareness" = "1", "descriptionEn" = "The owner of this certificate has successfully passed the examination as Journeyman. Lilli Gallfing - Royal Tailors of Cadomyr", "descriptionDe" = "Der Inhaber dieses Gesellenbriefes hat erfolgreich das Examen zum Gesellen bestanden. Lilli Gallfing - Die königlichen Schneider von Cadomyr")
+
+-- Level < 40: Not experienced enough
+skill(tailoring) < 40, queststatus(705) = 9, english, town = Cadomyr, "quest", "mission" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Initiate.", inform("[Guild rank] You need skill level 40 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 40, queststatus(705) = 9, town = Cadomyr, "task", "adventure", "order", "rank" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Initiate.", inform("[Guild rank] You need skill level 40 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 40, queststatus(705) = 9, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Es tut mir leid, aber um bei den königlichen Schneidern aufzusteigen, musst du noch Erfahrung sammeln. Du wirst im Rang eines Initiatens geführt.", inform("[Gildenrang] Du brauchst Level 40 in Schneidern um bei den königlichen Schneider aufzusteigen.")
+
+-- Level 50: Specialist / Spezialist. Reward: 10 Uncommon resources (e.g. handles)
+skill(tailoring) > 49, queststatus(705) = 10, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Specialist with the Royal Tailors of Cadomyr. You are awarded ten bales of red cloth."), item(174, 10, 333), queststatus(705) = 11, "I am so excited about you making progress. The Royal Tailors sponsor you with some red cloth. Once you learned more, just come back to me."
+skill(tailoring) > 49, queststatus(705) = 10, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Specialist with the Royal Tailors of Cadomyr. You are awarded ten bales of red cloth."), item(174, 10, 333), queststatus(705) = 11, "I am so excited about you making progress. The Royal Tailors sponsor you with some red cloth. Once you learned more, just come back to me."
+skill(tailoring) > 49, queststatus(705) = 10, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die königlichen Schneider von Cadomyr erheben dich in den Rang eines Spezialistens. Du erhältst zehn Ballen roter Stoff."), item(174, 10, 333), queststatus(705) = 11, "Ich freue mich so zu sehen, dass du Fortschritte gemacht hast. Die königlichen Schneider geben dir etwas roten Stoff. Wenn du etwas dazugelernt hast, schau doch mal wieder vorbei."
+
+-- Level < 50: Not experienced enough
+skill(tailoring) < 50, queststatus(705) = 10, english, town = Cadomyr, "quest", "mission" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Journeyman.", inform("[Guild rank] You need skill level 50 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 50, queststatus(705) = 10, town = Cadomyr, "task", "adventure", "order", "rank" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Journeyman.", inform("[Guild rank] You need skill level 50 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 50, queststatus(705) = 10, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Es tut mir leid, aber um bei den königlichen Schneidern aufzusteigen, musst du noch Erfahrung sammeln. Du wirst im Rang eines Gesellens geführt.", inform("[Gildenrang] Du brauchst Level 50 in Schneidern um bei den königlichen Schneider aufzusteigen.")
+
+-- Level 60: Expert / Experte. Reward: 20 Uncommon resources (e.g. gold ingots)
+skill(tailoring) > 59, queststatus(705) = 11, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Expert with the Royal Tailors of Cadomyr. You are awarded twenty bales of blue cloth."), item(179, 20, 333), queststatus(705) = 12, "I am so excited about you making progress. The Royal Tailors sponsor you with some blue cloth. Once you learned more, just come back to me."
+skill(tailoring) > 59, queststatus(705) = 11, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Expert with the Royal Tailors of Cadomyr. You are awarded twenty bales of blue cloth."), item(179, 20, 333), queststatus(705) = 12, "I am so excited about you making progress. The Royal Tailors sponsor you with some blue cloth. Once you learned more, just come back to me."
+skill(tailoring) > 59, queststatus(705) = 11, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die königlichen Schneider von Cadomyr erheben dich in den Rang eines Expertens. Du erhältst zwanzig Ballen blauer Stoff."), item(179, 20, 333), queststatus(705) = 12, "Ich freue mich so zu sehen, dass du Fortschritte gemacht hast. Die königlichen Schneider geben dir etwas blauen Stoff. Wenn du etwas dazugelernt hast, schau doch mal wieder vorbei."
+
+-- Level < 60: Not experienced enough
+skill(tailoring) < 60, queststatus(705) = 11, english, town = Cadomyr, "quest", "mission" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Specialist.", inform("[Guild rank] You need skill level 60 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 60, queststatus(705) = 11, town = Cadomyr, "task", "adventure", "order", "rank" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Specialist.", inform("[Guild rank] You need skill level 60 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 60, queststatus(705) = 11, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Es tut mir leid, aber um bei den königlichen Schneidern aufzusteigen, musst du noch Erfahrung sammeln. Du wirst im Rang eines Spezialistens geführt.", inform("[Gildenrang] Du brauchst Level 60 in Schneidern um bei den königlichen Schneider aufzusteigen.")
+
+-- Level 70: Adept / Adept. Reward: 5 Rare resources (e.g. merinium ingots)
+skill(tailoring) > 69, queststatus(705) = 12, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Adept with the Royal Tailors of Cadomyr. You are awarded five bales of silk."), item(3787, 5, 333), queststatus(705) = 13, "I am so excited about you making progress. The Royal Tailors sponsor you with some silk. Once you learned more, just come back to me."
+skill(tailoring) > 69, queststatus(705) = 12, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Adept with the Royal Tailors of Cadomyr. You are awarded five bales of silk."), item(3787, 5, 333), queststatus(705) = 13, "I am so excited about you making progress. The Royal Tailors sponsor you with some silk. Once you learned more, just come back to me."
+skill(tailoring) > 69, queststatus(705) = 12, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die königlichen Schneider von Cadomyr erheben dich in den Rang eines Adeptens. Du erhältst fünf Ballen Seide."), item(3787, 5, 333), queststatus(705) = 13, "Ich freue mich so zu sehen, dass du Fortschritte gemacht hast. Die königlichen Schneider geben dir etwas Seide. Wenn du etwas dazugelernt hast, schau doch mal wieder vorbei."
+
+-- Level < 70: Not experienced enough
+skill(tailoring) < 70, queststatus(705) = 12, english, town = Cadomyr, "quest", "mission" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Expert.", inform("[Guild rank] You need skill level 70 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 70, queststatus(705) = 12, town = Cadomyr, "task", "adventure", "order", "rank" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Expert.", inform("[Guild rank] You need skill level 70 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 70, queststatus(705) = 12, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Es tut mir leid, aber um bei den königlichen Schneidern aufzusteigen, musst du noch Erfahrung sammeln. Du wirst im Rang eines Expertens geführt.", inform("[Gildenrang] Du brauchst Level 70 in Schneidern um bei den königlichen Schneider aufzusteigen.")
+
+-- Level 80: Artisan / Artisane. Reward: 10 Rare resources (e.g. heartwood)
+skill(tailoring) > 79, queststatus(705) = 13, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Artisan with the Royal Tailors of Cadomyr. You are awarded ten bales of silk."), item(3787, 10, 333), queststatus(705) = 14, "I am so excited about you making progress. The Royal Tailors sponsor you with some silk. Once you learned more, just come back to me."
+skill(tailoring) > 79, queststatus(705) = 13, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Artisan with the Royal Tailors of Cadomyr. You are awarded ten bales of silk."), item(3787, 10, 333), queststatus(705) = 14, "I am so excited about you making progress. The Royal Tailors sponsor you with some silk. Once you learned more, just come back to me."
+skill(tailoring) > 79, queststatus(705) = 13, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die königlichen Schneider von Cadomyr erheben dich in den Rang eines Artisanens. Du erhältst zehn Ballen Seide."), item(3787, 10, 333), queststatus(705) = 14, "Ich freue mich so zu sehen, dass du Fortschritte gemacht hast. Die königlichen Schneider geben dir etwas Seide. Wenn du etwas dazugelernt hast, schau doch mal wieder vorbei."
+
+-- Level < 80: Not experienced enough
+skill(tailoring) < 80, queststatus(705) = 13, english, town = Cadomyr, "quest", "mission" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Adept.", inform("[Guild rank] You need skill level 80 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 80, queststatus(705) = 13, town = Cadomyr, "task", "adventure", "order", "rank" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Adept.", inform("[Guild rank] You need skill level 80 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 80, queststatus(705) = 13, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Es tut mir leid, aber um bei den königlichen Schneidern aufzusteigen, musst du noch Erfahrung sammeln. Du wirst im Rang eines Adeptens geführt.", inform("[Gildenrang] Du brauchst Level 80 in Schneidern um bei den königlichen Schneider aufzusteigen.")
+
+-- Level 90: Master / Meister. Reward: 5 Pure elements, master's tool
+skill(tailoring) > 89, queststatus(705) = 14, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Master with the Royal Tailors of Cadomyr. You are awarded five pieces of pure spirit and a special tool."), item(3607, 5, 333), queststatus(705) = 15, "I am so excited about you making progress. The Royal Tailors sponsor you with some pure spirit. Once you learned more, just come back to me.", item(47, 1, 999, "rareness" = "1", "descriptionEn" = "Master of the Royal Tailors of Cadomyr", "descriptionDe" = "Meister der königlichen Schneider von Cadomyr")
+skill(tailoring) > 89, queststatus(705) = 14, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Master with the Royal Tailors of Cadomyr. You are awarded five pieces of pure spirit and a special tool."), item(3607, 5, 333), queststatus(705) = 15, "I am so excited about you making progress. The Royal Tailors sponsor you with some pure spirit. Once you learned more, just come back to me.", item(47, 1, 999, "rareness" = "1", "descriptionEn" = "Master of the Royal Tailors of Cadomyr", "descriptionDe" = "Meister der königlichen Schneider von Cadomyr")
+skill(tailoring) > 89, queststatus(705) = 14, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die königlichen Schneider von Cadomyr erheben dich in den Rang eines Meisters. Du erhältst fünf Stück reiner Geist und ein besonderes Werkzeug."), item(3607, 5, 333), queststatus(705) = 15, "Ich freue mich so zu sehen, dass du Fortschritte gemacht hast. Die königlichen Schneider geben dir etwas reinen Geist. Wenn du etwas dazugelernt hast, schau doch mal wieder vorbei.", item(47, 1, 999, "rareness" = "1", "descriptionEn" = "Master of the Royal Tailors of Cadomyr", "descriptionDe" = "Meister der königlichen Schneider von Cadomyr")
+
+-- Level < 90: Not experienced enough
+skill(tailoring) < 90, queststatus(705) = 14, english, town = Cadomyr, "quest", "mission" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Artisan.", inform("[Guild rank] You need skill level 90 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 90, queststatus(705) = 14, town = Cadomyr, "task", "adventure", "order", "rank" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Artisan.", inform("[Guild rank] You need skill level 90 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 90, queststatus(705) = 14, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Es tut mir leid, aber um bei den königlichen Schneidern aufzusteigen, musst du noch Erfahrung sammeln. Du wirst im Rang eines Artisanens geführt.", inform("[Gildenrang] Du brauchst Level 90 in Schneidern um bei den königlichen Schneider aufzusteigen.")
+
+-- Level 100: Grandmaster / Großmeister. Reward: 10 Pure elements, grandmaster's medal
+skill(tailoring) > 99, queststatus(705) = 15, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Grandmaster with the Royal Tailors of Cadomyr. You are awarded ten pieces of pure air and a grandmaster's medal."), item(2551, 10, 333), queststatus(705) = 16, "Hooray! You are now a Grandmaster of the Royal Tailors of Cadomyr. Tailor the finest robes for her Majesty with this pure air.", item(3535, 1, 999, "nameDe" = "Großmeistermedallie", "nameEn" = "Grandmaster's Medal", "rareness" = "2", "descriptionEn" = "Grandmaster of the Royal Tailors of Cadomyr", "descriptionDe" = "Großmeister der königlichen Schneider von Cadomyr")
+skill(tailoring) > 99, queststatus(705) = 15, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Grandmaster with the Royal Tailors of Cadomyr. You are awarded ten pieces of pure air and a grandmaster's medal."), item(2551, 10, 333), queststatus(705) = 16, "Hooray! You are now a Grandmaster of the Royal Tailors of Cadomyr. Tailor the finest robes for her Majesty with this pure air.", item(3535, 1, 999, "nameDe" = "Großmeistermedallie", "nameEn" = "Grandmaster's Medal", "rareness" = "2", "descriptionEn" = "Grandmaster of the Royal Tailors of Cadomyr", "descriptionDe" = "Großmeister der königlichen Schneider von Cadomyr")
+skill(tailoring) > 99, queststatus(705) = 15, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die königlichen Schneider von Cadomyr erheben dich in den Rang eines Großmeisters. Du erhältst zehn Stück reiner Luft und eine Großmeistermedallie."), item(2551, 10, 333), queststatus(705) = 16, "Hurra! Du bist nun Großmeister der königlichen Schneider von Cadomyr. Nähe die feinsten Roben für Ihre Majestät mit dieser reinen Luft.", item(3535, 1, 999, "nameDe" = "Großmeistermedallie", "nameEn" = "Grandmaster's Medal", "rareness" = "2", "descriptionEn" = "Grandmaster of the Royal Tailors of Cadomyr", "descriptionDe" = "Großmeister der königlichen Schneider von Cadomyr")
+
+-- Level < 100: Not experienced enough
+skill(tailoring) < 100, queststatus(705) = 15, english, town = Cadomyr, "quest", "mission" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Master.", inform("[Guild rank] You need skill level 100 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 100, queststatus(705) = 15, town = Cadomyr, "task", "adventure", "order", "rank" -> "I am sorry but to advance in the ranks of the Royal Tailors, you have to become more experienced. Your current rank is Master.", inform("[Guild rank] You need skill level 100 in tailoring to advance in the ranks of the Royal Tailors.")
+skill(tailoring) < 100, queststatus(705) = 15, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Es tut mir leid, aber um bei den königlichen Schneidern aufzusteigen, musst du noch Erfahrung sammeln. Du wirst im Rang eines Meisters geführt.", inform("[Gildenrang] Du brauchst Level 100 in Schneidern um bei den königlichen Schneider aufzusteigen.")
+
+-- Response after quest is done
+queststatus(705) = 16, english, town = Cadomyr, "quest", "mission" -> "Grandmaster %CHARNAME. Sounds good, doesn't it? The Royal Tailors salut you."
+queststatus(705) = 16, town = Cadomyr, "task", "adventure", "order" -> "Grandmaster %CHARNAME. Sounds good, doesn't it? The Royal Tailors salut you."
+queststatus(705) = 16, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Großmeister %CHARNAME. Klingt klasse, oder? Die königlichen Schneider grüßen dich."
+
+-- No quests for Non Cadomyrians
+english, "quest", "mission" -> "Have you ever seen Cadomyrians wearing non-cadomyrian gowns? No? The Royal Tailors are all Cadomyrians!"
+"task", "adventure", "order" -> "Have you ever seen Cadomyrians wearing non-cadomyrian gowns? No? The Royal Tailors are all Cadomyrians!"
+"quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Hast du schon mal einen Bürger Cadomyrs in einem Gewand gesehen, welches nicht aus Cadomyr stammt? Nein? Die königlichen Schneider sind alle aus Cadomyr."
+
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
 -- Every NPC should contain at least 10 of those messages.
 -- Emotes are possible also starting with "#me ....".
 
-cycletext "#me schaut sich gelangweilt um.", "#me looks around bored."
-cycletext "Wenn Ihr Hilfe beim schneidern braucht, dann fragt nur mich!", "If you need any help tailoring, just ask me!"
-cycletext "#me gähnt verhalten.", "#me yawns restrained."
-cycletext "#me pfeift eine Melodie.", "#me whistles a melody."
-cycletext "#me liest einen Brief.", "#me reads a letter."
+cycletext "#me begutachtet die Qualität eines Stoffstückes.", "#me examines a piece of cloth for quality."
+cycletext "#me bestickt eine Robe mit einem Symbol.", "#me embroiders an emblem on a robe."
+cycletext "#me entfernt einen Fadenrest von ihrem Hemd.", "#me pulls a stray thread from her shirt."
+cycletext "Morgen mache ich ein Kleid für eine sehr wichtige Person.", "Tomorrow I am going to make a dress for a very important person!"
+cycletext "Ich kenne mich aus mit feinsten Gewändern.", "I know everything about finest garments."
+cycletext "#me rollt eine Spule Garn auf.", "#me rolls up a clew of yarn."
+cycletext "#me legt bunte Hemden zusammen.", "#me folds coloured shirts."
+cycletext "#me pfeift eine fröhliche Melodie, während sie ein Kleid bestickt.", "#me whistles a merry melody as she embroiders a dress."

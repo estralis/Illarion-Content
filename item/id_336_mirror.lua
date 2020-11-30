@@ -12,37 +12,22 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- Script muss noch in die Datenbank eingefügt werden (Handspiegel, ID 336)
+-- UPDATE items SET itm_script='item.id_336_mirror' WHERE itm_id = 336;
 
-require("content.chardescription")
+local playerlookat = require("server.playerlookat")
+local jewel = require("item.general.jewel")
 
-module("item.id_336_mirror", package.seeall, package.seeall(content.chardescription))
+local M = {}
 
--- UPDATE common SET com_script='item.id_336_mirror' WHERE com_itemid = 336;
+M.LookAtItem = jewel.LookAtItem
 
-function UseItem(User, SourceItem)
-	local output = "";
-	local lang = User:getPlayerLanguage();
-	local qual,dura = content.chardescription.getClothesFactor(User);
-	local ft = content.chardescription.getFigureText(User:increaseAttrib("body_height",0),User:increaseAttrib("weight",0),User:increaseAttrib("strength",0), lang);
-	if(lang == 0) then
-		output = "Du bist ";
-		output = output..content.chardescription.getAgeText(User:getRace(), User:increaseAttrib("age", 0), lang);
-		if(ft ~= nil) then
-			output = output..", "..ft;
-		end
-		output = output.." und "..content.chardescription.getHPText(User:increaseAttrib("hitpoints",0), lang)..". ";
-		output = output.."Deine Kleidung wirkt "..content.chardescription.getClothesQualText(qual, lang).." und "..content.chardescription.getClothesDuraText(dura, lang)..".";
-	else
-		output = "You are ";
-		output = output..content.chardescription.getAgeText(User:getRace(), User:increaseAttrib("age", 0), lang);
-		if(ft ~= nil) then
-			output = output..", "..content.chardescription.getFigureText(User:increaseAttrib("body_height",0),User:increaseAttrib("weight",0),User:increaseAttrib("strength",0), lang);
-		end
-		output = output.." and "..content.chardescription.getHPText(User:increaseAttrib("hitpoints",0), lang)..". ";
-		output = output.."Your clothes look "..content.chardescription.getClothesQualText(qual, lang).." and "..content.chardescription.getClothesDuraText(dura, lang)..".";
-	end
-	User:inform(output);
+function M.UseItem(User, SourceItem)
+    local output = playerlookat.getCharDescription( User, User, 2);
+    -- 2 means mode mirror 
+    User:inform(output);
 end
+
+return M
+

@@ -16,23 +16,23 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- INSERT INTO "quests" ("qst_id", "qst_script") VALUES (679, 'npc.xiao_dongzou_679');
 
-require("base.common")
-module("quest.xiao_dongzou_679", package.seeall)
+local common = require("base.common")
+local M = {}
 
-GERMAN = Player.german
-ENGLISH = Player.english
+local GERMAN = Player.german
+local ENGLISH = Player.english
 
 -- Insert the quest title here, in both languages
-Title = {}
+local Title = {}
 Title[GERMAN] = "Der Spieler von Galmair"
 Title[ENGLISH] = "The Gambler from Galmair"
 
 -- Insert an extensive description of each status here, in both languages
 -- Make sure that the player knows exactly where to go and what to do
-Description = {}
+local Description = {}
 Description[GERMAN] = {}
 Description[ENGLISH] = {}
-Description[GERMAN][1] = "Sage Xiao ob du um 'wenig'(1Silber), 'normal'(10 Silber) oder 'viel' (1 Gold) Geld spielen willst."
+Description[GERMAN][1] = "Sage Xiao ob du um 'wenig'(1 Silber), 'normal'(10 Silber) oder 'viel' (1 Gold) Geld spielen willst."
 Description[ENGLISH][1] = "Tell Xiao how much you want to play with. Use 'single'(1 silver), 'few'(10 silver) or 'many'(1 Gold) coins."
 Description[GERMAN][10] = "Würfelspiel um ein Silberstück.\nSage '1', '2' ... '6' für deine Auswahl oder brich das Spiel ab mit 'Stop' oder 'Ende'."
 Description[ENGLISH][10] = "Dice game for one silver coin.\nUse '1', '2' ... '6' to start or break up the game by using 'stop' or 'end'."
@@ -50,36 +50,38 @@ Description[GERMAN][103] = "Münzspiel um ein Goldstück.\nSage 'Kopf', 'Zahl', 'R
 Description[ENGLISH][103] = "Coin game for one gold coin.\nUse 'heads', 'tails', 'other' or break up the game by using 'stop' or 'end'."
 
 -- Insert the position of the quest start here (probably the position of an NPC or item)
-Start = {251, 291, -6}
+local Start = {295, 263, -6}
 
 -- For each status insert a list of positions where the quest will continue, i.e. a new status can be reached there
-QuestTarget = {}
-QuestTarget[1] = {position(251, 291, -6)} -- Xiao Dongzou
+local QuestTarget = {}
+QuestTarget[1] = {position(295, 263, -6)} -- Xiao Dongzou
 
 -- Insert the quest status which is reached at the end of the quest
-FINAL_QUEST_STATUS = 2
+local FINAL_QUEST_STATUS = 2
 
 
-function QuestTitle(user)
-    return base.common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
+function M.QuestTitle(user)
+    return common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
 end
 
-function QuestDescription(user, status)
+function M.QuestDescription(user, status)
     local german = Description[GERMAN][status] or ""
     local english = Description[ENGLISH][status] or ""
 
-    return base.common.GetNLS(user, german, english)
+    return common.GetNLS(user, german, english)
 end
 
-function QuestStart()
+function M.QuestStart()
     return Start
 end
 
 
-function QuestTargets(user, status)
+function M.QuestTargets(user, status)
     return QuestTarget[status]
 end
 
-function QuestFinalStatus()
+function M.QuestFinalStatus()
     return FINAL_QUEST_STATUS
 end
+
+return M

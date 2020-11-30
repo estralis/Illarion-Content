@@ -12,11 +12,27 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
-require("base.doors")
+local doors = require("base.doors")
 
-module("base.keys", package.seeall)
+local M = {}
+
+--[[
+    Checks if the key is a master key and in the hands of an admin. A master key
+    can open and close all doors.
+    @param User - character struct to check if the owner of the key is an admin
+    @param key - ItemStruct of the key that shall be checked
+    @return boolean - true in case of a master key else false
+]]
+local function checkForMasterKey(User, key)
+
+    if User:isAdmin() and key:getData("lockId")=="666" then
+        return true
+    else
+        return false
+    end
+end
 
 --[[
     LockDoor
@@ -27,20 +43,20 @@ module("base.keys", package.seeall)
     @return boolean - true in case the door got locked, false if anything went
     wrong
 ]]
-function LockDoor(Door)
-    if base.doors.CheckClosedDoor(Door.id) then
+function M.LockDoor(Door)
+    if doors.CheckClosedDoor(Door.id) then
         if (Door:getData("doorLock") == "unlocked") then
-			Door:setData("doorLock","locked")
-			world:changeItem(Door);
-            world:makeSound(19, Door.pos);
-            return true;
-		else
-			return false;			
-        end;
-	else
-		return false;
-    end;
-end;
+            Door:setData("doorLock","locked")
+            world:changeItem(Door)
+            world:makeSound(19, Door.pos)
+            return true
+        else
+            return false
+        end
+    else
+        return false
+    end
+end
 
 --[[
     UnlockDoor
@@ -51,20 +67,20 @@ end;
     @return boolean - true in case the door got locked, false if anything went
     wrong
 ]]
-function UnlockDoor(Door)
-    if base.doors.CheckClosedDoor(Door.id) then
+function M.UnlockDoor(Door)
+    if doors.CheckClosedDoor(Door.id) then
         if (Door:getData("doorLock") == "locked" or Door:getData("lockId")~="") then
-			Door:setData("doorLock","unlocked")
-			world:changeItem(Door);
-            world:makeSound(20, Door.pos);
-            return true;
-		else
-			return false;			
-        end;
-	else
-		return false;
-    end;
-end;
+            Door:setData("doorLock","unlocked")
+            world:changeItem(Door)
+            world:makeSound(20, Door.pos)
+            return true
+        else
+            return false
+        end
+    else
+        return false
+    end
+end
 
 --[[
     CheckKey
@@ -74,37 +90,23 @@ end;
     How ever it checks if the door item is a opened or a closed door.
     @param ItemStruct - the item that is the key for a door
     @param ItemStruct - the item that is the door that shall be checked
-	@param CharacterStruct - the user that has the key
+    @param CharacterStruct - the user that has the key
     @return boolean - true in case the key item would fit to the door, false if
     it does not fit
 ]]
-function CheckKey(Key, Door, User)
+function M.CheckKey(Key, Door, User)
     if Door == nil then
-	    return false
-	end	
-	if base.doors.CheckClosedDoor(Door.id) or base.doors.CheckOpenDoor(Door.id) then
+        return false
+    end
+    if doors.CheckClosedDoor(Door.id) or doors.CheckOpenDoor(Door.id) then
         if (Key:getData("lockId") == Door:getData("lockId") and Door:getData("lockId") ~= "") or checkForMasterKey(User, Key) then
-            return true;
+            return true
         else
-            return false;
-        end;
+            return false
+        end
     else
-        return false;
-    end;
-end;
-
---[[ 
-	Checks if the key is a master key and in the hands of an admin. A master key 
-	can open and close all doors.
-	@param User - character struct to check if the owner of the key is an admin
-	@param key - ItemStruct of the key that shall be checked
-	@return boolean - true in case of a master key else false
-]]
-function checkForMasterKey(User, key)
-
-	if User:isAdmin() and key:getData("lockId")=="666" then
-		return true;
-	else
-		return false;
-	end
+        return false
+    end
 end
+
+return M

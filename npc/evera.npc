@@ -28,7 +28,7 @@ race = halfling
 sex = female
 position = 139, 622, 0
 direction = west
-affiliation = "None"
+affiliation = "Cadomyr"
 job = "portal book merchant"
 
 language = common
@@ -61,10 +61,10 @@ itemShoes = 53
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItem = id(1061), de("Portalbuch nach Cadomyr"), en("portal book to Cadomyr"), price(2000), stack(1), quality(333), data("destinationCoordsY" = "647", "destinationCoordsX" = "127", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Cadomyr", "descriptionDe" = "Portal nach Cadomyr")
-sellItem = id(1061), de("Portalbuch nach Galmair"), en("portal book to Galmair"), price(2000), stack(1), quality(333), data("destinationCoordsY" = "245", "destinationCoordsX" = "424", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Galmair", "descriptionDe" = "Portal nach Galmair")
-sellItem = id(1061), de("Portalbuch nach Runewick"), en("portal book to Runewick"), price(2000), stack(1), quality(333), data("destinationCoordsY" = "813", "destinationCoordsX" = "836", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Runewick", "descriptionDe" = "Portal nach Runewick")
-sellItem = id(1061), de("Portalbuch zum Hemp Necktie Inn"), en("portal book to the Hemp Necktie Inn"), price(2000), stack(1), quality(333), data("destinationCoordsY" = "308", "destinationCoordsX" = "683", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to the Hemp Necktie Inn", "descriptionDe" = "Portal zum Hemp Necktie Inn")
+sellItem = id(1061), de("Portalbuch nach Cadomyr"), en("Portal book to Cadomyr"), price(1000), stack(1), quality(999), data("destinationCoordsY" = "647", "destinationCoordsX" = "126", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Cadomyr", "descriptionDe" = "Portal nach Cadomyr")
+sellItem = id(1061), de("Portalbuch nach Galmair"), en("Portal book to Galmair"), price(1000), stack(1), quality(999), data("destinationCoordsY" = "246", "destinationCoordsX" = "423", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Galmair", "descriptionDe" = "Portal nach Galmair")
+sellItem = id(1061), de("Portalbuch nach Runewick"), en("Portal book to Runewick"), price(1000), stack(1), quality(999), data("destinationCoordsY" = "813", "destinationCoordsX" = "835", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Runewick", "descriptionDe" = "Portal nach Runewick")
+sellItem = id(1061), de("Portalbuch zum Gasthof zur Hanfschlinge"), en("Portal book to the Hemp Necktie Inn"), price(1000), stack(1), quality(999), data("destinationCoordsY" = "307", "destinationCoordsX" = "684", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to the Hemp Necktie Inn", "descriptionDe" = "Portal zum Gasthof zur Hanfschlinge")
 
 tradeNotEnoughMoneyMsg "Du hast nicht genug Geld!", "You don't have enough money!"
 tradeFinishedMsg "Danke, komm doch bald wieder.", "Thanks, come back soon."
@@ -83,8 +83,8 @@ tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
 -- This NPC will sell portal books back to the three major towns and the Wilderland tavern.
 -- S/he and the others of their family will be sprawled across the map, also selling portal books to the location they are at.
 -- Intention of this sort of NPC is to act as a Safepoint to be discovered by players to allow quick travel to certain places in the wilderness (for a heavy price!).
-"handel", "verkauf", "portal" -> "Hiho, lass uns handeln!", trade
-"trade", "sell", "portal" -> "Hiho, let's trade!", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb", "portal" -> "Hiho, lass uns handeln!", trade
+"sell", "buy", "wares", "price", "trade", "purchase", "portal" -> "Hiho, let's trade!", trade
 
 -- Help
 "Help" -> inform("[Game Help] This NPC is the portal book merchant Evera. Keywords: Hello, portal, trade.")
@@ -92,7 +92,7 @@ tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Hiho! Today is a fine day to travel."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Hiho! Heute ist ein schöner Tag für eine Reise."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Hiho! Heute ist ein schöner Tag für eine Reise."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Hiho! Today is a fine day to travel."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Hiho! Heute ist ein schöner Tag für eine Reise."
 "Farewell", "Bye", "Fare well", "See you" -> "Always keep moving!", "Toodles!", "Farewell."
@@ -102,15 +102,53 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Always keep moving!", "Tood
 "How are you", "How feel", "How do you do" -> "I feel excited, thinking about all the places to travel to.", "I'm itching to make another journey."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Ich bin so aufgeregt, wenn ich nur an all die Orte denke an die man Reisen kann.", "Es juckt mich in den Füßen, eine Reise zu machen."
 "your name", "who are you", "who art thou" -> "Evera, the portal book merchant. That's me.", "I am the merchant, Evera.", "Evera is my name, I trade portal books."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Evera, Portalbuchhändlerin. Das bin ich.", "Ich bin die Händlerin Evera", "Evera mein Name, ich handle mit Portalbüchern"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Evera, Portalbuchhändlerin. Das bin ich.", "Ich bin die Händlerin Evera.", "Evera mein Name, ich handle mit Portalbüchern."
 
--- Catching quest triggers
-english, "quest", "mission" -> "I do not issue quests, but I can sell you books to go to other places."
-"quest", "mission" -> "Ich verteile keine Aufgaben. Aber ihr könnt von mir Bücher kaufen, die euch an andere Orte bringen."
-"task", "adventure", "order" -> "I do not issue quests, but I can sell you books to go to other places."
-"Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ich verteile keine Aufgaben. Aber ihr könnt von mir Bücher kaufen, die euch an andere Orte bringen."
+-- Quest
+-- 1st quest: fetch an apple pie
+-- Give out quest 1 and coins
+queststatus(222) = 0, english, town = Cadomyr,"quest", "mission" -> inform("[New quest] Bookseller Helper I"), money + 2700, queststatus(222) = 1, "Hello, I am starving and can't leave my business. Can you fetch me apple pie for my lunch from the market in Runewick?  Here are the coins!"
+queststatus(222) = 0, town = Cadomyr, "quest", "mission" -> inform("[Neues Quest] Buchhändler-Helfer I"), money + 2700, queststatus(222) = 1, "Hallo, ich bin am verhungern, aber ich kann mein Geschäft nicht verlassen.  Kannst du mir einen Apfelkuchen vom Marktplatz in Runewick besorgen? Hier sind die Münzen für den Kuchen!"
+queststatus(222) = 0, town = Cadomyr, "task", "adventure" -> inform("[New quest] Bookseller Helper I"), money + 2700, queststatus(222) = 1, "Hello, I am starving and can't leave my business. Can you fetch me apple pie for my lunch from the market in Runewick?  Here are the coins!"
+queststatus(222) = 0, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer" -> inform("[Neues Quest] Buchhändler-Helfer I"), money + 2700, queststatus(222) = 1, "Hallo, ich bin am verhungern, aber ich kann mein Geschäft nicht verlassen.  Kannst du mir einen Apfelkuchen vom Marktplatz in Runewick besorgen? Hier sind die Münzen für den Kuchen!"
 
--- Easter Egg
+-- Quest 1 complete, reward one portalbook to Cadomyr, +5 rankpoints
+queststatus(222) = 1, item(353, all) > 0, english, town = Cadomyr, ".+" -> inform("[Quest solved] You are awarded a portal book to Cadomyr."), deleteItem(353, 1), item(1061, 1, 999, "nameDE"="Portalbuch nach Cadomyr", "nameEN"="Portal book to Cadomyr", "destinationCoordsY" = "647", "destinationCoordsX" = "127", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Cadomyr", "descriptionDe" = "Portal nach Cadomyr"), queststatus(222) = 2, rankpoints + 5, "Oh, thank you so much. Take this book as a reward."
+queststatus(222) = 1, item(353, all) > 0, town = Cadomyr, ".+" -> inform("[Quest gelöst] Du erhältst ein Portalbuch nach Cadomyr"), deleteItem(353, 1), item(1061, 1, 999, "nameDE"="Portalbuch nach Cadomyr", "nameEN"="Portal book to Cadomyr", "destinationCoordsY" = "647", "destinationCoordsX" = "127", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Cadomyr", "descriptionDe" = "Portal nach Cadomyr"), queststatus(222) = 2, rankpoints + 5, "Oh, vielen vielen Dank. Hier, nimm dieses Buch als Belohnung."
+
+-- Quest 1 taken but not finished
+queststatus(222) = 1, item(353, all) < 1, town = Cadomyr, english, "quest", "mission" -> "I am starving and can't leave my business. Can you fetch me apple pie for my lunch from the market in Runewick?"
+queststatus(222) = 1, item(353, all) < 1, town = Cadomyr, "quest", "mission" -> "Ich bin am verhungern, aber ich kann mein Geschäft nicht verlassen.  Kannst du mir einen Apfelkuchen vom Marktplatz in Runewick besorgen?"
+queststatus(222) = 1, item(353, all) < 1, town = Cadomyr, "task", "adventure" -> "I am starving and can't leave my business. Can you fetch me apple pie for my lunch from the market in Runewick?"
+queststatus(222) = 1, item(353, all) < 1, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer" -> "Ich bin am verhungern, aber ich kann mein Geschäft nicht verlassen.  Kannst du mir einen Apfelkuchen vom Marktplatz in Runewick besorgen?"
+
+-- Quest 2 received, fetch grape juice
+queststatus(222) = 2, english, town = Cadomyr,"quest", "mission" -> inform("[New quest] Bookseller Helper II"), money + 1700, queststatus(222) = 3, "The cake was so good! Would you mind going back to the market in Runewick to fetch me some grape juice to wash it down now? *hands over more coins*"
+queststatus(222) = 2, town = Cadomyr, "quest", "mission" -> inform("[Neues Quest] Buchhändler-Helfer II"), money + 1700, queststatus(222) = 3, "Der Kuchen war richtig lecker! Würde es dir was ausmachen nochmal vom Marktplatz in Runewick zu gehen und mir etwas Traubensaft zu besorgen, damit ich die Krümel runterspülen kann? *reicht mehr Münzen rüber*"
+queststatus(222) = 2, town = Cadomyr, "task", "adventure" -> inform("[New quest] Bookseller Helper II"), money + 1700, queststatus(222) = 3, "The cake was so good! Would you mind going back to the market in Runewick to fetch me some grape juice to wash it down now? *hands over more coins*"
+queststatus(222) = 2, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer" -> inform("[Neues Quest] Buchhändler-Helfer II"), money + 1700, queststatus(222) = 3, "Der Kuchen war richtig lecker! Würde es dir was ausmachen nochmal vom Marktplatz in Runewick zu gehen und mir etwas Traubensaft zu besorgen, damit ich die Krümel runterspülen kann? *reicht mehr Münzen rüber*"
+
+-- Quest 2 complete, reward one portalbook to Cadomyr, +5 rankpoints
+queststatus(222) = 3, item(791, all) > 0, english, town = Cadomyr, ".+" -> inform("[Quest solved] You are awarded a portal book to Cadomyr."), deleteItem(791, 1), item(1061, 1, 999, "nameDE"="Portalbuch nach Cadomyr", "nameEN"="Portal book to Cadomyr", "destinationCoordsY" = "647", "destinationCoordsX" = "127", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Cadomyr", "descriptionDe" = "Portal nach Cadomyr"), queststatus(222) = 4, rankpoints + 5, "Oh, thank you so much. Take this book as a reward."
+queststatus(222) = 3, item(791, all) > 0, town = Cadomyr, ".+" -> inform("[Quest gelöst] Du erhältst ein Portalbuch nach Cadomyr"), deleteItem(791, 1), item(1061, 1, 999, "nameDE"="Portalbuch nach Cadomyr", "nameEN"="Portal book to Cadomyr", "destinationCoordsY" = "647", "destinationCoordsX" = "127", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Cadomyr", "descriptionDe" = "Portal nach Cadomyr"), queststatus(222) = 4, rankpoints + 5, "Oh, vielen, vielen Dank. Hier, nimm dieses Buch als Belohnung."
+
+-- Quest 2 taken but not completed
+queststatus(222) = 3, item(791, all) < 1, town = Cadomyr, english, "quest", "mission" -> "Would you mind going back to the market in Runewick to fetch me some grape juice to wash it down now?"
+queststatus(222) = 3, item(791, all) < 1, town = Cadomyr, "quest", "mission" -> "Würde es dir was ausmachen nochmal vom Marktplatz in Runewick zu gehen und mir etwas Traubensaft zu besorgen, damit ich die Krümel runterspülen kann?"
+queststatus(222) = 3, item(791, all) < 1, town = Cadomyr, "task", "adventure" -> "Would you mind going back to the market in Runewick to fetch me some grape juice to wash it down now?"
+queststatus(222) = 3, item(791, all) < 1, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer" -> "Würde es dir was ausmachen nochmal vom Marktplatz in Runewick zu gehen und mir etwas Traubensaft zu besorgen, damit ich die Krümel runterspülen kann?"
+
+-- All quests done
+queststatus(222) = 4, town = Cadomyr, english, "quest", "mission" -> "I have nothing left for you today, you have taken care of me admirably."
+queststatus(222) = 4, town = Cadomyr, "quest", "mission" -> "Heute gibt es nichts mehr für dich zu tun, du hast dich wunderbar um mich gekümmert."
+queststatus(222) = 4, town = Cadomyr, "task", "adventure" -> "I have nothing left for you today, you have taken care of me admirably."
+queststatus(222) = 4, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer" -> "Heute gibt es nichts mehr für dich zu tun, du hast dich wunderbar um mich gekümmert."
+
+-- If not of the realm
+english, "quest", "mission" -> "I do not issue any quests to people not of this realm, but I can sell you books to go to other places."
+"quest", "mission" -> "Ich vergebe keine Aufgaben an Leute, die nicht aus diesem Reich kommen. Aber ihr könnt von mir Bücher kaufen, die euch an andere Orte bringen."
+"task", "adventure", "order" -> "I do not issue any quests to people not of this realm, but I can sell you books to go to other places."
+"Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ich vergebe keine Aufgaben an Leute, die nicht aus diesem Reich kommen. Aber ihr könnt von mir Bücher kaufen, die euch an andere Orte bringen."
 
 -- Small talk: The talk here should focus on possible questions. Feel free to add more!
 "profession" -> "I am a merchant of portal books."
@@ -170,3 +208,10 @@ english, "salkama" -> "Nice place. They have some very tasty food there as well.
 -- Emotes are possible also starting with "#me ....".
 
 cycletext "Ich kann euch an interessante Orte bringen.", "I can take you to interesting places."
+cycletext "#me stapelt einige Bücher auf.", "#me stacks some books."
+cycletext "Ihr solltet mal verreisen!", "You should go on a trip."
+cycletext "Ich verkaufe Portalbücher! Braucht ihr eines?", "I sell portal books! Do you need one?"
+cycletext "Das ist Magie!", "It's magic!"
+cycletext "Der sichere Weg zu reisen! Portalbücher!", "The safe way to travel! Portal books!"
+cycletext "Die Götter haben diese Welt für uns erschaffen um sie zu entdecken und darin zu reisen.", "The Gods created this world for us to discover and travel within it."
+cycletext "Unsere Dienste werden in allen Städten gerne in Anspruch genommen.", "Our services are well sought in all three towns."

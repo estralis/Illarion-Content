@@ -13,23 +13,23 @@
 -- You should have received a copy of the GNU Affero General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------AC
--- NPC Name: Zlatxhol                                        Cadomyr          --
--- NPC Job:  Glass blower and brick maker                                     --
+-- NPC Name: Zlatxhol                                                  Cadomyr--
+-- NPC Job: Pottery                                                           --
 --                                                                            --
--- NPC Race: lizardman                  NPC Position:  143, 588, 0            --
--- NPC Sex:  male                       NPC Direction: west                   --
+-- NPC Race: lizardman             NPC Position: 134, 593, 0                  --
+-- NPC Sex: male                   NPC Direction: west                        --
 --                                                                            --
--- Author:   Zot                                                              --
+-- Author:  Estralis                                                          --
 --                                                     easyNPC Parser v1.23.1 --
 --------------------------------------------------------------------------------
 
 name = "Zlatxhol"
 race = lizardman
 sex = male
-position = 143, 588, 0
+position = 134, 593, 0
 direction = west
 affiliation = "Cadomyr"
-job = "Glass blower and brick maker"
+job = "Potter"
 
 language = common
 language = lizard
@@ -37,9 +37,11 @@ defaultLanguage = common
 autointroduce = on
 
 author = "Zot"
+author = "Banduk"
+author = "Estralis"
 
-lookatDE = ""
-lookatUS = ""
+lookatDE = "Dieser NPC ist Zlatxhol der Töpfer."
+lookatUS = "This NPC is Zlatxhol the potter."
 useMsgDE = "Fass mich nicht an!"
 useMsgUS = "Hands off!"
 wrongLangDE = "#me schaut dich verwirrt an."
@@ -58,13 +60,28 @@ itemHands = 0
 itemTrousers = 183
 itemShoes = 0
 
+-- Quest 1: Gathering. Player gets a gathering tool. Player gathers materials for 10 intermediate products.
+-- Quest 2: Intermediate production. Player gets a tool for intermediate production. Player produces 10 intermediate products.
+-- Quest 3: Final production. Player gets a tool for final production. Player delivers final products made of 10 intermediate products. Reward: 50 % of item.worth. Rank Layman / Laie
+-- Rank quests:
+-- Level 10: Novice / Anfänger. Reward: 10 Raw materials (e.g. coal)
+-- Level 20: Apprentice / Lehrling. Reward: 20 Raw materials (e.g. wool)
+-- Level 30: Initiate / Initiat. Reward: 10 Intermediate products (e.g. boards)
+-- Level 40: Journeyman / Geselle. Reward: 20 Intermediate products (e.g. thread), journeyman's certificate
+-- Level 50: Specialist / Spezialist. Reward: 10 Uncommon resources (e.g. handles)
+-- Level 60: Expert / Experte. Reward: 20 Uncommon resources (e.g. gold ingots)
+-- Level 70: Adept / Adept. Reward: 5 Rare resources (e.g. merinium ingots)
+-- Level 80: Artisan / Artisane. Reward: 10 Rare resources (e.g. heartwood)
+-- Level 90: Master / Meister. Reward: 5 Pure elements, master's tool
+-- Level 100: Grandmaster / Großmeister. Reward: 10 Pure elements, grandmaster's medal
+
 -- Help
-"Help" -> inform("[Game Help] This NPC is Zlatxhol the glass blower and brick maker. Keywords: quest")
-"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Zlatxhol der Glasbläser und Ziegelmacher. Schlüsselwörter: Quest")
+"Help" -> inform("[Game Help] This NPC is Zlatxhol the potter. Keywords: Hello, quest, potter.")
+"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Zlatxhol der Töpfer. Schlüsselwörter: Hallo, Quest, Töpfer.")
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Greetingsss to you.", "Yess, greetingss.", "Blessingss of the Mother upon you, greetingss"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Grüßsse dir.", "Ja, Grüßsse.", "Grüßsse."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Grüßsse dir.", "Ja, Grüßsse.", "Grüßsse."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greetingsss to you.", "Yess, greetingss.", "Greetsss."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Grüßsse dir.", "Ja, Grüßsse.", "Grüßsse."
 "Farewell", "Bye", "Fare well", "See you" -> "May the rainsss be heavy and frequent.", "May the ssea-Mother watch your path.", "Farewell, zsss."
@@ -72,89 +89,187 @@ english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greetingsss to you.", "Yess, greeti
 english, "Ciao", "Adieu", "Au revoir" -> "Goodbye", "Farewell", "#me nods slowly, 'Goodbye'."
 "Ciao", "Adieu", "Au revoir" -> "Gut wiedersehensss.", "Abschied.", "#me nickt langsam: 'Gut wiedersehensss'."
 "How are you", "How feel", "How do you do" -> "Zlatxhol iss fine, yess."
-"Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Zlatxhol issst gut, ja.."
+"Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Zlatxhol issst gut, ja."
 "your name", "who are you", "who art thou" -> "I be Zlatxhol, would you like to do a job for me?"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich sindss Zlatxhol, machenss du Aufgabe für michss?"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich sindss Zlatxhol, machenss du Aufgabe für michss?"
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin kein Händler."
 
 -- Small talk: The talk here should focus on possible questions. Feel free to add more!
-"profession" -> "I'm a glassz blower and bricksss maker, do you wantssz to help Zlatxhol?"
-"beruf" -> "Ich binss Glasssblässzer und Zzsiegelmacher, wollen du michssz helfen?"
-english, "job" -> "I'm a glassz blower and bricksss maker, do you wantssz to help Zlatxhol?"
-"job" -> "Ich binss Glasssblässzer und Zzsiegelmacher, wollen du michssz helfen?"
+"profession" -> "I'm a potter, do you wantsss to help Zlatxhol?"
+english, "job" -> "I'm a potter, do you wantsss to help Zlatxhol?"
+"job", "beruf" -> "Ich binss Töpfer, wollen du michssz helfen?"
 
--- Quests
-queststatus(707) = 0, town = Cadomyr, english, "quest", "mission" -> "Zsss, tasssk? Yesss, Zlatxhol has tasks for yous. Bring Zlatxhol ten clumps of clay. You can findz clay at the riverz west of here. Here, Zlatxhol givess you an old sshovel of hiss for digging clay.", item(24, 1, 999), queststatus(707) = 1
-queststatus(707) = 0, town = Cadomyr, "quest", "mission" -> "Zsss, Aufgabe? Ja, Zlatxhol haben Aufgabe für dichsss. Bring Zlatxhol zehn Lehmssz! Du finden Lehm bei Flusssz wesstlich der Stadt. Hier haben alte Ssschaufel von Zlatxhol um Lehm zu graben.", item(24, 1, 999), queststatus(707) = 1
-queststatus(707) = 0, town = Cadomyr, "task", "adventure", "order" -> "Zsss, tasssk? Yesss, Zlatxhol has tasks for yous. Bring Zlatxhol ten clumps of clay. You can findz clay at the riverz west of here. Here, Zlatxhol givess you an old sshovel of hiss for digging clay.", item(24, 1, 999), queststatus(707) = 1
-queststatus(707) = 0, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Zsss, Aufgabe? Ja, Zlatxhol haben Aufgabe für dichsss. Bring Zlatxhol zehn Lehmssz! Du finden Lehm bei Flusssz wesstlich der Stadt. Hier haben alte Ssschaufel von Zlatxhol um Lehm zu graben.", item(24, 1, 999), queststatus(707) = 1
-queststatus(707) = 1, item(26, all) > 9, town = Cadomyr, english, "quest", "mission", "clay" -> "Well done, thanks you. Pleasse keep the clay for the next tasssk of Zlatxhol.", queststatus(707) = 2
-queststatus(707) = 1, item(26, all) > 9, town = Cadomyr, "quest", "mission", "lehm" -> "Gut gemacht, dankes. Bittes behalten Lehm für nächsste Aufgabe von Zlatxhol.", queststatus(707) = 2
-queststatus(707) = 1, item(26, all) > 9, town = Cadomyr, "task", "adventure", "order" -> "Well done, thanks you. Pleasse keep the clay for the next tasssk of Zlatxhol.", queststatus(707) = 2
-queststatus(707) = 1, item(26, all) > 9, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Gut gemacht, dankes. Bittes behalten Lehm für nächsste Aufgabe von Zlatxhol.", queststatus(707) = 2
-queststatus(707) = 1, item(26, all) < 10, town = Cadomyr, english, ".+" -> "Zsss, Zlatxhol wantsss ten clumps of clay, that not enough clayssz. Come back when you have finished the taskz!"
-queststatus(707) = 1, item(26, all) < 10, town = Cadomyr, ".+" -> "Zsss, ichse haben wollten zehn Lehmss! Dasss nicht sssein zehn Lehm. Kommen zurück wenn fertig!"
-queststatus(707) = 2, town = Cadomyr, english, "quest", "mission" -> "Now we make brickss with clayss. You go to oven next to me and makes ten bricksss. First you make unfired bricksess, and then froms the unfired ones you make fired bricks! Here, me givesss you an old brickssz mould of mines.", item(734, 1, 777), queststatus(707) = 3
-queststatus(707) = 2, town = Cadomyr, "quest", "mission" -> "Jetztss wir machen Zzziegel mit Lehm. Du gehen zum Ofen neben mir und machen zehn Zzziegels. Erst du machen ungebrannte Zzziegel und aus ungebrannte Zzziegel du machen fertige Ziegel. Hier ich geben dir alte Zzziegelform von mirs.", item(734, 1, 777), queststatus(707) = 3
-queststatus(707) = 2, town = Cadomyr, "task", "adventure", "order" -> "Now we make brickss with clayss. You go to oven next to me and makes ten bricksss. First you make unfired bricksess, and then froms the unfired ones you make fired bricks! Here, me givesss you an old brickssz mould of mines.", item(734, 1, 777), queststatus(707) = 3
-queststatus(707) = 2, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Jetztss wir machen Zzziegel mit Lehm. Du gehen zum Ofen neben mir und machen zehn Zzziegels. Erst du machen ungebrannte Zzziegel und aus ungebrannte Zzziegel du machen fertige Ziegel. Hier ich geben dir alte Zzziegelform von mirs.", item(734, 1, 777), queststatus(707) = 3
-queststatus(707) = 3, item(2588, all) > 9, town = Cadomyr, english, "quest", "mission", "brick" -> "Well done, thanks you. Do you wants another taskss?", deleteItem(2588, 10), queststatus(707) = 4
-queststatus(707) = 3, item(2588, all) > 9, town = Cadomyr, "quest", "mission", "ziegel" -> "Gut gemacht, dankes. Wollen weitere Aufgabe von Zlatxhol?", deleteItem(2588, 10), queststatus(707) = 4
-queststatus(707) = 3, item(2588, all) > 9, town = Cadomyr, "task", "adventure", "order" -> "Well done, thanks you. Do you wants another taskss?", deleteItem(2588, 10), queststatus(707) = 4
-queststatus(707) = 3, item(2588, all) > 9, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Gut gemacht, dankes. Wollen weitere Aufgabe von Zlatxhol?", deleteItem(2588, 10), queststatus(707) = 4
-queststatus(707) = 3, item(2588, all) < 10, town = Cadomyr, english, ".+" -> "You have not finished! I want ten bricksss, come backsss when you have finished."
-queststatus(707) = 3, item(2588, all) < 10, town = Cadomyr, ".+" -> "Du nichtss fertig seinsss. Ich wollen zehn Zzziegels, kommen wieder wenn du fertig seinsss."
-queststatus(707) = 4, town = Cadomyr, english, "quest", "mission" -> "Zzzs, now we continue with glasss blowing! You need ssand first of all, to make glasss ingotss later. You now go out of the city and look for a place with much sssand and find a ssstone with sssand around it. Then you dig coarssse sssand with the big ssshovel I've gave you before and come back to turn it into quartzzs sssand. You ssshould make ten scoops of quartzzs sssand with the sssieve over there, I'll give yous a little ssshovel of mine for making quartzzs sssand!", item(312, 1, 777), queststatus(707) = 5
-queststatus(707) = 4, town = Cadomyr, "quest", "mission" -> "Zzzz, jetzt gehtsss weiter mit dem Glassblasssen! Du brauchen ersstmal Sand um darausss ssspäter Glasssblöcke zu machen. Du gehen rauss aus Ssstadt und ssuchen einen Ort mit Sssand und Ssstein auf Sssand. Dort graben und holen groben Sssand mit der großen Ssschaufel die Zlatxhol dir vorher gegeben hat. Wenn du groben Sssand haben, kommen zzzurück und machen aus groben Sssand bei Sssieb zehn Quarzzsand für Zlatxhol. Hier du kriegen kleine Sschaufel für Sssand ssieben sspäter von mir.", item(312, 1, 777), queststatus(707) = 5
-queststatus(707) = 4, town = Cadomyr, "task", "adventure", "order" -> "Zzzs, now we continue with glasss blowing! You need ssand first of all, to make glasss ingotss later. You now go out of the city and look for a place with much sssand and find a ssstone with sssand around it. Then you dig coarssse sssand with the big ssshovel I've gave you before and come back to turn it into quartzzs sssand. You ssshould make ten scoops of quartzzs sssand with the sssieve over there, I'll give yous a little ssshovel of mine for making quartzzs sssand!", item(312, 1, 777), queststatus(707) = 5
-queststatus(707) = 4, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Zzzz, jetzt gehtsss weiter mit dem Glassblasssen! Du brauchen ersstmal Sand um darausss ssspäter Glasssblöcke zu machen. Du gehen rauss aus Ssstadt und ssuchen einen Ort mit Sssand und Ssstein auf Sssand. Dort graben und holen groben Sssand mit der großen Ssschaufel die Zlatxhol dir vorher gegeben hat. Wenn du groben Sssand haben, kommen zzzurück und machen aus groben Sssand bei Sssieb zehn Quarzzsand für Zlatxhol. Hier du kriegen kleine Sschaufel für Sssand ssieben sspäter von mir.", item(312, 1, 777), queststatus(707) = 5
-queststatus(707) = 5, item(316, all) > 9, town = Cadomyr, english, "quest", "mission", "sand" -> "Well done, pleasse keep the sssand for your next tasssk", queststatus(707) = 6
-queststatus(707) = 5, item(316, all) > 9, town = Cadomyr, german, "quest", "mission", "sand" -> "Gut gemachtss, bitte behalten Ssand für nächssste Aufgabe von Zlatxhol.", queststatus(707) = 6
-queststatus(707) = 5, item(316, all) > 9, town = Cadomyr, "task", "adventure", "order" -> "Well done, pleasse keep the sssand for your next tasssk", queststatus(707) = 6
-queststatus(707) = 5, item(316, all) > 9, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Gut gemachtss, bitte behalten Ssand für nächssste Aufgabe von Zlatxhol.", queststatus(707) = 6
-queststatus(707) = 5, item(316, all) < 10, town = Cadomyr, english, ".+" -> "Zsss, I want ten scoops of quartzzs sssand. Come back when you have finissshed the task, zsss!"
-queststatus(707) = 5, item(316, all) < 10, town = Cadomyr, ".+" -> "Zsss, ich wollten zehn Quarzzssand. Komm wieder wenn du Aufgabe erledigt hassst, zsss!"
-queststatus(707) = 6, town = Cadomyr, english, "quest", "mission" -> "Now we collect asssh for making glasss. I give you an old hatchet of mine and wood, you can make ten piles of asssh for me then. When you have the asssh, you come back to the oven and makes ten glasss ingots with the glasss blow pipe which I'll gives you, zsss.", item(311, 1, 777), item(74, 1, 777), item(3, 15, 777), queststatus(707) = 7
-queststatus(707) = 6, town = Cadomyr, "quest", "mission" -> "Nun wir sssammeln Assche für Glasss machen. Du kriegen Beil und Holzz von mir um zzehn Asssche zu machen. Wenn Assche haben du kommst zurück zum Ofen hier und machen mit Glasblasrohr, dass ich dir auch gebe, zehn Glasblöcke, zss!", item(311, 1, 777), item(74, 1, 777), item(3, 15, 777), queststatus(707) = 7
-queststatus(707) = 6, town = Cadomyr, "task", "adventure", "order" -> "Now we collect asssh for making glasss. I give you an old hatchet of mine and wood, you can make ten piles of asssh for me then. When you have the asssh, you come back to the oven and makes ten glasss ingots with the glasss blow pipe which I'll gives you, zsss.", item(311, 1, 777), item(74, 1, 777), item(3, 15, 777), queststatus(707) = 7
-queststatus(707) = 6, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Nun wir sssammeln Assche für Glasss machen. Du kriegen Beil und Holzz von mir um zzehn Asssche zu machen. Wenn Assche haben du kommst zurück zum Ofen hier und machen mit Glasblasrohr, dass ich dir auch gebe, zehn Glasblöcke, zss!", item(311, 1, 777), item(74, 1, 777), item(3, 15, 777), queststatus(707) = 7
-queststatus(707) = 7, item(41, all) > 9, town = Cadomyr, english, "quest", "mission", "glass", "ingot" -> "Zsss, well done! These glass ingotsss look good. Please keep the glass ingotsss for your next tasssk.", deleteItem(41, 5), queststatus(707) = 8
-queststatus(707) = 7, item(41, all) > 9, town = Cadomyr, "quest", "mission", "glas", "blöck" -> "Zsss, gut gemachts! Glassblöcke sssehen gut aus. Bitte behalten Glassblöcke für nächssste Aufgabe von Zlatxhol, zsss!", deleteItem(41, 5), queststatus(707) = 8
-queststatus(707) = 7, item(41, all) > 9, town = Cadomyr, "task", "adventure", "order" -> "Zsss, well done! These glass ingotsss look good. Please keep the glass ingotsss for your next tasssk.", deleteItem(41, 5), queststatus(707) = 8
-queststatus(707) = 7, item(41, all) > 9, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Zsss, gut gemachts! Glassblöcke sssehen gut aus. Bitte behalten Glassblöcke für nächssste Aufgabe von Zlatxhol, zsss!", deleteItem(41, 5), queststatus(707) = 8
-queststatus(707) = 7, item(41, all) < 10, town = Cadomyr, english, ".+" -> "Zsss, I want ten glasss ingotsss. Come back when you have the ingotsss!"
-queststatus(707) = 7, item(41, all) < 10, town = Cadomyr, ".+" -> "Zsss, ich wollte zehn Glassblöcke. Komm wieder wenn Blöcke haben!"
-queststatus(707) = 8, town = Cadomyr, english, "quest", "mission" -> "Zsss, now the difficult part of the work sstartsss! You go to oven with the glasss blow pipe and make empty bottlesss from the glasss ingots. Come backsss when you have five bottlesss to show me, zsss.", queststatus(707) = 9
-queststatus(707) = 8, town = Cadomyr, "quest", "mission" -> "Zsss, jetzt schwieriger Teil von Arbeit kommen! Du gehen zum Ofen mit Rohr und machen auss den Glassblöcken leere Flassschen. Du kommen zurück wenn fertig und zeigen mir fünf Flaschen, zsss!", queststatus(707) = 9
-queststatus(707) = 8, town = Cadomyr, "task", "adventure", "order" -> "Zsss, now the difficult part of the work sstartsss! You go to oven with the glasss blow pipe and make empty bottlesss from the glasss ingots. Come backsss when you have five bottlesss to show me, zsss.", queststatus(707) = 9
-queststatus(707) = 8, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Zsss, jetzt schwieriger Teil von Arbeit kommen! Du gehen zum Ofen mit Rohr und machen auss den Glassblöcken leere Flassschen. Du kommen zurück wenn fertig und zeigen mir fünf Flaschen, zsss!", queststatus(707) = 9
-queststatus(707) = 9, item(790, all) > 4, town = Cadomyr, english, "quest", "mission", "bottle" -> "Zsss, well done! These bottlesss look good. Zsss, Zlatxhol says thanksss for the help and hopesss you learnt sssomething about glasss blowing and bricksss making.", deleteItem(790, 5), queststatus(707) = 10
-queststatus(707) = 9, item(790, all) > 4, town = Cadomyr, "quest", "mission", "flasche" -> "Zsss, gut gemachts! Flasschen sssehen gut aus. Zsss, Zlatxhol sagen danke für Hilfess und hoffen du was über Glasssblassen und Zzziegelmachen gelernt haben.", deleteItem(790, 5), queststatus(707) = 10
-queststatus(707) = 9, item(790, all) > 4, town = Cadomyr, "task", "adventure", "order" -> "Zsss, well done! These bottlesss look good. Zsss, Zlatxhol says thanksss for the help and hopesss you learnt sssomething about glasss blowing and bricksss making.", deleteItem(790, 5), queststatus(707) = 10
-queststatus(707) = 9, item(790, all) > 4, town = Cadomyr, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Zsss, gut gemachts! Flasschen sssehen gut aus. Zsss, Zlatxhol sagen danke für Hilfess und hoffen du was über Glasssblassen und Zzziegelmachen gelernt haben.", deleteItem(790, 5), queststatus(707) = 10
-queststatus(707) = 9, item(790, all) < 5, town = Cadomyr, english, ".+" -> "Zsss, they are not the five bottlesss I was looking for. Come backsss when you have the bottlesss!"
-queststatus(707) = 9, item(790, all) < 5, town = Cadomyr, ".+" -> "Zsss, dasss nicht ssein fünf leere Flassschen die ich wollte. Komm wieder wenn du Flasschen haben!"
+-- Help triggers
+"potter", "craft" -> "You need tongsss to take the hot potter ware out of the kiln! Don't burn your fingersss."
+"Töpfer", "Handwerk" -> "Du brauchssst eine Zssange, um die heißsse Töpferware ausss dem Ofen zssu holen. Verbrenn dir nicht die Finger!"
 
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-queststatus(707) = 10, town = Cadomyr, english, ".*" -> "Zsss, I don't have any other thingsss for yous to do. Thank yous for the help though, zsss!"
-queststatus(707) = 10, town = Cadomyr, german, ".*" -> "Zsss, ich haben nichtsss weiter für dich zu tun. Aber dankes nochmal für deine Hilfe, zsss!"
-queststatus(707) < 10, town = Cadomyr, english, ".*" -> "I could ussse sssome help, just asssk me for a task, zsss."
-queststatus(707) < 10, town = Cadomyr, german, ".*" -> "Ich könnte etwasss Hilfe gebrauchen, fragss michs ruhig nach einer Aufgabe. Ich habe sssicher etwass für dichss zu tun, zsss."
-english, ".*" -> "You are not a citizzsen of Cadomyrss. I don't haves anything for yous to do, zsss."
-german, ".*" -> "Du ssscheint kein Bürgers Cadomyr zu sssein. Ich hab nichtsss für dichss zu tun, zsss."
+-- Quest 1: Gathering. Player gets a gathering tool. Player gathers materials for 10 intermediate products.
+queststatus(707) = 0, english, town = Cadomyr, "quest", "mission" -> item(24, 1, 333), queststatus(707) = 1, "The Guild of Potterss acceptss you as an apprentice. But you'll have to work hard firsst. Take thiss ssshovel and collect twenty lumpss of clay. You can findss clay in a clay pit sssouth of here just outsside the gate.", inform("[Guild Quest] The Pottery Guild of Cadomyr I. For more information see the quest log (Q).")
+queststatus(707) = 0, town = Cadomyr, "task", "adventure", "order" -> item(24, 1, 333), queststatus(707) = 1, "The Guild of Potterss acceptss you as an apprentice. But you'll have to work hard firsst. Take thiss ssshovel and collect twenty lumpss of clay. You can findss clay in a clay pit sssouth of here just outsside the gate.", inform("[Guild Quest] The Pottery Guild of Cadomyr I. For more information see the quest log (Q).")
+queststatus(707) = 0, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> item(24, 1, 333), queststatus(707) = 1, "Die Töpferinnung wird deine Ausbildung übernehmen, ssz. Sszuerssst issst harte Arbeit. Nimm diese Schaufel und sssammle zwanzig Lehmklumpen. Lehm isssst in den Gruben sssüdlich von hier ausserhalb der Ssstadttore zu finden.", inform("[Gildenquest] Die Töpferinnung von Cadomyr I. Detaillierte Informationen findest du im Questlog (Q).")
+
+-- Quest 1: Solved
+queststatus(707) = 1, item(26, all) > 19, english, town = Cadomyr, "quest", "mission" -> queststatus(707) = 2, "Isss very fine clay thisss. But you are not a real potter yet. Keepss the clay. You needsss them later.", inform("[Guild Quest] Ask Zlatxhol for your next task.")
+queststatus(707) = 1, item(26, all) > 19, town = Cadomyr, "task", "adventure", "order", "clay" -> queststatus(707) = 2, "Isss very fine clay thisss. But you are not a real potter yet. Keepss the clay. You needsss them later.", inform("[Guild Quest] Ask Zlatxhol for your next task.")
+queststatus(707) = 1, item(26, all) > 19, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Lehm" -> queststatus(707) = 2, "Schöner lehmiger Lehm. Du bissst noch kein Töpfer. Dasss braucht mehr. Isst dein Lehm für weitere Ausssbildung.", inform("[Gildenquest] Frage Zlatxhol nach deiner nächsten Aufgaben.")
+
+-- Quest 1: Not enough items
+queststatus(707) = 1, english, town = Cadomyr, "quest", "mission" -> "Ssss, Zlatxhol wantsss ten clumps of clay, this is not enough claysss. Come back when you have finished the tassk!"
+queststatus(707) = 1, town = Cadomyr, "task", "adventure", "order", "clay" -> "Ssss, Zlatxhol wantsss ten clumps of clay, this is not enough claysss. Come back when you have finished the tassk!"
+queststatus(707) = 1, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Lehm" -> "Zsss, ichse haben wollten zehn Lehmss! Dasss nicht sssein zehn Lehm. Kommen sszurück wenn fertig!"
+
+-- Intermediate production skipped.
+-- Quest 2: Final production. Player gets a tool for final production. Player delivers final products made of 10 intermediate products. Reward: 50 % of item.worth. Rank Layman / Laie
+queststatus(707) = 2, english, town = Cadomyr, "quest", "mission" -> item(2140, 1, 333), queststatus(707) = 3, "Now we make brickss with clayss. You go to kiln and makes ten bricksss. Here, me givesss you an old sset of tongss of mines.", inform("[Guild Quest] The Pottery Guild of Cadomyr II. For more information see the quest log (Q).")
+queststatus(707) = 2, town = Cadomyr, "task", "adventure", "order" -> item(2140, 1, 333), queststatus(707) = 3, "Now we make brickss with clayss. You go to kiln and makes ten bricksss. Here, me givesss you an old sset of tongss of mines.", inform("[Guild Quest] The Pottery Guild of Cadomyr II. For more information see the quest log (Q).")
+queststatus(707) = 2, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> item(2140, 1, 333), queststatus(707) = 3, "Jetztss wir machen Zzziegel mit Lehm. Du gehen zum Ofen in Werkstatt neben mir und machen zehn Zzziegels. Hier ich geben dir alte Zzzange von mirs.", inform("[Gildenquest] Die Töpferinnung von Cadomyr II. Detaillierte Informationen findest du im Questlog (Q).")
+
+-- Quest 2: Solved
+queststatus(707) = 3, item(2588, all) > 9, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Layman with the Pottery Guild of Cadomyr. You are awarded twenty silver coins."), deleteItem(2588, 10), queststatus(707) = 6, money + 2000, "The Pottery Guild of Cadomyr isss proud to have a new member, Ssss. Here isss some money for a honourable potter-to-be. Ssssee me again once you are more experienced."
+queststatus(707) = 3, item(2588, all) > 9, town = Cadomyr, "task", "adventure", "order", "brick" -> inform("[Guild rank] You advance to the rank of Layman with the Pottery Guild of Cadomyr. You are awarded twenty silver coins."), deleteItem(2588, 10), queststatus(707) = 6, money + 2000, "The Pottery Guild of Cadomyr isss proud to have a new member, Ssss. Here isss some money for a honourable potter-to-be. Ssssee me again once you are more experienced."
+queststatus(707) = 3, item(2588, all) > 9, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Ziegel" -> inform("[Gildenrang] Die Töpferinnung von Cadomyr erhebt dich in den Rang eines Laiens. Du erhältst zwanzig Silberstücke."), deleteItem(2588, 10), queststatus(707) = 6, money + 2000, "Die Töpferinnung von Cadomyr isssst stolz, dich als neues Mitglied aufszunehmen. Dessshalb auch etwass Geld. Ich ssseh dich wieder, sssobald du erfahrener bist."
+
+-- Quest 2: Not enough items
+queststatus(707) = 3, english, town = Cadomyr, "quest", "mission" -> "You have not finished! I want ten bricksss, come backsss when you have finished."
+queststatus(707) = 3, town = Cadomyr, "task", "adventure", "order", "brick" -> "You have not finished! I want ten bricksss, come backsss when you have finished."
+queststatus(707) = 3, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Ziegel" -> "Du nichtss fertig seinsss. Ich wollen zehn Zzziegels, kommen wieder wenn du fertig seinsss."
+
+-- Level 10: Novice / Anfänger. Reward: 10 Raw materials (e.g. coal)
+skill(pottery) > 9, queststatus(707) = 6, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Novice with the Pottery Guild of Cadomyr. You are awarded ten piles of clay."), item(26, 10, 333), queststatus(707) = 7, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some clay. Come back to me once you are more experienced."
+skill(pottery) > 9, queststatus(707) = 6, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Novice with the Pottery Guild of Cadomyr. You are awarded ten piles of clay."), item(26, 10, 333), queststatus(707) = 7, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some clay. Come back to me once you are more experienced."
+skill(pottery) > 9, queststatus(707) = 6, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Töpferinnung von Cadomyr erhebt dich in den Rang eines Anfängers. Du erhältst zehn Klumpen Lehm."), item(26, 10, 333), queststatus(707) = 7, "Sssehr gut. Du bringst der Töpferinnung und der Königin Ehre und Ruhm. Wir sssind stolzz dir mit etwass Lehm sszu helfen. Ich ssseh dich wieder, sssobald du erfahrener bist."
+
+-- Level < 10: Not experienced enough
+skill(pottery) < 10, queststatus(707) = 6, english, town = Cadomyr, "quest", "mission" -> "I'm proud to sssee you Layman. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 10 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 10, queststatus(707) = 6, town = Cadomyr, "task", "adventure", "order", "rank" -> "I'm proud to sssee you Layman. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 10 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 10, queststatus(707) = 6, town = Cadomyr, "quest", "mission" , "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Ess issst mir eine Ehre einen Laien der Gilde sszu ssehen. Ich habe dich aber nicht ssso viel am Brennofen gesehen, sssz.", inform("[Gildenrang] Du brauchst Level 10 in Töpfern um in der Töpferinnung aufzusteigen.")
+
+-- Level 20: Apprentice / Lehrling. Reward: 20 Raw materials (e.g. wool)
+skill(pottery) > 19, queststatus(707) = 7, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Apprentice with the Pottery Guild of Cadomyr. You are awarded twenty piles of clay."), item(26, 20, 333), queststatus(707) = 8, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some clay. Come back to me once you are more experienced."
+skill(pottery) > 19, queststatus(707) = 7, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Apprentice with the Pottery Guild of Cadomyr. You are awarded twenty piles of clay."), item(26, 20, 333), queststatus(707) = 8, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some clay. Come back to me once you are more experienced."
+skill(pottery) > 19, queststatus(707) = 7, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Töpferinnung von Cadomyr erhebt dich in den Rang eines Lehrlings. Du erhältst zwanzig Klumpen Lehm."), item(26, 20, 333), queststatus(707) = 8, "Sssehr gut. Du bringst der Töpferinnung und der Königin Ehre und Ruhm. Wir sssind stolzz dir mit etwass Lehm sszu helfen. Ich ssseh dich wieder, sssobald du erfahrener bist."
+
+-- Level < 20: Not experienced enough
+skill(pottery) < 20, queststatus(707) = 7, english, town = Cadomyr, "quest", "mission" -> "I'm proud to sssee you Novice. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 20 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 20, queststatus(707) = 7, town = Cadomyr, "task", "adventure", "order", "rank" -> "I'm proud to sssee you Novice. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 20 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 20, queststatus(707) = 7, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Ess issst mir eine Ehre einen Anfänger der Gilde sszu ssehen. Ich habe dich aber nicht ssso viel am Brennofen gesehen, sssz.", inform("[Gildenrang] Du brauchst Level 20 in Töpfern um in der Töpferinnung aufzusteigen.")
+
+-- Level 30: Initiate / Initiat. Reward: 10 Intermediate products (e.g. boards)
+skill(pottery) > 29, queststatus(707) = 8, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Initiate with the Pottery Guild of Cadomyr. You are awarded thirty piles of clay."), item(26, 30, 333), queststatus(707) = 9, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some clay. Come back to me once you are more experienced."
+skill(pottery) > 29, queststatus(707) = 8, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Initiate with the Pottery Guild of Cadomyr. You are awarded thirty piles of clay."), item(26, 30, 333), queststatus(707) = 9, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some clay. Come back to me once you are more experienced."
+skill(pottery) > 29, queststatus(707) = 8, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Töpferinnung von Cadomyr erhebt dich in den Rang eines Initiatens. Du erhältst dreißig Klumpen Lehm."), item(26, 30, 333), queststatus(707) = 9, "Sssehr gut. Du bringst der Töpferinnung und der Königin Ehre und Ruhm. Wir sssind stolzz dir mit einigen Klumpen Lehm sszu helfen. Ich ssseh dich wieder, sssobald du erfahrener bist."
+
+-- Level < 30: Not experienced enough
+skill(pottery) < 30, queststatus(707) = 8, english, town = Cadomyr, "quest", "mission" -> "I'm proud to sssee you Apprentice. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 30 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 30, queststatus(707) = 8, town = Cadomyr, "task", "adventure", "order", "rank" -> "I'm proud to sssee you Apprentice. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 30 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 30, queststatus(707) = 8, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Ess issst mir eine Ehre einen Lehrling der Gilde sszu ssehen. Ich habe dich aber nicht ssso viel am Brennofen gesehen, sssz.", inform("[Gildenrang] Du brauchst Level 30 in Töpfern um in der Töpferinnung aufzusteigen.")
+
+-- Level 40: Journeyman / Geselle. Reward: 20 Intermediate products (e.g. thread), journeyman's certificate
+skill(pottery) > 39, queststatus(707) = 9, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Journeyman with the Pottery Guild of Cadomyr. You are awarded thirty piles of clay and a journeyman's certificate."), item(3109, 1, 333, "nameDe" = "Gesellenbrief", "nameEn" = "Journeyman's Certificate", "rareness" = "1", "descriptionEn" = "The owner of this certificate has successfully passed the examination as Journeyman. Zlatxhol - Pottery Guild of Cadomyr", "descriptionDe" = "Der Inhaber dieses Gesellenbriefes hat erfolgreich das Examen zum Gesellen bestanden. Zlatxhol - Toepferinnung von Cadomyr"), item(26, 30, 333), queststatus(707) = 10, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr is glad to have a new journeyman. Come back to me once you are more experienced."
+skill(pottery) > 39, queststatus(707) = 9, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Journeyman with the Pottery Guild of Cadomyr. You are awarded thirty piles of clay and a journeyman's certificate."), item(3109, 1, 333, "nameDe" = "Gesellenbrief", "nameEn" = "Journeyman's Certificate", "rareness" = "1", "descriptionEn" = "The owner of this certificate has successfully passed the examination as Journeyman. Zlatxhol - Pottery Guild of Cadomyr", "descriptionDe" = "Der Inhaber dieses Gesellenbriefes hat erfolgreich das Examen zum Gesellen bestanden. Zlatxhol - Toepferinnung von Cadomyr"), item(26, 30, 333), queststatus(707) = 10, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr is glad to have a new journeyman. Come back to me once you are more experienced."
+skill(pottery) > 39, queststatus(707) = 9, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Töpferinnung von Cadomyr erhebt dich in den Rang eines Gesellens. Du erhältst dreißig Klumpen Lehm und einen Gesellenbrief."), item(3109, 1, 333, "nameDe" = "Gesellenbrief", "nameEn" = "Journeyman's Certificate", "rareness" = "1", "descriptionEn" = "The owner of this certificate has successfully passed the examination as Journeyman. Zlatxhol - Pottery Guild of Cadomyr", "descriptionDe" = "Der Inhaber dieses Gesellenbriefes hat erfolgreich das Examen zum Gesellen bestanden. Zlatxhol - Toepferinnung von Cadomyr"), item(26, 30, 333), queststatus(707) = 10, "Gut gemacht. Wie ich sehe, hast du hart gearbeitet. Die Töpferinnung von Cadomyr freut sich dich als neuen Gesellen zu begrüßen sszu helfen. Ich ssseh dich wieder, sssobald du erfahrener bist."
+
+-- Level < 40: Not experienced enough
+skill(pottery) < 40, queststatus(707) = 9, english, town = Cadomyr, "quest", "mission" -> "I'm proud to sssee you Initiate. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 40 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 40, queststatus(707) = 9, town = Cadomyr, "task", "adventure", "order", "rank" -> "I'm proud to sssee you Initiate. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 40 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 40, queststatus(707) = 9, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Ess issst mir eine Ehre einen Initiaten der Gilde sszu ssehen. Ich habe dich aber nicht ssso viel am Brennofen gesehen, sssz.", inform("[Gildenrang] Du brauchst Level 40 in Töpfern um in der Töpferinnung aufzusteigen.")
+
+-- Level 50: Specialist / Spezialist. Reward: 10 Uncommon resources (e.g. handles)
+skill(pottery) > 49, queststatus(707) = 10, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Specialist with the Pottery Guild of Cadomyr. You are awarded forty piles of clay."), item(26, 40, 333), queststatus(707) = 11, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some clay. Come back to me once you are more experienced."
+skill(pottery) > 49, queststatus(707) = 10, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Specialist with the Pottery Guild of Cadomyr. You are awarded forty piles ofclay."), item(26, 40, 333), queststatus(707) = 11, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some clay. Come back to me once you are more experienced."
+skill(pottery) > 49, queststatus(707) = 10, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Töpferinnung von Cadomyr erhebt dich in den Rang eines Spezialistens. Du erhältst vierzig Klumpen Lehm."), item(26, 40, 333), queststatus(707) = 11, "Sssehr gut. Du bringst der Töpferinnung und der Königin Ehre und Ruhm. Wir sssind stolzz dir mit einigen Klumpen Lehm sszu helfen. Ich ssseh dich wieder, sssobald du erfahrener bist."
+
+-- Level < 50: Not experienced enough
+skill(pottery) < 50, queststatus(707) = 10, english, town = Cadomyr, "quest", "mission" -> "I'm proud to sssee you Journeyman. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 50 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 50, queststatus(707) = 10, town = Cadomyr, "task", "adventure", "order", "rank" -> "I'm proud to sssee you Journeyman. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 50 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 50, queststatus(707) = 10, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Ess issst mir eine Ehre einen Gesellen der Gilde sszu ssehen. Ich habe dich aber nicht ssso viel am Brennofen gesehen, sssz.", inform("[Gildenrang] Du brauchst Level 50 in Töpfern um in der Töpferinnung aufzusteigen.")
+
+-- Level 60: Expert / Experte. Reward: 20 Uncommon resources (e.g. gold ingots)
+skill(pottery) > 59, queststatus(707) = 11, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Expert with the Pottery Guild of Cadomyr. You are awarded ten bags of topaz powder."), item(451, 10, 333), queststatus(707) = 12, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some topaz powder. Come back to me once you are more experienced."
+skill(pottery) > 59, queststatus(707) = 11, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Expert with the Pottery Guild of Cadomyr. You are awarded ten bags of topaz powder."), item(451, 10, 333), queststatus(707) = 12, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some topaz powder. Come back to me once you are more experienced."
+skill(pottery) > 59, queststatus(707) = 11, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Töpferinnung von Cadomyr erhebt dich in den Rang eines Expertens. Du erhältst zehn Sack Topasstaub."), item(451, 10, 333), queststatus(707) = 12, "Sssehr gut. Du bringst der Töpferinnung und der Königin Ehre und Ruhm. Wir sssind stolzz dir mit etwas Topasstaub sszu helfen. Ich ssseh dich wieder, sssobald du erfahrener bist."
+
+-- Level < 60: Not experienced enough
+skill(pottery) < 60, queststatus(707) = 11, english, town = Cadomyr, "quest", "mission" -> "I'm proud to sssee you Specialist. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 610 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 60, queststatus(707) = 11, town = Cadomyr, "task", "adventure", "order", "rank" -> "I'm proud to sssee you Specialist. You should ssstay more time at the kiln to become promoted, Sss.", inform("[Guild rank] You need skill level 60 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 60, queststatus(707) = 11, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Ess issst mir eine Ehre einen Spezialisten der Gilde sszu ssehen. Ich habe dich aber nicht ssso viel am Brennofen gesehen, sssz.", inform("[Gildenrang] Du brauchst Level 60 in Töpfern um in der Töpferinnung aufzusteigen.")
+
+-- Level 70: Adept / Adept. Reward: 5 Rare resources (e.g. merinium ingots)
+skill(pottery) > 69, queststatus(707) = 12, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Adept with the Pottery Guild of Cadomyr. You are awarded ten bags of ruby powder."), item(447, 10, 333), queststatus(707) = 13, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some ruby powder. Come back to me once you are more experienced."
+skill(pottery) > 69, queststatus(707) = 12, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Adept with the Pottery Guild of Cadomyr. You are awarded ten bags of ruby powder."), item(447, 10, 333), queststatus(707) = 13, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some ruby powder. Come back to me once you are more experienced."
+skill(pottery) > 69, queststatus(707) = 12, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Töpferinnung von Cadomyr erhebt dich in den Rang eines Adeptens. Du erhältst zehn Sack Rubinstaub."), item(447, 10, 333), queststatus(707) = 13, "Sssehr gut. Du bringst der Töpferinnung und der Königin Ehre und Ruhm. Wir sssind stolzz dir mit etwas Rubinstaub sszu helfen. Ich ssseh dich wieder, sssobald du erfahrener bist."
+
+-- Level < 70: Not experienced enough
+skill(pottery) < 70, queststatus(707) = 12, english, town = Cadomyr, "quest", "mission" -> "I'm proud to sssee you Expert. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 70 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 70, queststatus(707) = 12, town = Cadomyr, "task", "adventure", "order", "rank" -> "I'm proud to sssee you Expert. You should ssstay more time at the kiln to become promoted, Ssss.", inform("[Guild rank] You need skill level 70 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 70, queststatus(707) = 12, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Ess issst mir eine Ehre einen Experten der Gilde sszu ssehen. Ich habe dich aber nicht ssso viel am Brennofen gesehen, sssz.", inform("[Gildenrang] Du brauchst Level 70 in Töpfern um in der Töpferinnung aufzusteigen.")
+
+-- Level 80: Artisan / Artisane. Reward: 10 Rare resources (e.g. heartwood)
+skill(pottery) > 79, queststatus(707) = 13, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Artisan with the Pottery Guild of Cadomyr. You are awarded twenty backs of diamond powder."), item(452, 20, 333), queststatus(707) = 14, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some diamond powder. Come back to me once you are more experienced."
+skill(pottery) > 79, queststatus(707) = 13, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Artisan with the Pottery Guild of Cadomyr. You are awarded twenty backs of diamond powder."), item(452, 20, 333), queststatus(707) = 14, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with sssome diamond powder. Come back to me once you are more experienced."
+skill(pottery) > 79, queststatus(707) = 13, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Töpferinnung von Cadomyr erhebt dich in den Rang eines Artisanens. Du erhältst zwanzig Sack Diamantstaub."), item(452, 20, 333), queststatus(707) = 14, "Sssehr gut. Du bringst der Töpferinnung und der Königin Ehre und Ruhm. Wir sssind stolzz dir mit etwas Diamantstaub sszu helfen. Ich ssseh dich wieder, sssobald du erfahrener bist."
+
+-- Level < 80: Not experienced enough
+skill(pottery) < 80, queststatus(707) = 13, english, town = Cadomyr, "quest", "mission" -> "I'm proud to sssee you Adept. Isss hard work to becomes a massster potter.", inform("[Guild rank] You need skill level 80 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 80, queststatus(707) = 13, town = Cadomyr, "task", "adventure", "order", "rank" -> "I'm proud to sssee you Adept. Isss hard work to becomes a massster potter.", inform("[Guild rank] You need skill level 80 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 80, queststatus(707) = 13, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Ess issst mir eine Ehre einen Adepten der Gilde sszu ssehen. Ich weisss, issst harte Arbeit um Meister der Töpfer ssszu werden, sssz.", inform("[Gildenrang] Du brauchst Level 80 in Töpfern um in der Töpferinnung aufzusteigen.")
+
+-- Level 90: Master / Meister. Reward: 5 Pure elements, master's tool
+skill(pottery) > 89, queststatus(707) = 14, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Master with the Pottery Guild of Cadomyr. You are awarded five pieces of pure fire and a special set of tongs."), item(2553, 5, 333), queststatus(707) = 15, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some pure fire and this special tool. Come back to me once you are more experienced.", item(2140, 1, 999, "rareness" = "1", "descriptionEn" = "Master of the Pottery Guild of Cadomyr", "descriptionDe" = "Meister der Toepferinnung von Cadomyr")
+skill(pottery) > 89, queststatus(707) = 14, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Master with the Pottery Guild of Cadomyr. You are awarded five pieces of pure fire and a special set of tongs."), item(2553, 5, 333), queststatus(707) = 15, "You did well for honour and glory of our guild and the Queen, Ssss. The Pottery Guild of Cadomyr sssupportsss your effortsss with some pure fire and thins special tool. Come back to me once you are more experienced.", item(2140, 1, 999, "rareness" = "1", "descriptionEn" = "Master of the Pottery Guild of Cadomyr", "descriptionDe" = "Meister der Toepferinnung von Cadomyr")
+skill(pottery) > 89, queststatus(707) = 14, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Töpferinnung von Cadomyr erhebt dich in den Rang eines Meisters. Du erhältst fünf Stück reines Feuer und eine besondere Zange."), item(2553, 5, 333), queststatus(707) = 15, "Sssehr gut. Du bringst der Töpferinnung und der Königin Ehre und Ruhm. Wir sssind stolzz dir mit etwas reinem Feuer und dieser speziellen Zange sszu helfen. Ich ssseh dich wieder, sssobald du erfahrener bist.", item(2140, 1, 999, "rareness" = "1", "descriptionEn" = "Master of the Pottery Guild of Cadomyr", "descriptionDe" = "Meister der Toepferinnung von Cadomyr")
+
+-- Level < 90: Not experienced enough
+skill(pottery) < 90, queststatus(707) = 14, english, town = Cadomyr, "quest", "mission" -> "I'm proud to sssee you Artisan. Isss hard work to becomes a massster potter.", inform("[Guild rank] You need skill level 90 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 90, queststatus(707) = 14, town = Cadomyr, "task", "adventure", "order", "rank" -> "I'm proud to sssee you Artisan. Isss hard work to becomes a massster potter.", inform("[Guild rank] You need skill level 90 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 90, queststatus(707) = 14, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Ess issst mir eine Ehre einen Artisanen der Gilde sszu ssehen. Ich weisss, issst harte Arbeit um Meister der Töpfer ssszu werden, sssz.", inform("[Gildenrang] Du brauchst Level 90 in Töpfern um in der Töpferinnung aufzusteigen.")
+
+-- Level 100: Grandmaster / Großmeister. Reward: 10 Pure elements, grandmaster's medal
+skill(pottery) > 99, queststatus(707) = 15, english, town = Cadomyr, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Grandmaster with the Pottery Guild of Cadomyr. You are awarded ten pieces of pure earth and a grandmaster's medal."), item(2552, 10, 333), queststatus(707) = 16, "What a high hounour, Ssss. I bow to a new Grandmaster of the Pottery Guild of Cadomyr. With this pure earth, you shall help make the most valuable goodss of Illarion.", item(3535, 1, 999, "nameDe" = "Großmeistermedallie", "nameEn" = "Grandmaster's Medal", "rareness" = "2", "descriptionEn" = "Grandmaster of the Pottery Guild of Cadomyr", "descriptionDe" = "Großmeister der Töpferinnung von Cadomyr")
+skill(pottery) > 99, queststatus(707) = 15, town = Cadomyr, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Grandmaster with the Pottery Guild of Cadomyr. You are awarded ten pieces of pure earth and a grandmaster's medal."), item(2552, 10, 333), queststatus(707) = 16, "What a high hounour, Ssss. I bow to a new Grandmaster of the Pottery Guild of Cadomyr. With this pure earth, you shall help make the most valuable goodss of Illarion.", item(3535, 1, 999, "nameDe" = "Großmeistermedallie", "nameEn" = "Grandmaster's Medal", "rareness" = "2", "descriptionEn" = "Grandmaster of the Pottery Guild of Cadomyr", "descriptionDe" = "Großmeister der Töpferinnung von Cadomyr")
+skill(pottery) > 99, queststatus(707) = 15, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Töpferinnung von Cadomyr erhebt dich in den Rang eines Großmeisters. Du erhältst zehn Stück reiner Erde und eine Großmeistermedallie."), item(2552, 10, 333), queststatus(707) = 16, "Welch hohe Ehre, sssz. Ich verneige mich vor einem neuen Großmeister der Töpferinnung von Cadomyr. Mit dieser reinen Erde wirst du die teuersten Waren Illarions herstellen.", item(3535, 1, 999, "nameDe" = "Großmeistermedallie", "nameEn" = "Grandmaster's Medal", "rareness" = "2", "descriptionEn" = "Grandmaster of the Pottery Guild of Cadomyr", "descriptionDe" = "Großmeister der Töpferinnung von Cadomyr")
+
+-- Level < 100: Not experienced enough
+skill(pottery) < 100, queststatus(707) = 15, english, town = Cadomyr, "quest", "mission" -> "I'm proud to sssee you Master. Isss hard work to becomes a massster potter.", inform("[Guild rank] You need skill level 100 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 100, queststatus(707) = 15, town = Cadomyr, "task", "adventure", "order", "rank" -> "I'm proud to sssee you Master. Isss hard work to becomes a massster potter.", inform("[Guild rank] You need skill level 100 in pottery to advance in the ranks of the Pottery Guild.")
+skill(pottery) < 100, queststatus(707) = 15, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Ess issst mir eine Ehre einen Meister der Gilde sszu ssehen. Ich weisss, issst harte Arbeit um Meister der Töpfer ssszu werden, sssz.", inform("[Gildenrang] Du brauchst Level 100 in Töpfern um in der Töpferinnung aufzusteigen.")
+
+-- Response after quest is done
+queststatus(707) = 16, english, town = Cadomyr, "quest", "mission" -> "The Pottery Guild of Cadomyr hailsss Grandmaster %CHARNAME."
+queststatus(707) = 16, town = Cadomyr, "task", "adventure", "order" -> "The Pottery Guild of Cadomyr hailsss Grandmaster %CHARNAME."
+queststatus(707) = 16, town = Cadomyr, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Die Töpferinnung von Cadomyr grüßsst ihren Großmeister %CHARNAME."
+
+-- No quests for Non Cadomyrians
+english, "quest", "mission" -> "The Pottery Assssociation isss restricted to Cadomyr's citizzens. I don't haves anything for you to do, zsss."
+"quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Die Töpferinnung sssteht nur Bürgern Cadomyrs offen, zsss."
+"task", "adventure", "order" -> "The Pottery Assssociation isss restricted to Cadomyr's citizzens. I don't haves anything for yous to do, zsss."
+
+-- Additional talk
+english, "rosalie", "edwards" -> "The Queen Rosalie Edwards isss mother of Cadomyr, asss Zelphia isss mother of childrensss of the ssssea.", "I'm proud to ssserve the Queen as a craftsmen.", "Hail the Queen!", "All pottery in the palace was made by our guild."
+"queen" -> "The Queen Rosalie Edwards isss mother of Cadomyr, asss Zelphia isss mother of childrensss of the ssssea.", "I'm proud to ssserve the Queen as a craftsmen.", "Hail the Queen!", "All pottery in the palace was made by our guild."
+"rosalie", "edwards", "König" -> "Die Königin Rosalie Edwards issst Mutter vons Cadomyr ssso wie Zelphia issst Mutter von Kinder der Sssee.", "Ich bin stolz der Königin als Handwerker zu dienen.", "Hoch lebe die Königin!", "Alle Töpferwaren im Palast stammen von unserer Innung."
+english, "Zelphia", "Tanora" -> "Zelphia isss mother of childrensss of ssssea.", "Temple of Zelphia isss in west of Cadomyr."
+"Zelphia", "Tanora" -> "Zelphia issst Mutter der Kinder der Sssee.", "Den Tempel Zelphias findest du im Westen der Stadt, sssz."
+"god", "temple" -> "Cadomyr hasss many templess, Ssss. Isss Zelphia in west, Zhambra near the palace, Malachin sssouth of town and Sirani in delta of Kantabi water ssstream.", "Ssserve the Queen, Worship your God and become a honourable potter!"
+"Gott", "Tempel" -> "Cadomyr hat viele Tempel, sssz. Zelphiasss in Westen, Zhambrasss am Palast, Malachinsss im Sssüden der Stadt und Sirani on Delta desss grossen Kantabi Wasssserss.", "Diene der Königin, Preise deinen Gott und werd ein ehrenvoller Töpfer!"
+"clay" -> "Best clay hasss to be ssssoft, ass butt of landstridersss baby.", "My favourite clay pit is far in the sssouth near the ocean.", "Pottery is not only burned clay, isss a art, Ssss."
+"Lehm" -> "Lehm muss weich sein, wie der Po eines Landläuferbabiessss.", "Meine bevorzugte Lehmgrube liegt weit im Sssüden am Meer, sssz.", "Töpfern issst mehr alsss nur Lehm brennen, esss issst eine Kunst, sssz."
+
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
 -- Every NPC should contain at least 10 of those messages.
--- Emotes are possible also starting with "#me ....".
+-- Emotes are possible also starting with "#me ..".
 
 cycletext "#me schaut sich gelangweilt um.", "#me looks around bored."
 cycletext "#me kratzt sich am Kopf.", "#me scratches his head."
-cycletext "Wenns du Hilfe beim Glasssblassen oder Zzziegelbrennen brauchst dann fragt michss!", "If you need any help with glassss blowing or bricksss making, jussst asssk me!"
-cycletext "Zsss...", "Zsss..."
+cycletext "Wenns du Hilfe beim Töpfern brauchst dann fragt michss!", "If you need any help with pottery, jussst asssk me!"
+cycletext "Zsss.", "Zsss."
 cycletext "Zsss!", "Zsss!"
 cycletext "Zsss?", "Zsss?"
 cycletext "#me zischelt.", "#me hisses."
-cycletext "Ssss...", "Ssss..."
+cycletext "Ssss..", "Ssss.."
 cycletext "Ssss?", "Ssss?"
 cycletext "Ssss!", "Ssss!"
-cycletext "Tsss...", "Tsss..."
+cycletext "Tsss.", "Tsss."
 cycletext "#me lässt seinen Schwanz hin und her schnellen.", "#me wags his tail back and forth."

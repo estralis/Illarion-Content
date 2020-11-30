@@ -1,15 +1,15 @@
 -- Illarion Server
--- 
+--
 -- This program is free software: you can redistribute it and/or modify it under
 -- the terms of the GNU Affero General Public License as published by the Free
 -- Software Foundation, either version 3 of the License, or (at your option) any
 -- later version.
--- 
+--
 -- This program is distributed in the hope that it will be useful, but WITHOUT
 -- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 -- FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 -- details.
--- 
+--
 -- You should have received a copy of the GNU Affero General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------AC
@@ -28,8 +28,8 @@
 name = "Brassius Meres"
 race = human
 sex = male
-position = 841, 819, 0
-direction = south
+position = 865, 814, 0
+direction = west
 affiliation = "Runewick"
 job = "Guard"
 
@@ -61,9 +61,10 @@ itemSecondHand = 2708
 itemHands = 528
 itemTrousers = 2113
 itemShoes = 697
-guardWarpTarget = 834, 821, 0
-guardRange = 0, 6, 2, 5
+guardWarpTarget = 857, 817, 0
+guardRange = 5, 6, 5, 5
 warpedMonsterMsg "Weg mit dir, widerliche Kreatur!", "Go away, nasty creature!"
+warpedMonsterMsg "Hinfort, du Monster!", "Begone, you monster!"
 warpedPlayerMsg "Pass bloß auf! Wir brauchen hier kein Gesindel.", "You'd better watch out! We don't need such lowlifes here."
 hitPlayerMsg "#me verpasst dem Eindringlich einen Hieb 'Verschwinde!'", "#me hits the intruder 'Get lost!'"
 
@@ -94,7 +95,7 @@ queststatus(109) > 6, ".+" -> inform("[Error] Something went wrong, please infor
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "#me bows his head politely: 'Be greeted.'", "Greetings to you.", "#me nods his head in greeting."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "#me deutet eine Verbeugung an: 'Seid gegrüßt.'", "Seid mir gegrüßt.", "#me nickt grüßend mit dem Kopf."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "#me deutet eine Verbeugung an: 'Seid gegrüßt.'", "Seid mir gegrüßt.", "#me nickt grüßend mit dem Kopf."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "#me frowns lightly, 'Yes, yes. Hello.'", "#me nods once.", "May I help you?"
 "Hiho", "Hallo", "Hey", "Greeb" -> "#me rümpft leicht die Nase: 'Ja, ja. Hallo.'", "#me nickt knapp.", "Kann ich euch helfen?"
 "Farewell", "Bye", "Fare well", "See you" -> "Be well. And stay out of trouble.", "May Zhambra keep you safe from harm.", "#me raises his fist to his chest in salute."
@@ -104,10 +105,10 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Aye. Be off with you.", "St
 "How are you", "How feel", "How do you do" -> "I am well, thank you.", "Zhambra keeps me safe and in good health.", "I can not complain, the Gods care for me."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befinden" -> "Mir geht es gut, danke der Nachfrage.", "Zhambra schützt mich und erhält mein Leben.", "Ich kann mich nicht beklagen, die Götter sorgen für mich."
 "your name", "who are you", "who art thou" -> "My name is Brassius Meres. It is an honour to meet you.", "I am Brassius Meres, a guard of Runewick.", "Brassius Meres, faithful servant of the Lords Malachín and Zhambra."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Mein Name ist Brassius Meres. Es ist mir eine Ehre, eure Bekanntschaft zu machen.", "Ich bin Brassius Meres, Wächter Runewicks.", "Brassius Meres, frommer Diener der Herren Malachín und Zhambra."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Mein Name ist Brassius Meres. Es ist mir eine Ehre, eure Bekanntschaft zu machen.", "Ich bin Brassius Meres, Wächter Runewicks.", "Brassius Meres, frommer Diener der Herren Malachín und Zhambra."
 
 -- Catching quest triggers. Modify if the NPC does quests.
--- 1st quest: Bring five APPLES (15)
+-- 1st quest: Bring five apples (15)
 
 -- Give out quest 1
 queststatus(109) = 0, english, "quest", "mission" -> inform("[New quest] Eating on the Job"), queststatus(109) = 1, "Now that you mention it, I am feeling rather hungry. But I can't leave my post. Please bring me five apples and I will reimburse you for your troubles."
@@ -125,7 +126,7 @@ queststatus(109) = 1, item(15, all) < 5, "Auftrag", "Aufgabe", "Abenteuer" -> "#
 queststatus(109) = 1, item(15, all) > 4, english, ".+" -> inform("[Quest solved] You are awarded three silver coins."), money + 300, deleteItem(15, 5), queststatus(109) = 2, "#me quickly grabs the fruit, handing over a small purse of coins: 'Thank you kindly!'. He takes a large bite and stuffs the other apples into his bag as he chews."
 queststatus(109) = 1, item(15, all) > 4, ".+" -> inform("[Quest gelöst] Du erhältst drei Silberstücke."), money + 300, deleteItem(15, 5), queststatus(109) = 2, "#me reißt die Äpfel an sich und übergibt beiläufig eine Geldbeutel: 'Vielen Dank!'. Er beißt genüßlich ab und verstaut die Äpfel kauend in einem Beutel."
 
--- 2nd quest: Bring 10 ARROWS (64)
+-- 2nd quest: Bring 10 arrows (64)
 
 -- Give out quest 2
 queststatus(109) = 2, english, "quest", "mission" -> inform("[New quest] Resupply"), queststatus(109) = 3, "Those apples were delicious, thank you once again. I could use some more help. My supply of arrows is running low, if you bring me ten more, then I have something that might interest you."
@@ -143,23 +144,23 @@ queststatus(109) = 3, item(64, all) < 10, "Auftrag", "Aufgabe", "Abenteuer" -> "
 queststatus(109) = 3, item(64, all) > 9, english, ".+" -> inform("[Quest solved] You are awarded five silver coins."), money + 500, deleteItem(64, 10), queststatus(109) = 4, "#me slides the arrows into his quiver, nodding in thanks, 'These shall do perfectly, thank you. I hope that this shall suffice as compensation.'"
 queststatus(109) = 3, item(64, all) > 9, ".+" -> inform("[Quest gelöst] Du erhältst fünf Silberstücke."), money + 500, deleteItem(64, 10), queststatus(109) = 4, "#me steckt die Pfeile in seinen Köcher, dankbar nickend: 'Das sollte erstmal genug sein, habt dank. Ich hoffe, dies reicht euch als Entlohnung."
 
--- 3rd quest: Bring 10 FUR (2586)
+-- 3rd quest: Bring 10 fur (2586)
 
 -- Give out quest 3
 queststatus(109) = 4, english, "quest", "mission" -> inform("[New quest] Wild Animals"), queststatus(109) = 5, "I've received reports of wild animals attacking villagers of Yewdale. If you slay the animals, and bring me ten furs as evidence, Runewick shall be in your debt."
-queststatus(109) = 4, "quest", "mission" -> inform("[Neues Quest] Wilde Tiere"), queststatus(109) = 5, "Mir wurde gemeldet, dass wilde Tiere die Dorfbewohner von Eibenthal angegriffen haben. Wenn ihr diese Biester erschlagt und mir zehn Felle als Beweiß bringt, wäre Runewick in eurer Schuld."
+queststatus(109) = 4, "quest", "mission" -> inform("[Neues Quest] Wilde Tiere"), queststatus(109) = 5, "Mir wurde gemeldet, dass wilde Tiere die Dorfbewohner von Eibenthal angegriffen haben. Wenn ihr diese Biester erschlagt und mir zehn Felle als Beweis bringt, wäre Runewick in eurer Schuld."
 queststatus(109) = 4, "task", "adventure" -> inform("[New quest] Wild Animals"), queststatus(109) = 5, "I've received reports of wild animals attacking villagers of Yewdale. If you slay the animals, and bring me ten furs as evidence, the town shall be in your debt."
-queststatus(109) = 4, "Auftrag", "Aufgabe", "Abenteuer" -> inform("[Neues Quest] Wilde Tiere"), queststatus(109) = 5, "Mir wurde gemeldet, dass wilde Tiere die Dorfbewohner von Eibenthal angegriffen haben. Wenn ihr diese Biester erschlagt und mir zehn Felle als Beweiß bringt, wäre Runewick in eurer Schuld."
+queststatus(109) = 4, "Auftrag", "Aufgabe", "Abenteuer" -> inform("[Neues Quest] Wilde Tiere"), queststatus(109) = 5, "Mir wurde gemeldet, dass wilde Tiere die Dorfbewohner von Eibenthal angegriffen haben. Wenn ihr diese Biester erschlagt und mir zehn Felle als Beweis bringt, wäre Runewick in eurer Schuld."
 
 -- Quest 3 taken but not solved, repeat the instructions
 queststatus(109) = 5, item(2586, all) < 10, english, "quest", "mission" -> "I receive new attack reports daily. You must protect the citizens of Yewdale by killing the animals. If you bring me ten of their furs, then I shall ensure that your efforts are recognised."
-queststatus(109) = 5, item(2586, all) < 10, "quest", "mission" -> "Nahezu täglich hört man von Tierangriffen. Ihr müßt die Bürger von Eibenthal beschützen, indem ihr die Tiere erschlagt. Wenn ihr mir zehn Felle bringt, werde ich sicherstellen, dass man an höchster Stelle von euren Anstrengungen hört."
+queststatus(109) = 5, item(2586, all) < 10, "quest", "mission" -> "Nahezu täglich hört man von Tierangriffen. Ihr müsst die Bürger von Eibenthal beschützen, indem ihr die Tiere erschlagt. Wenn ihr mir zehn Felle bringt, werde ich sicherstellen, dass man an höchster Stelle von euren Anstrengungen hört."
 queststatus(109) = 5, item(2586, all) < 10, "task", "adventure" -> "I receive new attack reports daily. You must protect the citizens of Yewdale by killing the animals. If you bring me ten of their furs, then I shall ensure that your efforts are recognised."
-queststatus(109) = 5, item(2586, all) < 10, "Auftrag", "Aufgabe", "Abenteuer" -> "Nahezu täglich hört man von Tierangriffen. Ihr müßt die Bürger von Eibenthal beschützen, indem ihr die Tiere erschlagt. Wenn ihr mir zehn Felle bringt, werde ich sicherstellen, dass man an höchster Stelle von euren Anstrengungen hört."
+queststatus(109) = 5, item(2586, all) < 10, "Auftrag", "Aufgabe", "Abenteuer" -> "Nahezu täglich hört man von Tierangriffen. Ihr müsst die Bürger von Eibenthal beschützen, indem ihr die Tiere erschlagt. Wenn ihr mir zehn Felle bringt, werde ich sicherstellen, dass man an höchster Stelle von euren Anstrengungen hört."
 
--- Quest 3 solved, reward: legionaire's tower shield (2448), (10 rank points)
-queststatus(109) = 5, item(2586, all) > 9, english, town = Runewick, ".+" -> inform("[Quest solved] You are awarded a legionaire's tower shield. You advance in Archmage Elvaine Morgan's favour."), deleteItem(2586, 10), item(2448, 1, 799), queststatus(109) = 6, rankpoints + 10, "#me bows his head respectfully: 'You have done very well, thank you. Yewdale and its citizens are safe once more. Please, take this shield as thanks for the risk you took."
-queststatus(109) = 5, item(2586, all) > 9, town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst einen Legionärsschild. Dein Ansehen bei Erzmagier Elvaine Morgan steigt."), deleteItem(2586, 10), item(2448, 1, 799), queststatus(109) = 6, rankpoints + 10, "#me verbeugt sich respektvoll: 'Das habt ihr gut gemacht. Eibenthal und seine Bürger sind jetzt wieder sicher. Bitte nehmt diesen Schild als Dank für das Risiko, welches ihr in Kauf nahmt."
+-- Quest 3 solved, reward: legionaire's tower shield (2448), (10 rank points if Runewick member)
+queststatus(109) = 5, item(2586, all) > 9, english, town = Runewick, ".+" -> inform("[Quest solved] You are awarded a legionaire's tower shield."), deleteItem(2586, 10), item(2448, 1, 799), queststatus(109) = 6, rankpoints + 10, "#me bows his head respectfully: 'You have done very well, thank you. Yewdale and its citizens are safe once more. Please, take this shield as thanks for the risk you took."
+queststatus(109) = 5, item(2586, all) > 9, town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst einen Legionärsschild."), deleteItem(2586, 10), item(2448, 1, 799), queststatus(109) = 6, rankpoints + 10, "#me verbeugt sich respektvoll: 'Das habt ihr gut gemacht. Eibenthal und seine Bürger sind jetzt wieder sicher. Bitte nehmt diesen Schild als Dank für das Risiko, welches ihr in Kauf nahmt."
 queststatus(109) = 5, item(2586, all) > 9, english, ".+" -> inform("[Quest solved] You are awarded a legionaire's tower shield."), deleteItem(2586, 10), item(2448, 1, 799), queststatus(109) = 6, "#me bows his head respectfully: 'You have done very well, thank you. Yewdale and its citizens are safe once more. Please, take this shield as thanks for the risk you took."
 queststatus(109) = 5, item(2586, all) > 9, ".+" -> inform("[Quest gelöst] Du erhältst einen Legionärsschild."), deleteItem(2586, 10), item(2448, 1, 799), queststatus(109) = 6, "#me verbeugt sich respektvoll: 'Das habt ihr gut gemacht. Eibenthal und seine Bürger sind jetzt wieder sicher. Bitte nehmt diesen Schild als Dank für das Risiko, welches ihr in Kauf nahmt."
 
@@ -186,9 +187,9 @@ english, "Gobaith", "Gobiath" -> "The people of this island were a hardy folk. N
 "quiet", "bored", "peace" -> "Trouble is always just around the corner.", "Don't go thinking that you have to be the one to make some noise.", "They say that it's always quiet before the storm."
 "Yewdale" -> "Yewdale is a small community of peasants. Just across the bridge, follow the road. You cannot miss it."
 "Bridge" -> "I guard this bridge and with it, I guard Runewick. The teleporter over there is the only way into town."
-english, "Teleport" -> "Do you see that teleporter in the west? It takes you to Runewick, the most magnificient set of boulders in the ocean."
+english, "Teleport" -> "Do you see that teleporter in the west? It takes you to Runewick, the most magnificent set of boulders in the ocean."
 "Gesetz" -> "Die Gesetze hier sind streng, aber gerecht.", "Schaut mal in der Bibliothek vorbei, es sollte nicht schwierig sein, die Gesetze dort zu finden.", "Die Gesetze sind leicht zu erhalten. Schaut euch nur in der Stadt um, sie umgeben euch!"
-"Wache", "Wächter" -> "Ein Wächter Runewicks zu sein ist ein lohenswerter Beruf. Man hilft den Bürgern und die Bezahlung stimmt auch.", "Es gibt keinen besseren Weg meinen Göttern zu dienen als Leute zu beschützen.", "Ein Wächter zu werden erschien mir als das einzig richtige. Ich habe nichts außer zu Kämpfen in meinem Leben gelernt."
+"Wache", "Wächter" -> "Ein Wächter Runewicks zu sein ist ein lobenswerter Beruf. Man hilft den Bürgern und die Bezahlung stimmt auch.", "Es gibt keinen besseren Weg meinen Göttern zu dienen als Leute zu beschützen.", "Ein Wächter zu werden erschien mir als das einzig richtige. Ich habe nichts außer zu Kämpfen in meinem Leben gelernt."
 "Kriminell", "Dieb", "Verbrech", "Angriff", "Stehlen" -> "Es ist verdächtig ruhig dieser Tage, kaum Aufruhr.", "Wenn ihr Opfer oder Zeuge eines Verbrechens werdet, so stellt bitte eine formale Eingabe an den Erzmagier.", "Der Erzmagier entscheidet darüber, wer einem Verbrechen nachgeht. Redet mit ihm, wenn ihr Probleme habt."
 "ruhig", "langweilig", "Frieden" -> "Ärger lauert hinter jeder Hausecke.", "Nun meint aber nicht, dass es an euch ist, für Krach zu sorgen.", "Die Ruhe kommt vor dem Sturm."
 "Eibenthal" -> "Eibenthal ist eine kleine Gemeinde von Bauern. Überquert die Brücke und folgt der Straße - ihr könnt es nicht verfehlen."
@@ -210,16 +211,16 @@ english, "Galmair" -> "Galmair is far away. And that's good."
 "Königin" -> "Die Königin von Cadomyr wurde Königin, weil sie dazu geboren wurde. Der Erzmagier ist unser Anführer, weil er einfach der beste Mann ist!"
 english, "rosaline", "edwards" -> "Die Königin von Cadomyr wurde Königin, weil sie dazu geboren wurde. Der Erzmagier ist unser Anführer, weil er einfach der beste Mann ist!"
 "rosaline", "edwards" -> "Die Königin von Cadomyr wurde Königin, weil sie dazu geboren wurde. Der Erzmagier ist unser Anführer, weil er einfach der beste Mann ist!"
-english, "Cadomyr" -> "Cadomyr's people is inequitably, despiteous, dastard and blasphemous. But besides, the town is nice."
-"Cadomyr" -> "Cadomyrs Volk ist ungerecht, unbarmherzig, niederträchtig und gotteslästernd. Aber ansonsten ist es eine schöne Stadt."
+english, "Cadomyr" -> "Cadomyr's people is inequitable, despiteous, dastard and blasphemous. But besides, the town is nice."
+"Cadomyr" -> "Cadomyrs Volk ist ungerecht, unbarmherzig, niederträchtig und gotteslästerlich. Aber ansonsten ist es eine schöne Stadt."
 
 -- Main land factions
 english, "albar" -> "I've been to Albar once before. I found it to be a rather... backward place.", "Albar is a very corrupt land, from what I've heard.", "Albarian commoners seem pleasant enough. Their women are rather reserved though."
-"albar" -> "Ich war früher einmal in Albar. Es machte auf mich einen ziemlich... rückständigen Eindruck.", "Albar ist ein sehr korruptes Land, so sagt man.", "Albarisches Landvolk ist eigenlich recht genügsam. Ihre Frauen sind allerdings recht zugeknöpft."
+"albar" -> "Ich war früher einmal in Albar. Es machte auf mich einen ziemlich... rückständigen Eindruck.", "Albar ist ein sehr korruptes Land, so sagt man.", "Albarisches Landvolk ist eigentlich recht genügsam. Ihre Frauen sind allerdings recht zugeknöpft."
 english, "gynk", "gync" -> "Ah, yes... Gynk, the 'Pool of Sin'.", "I've never been to Gynk. They tell me that you will never see more criminals running 'round than there, though.", "The Thieves' Guilds of Gynk have far too much influence for my liking. Power must be held by the authorities, not by criminals."
-"gync", "gynk" -> "Ah, ja, Gynk, der Sündenpfuhl.", "Ich war noch nie in Gynk. Man sagte mir, dass man dort so viele Gauner herumstreunern sieht wie nirgens anders.", "Die Diebesgilden von Gynk haben für meinen Geschmack viel zu viel Einfluß. Die Macht muss bei der Obrigkeit verbleiben, nicht bei Strolchdieben."
+"gync", "gynk" -> "Ah, ja, Gynk, der Sündenpfuhl.", "Ich war noch nie in Gynk. Man sagte mir, dass man dort so viele Gauner herumstreunern sieht wie nirgends anders.", "Die Diebesgilden von Gynk haben für meinen Geschmack viel zu viel Einfluss. Die Macht muss bei der Obrigkeit verbleiben, nicht bei Strauchdieben."
 english, "salkama" -> "Ahh... Salkamar. It is my homeland, did you know?", "I was born and raised in the lands of Salkamar. You will struggle to find a more honourable and loyal people than we.", "You will never find a greater army than that of Salkamar. Its leaders are cunning, its men loyal, and its ranks ordered."
-"salkama" -> "Ah... Salkamar, meine Heimat. Wußtet ihr, dass ich von dort stamme?", "Ich wurde in Salkamar geboren und erzogen. Ihr werdet niemals ehrenhaftere und loyalere Menschen als uns finden.", "Ihr werdet niemals eine großartigere Armee finden als die Salkamars. Die Heerführer sind intelligent, die Männer loyal und es herrscht Ordnung."
+"salkama" -> "Ah... Salkamar, meine Heimat. Wusstet ihr, dass ich von dort stamme?", "Ich wurde in Salkamar geboren und erzogen. Ihr werdet niemals ehrenhaftere und loyalere Menschen als uns finden.", "Ihr werdet niemals eine großartigere Armee finden als die Salkamars. Die Heeresführer sind intelligent, die Männer loyal und es herrscht Ordnung."
 
 -- Gods - use the triggers of the god the NPC worships or fights
 "god" -> "Zhambra and Malachín are my patron deities.", "I am protected by the Lords Malachín and Zhambra in battle. They have kept me safe so far.", "I worship Zhambra and Malachín."
@@ -255,62 +256,26 @@ english, "Tanora", "Zelphia" -> "I respect Her followers, but I do not worship t
 english, "Ushara" -> "I respect Her followers, but I do not worship that Goddess.", "I confess to knowing little about Ushara. I recommend speaking with an Elf about such matters", "You would be better off speaking to someone else about that Goddess, I'm certain there are followers nearby."
 "Ushara" -> "Ich respektiere ihre Anhänger, aber ich bin keiner von ihnen.", "Ich muss zugeben, ich weiß nur wenig über Ushara. Ich empfehle euch mit einem Elf über dieserlei Dinge zu reden.", "Ihr solltet lieber mit jemand anderem über diese Göttin reden, ich bin mir sicher, ihr werdet jemanden finden."
 english, "Zhambra" -> "The God of Friendship and Loyalty is one of my patron deities. He keeps me safe, provided I stay faithful.", "I worship Zhambra and eagerly await the day He leads me to the paradise.", "Loyalty is vital for a man in my position. Lord Zhambra keeps me honest."
-"Zhambra" -> "Der Gott der Freundschaft und Loyalität ist einer meiner Schutzgötter. Er hält seine schützende Hand über mich, solange ich fromm bleibe.", "Ich verehre Zhambra und kann es kaum erwarten, dass er mich eines Tages in die Ewigkeit geleiten wird.", "Loyalität ist unerläßlich für einen Mann in meiner Position. Und der Herr Zhambra leitet meine Hand."
+"Zhambra" -> "Der Gott der Freundschaft und Loyalität ist einer meiner Schutzgötter. Er hält seine schützende Hand über mich, solange ich fromm bleibe.", "Ich verehre Zhambra und kann es kaum erwarten, dass er mich eines Tages in die Ewigkeit geleiten wird.", "Loyalität ist unerlässlich für einen Mann in meiner Position. Und der Herr Zhambra leitet meine Hand."
 
 -- Catching typical NPC phrases
 "what sell", "what buy", "list wares", "price of" -> "My apologies, but I am on duty. I cannot trade with you at the moment.", "I do not wish to trade with you.", "#me holds his hand up, shaking his head: 'Not while I'm on duty, thank you.'"
 "was verkauf", "was kauf", "warenliste", "preis von" -> "Entschuldigt, ich bin im Dienst, ich kann nicht mit euch handeln.", "Ich möchte nicht mit euch handeln.", "#me hebt die Hand und schüttelt mit dem Kopf: 'Nicht solange ich im Dienst bin.'"
 "tell something" -> "Hm. You look like you could wield a weapon. Perhaps the  Archmage would be interested in your services.", "Have you read the town's laws? It shouldn't be too hard finding a copy.", "I find the tower shield from Salkamar, my homeland, to be the most effective. Not too many weapons can find their way around or through one of them, I tell you."
 "erzähl was", "erzähl etwas" -> "Hm. Ihr seht aus, als wenn ihr eine Waffe tragen könntet. Vielleicht hat der Erzmagier ja Interesse an euren Diensten.", "Habt ihr schon die Gesetze der Stadt gelesen? Es sollte nicht sonderlich schwer sein, eine Ausgabe zu finden.", "Ich finde das die Turmschilde aus Salkamar, meiner Heimat, sehr effektiv sind. Um sie kommt kaum eine Waffe herum, geschweige denn hindurch."
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin kein Händler."
 
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Brassius", "Meres" -> "My apologies, I am on duty. Perhaps someone else can help you.", "I should be getting back to my work.", "I am quite busy at the moment, sorry."
 "Brassius", "Meres" -> "Entschuldigt, aber ich bin im Dienst. Vielleicht kann euch jemand anderes helfen.", "Ich sollte wieder an meinen Dienst denken.", "Ich bin derzeit recht beschäftigt."
-"Yes" -> "My apologies, I am on duty. Perhaps someone else can help you.", "I should be getting back to my work.", "I am quite busy at the moment, sorry."
-"Ja" -> "Entschuldigt, aber ich bin im Dienst. Vielleicht kann euch jemand anderes helfen.", "Ich sollte wieder an meinen Dienst denken.", "Ich bin derzeit recht beschäftigt."
-"No" -> "My apologies, I am on duty. Perhaps someone else can help you.", "I should be getting back to my work.", "I am quite busy at the moment, sorry."
-"Nein" -> "Entschuldigt, aber ich bin im Dienst. Vielleicht kann euch jemand anderes helfen.", "Ich sollte wieder an meinen Dienst denken.", "Ich bin derzeit recht beschäftigt."
-
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-english, chance(20.0), ".*" -> "I should really be returning to my work.", "If the Archmage catches me chatting away, he will not be pleased.", "Please, you shall get me into trouble if I am caught standing here chatting."
-german, chance(20.0), ".*" -> "Ich sollte mich wieder um meinen Dienst kümmern.", "Wenn der Erzmagier mich dabei erwischt, wie ich herumklöne, wird er nicht zufrieden sein.", "Bitte, ich bekomme noch Ärger, wenn man mich hier tratschen sieht."
-
--- That stuff causes errors! pharse, fix that.
--- [[ replace the receiveText and nextCycle functions:
--- function receiveText(texttype, message, speaker)
--- npc.base.guards_static.CheckAdminCommand(thisNPC,speaker,message);
--- mainNPC:receiveText(speaker, message);
--- end;
--- function nextCycle()
--- mainNPC:nextCycle();
--- if not guards_init then
--- init after 10 cycles
--- guards_init = 10;
--- gCount = 0;
--- end
--- if guards_init == 0 then
--- guards_init = -1;
--- npc.base.guards_static.Init(thisNPC, 1, position(836, 823, 0), 2, position(840, 823, 0));
--- elseif guards_init > 0 then
--- guards_init = guards_init - 1;
--- end
--- if guards_init == -1 then
--- if gCount == 4 then
--- gCount = 0;
--- npc.base.guards_static.CheckForEnemies(thisNPC);
--- else
--- gCount = gCount + 1;
--- end
--- end
--- end;
--- ]]
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
 -- Every NPC should contain at least 10 of those messages.
 -- Emotes are possible also starting with "#me ....".
 
-cycletext "#me rückt den Kinnriemen seines Helmes zurecht.", "#me adjusts the chin strap on his helm."
+cycletext "#me rückt den Kinnriemen seines Helms zurecht.", "#me adjusts the chin strap on his helm."
 cycletext "#me hustet hinter vorgehaltener Hand.", "#me coughs into a closed fist."
 cycletext "#me schaut in seinen Köcher.", "#me glances into his quiver."
 cycletext "#me zieht die Sehne seines Bogens nach.", "#me tightens the string of his bow."
@@ -320,4 +285,3 @@ cycletext "#me schaut düster drein.", "#me looks around suspiciously."
 cycletext "Dann geht mal weiter.", "Move along, then."
 cycletext "Macht hier keinen Ärger.", "Don't go causing any trouble 'round here."
 cycletext "Wir sehen alles.", "We're watching."
-cycletext "Bleibt nicht länger auf der Brücke als nötig.", "Don't stay on the bridge longer than necessary."

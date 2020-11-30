@@ -12,19 +12,19 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
-require("base.common")
-require("content.paintings")
-require("base.lookat")
+local common = require("base.common")
+local lookat = require("base.lookat")
+local money = require("base.money")
 
-module("item.paintings", package.seeall)
+local M = {}
 
--- UPDATE common SET com_script='item.paintings' WHERE com_itemid IN (264, 265, 748, 749, 750, 751, 1914, 1915);
+-- UPDATE items SET itm_script='item.paintings' WHERE itm_id IN (264, 265, 748, 749, 750, 751, 1914, 1915);
 
-PaintingListGerman = 
+local PaintingListGerman =
 {
-"Das Gemälde zeigt eine Waldlichtung mit einem Schrein, voller Tiere und Feen.", 
+"Das Gemälde zeigt eine Waldlichtung mit einem Schrein, voller Tiere und Feen.",
 "Das Gemälde zeigt einen jungen Mann beim Experimentieren mit der Alchemie.",
 "Das Gemälde zeigt den weiten Ozean, rasende Wellen und ein Sturm breiten sich dort aus.",
 "Das Gemälde zeigt das Abbild eines Halblings bei der Gartenarbeit.",
@@ -41,13 +41,13 @@ PaintingListGerman =
 "Das Gemälde zeigt einen Herzog auf seinem Thron, um ihm sein Gefolge.",
 "Das Gemälde zeigt einen Taschendieb, der sich während eines Festes an die Habseligkeiten anderer hermacht.",
 "Das Gemälde zeigt eine nackte Elfenfrau, umhüllt mit Sträuchern und Blättern des Waldes.",
-"Das Gemälde zeigt einen zersausten Propheten, der von einer Menschenmenge umgeben ist.",
+"Das Gemälde zeigt einen zerzausten Propheten, der von einer Menschenmenge umgeben ist.",
 "Das Gemälde zeigt eine blutige Schlacht zwischen Orks und Menschen.",
 "Das Gemälde zeigt zwei Orks beim Zweikampf um ein Orkweibchen.",
-"Das Gemälde zeigt einen Orkschamanen beim Zubereiten eines geheimnissvolllen Trankes.",
+"Das Gemälde zeigt einen Orkschamanen beim Zubereiten eines geheimnisvollen Trankes.",
 "Das Gemälde zeigt eine Schatzkammer voller Juwelen und Gold, eine Ratte schleicht sich durch ein Loch herein.",
 "Das Gemälde zeigt einen Magier der einen Feuerball zu dir wirft.",
-"Das Gemälde zeigt einen Gelehrten beim durchstöbern einer Bibiliothek.",
+"Das Gemälde zeigt einen Gelehrten beim durchstöbern einer Bibliothek.",
 "Das Gemälde zeigt eine Horde Untote aus ihrem ewigen Schlaf auferstehen, ein gebrechlicher Nekromant steht in der Mitte mit einer befehlenden Geste.",
 "Das Gemälde zeigt eine Halblingsdame beim Angeln, der Fisch wehrt sich gewaltig und die Halblingsdame setzt eine große Kraft ein.",
 "Das Gemälde zeigt die Landkarte Gobaiths.",
@@ -65,11 +65,11 @@ PaintingListGerman =
 "Das Gemälde zeigt wie ein Goblin in Gynk mit einem Menschen verhandelt.",
 "Das Gemälde zeigt wie zwei Gnome an einem großem Konstrukt arbeiten, du erkennst nicht, was es darstellen soll.",
 "Das Gemälde zeigt ein verlaufenes Bild, es scheint so, als ob eine Fee zentriert im Bild wäre.",
-"Das Gemälde zeigt wie ein Elf in den Wald hineinstarrt, du erkennst, dass sich im Wald etwas versteckt, das Ausschau nach dem Elfen hält.",
+"Das Gemälde zeigt wie ein Elf in den Wald hinein starrt, du erkennst, dass sich im Wald etwas versteckt, das Ausschau nach dem Elfen hält.",
 "Das Gemälde zeigt wie eine Echse aus dem Wasser auftaucht."
-};
+}
 
-PaintingListEnglish = 
+local PaintingListEnglish =
 {
 "The painting shows a clearing with a shrine that's full of animals and fairies.",
 "The painting shows a young man, experimenting with alchemy.",
@@ -77,8 +77,8 @@ PaintingListEnglish =
 "The painting shows a picture of an halfling, working in the garden.",
 "The painting shows halflings laughing and dancing together at a party.",
 "The painting shows a woman who covers her body in silk cloth." ,
-"The painting shows a group of musicians on a lively marketplace." ,
-"The painting shows an old man with a walking cane going through the forest, looking out for herbs.", 
+"The painting shows a group of musicians on a lively market place." ,
+"The painting shows an old man with a walking cane going through the forest, looking out for herbs.",
 "The painting shows a naked elfess in a shell." ,
 "The painting shows a lonely elfess walking along the beach." ,
 "The painting shows the panorama of a great fortress." ,
@@ -103,59 +103,74 @@ PaintingListEnglish =
 "The painting shows a drunk, paunchy man whilst he is philosophising. A passerby throws a coin to him." ,
 "The painting shows a scarred orc who looks grimly at you." ,
 "The painting shows a group of orcs celebrating Radosh." ,
-"The painting shows a dwarf who has found a gem after a long period of mining - He gazes at it in disbelieve." ,
+"The painting shows a dwarf who has found a gem after a long period of mining - He gazes at it in disbelief." ,
 "The painting shows a female dwarf, forging an axe." ,
 "The painting shows a group of dwarves in a drinking contest." ,
 "The painting shows a dwarf examining a ruby. Another dwarf seems to wait for an answer and waggles with a pouch." ,
 "The painting shows the panorama of an ancient ruin." ,
-"The painting shows a group of Goblins at night, staring at you.", 
+"The painting shows a group of Goblins at night, staring at you.",
 "The painting shows a Goblin negotiating with a human in Gynk." ,
 "The painting shows two Gnomes working on a big construct, you are not able to make out what it could be." ,
 "The painting shows a smeared painting. It appears as if a fairy is placed in the middle of the picture." ,
 "The painting shows an elf who stares into the forest and you recognize that something is hiding and lurking inside." ,
 "The painting shows a lizard coming up from the water.",
-};    
-			  
+}
 
-function LookAtItemIdent(User,Item)
-    local test = "no value";
-    
-    -- fetching local references
-    local signTextDe     = content.paintings.signTextDe;
-    local signTextEn     = content.paintings.signTextEn;
-    local signCoo        = content.paintings.signCoo;
-    local signItemId     = content.paintings.signItemId;
-    local signPerception = content.paintings.signPerception;
 
-    local lookAt = base.lookat.GenerateLookAt(User, Item)
+function M.LookAtItem(User, Item)
 
-    UserPer = User:increaseAttrib("perception",0);
-    tablePosition = Item.pos.x .. Item.pos.y .. Item.pos.z;
-	if signCoo ~= nil then
-		if (signCoo[tablePosition] ~= nil) then
-			for i, signpos in pairs(signCoo[tablePosition]) do
-				if (Item.pos == signpos) then
-					if (UserPer >= signPerception[tablePosition][i]) then
-							lookAt.description = base.common.GetNLS(User,string.gsub(signTextDe[tablePosition][i],"currentChar",User.name),string.gsub(signTextEn[tablePosition][i],"currentChar",User.name))
-					else
-						  	lookAt.description = base.common.GetNLS(User,"Du erkennst, dass hier etwas ist, kannst es aber nicht entziffern, da du zu blind bist.","You recognise something, but you cannot read it, because you are too blind.")
-					end
-
-				end
-			end
-		end
-	end 
-							 
+    local lookAt = lookat.GenerateLookAt(User, Item)
     if lookAt.description == "" then
-        val = ((Item.pos.x + Item.pos.y + Item.pos.z) % table.getn(PaintingListGerman))+1;
-        lookAt.description = base.common.GetNLS(User, PaintingListGerman[val], PaintingListEnglish[val])
+        local val = ((Item.pos.x + Item.pos.y + Item.pos.z) % #PaintingListGerman) + 1
+        lookAt.description = common.GetNLS(User, PaintingListGerman[val], PaintingListEnglish[val])
     end
 
-    world:itemInform(User, Item, lookAt)
+    return lookAt
 end
 
---[[
-	LookAtItemIdent
-	identity of LookAtItem
-  ]]
-LookAtItem = LookAtItemIdent;
+function M.UseItem(User, SourceItem)
+
+    if SourceItem.pos == position(592, 189, -3) then --then player used the picture and an inform will happen
+        User:inform(
+            "Das Bild fängt an sanft zu leuchten und man kann sehen, wie das Gebräu im Kessel anfängt dunkelgrün zu werden und ein bösartiger Schädel steigt aus dem Kessel empor.",
+            "The picture begins to glow slightly and one can see that the potion inside the cauldron turns a dark green and an evil skull rises up out of the cauldon.")
+        return
+    end
+    local picturenumber=SourceItem:getData("dickerquest");
+    if tonumber(picturenumber) ~= nil and User:getQuestProgress(674) > 99 and  User:getQuestProgress(674) < 105 then
+        if bit32.band (User:getQuestProgress(676),tonumber(picturenumber)) == 0 then
+            User:setQuestProgress(676, User:getQuestProgress(676) + tonumber(picturenumber))
+            User:setQuestProgress(674, User:getQuestProgress(674) + 1)
+            if User:getQuestProgress(676) == 31 then
+                User:setQuestProgress(674, 105)
+                User:inform(
+                    "[Die Gemälde Alberto Dickers] Du hast alle Gemälde Alberto Dickers gefunden. Gehe zurück zu Numila Irunnleh und berichte ihr, dass du alle Bilder gefunden hast.",
+                    "[The pictures Alberto Dickers] You found all the pictures of Alberto Dicker. Go to Numila Irunnleh and tell her you found all pictures.")
+            else
+                if User:getQuestProgress(674) == 101 then
+                     User:inform(
+                        "[Die Gemälde Alberto Dickers] Du hast eins von fünf Gemälden Alberto Dickers gefunden. Es fehlen noch 4 weitere.",
+                        "[The pictures Alberto Dickers] You found one of the five pictures of Alberto Dicker. There are 4 more to locate.")
+                end
+                if User:getQuestProgress(674) == 102 then
+                     money.GiveMoneyToChar(User, 4000)
+                     User:inform(
+                        "[Die Gemälde Alberto Dickers] Du hast 40 Silbermünzen hinter diesem Gemälde Alberto Dickers gefunden. Du musst noch 3 weitere Gemälde finden.",
+                        "[The pictures Alberto Dickers] You found 40 silver coins behind that pictures of Alberto Dicker. There are 3 more pictures to locate.")
+                end
+                if User:getQuestProgress(674) == 103 then
+                     User:inform(
+                        "[Die Gemälde Alberto Dickers] Du hast eins von fünf Gemälden Alberto Dickers gefunden. Es fehlen noch 2 weitere.",
+                        "[The pictures Alberto Dickers] You found one of the five pictures of Alberto Dicker. There are 2 more to locate.")
+                end
+                if User:getQuestProgress(674) == 104 then
+                     User:inform(
+                        "[Die Gemälde Alberto Dickers] Du hast eins von fünf Gemälden Alberto Dickers gefunden. Es fehlt noch eins.",
+                        "[The pictures Alberto Dickers] You found one of the five pictures of Alberto Dicker. There is one more to locate.")
+                end
+            end
+        end
+    end
+end
+
+return M

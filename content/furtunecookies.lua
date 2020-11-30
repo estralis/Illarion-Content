@@ -12,11 +12,11 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
-module("content.furtunecookies", package.seeall)
+local M = {}
 
-function cookie(User)
+function M.cookie(User)
     local luck=math.random(1,43);
     local germText;
     local englText;
@@ -39,7 +39,7 @@ function cookie(User)
         germText="Erfolg hat nur, wer etwas tut, während er auf den Erfolg wartet.";
         englText="Love is like paint, it makes things beautiful when you spread it, but it will dry up if you don't use it.";
     elseif (luck==7) then
-        germText="Das Schicksal meint es gut mit Dir.";
+        germText="Das Schicksal meint es gut mit dir.";
         englText="Your fortune is as sweet as you.";
     elseif (luck==8) then
         germText="Der Anfang ist die Hälfte des Ganzen.";
@@ -77,6 +77,9 @@ function cookie(User)
     elseif (luck==19) then
         germText="Bist du heute der, der du einmal sein wolltest, als du noch jung warst?";
         englText="Follow the dreams you had as a child.";
+    elseif (luck==20) then
+        germText="Besiege deine Ängste oder sie werden dich besiegen.";
+        englText="Conquer your fears or they will conquer you.";
     elseif (luck==21) then
         germText="Sie können herausholen, was in Ihnen steckt.";
         englText="The chief danger in life is taking too many precautions.";
@@ -126,7 +129,7 @@ function cookie(User)
        germText="Den Tüchtigen belohnt das Glück.";
         englText="Common sense is not so common.";
     elseif (luck==37) then
-       germText="Es ist besser, eine kleines Licht zu entzünden, als über große Dunkelheit zu fluchen.";
+       germText="Es ist besser, ein kleines Licht zu entzünden, als über große Dunkelheit zu fluchen.";
         englText="If this fortune didn't exist, somebody would have invented it.";
     elseif (luck==38) then
        germText="Gut ist der Vorsatz, hingegen die Erfüllung schwer.";
@@ -150,3 +153,5 @@ function cookie(User)
 
     return germText,englText;
 end
+
+return M

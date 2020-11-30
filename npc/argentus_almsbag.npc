@@ -16,7 +16,7 @@
 -- NPC Name: Argentus Almsbag                                        Runewick --
 -- NPC Job:  Money changer                                                    --
 --                                                                            --
--- NPC Race: human                      NPC Position:  908, 812, 1            --
+-- NPC Race: human                      NPC Position:  956, 829, 0            --
 -- NPC Sex:  male                       NPC Direction: south                  --
 --                                                                            --
 -- Author:   Miriam                                                           --
@@ -26,7 +26,7 @@
 name = "Argentus Almsbag"
 race = human
 sex = male
-position = 908, 812, 1
+position = 956, 829, 0
 direction = south
 affiliation = "Runewick"
 job = "Money changer"
@@ -63,11 +63,11 @@ itemShoes = 53
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItems = 61, 3076, 3077
-tradeNotEnoughMoneyMsg "Oh, ich fürchte Ihr könnt Euch das nicht leisten.", "Oh, I fear, you can not afford that."
-tradeFinishedMsg "Vielen Dank, beehrt mich bald wieder!", "Thank you, please come again!"
-tradeFinishedWithoutTradingMsg "Auf Bald!", "Farewell!"
-tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
+sellItems = 3076, 3077, 61
+tradeNotEnoughMoneyMsg "Ganz so viel Geld habt ihr auch wieder nicht.", "You don't have that much money."
+tradeFinishedMsg "Weiterhin gute Geschäfte.", "I wish you good business."
+tradeFinishedWithoutTradingMsg "Gehabt euch wohl.", "Godspeed."
+tradeWrongItemMsg "Ich wechsle nur Geld.", "I just change money."
 
 -- Template Version 1.06, 08/29/2012 by Estralis Seborian
 -- Instructions: Replace all talk consequences with strings ending with a full stop, maximum length is 250 characters. Try to provide more than one answer, one is chosen at random.
@@ -96,24 +96,30 @@ tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Hello, hello!"
 "Hiho", "Hallo", "Hey", "Greeb" -> "Hallo, hallo!"
 "Farewell", "Bye", "Fare well", "See you" -> "Farewell."
-"Tschüß", "Tschüss", "Wiedersehen", "Gehab wohl" -> "Lebt wohl.", "Auf Bald!"
+"Tschüß", "Tschüss", "Wiedersehen", "Gehab wohl" -> "Lebt wohl.", "Auf bald!"
 english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Adieu."
 "Ciao", "Adieu", "Au revoir", "Farebba" -> "Adieu."
 "How are you", "How feel", "How do you do" -> "I'm always happy when I'm trading."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Mir geht es immer gut, wenn ich mit jemandem handeln kann."
 "your name", "who are you", "who art thou" -> "I am Argentus Almsbag! Don't you know me?"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin Argentus Almsbag. Kennt Ihr mich etwa nicht?"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich bin Argentus Almsbag. Kennt Ihr mich etwa nicht?"
+
+-- Mandatory: Catching quest triggers. Modify if the NPC does quests
+english, "quest", "mission" -> "I don't have any tasks for you."
+"quest", "mission" -> "Ich vergebe keine Aufgaben."
+"task", "adventure", "order" -> "I don't have any tasks for you."
+"Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ich vergebe keine Aufgaben."
 
 -- Quest
 -- Quest by Zassaria Riverbank (Ask for me II)
-queststatus(701) = 4, english, "Zassaria", "lizzard", "fish", "order", "riverbank" -> queststatus(701) = 5, "Zassaria? A fish order? What, now? The fish has already started to smell? No, thanks. I want fresh fish, please tell Lady Zassaria that."
-queststatus(701) = 4, "Zassaria", "lizzard", "fisch", "Bestellung", "riverbank" -> queststatus(701) = 5, "Zassaria?  Eine Fischbestellung? Was höre ich da, der Fisch beginnt bereits zu stinken? Nein, danke! Ich möchte frischen Fisch, bitte sagt das Lady Riverbank."
+queststatus(701) = 4, english, "Zassaria", "lizzard", "fish", "order", "riverbank", "message" -> queststatus(701) = 5, "Zassaria? A fish order? What, now? The fish has already started to smell? No, thanks. I want fresh fish, please tell Lady Zassaria that."
+queststatus(701) = 4, "Zassaria", "lizzard", "fisch", "Bestellung", "riverbank", "Nachricht" -> queststatus(701) = 5, "Zassaria?  Eine Fischbestellung? Was höre ich da, der Fisch beginnt bereits zu stinken? Nein, danke! Ich möchte frischen Fisch, bitte sagt das Lady Riverbank."
 
 -- OPTIONAL TRIGGERS
 
 -- Optional: Trade Hooks, use only for traders
 "sell", "buy", "wares", "price", "trade", "purchase" -> "Ah, a customer, welcome!", trade
-"kauf", "waren", "preis", "Handel", "veräußer", "erwerb" -> "Ah, werte Kundschaft, seid willkommen.", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ah, werte Kundschaft, seid willkommen.", trade
 
 -- Optional: Small talk - The talk here should focus on possible questions. Feel free to add more!
 "profession" -> "I love money, but I hate my job."
@@ -151,3 +157,11 @@ english, "Gobaith", "Gobiath" -> "Unless it's stamped on a coin I don't care."
 cycletext "#me betrachtet eine Goldmünze.", "#me glances lovingly at a gold coin."
 cycletext "#me's Augen funklen gierig.", "#me's eyes sparkle greedily as he rubs a coin between his fingers."
 cycletext "#me murmelt verärgert: 'Wenn dir meine Preise nicht passen, dann geh doch woanders hin.'", "#me mumbles quietly: 'I wish I got to keep the money.'"
+cycletext "#me zählt emsig Münzen.", "#me assiduously counts money."
+cycletext "Geld macht nicht glücklich, aber kein Geld macht unglücklich!", "Money doesn't make you happy, but no money makes you sad!"
+cycletext "Ich wechsle Geld!", "I change money!"
+cycletext "#me klimpert mit ein paar Münzen.", "#me rattles some coins."
+cycletext "Psst! Wollt ihr etwas Geld wechseln?", "Shh! Want to change some money?"
+cycletext "Hast mal 'nen Silberling?", "Got some change?"
+cycletext "Wollt ihr mehr Geld? Wechselt eure Goldstücke in Kupferstücke ein!", "Do you want more money? Change your gold coins into copper coins!"
+cycletext "Ihr da. Ja, genau ihr. Kommt doch mal näher.", "You there. Yes, you... Come a little closer."

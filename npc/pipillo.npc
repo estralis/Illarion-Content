@@ -16,7 +16,7 @@
 -- NPC Name: Pipillo                                                     None --
 -- NPC Job:  portalbook merchant                                              --
 --                                                                            --
--- NPC Race: halfling                   NPC Position:  412, 291, 0            --
+-- NPC Race: halfling                   NPC Position:  412, 243, 0            --
 -- NPC Sex:  male                       NPC Direction: south                  --
 --                                                                            --
 -- Author:   Zot, Faladron                                                    --
@@ -26,7 +26,7 @@
 name = "Pipillo"
 race = halfling
 sex = male
-position = 412, 291, 0
+position = 412, 243, 0
 direction = south
 affiliation = "None"
 job = "portal book merchant"
@@ -61,10 +61,10 @@ itemShoes = 53
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItem = id(1061), de("Portalbuch nach Cadomyr"), en("portal book to Cadomyr"), price(2000), stack(1), quality(333), data("destinationCoordsY" = "647", "destinationCoordsX" = "127", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Cadomyr", "descriptionDe" = "Portal nach Cadomyr")
-sellItem = id(1061), de("Portalbuch nach Galmair"), en("portal book to Galmair"), price(2000), stack(1), quality(333), data("destinationCoordsY" = "245", "destinationCoordsX" = "424", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Galmair", "descriptionDe" = "Portal nach Galmair")
-sellItem = id(1061), de("Portalbuch nach Runewick"), en("portal book to Runewick"), price(2000), stack(1), quality(333), data("destinationCoordsY" = "813", "destinationCoordsX" = "836", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Runewick", "descriptionDe" = "Portal nach Runewick")
-sellItem = id(1061), de("Portalbuch zum Hemp Necktie Inn"), en("portal book to the Hemp Necktie Inn"), price(2000), stack(1), quality(333), data("destinationCoordsY" = "308", "destinationCoordsX" = "683", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to the Hemp Necktie Inn", "descriptionDe" = "Portal zum Hemp Necktie Inn")
+sellItem = id(1061), de("Portalbuch nach Cadomyr"), en("Portal book to Cadomyr"), price(1000), stack(1), quality(999), data("destinationCoordsY" = "647", "destinationCoordsX" = "126", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Cadomyr", "descriptionDe" = "Portal nach Cadomyr")
+sellItem = id(1061), de("Portalbuch nach Galmair"), en("Portal book to Galmair"), price(1000), stack(1), quality(999), data("destinationCoordsY" = "246", "destinationCoordsX" = "423", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Galmair", "descriptionDe" = "Portal nach Galmair")
+sellItem = id(1061), de("Portalbuch nach Runewick"), en("Portal book to Runewick"), price(1000), stack(1), quality(999), data("destinationCoordsY" = "813", "destinationCoordsX" = "835", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Runewick", "descriptionDe" = "Portal nach Runewick")
+sellItem = id(1061), de("Portalbuch zum Gasthof zur Hanfschlinge"), en("Portal book to the Hemp Necktie Inn"), price(1000), stack(1), quality(999), data("destinationCoordsY" = "307", "destinationCoordsX" = "684", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to the Hemp Necktie Inn", "descriptionDe" = "Portal zum Gasthof zur Hanfschlinge")
 
 tradeNotEnoughMoneyMsg "Du hast nicht genug Geld!", "You don't have enough money!"
 tradeFinishedMsg "Danke, komm doch bald wieder.", "Thanks, come back soon."
@@ -83,8 +83,8 @@ tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
 -- This NPC will sell portal books back to the three major towns and the Wilderland tavern.
 -- S/he and the others of their family will be sprawled across the map, also selling portal books to the location they are at.
 -- Intention of this sort of NPC is to act as a Safepoint to be discovered by players to allow quick travel to certain places in the wilderness (for a heavy price!).
-"handel", "verkauf", "portal" -> "Hiho, lass uns handeln!", trade
-"trade", "sell", "portal" -> "Hiho, let's trade!", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb", "portal" -> "Hiho, lass uns handeln!", trade
+"sell", "buy", "wares", "price", "trade", "purchase", "portal" -> "Hiho, let's trade!", trade
 
 -- Help
 "Help" -> inform("[Game Help] This NPC is the portal merchant Pipillo. Keywords: Hello, portal, trade.")
@@ -92,7 +92,7 @@ tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Hiho! Today is a fine day to travel."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Hiho! Heute ist ein schöner Tag für eine Reise."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Hiho! Heute ist ein schöner Tag für eine Reise."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Hiho! Today is a fine day to travel."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Hiho! Heute ist ein schöner Tag für eine Reise."
 "Farewell", "Bye", "Fare well", "See you" -> "Always keep moving!", "Toodles!", "Farewell."
@@ -102,15 +102,53 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Always keep moving!", "Tood
 "How are you", "How feel", "How do you do" -> "I feel excited, thinking about all the places to travel to.", "I'm itching to make another journey."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Ich bin so aufgeregt, wenn ich nur an all die Orte denke an die man Reisen kann.", "Es juckt mich in den Füßen, eine Reise zu machen."
 "your name", "who are you", "who art thou" -> "Pipillo, portal book merchant. That's me.", "I am the merchant Pipillo.", "Pipillo is my name, I trade portal books."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Pipillo, Portalbuch Händler. Das bin ich.", "Ich bin der Händler Pipillo", "Pipillo mein Name, ich handle mit Portalbüchern"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Pipillo, Portalbuch Händler. Das bin ich.", "Ich bin der Händler Pipillo.", "Pipillo mein Name, ich handle mit Portalbüchern."
 
--- Catching quest triggers
-english, "quest", "mission" -> "I do not issue quests, but I can sell you books to go to other places."
-"quest", "mission" -> "Ich verteile keine Aufgaben. Aber ihr könnt von mir Bücher kaufen, die euch an andere Orte bringen."
-"task", "adventure", "order" -> "I do not issue quests, but I can sell you books to go to other places."
-"Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ich verteile keine Aufgaben. Aber ihr könnt von mir Bücher kaufen, die euch an andere Orte bringen."
+-- Quest
+-- 1st quest: fetch an apple pie
+-- Give out quest 1 and coins
+queststatus(220) = 0, english, town = Galmair,"quest", "mission" -> inform("[New quest] Bookseller Helper I"), money + 2700, queststatus(220) = 1, "Hello, I am starving and can't leave my business. Can you fetch me apple pie for my lunch from the marketplace?  Here are the coins!"
+queststatus(220) = 0, town = Galmair, "quest", "mission" -> inform("[Neues Quest] Buchhändler-Helfer I"), money + 2700, queststatus(220) = 1, "Hallo, ich bin am verhungern, aber ich kann mein Geschäft nicht verlassen. Kannst mir einen Apfelkuchen aus vom Marktplatz besorgen? Hier sind die Münzen für den Kuchen!"
+queststatus(220) = 0, town = Galmair, "task", "adventure" -> inform("[New quest] Bookseller Helper I"), money + 2700, queststatus(220) = 1, "Hello, I am starving and can't leave my business. Can you fetch me apple pie for my lunch from the marketplace?  Here are the coins!"
+queststatus(220) = 0, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer" -> inform("[Neues Quest] Buchhändler-Helfer I"), money + 2700, queststatus(220) = 1, "Hallo, ich bin am verhungern, aber ich kann mein Geschäft nicht verlassen. Kannst mir einen Apfelkuchen aus vom Marktplatz besorgen? Hier sind die Münzen für den Kuchen!"
 
--- Easter Egg
+-- Quest 1 complete, reward one portalbook to Galmair, +5 rankpoints
+queststatus(220) = 1, item(353, all) > 0, english, town = Galmair, ".+" -> inform("[Quest solved] You are awarded a portal book to Galmair."), deleteItem(353, 1), item(1061, 1, 999, "nameDE"="Portalbuch nach Galmair", "nameEN"="Portal book to Galmair", "destinationCoordsY" = "245", "destinationCoordsX" = "424", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Galmair", "descriptionDe" = "Portal nach Galmair"), queststatus(220) = 2, rankpoints + 5, "Oh, thank you so much.  Take this book as a reward."
+queststatus(220) = 1, item(353, all) > 0, town = Galmair, ".+" -> inform("[Quest gelöst] Du erhältst ein Portalbuch nach Galmair"), deleteItem(353, 1), item(1061, 1, 999, "nameDE"="Portalbuch nach Galmair", "nameEN"="Portal book to Galmair", "destinationCoordsY" = "245", "destinationCoordsX" = "424", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Galmair", "descriptionDe" = "Portal nach Galmair"), queststatus(220) = 2, rankpoints + 5, "Oh, vielen vielen Dank. Hier, nimm dieses Buch als Belohnung."
+
+-- Quest 1 taken but not finished
+queststatus(220) = 1, item(353, all) < 1, town = Galmair, english, "quest", "mission" -> "I am starving and can't leave my business. Can you fetch me apple pie for my lunch from the marketplace?"
+queststatus(220) = 1, item(353, all) < 1, town = Galmair, "quest", "mission" -> "Ich bin am verhungern, aber ich kann mein Geschäft nicht verlassen. Kannst mir einen Apfelkuchen aus vom Marktplatz besorgen?"
+queststatus(220) = 1, item(353, all) < 1, town = Galmair, "task", "adventure" -> "I am starving and can't leave my business. Can you fetch me apple pie for my lunch from the marketplace?"
+queststatus(220) = 1, item(353, all) < 1, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer" -> "Ich bin am verhungern, aber ich kann mein Geschäft nicht verlassen. Kannst mir einen Apfelkuchen aus vom Marktplatz besorgen?"
+
+-- Quest 2 received, fetch grape juice
+queststatus(220) = 2, english, town = Galmair,"quest", "mission" -> inform("[New quest] Bookseller Helper II"), money + 1700, queststatus(220) = 3, "The cake was so good! Would you mind going back to the marketplace to fetch me some grape juice to wash it down now? *hands over more coins*"
+queststatus(220) = 2, town = Galmair, "quest", "mission" -> inform("[Neues Quest] Buchhändler-Helfer II"), money + 1700, queststatus(220) = 3, "Der Kuchen war richtig lecker! Würde es dir was ausmachen nochmal in vom Marktplatz zu gehen und mir etwas Traubensaft zu besorgen, damit ich die Krümel runterspülen kann? *reicht mehr Münzen rüber*"
+queststatus(220) = 2, town = Galmair, "task", "adventure" -> inform("[New quest] Bookseller Helper II"), money + 1700, queststatus(220) = 3, "The cake was so good! Would you mind going back to the marketplace to fetch me some grape juice to wash it down now? *hands over more coins*"
+queststatus(220) = 2, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer" -> inform("[Neues Quest] Buchhändler-Helfer II"), money + 1700, queststatus(220) = 3, "Der Kuchen war richtig lecker! Würde es dir was ausmachen nochmal in vom Marktplatz zu gehen und mir etwas Traubensaft zu besorgen, damit ich die Krümel runterspülen kann? *reicht mehr Münzen rüber*"
+
+-- Quest 2 complete, reward one portalbook to Galmair, +5 rankpoints
+queststatus(220) = 3, item(791, all) > 0, english, town = Galmair, ".+" -> inform("[Quest solved] You are awarded a portal book to Galmair."), deleteItem(791, 1), item(1061, 1, 999, "nameDE"="Portalbuch nach Galmair", "nameEN"="Portal book to Galmair", "destinationCoordsY" = "245", "destinationCoordsX" = "424", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Galmair", "descriptionDe" = "Portal nach Galmair"), queststatus(220) = 4, rankpoints + 5, "Oh, thank you so much.  Take this book as a reward."
+queststatus(220) = 3, item(791, all) > 0, town = Galmair, ".+" -> inform("[Quest gelöst] Du erhältst ein Portalbuch nach Galmair"), deleteItem(791, 1), item(1061, 1, 999, "nameDE"="Portalbuch nach Galmair", "nameEN"="Portal book to Galmair", "destinationCoordsY" = "245", "destinationCoordsX" = "424", "destinationCoordsZ" = "0", "descriptionEn" = "Portal to Galmair", "descriptionDe" = "Portal nach Galmair"), queststatus(220) = 4, rankpoints + 5, "Oh, vielen vielen Dank. Hier, nimm dieses Buch als Belohnung."
+
+-- Quest 2 taken but not completed
+queststatus(220) = 3, item(791, all) < 1, town = Galmair, english, "quest", "mission" -> "Would you mind going back to the marketplace to fetch me some grape juice to wash it down now?"
+queststatus(220) = 3, item(791, all) < 1, town = Galmair, "quest", "mission" -> "Würde es dir was ausmachen nochmal in vom Marktplatz zu gehen und mir etwas Traubensaft zu besorgen, damit ich die Krümel runterspülen kann?"
+queststatus(220) = 3, item(791, all) < 1, town = Galmair, "task", "adventure" -> "Would you mind going back to the marketplace to fetch me some grape juice to wash it down now?"
+queststatus(220) = 3, item(791, all) < 1, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer" -> "Würde es dir was ausmachen nochmal in vom Marktplatz zu gehen und mir etwas Traubensaft zu besorgen, damit ich die Krümel runterspülen kann?"
+
+-- All quests done
+queststatus(220) = 4, town = Galmair, english, "quest", "mission" -> "I have nothing left for you today, you have taken care of me admirably."
+queststatus(220) = 4, town = Galmair, "quest", "mission" -> "Heute gibt es nichts mehr für dich zu tun, du hast dich wunderbar um mich gekümmert."
+queststatus(220) = 4, town = Galmair, "task", "adventure" -> "I have nothing left for you today, you have taken care of me admirably."
+queststatus(220) = 4, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer" -> "Heute gibt es nichts mehr für dich zu tun, du hast dich wunderbar um mich gekümmert."
+
+-- If not of the realm
+english, "quest", "mission" -> "I do not issue any quests to people not of this realm, but I can sell you books to go to other places."
+"quest", "mission" -> "Ich vergebe keine Aufgaben an Leute, die nicht aus diesem Reich kommen. Aber ihr könnt von mir Bücher kaufen, die euch an andere Orte bringen."
+"task", "adventure", "order" -> "I do not issue any quests to people not of this realm, but I can sell you books to go to other places."
+"Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ich vergebe keine Aufgaben an Leute, die nicht aus diesem Reich kommen. Aber ihr könnt von mir Bücher kaufen, die euch an andere Orte bringen."
 
 -- Small talk: The talk here should focus on possible questions. Feel free to add more!
 "profession" -> "I am a merchant of portal books."
@@ -170,3 +208,10 @@ english, "salkama" -> "Nice place. They have some very tasty food there as well.
 -- Emotes are possible also starting with "#me ....".
 
 cycletext "Ich kann euch an interessante Orte bringen.", "I can take you to interesting places."
+cycletext "#me stapelt einige Bücher auf.", "#me stacks some books."
+cycletext "Ihr solltet mal verreisen!", "You should go on a trip."
+cycletext "Ich verkaufe Portalbücher! Braucht ihr eines?", "I sell portal books! Do you need one?"
+cycletext "Das ist Magie!", "It's magic!"
+cycletext "Der sichere Weg zu reisen! Portalbücher!", "The safe way to travel! Portal books!"
+cycletext "Die Götter haben diese Welt für uns erschaffen um sie zu entdecken und darin zu reisen.", "The Gods created this world for us to discover and travel within it."
+cycletext "Unsere Dienste werden in allen Städten gerne in Anspruch genommen.", "Our services are well sought in all three towns."

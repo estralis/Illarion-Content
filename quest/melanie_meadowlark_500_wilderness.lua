@@ -16,21 +16,22 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- INSERT INTO "quests" ("qst_id", "qst_script") VALUES (500, 'quest.melanie_meadowlark_500_wilderness');
 
-require("base.common")
-require("base.factions")
-module("quest.melanie_meadowlark_500_wilderness", package.seeall)
+local common = require("base.common")
+local factions = require("base.factions")
+local monsterQuests = require("monster.base.quests")
+local M = {}
 
-GERMAN = Player.german
-ENGLISH = Player.english
+local GERMAN = Player.german
+local ENGLISH = Player.english
 
 -- Insert the quest title here, in both languages
-Title = {}
-Title[GERMAN] = "Elstree Waldläuferin"
+local Title = {}
+Title[GERMAN] = "Waldläufer des Elsbaumwaldes"
 Title[ENGLISH] = "Elstree Ranger"
 
 -- Insert an extensive description of each status here, in both languages
 -- Make sure that the player knows exactly where to go and what to do
-Description = {}
+local Description = {}
 Description[GERMAN] = {}
 Description[ENGLISH] = {}
 Description[GERMAN][1] = "Sammel zehn Honigwaben und bringe diese zu Melanie."
@@ -38,58 +39,58 @@ Description[ENGLISH][1] = "Collect ten honeycombs and bring them to Melanie."
 Description[GERMAN][2] = "Geh zu Melanie. Sie hat bestimmt noch eine Aufgabe für dich."
 Description[ENGLISH][2] = "Go back to Melanie, she certainly has another task for you."
 
-Description[GERMAN][3] = "Töte Wildschweine für Melanie. Du brauchst noch 25."
-Description[ENGLISH][3] = "Kill forest pigs for Melanie. You still need 25."
-Description[GERMAN][4] = "Töte Wildschweine für Melanie. Du brauchst noch 24."
-Description[ENGLISH][4] = "Kill forest pigs for Melanie. You still need 24."
-Description[GERMAN][5] = "Töte Wildschweine für Melanie. Du brauchst noch 23."
-Description[ENGLISH][5] = "Kill forest pigs for Melanie. You still need 23."
-Description[GERMAN][6] = "Töte Wildschweine für Melanie. Du brauchst noch 22."
-Description[ENGLISH][6] = "Kill forest pigs for Melanie. You still need 22."
-Description[GERMAN][7] = "Töte Wildschweine für Melanie. Du brauchst noch 21."
-Description[ENGLISH][7] = "Kill forest pigs for Melanie. You still need 21."
-Description[GERMAN][8] = "Töte Wildschweine für Melanie. Du brauchst noch 20."
-Description[ENGLISH][8] = "Kill forest pigs for Melanie. You still need 20."
-Description[GERMAN][9] = "Töte Wildschweine für Melanie. Du brauchst noch 19."
-Description[ENGLISH][9] = "Kill forest pigs for Melanie. You still need 19."
-Description[GERMAN][10] = "Töte Wildschweine für Melanie. Du brauchst noch 18."
-Description[ENGLISH][10] = "Kill forest pigs for Melanie. You still need 18."
-Description[GERMAN][11] = "Töte Wildschweine für Melanie. Du brauchst noch 17."
-Description[ENGLISH][11] = "Kill forest pigs for Melanie. You still need 17."
-Description[GERMAN][12] = "Töte Wildschweine für Melanie. Du brauchst noch 16."
-Description[ENGLISH][12] = "Kill forest pigs for Melanie. You still need 16."
-Description[GERMAN][13] = "Töte Wildschweine für Melanie. Du brauchst noch 15."
-Description[ENGLISH][13] = "Kill forest pigs for Melanie. You still need 15."
-Description[GERMAN][14] = "Töte Wildschweine für Melanie. Du brauchst noch 14."
-Description[ENGLISH][14] = "Kill forest pigs for Melanie. You still need 14."
-Description[GERMAN][15] = "Töte Wildschweine für Melanie. Du brauchst noch 13."
-Description[ENGLISH][15] = "Kill forest pigs for Melanie. You still need 13."
-Description[GERMAN][16] = "Töte Wildschweine für Melanie. Du brauchst noch 12."
-Description[ENGLISH][16] = "Kill forest pigs for Melanie. You still need 12."
-Description[GERMAN][17] = "Töte Wildschweine für Melanie. Du brauchst noch 11."
-Description[ENGLISH][17] = "Kill forest pigs for Melanie. You still need 11."
-Description[GERMAN][18] = "Töte Wildschweine für Melanie. Du brauchst noch 10."
-Description[ENGLISH][18] = "Kill forest pigs for Melanie. You still need 10."
-Description[GERMAN][19] = "Töte Wildschweine für Melanie. Du brauchst noch 9."
-Description[ENGLISH][19] = "Kill forest pigs for Melanie. You still need 9."
-Description[GERMAN][20] = "Töte Wildschweine für Melanie. Du brauchst noch 8."
-Description[ENGLISH][20] = "Kill forest pigs for Melanie. You still need 8."
-Description[GERMAN][21] = "Töte Wildschweine für Melanie. Du brauchst noch 7."
-Description[ENGLISH][21] = "Kill forest pigs for Melanie. You still need 7."
-Description[GERMAN][22] = "Töte Wildschweine für Melanie. Du brauchst noch 6."
-Description[ENGLISH][22] = "Kill forest pigs for Melanie. You still need 6."
-Description[GERMAN][23] = "Töte Wildschweine für Melanie. Du brauchst noch 5."
-Description[ENGLISH][23] = "Kill forest pigs for Melanie. You still need 5."
-Description[GERMAN][24] = "Töte Wildschweine für Melanie. Du brauchst noch 4."
-Description[ENGLISH][24] = "Kill forest pigs for Melanie. You still need 4."
-Description[GERMAN][25] = "Töte Wildschweine für Melanie. Du brauchst noch 3."
-Description[ENGLISH][25] = "Kill forest pigs for Melanie. You still need 3."
-Description[GERMAN][26] = "Töte Wildschweine für Melanie. Du brauchst noch 2."
-Description[ENGLISH][26] = "Kill forest pigs for Melanie. You still need 2."
-Description[GERMAN][27] = "Töte Wildschweine für Melanie. Du brauchst noch 1."
-Description[ENGLISH][27] = "Kill forest pigs for Melanie. You still need 1."
-Description[GERMAN][28] = "Berichte Melanie, dass du den Bestand von Wildschweinen korrigiert hast."
-Description[ENGLISH][28] = "Report back to Melanie that you have corrected the forest pig population."
+Description[GERMAN][3] = "Töte Kaninchen für Melanie. Du brauchst noch zehn."
+Description[ENGLISH][3] = "Kill forest rabbits for Melanie. You still need ten."
+Description[GERMAN][4] = "Töte Kaninchen für Melanie. Du brauchst noch neun."
+Description[ENGLISH][4] = "Kill forest rabbits for Melanie. You still need nine."
+Description[GERMAN][5] = "Töte Kaninchen für Melanie. Du brauchst noch acht."
+Description[ENGLISH][5] = "Kill forest rabbits for Melanie. You still need eight."
+Description[GERMAN][6] = "Töte Kaninchen für Melanie. Du brauchst noch sieben."
+Description[ENGLISH][6] = "Kill forest rabbits for Melanie. You still need seven."
+Description[GERMAN][7] = "Töte Kaninchen für Melanie. Du brauchst noch sechs."
+Description[ENGLISH][7] = "Kill forest rabbits for Melanie. You still need six."
+Description[GERMAN][8] = "Töte Kaninchen für Melanie. Du brauchst noch fünf."
+Description[ENGLISH][8] = "Kill forest rabbits for Melanie. You still need five."
+Description[GERMAN][9] = "Töte Kaninchen für Melanie. Du brauchst noch vier."
+Description[ENGLISH][9] = "Kill forest rabbits for Melanie. You still need vier."
+Description[GERMAN][10] = "Töte Kaninchen für Melanie. Du brauchst noch drei."
+Description[ENGLISH][10] = "Kill forest rabbits for Melanie. You still need three."
+Description[GERMAN][11] = "Töte Kaninchen für Melanie. Du brauchst noch zwei."
+Description[ENGLISH][11] = "Kill forest rabbits for Melanie. You still need two."
+Description[GERMAN][12] = "Töte Kaninchen für Melanie. Du brauchst noch eine."
+Description[ENGLISH][12] = "Kill forest rabbits for Melanie. You still need one."
+Description[GERMAN][13] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][13] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][14] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][14] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][15] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][15] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][16] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][16] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][17] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][17] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][18] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][18] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][19] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][19] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][20] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][20] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][21] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][21] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][22] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][22] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][23] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][23] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][24] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][24] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][25] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][25] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][26] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][26] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][27] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][27] = "Report back to Melanie that you have corrected the forest rabbit population."
+Description[GERMAN][28] = "Berichte Melanie, dass du den Bestand von Kaninchenn korrigiert hast."
+Description[ENGLISH][28] = "Report back to Melanie that you have corrected the forest rabbit population."
 
 Description[GERMAN][29] = "Geh zu Melanie. Sie hat bestimmt noch eine Aufgabe für dich."
 Description[ENGLISH][29] = "Go back to Melanie, she certainly has another task for you."
@@ -104,10 +105,10 @@ Description[GERMAN][33] = "Sammel zwanzig Flammenkelchblüten und bringe diese zu
 Description[ENGLISH][33] = "Collect twenty flamegoblet blossoms and bring them to Melanie."
 
 -- Insert the position of the quest start here (probably the position of an NPC or item)
-Start = {816, 440, 0}
+local Start = {816, 440, 0}
 
 -- For each status insert a list of positions where the quest will continue, i.e. a new status can be reached there
-QuestTarget = {}
+local QuestTarget = {}
 QuestTarget[1] = {position(816, 440, 0)}
 QuestTarget[2] = {position(816, 440, 0)}
 
@@ -146,32 +147,48 @@ QuestTarget[32] = {position(816, 440, 0)}
 QuestTarget[33] = {position(816, 440, 0)}
 
 -- Insert the quest status which is reached at the end of the quest
-FINAL_QUEST_STATUS = 34
+local FINAL_QUEST_STATUS = 34
 
+-- Register the monster kill parts of the quest.
+monsterQuests.addQuest{
+    questId = 500,
+    location = {position = position(786, 474, 0), radius = 50},
+    queststatus = {from = 3, to = 13},
+    questTitle = {german = "Waldläufer des Elsbaumwaldes II", english = "Elstree Ranger II"},
+    monsterName = {german = "Kaninchen", english = "rabbit"},
+    npcName = "Melanie Meadowlark",
+    raceIds = {113} -- all rabbits
+}
 
-function QuestTitle(user)
-    return base.common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
+function M.QuestTitle(user)
+    return common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
 end
 
-function QuestDescription(user, status)
+function M.QuestDescription(user, status)
     local german = Description[GERMAN][status] or ""
     local english = Description[ENGLISH][status] or ""
 
-    return base.common.GetNLS(user, german, english)
+    return common.GetNLS(user, german, english)
 end
 
-function QuestStart()
+function M.QuestStart()
     return Start
 end
 
-function QuestTargets(user, status)
+function M.QuestTargets(user, status)
     return QuestTarget[status]
 end
 
-function QuestFinalStatus()
+function M.QuestFinalStatus()
     return FINAL_QUEST_STATUS
 end
 
-function QuestAvailability(user, status)
-    return Player.questAvailable
+function M.QuestAvailability(user, status)
+    if status == 0 then
+        return Player.questAvailable
+    else
+        return Player.questNotAvailable
+    end
 end
+
+return M

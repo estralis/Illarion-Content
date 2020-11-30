@@ -12,88 +12,91 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- LTE für das Druidensystem
 -- by Falk
 -- complete new version by Merung
+local common = require("base.common")
 
-module("alchemy.lte.id_166_secattribs", package.seeall)
+local M = {}
 
 -- INSERT INTO longtimeeffects VALUES (166, 'alchemy_secattribs', 'alchemy.lte.id_166_secattribs');
 
-function addEffect(Effect, User)               -- we start with adding the effect
-	--User:inform("debug func addEffect")
+function M.addEffect(Effect, User)               -- we start with adding the effect
+    --User:inform("debug func addEffect")
 end
 
-function callEffect(Effect,User) 
+function M.callEffect(Effect,User)
     local findCounter,counterPink = Effect:findValue("counterPink")
-    
-	local findHitpointsIn,hitpointsIncrease = Effect:findValue("hitpointsIncrease")
+
+    local findHitpointsIn,hitpointsIncrease = Effect:findValue("hitpointsIncrease")
     local findManaIn,manaIncrease = Effect:findValue("manaIncrease")
     local findFoodlevelIn,foodlevelIncrease = Effect:findValue("foodlevelIncrease")
     local findPoisonvalueIn,poisonvalueIncrease = Effect:findValue("poisonvalueIncrease")
-	
-	local findHitpointsDe,hitpointsDecrease = Effect:findValue("hitpointsDecrease")
+
+    local findHitpointsDe,hitpointsDecrease = Effect:findValue("hitpointsDecrease")
     local findManaDe,manaDecrease = Effect:findValue("manaDecrease")
     local findFoodlevelDe,foodlevelDecrease = Effect:findValue("foodlevelDecrease")
     local findPoisonvalueDe,poisonvalueDecrease = Effect:findValue("poisonvalueDecrease")
-	
-	if User:increaseAttrib("hitpoints",0) == 0 then
-		return false
-	end
-    
-	if findCounter then 
+
+    if User:increaseAttrib("hitpoints",0) == 0 then
+        return false
+    end
+
+    if findCounter then
        if counterPink > 0 then
-           
-		   if findHitpointsIn then
-              User:increaseAttrib("hitpoints",hitpointsIncrease);
+
+           if findHitpointsIn then
+              User:increaseAttrib("hitpoints",hitpointsIncrease)
            end
-           if findManaIn then   
-              User:increaseAttrib("mana",manaIncrease);
+           if findManaIn then
+              User:increaseAttrib("mana",manaIncrease)
            end
            if findFoodlevelIn then
-              User:increaseAttrib("foodlevel",foodlevelIncrease);
+              User:increaseAttrib("foodlevel",foodlevelIncrease)
            end
-           if findPoisonvalueIn then    
-	          poisonvalueIncrease = base.common.Limit( (User:getPoisonValue() - poisonvalueIncrease) , 0, 10000 ); 
-	          User:setPoisonValue( poisonvalueIncrease );
-	       end
-	      
-		   if findHitpointsDe then
-              User:increaseAttrib("hitpoints",-hitpointsDecrease);
+           if findPoisonvalueIn then
+              poisonvalueIncrease = common.Limit( (User:getPoisonValue() - poisonvalueIncrease) , 0, 10000 )
+              User:setPoisonValue( poisonvalueIncrease )
            end
-           if findManaDe then   
-              User:increaseAttrib("mana",-manaDecrease);
+
+           if findHitpointsDe then
+              User:increaseAttrib("hitpoints",-hitpointsDecrease)
+           end
+           if findManaDe then
+              User:increaseAttrib("mana",-manaDecrease)
            end
            if findFoodlevelDe then
-              User:increaseAttrib("foodlevel",-foodlevelDecrease);
+              User:increaseAttrib("foodlevel",-foodlevelDecrease)
            end
-           if findPoisonvalueDe then    
-	          poisonvalueDecrease = base.common.Limit( (User:getPoisonValue() + poisonvalueDecrease) , 0, 10000 ); 
-	          User:setPoisonValue( poisonvalueDecrease );
-	       end
-		  
-		   if findCounter then
-		      counterPink = counterPink - 1;
-	          Effect:addValue("counterPink",counterPink)
-	       end
-	       
-		   if counterPink <= 0 then
-		        world:gfx(45,User.pos)
-				base.common.InformNLS(User,"Die Wirkungsphase des Heiltranks endet.","The effect phase of the healing potion ends.")
-				return false
-	       end
+           if findPoisonvalueDe then
+              poisonvalueDecrease = common.Limit( (User:getPoisonValue() + poisonvalueDecrease) , 0, 10000 )
+              User:setPoisonValue( poisonvalueDecrease )
+           end
+
+           if findCounter then
+              counterPink = counterPink - 1
+              Effect:addValue("counterPink",counterPink)
+           end
+
+           if counterPink <= 0 then
+                world:gfx(45,User.pos)
+                common.InformNLS(User,"Die Wirkungsphase des Heiltranks endet.","The effect phase of the healing potion ends.")
+                return false
+           end
        end
    end
   Effect.nextCalled = 70
   return true
 end
 
-function loadEffect(Effect, User)
-    
-end	
-
-function removeEffect(Effect,User)         
+function M.loadEffect(Effect, User)
 
 end
+
+function M.removeEffect(Effect,User)
+
+end
+return M
+

@@ -1,19 +1,20 @@
 -- INSERT INTO "quests" ("qst_id", "qst_script") VALUES (QUESTID, 'quest.SCRIPTNAME');
 
-require("base.common")
-module("quest.SCRIPTNAME", package.seeall)
+local common = require("base.common")
+local monsterQuests = require("monster.base.quests") -- for Monster kill quests. Can be removed for all others
+local M = {}
 
-GERMAN = Player.german
-ENGLISH = Player.english
+local GERMAN = Player.german
+local ENGLISH = Player.english
 
 -- Insert the quest title here, in both languages
-Title = {}
+local Title = {}
 Title[GERMAN] = "Deutscher Questtitel"
 Title[ENGLISH] = "English Quest Title"
 
 -- Insert an extensive description of each status here, in both languages
 -- Make sure that the player knows exactly where to go and what to do
-Description = {}
+local Description = {}
 Description[GERMAN] = {}
 Description[ENGLISH] = {}
 Description[GERMAN][1] = "Tolle lange Beschreibung die angezeigt wird wenn man Queststatus 1 erreicht, auch was man wo machen muss ..."
@@ -23,23 +24,53 @@ Description[ENGLISH][1] = "Cool long description which is displayed when you rea
 Start = position(1, 2, 3) OR Start = {1, 2, 3}
 
 -- For each status insert a list of positions where the quest will continue, i.e. a new status can be reached there
-QuestTarget = {}
+local QuestTarget = {}
 QuestTarget[1] = {position(1, 2, 3), position(4, 5, 6)} OR QuestTarget[1] = {{1, 2, 3}, {4, 5, 6}}
 
-
 -- Insert the quest status which is reached at the end of the quest
-FINAL_QUEST_STATUS = 0
+local FINAL_QUEST_STATUS = 0
 
+-- Register the monster kill parts of the quest.
+monsterQuests.addQuest{
+    questId = 123,
+    location = {position = position(1, 1, 0), radius = 10},
+    queststatus = {from = 1, to = 5},
+    questTitle = {german = "Deutscher Titel des Quests", english = "English title of the quest"},
+    monsterName = {german = "Monster Name", english = "monster name"},
+    npcName = "Name of the NPC to return to",
+    raceIds = {0, 1} -- all monsters with races 0 (humans) or 1 (dwarves)
+}
+monsterQuests.addQuest{
+    questId = 123,
+    locations = {
+        {position = position(1, 1, 0), radius = 10},
+        {position = position(1, 1, -3), radius = 10}
+    },
+    queststatus = {from = 6, to = 10},
+    questTitle = {german = "Deutscher Titel des Quests", english = "English title of the quest"},
+    monsterName = {german = "Monster Name", english = "monster name"},
+    npcName = "Name of the NPC to return to",
+    monsterIds = {15, 325} -- monsters with the monster IDs 15 and 325
+}
+monsterQuests.addQuest{
+    questId = 123,
+    location = {position = position(1, 1, 0), radius = 10},
+    queststatus = {from = 11, to = 15},
+    questTitle = {german = "Deutscher Titel des Quests", english = "English title of the quest"},
+    monsterName = {german = "Monster Name", english = "monster name"},
+    npcName = "Name of the NPC to return to",
+    monsterGroupIds = {6, 10} -- all monsters in the monster groups 6 (drows) and 10 (mummies)
+}
 
-function QuestTitle(user)
-    return base.common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
+function M.QuestTitle(user)
+    return common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
 end
 
-function QuestDescription(user, status)
+function M.QuestDescription(user, status)
     local german = Description[GERMAN][status] or ""
     local english = Description[ENGLISH][status] or ""
 
-    return base.common.GetNLS(user, german, english)
+    return common.GetNLS(user, german, english)
 end
 
 -- Availability of the quest
@@ -52,7 +83,7 @@ end
 -- Player.questNotAvailable.
 -- The function below is the server default. It will be used if this entry point is not defined.
 --[[
-function QuestAvailability(user, status)
+function M.QuestAvailability(user, status)
     if status == 0 then
         return Player.questAvailable
     else
@@ -61,14 +92,16 @@ function QuestAvailability(user, status)
 end
 --]]
 
-function QuestStart()
+function M.QuestStart()
     return Start
 end
 
-function QuestTargets(user, status)
+function M.QuestTargets(user, status)
     return QuestTarget[status]
 end
 
-function QuestFinalStatus()
+function M.QuestFinalStatus()
     return FINAL_QUEST_STATUS
 end
+
+return M

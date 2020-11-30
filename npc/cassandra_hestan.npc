@@ -63,11 +63,11 @@ itemShoes = 369
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-tradeNotEnoughMoneyMsg "Oh, ich fürchte Ihr könnt Euch das nicht leisten.", "Oh, I fear, you can not afford that."
-tradeFinishedMsg "Vielen Dank, beehrt mich bald wieder!", "Thank you, please come again!"
-tradeFinishedWithoutTradingMsg "Auf Bald!", "Farewell!"
-tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
-sellItems = 61, 3076, 3077
+tradeNotEnoughMoneyMsg "Ganz so viel Geld habt ihr auch wieder nicht.", "You don't have that much money."
+tradeFinishedMsg "Weiterhin gute Geschäfte.", "I wish you good business."
+tradeFinishedWithoutTradingMsg "Gehabt euch wohl.", "Godspeed."
+tradeWrongItemMsg "Ich wechsle nur Geld.", "I just change money."
+sellItems = 3076, 3077, 61
 
 -- Template Version 1.04, 07/12/2011 by Estralis Seborian
 -- Instructions: Replace all talk consequences with strings ending with a full stop, maximum length is 250 characters. Try to provide more than one answer, one is chosen at random.
@@ -85,7 +85,7 @@ sellItems = 61, 3076, 3077
 
 -- Mandatory: General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Greetings. You came to me to change money, am I right?"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Grüße. Ihr seid zu mir gekommen, um Geld zu wechseln, hab ich nicht recht?"
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Grüße. Ihr seid zu mir gekommen, um Geld zu wechseln, hab ich nicht recht?"
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greetings. You came to me to change money, am I right?"
 "Hiho", "Hallo", "Hey", "Greeb" -> "Grüße. Ihr seid zu mir gekommen, um Geld zu wechseln, hab ich nicht recht?"
 "Farewell", "Bye", "Fare well", "See you" -> "Farewell and come back with more money."
@@ -95,7 +95,7 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Farewell and come back with
 "How are you", "How feel", "How do you do" -> "Let's skip this and get straight to business."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Überspringen wir die Höflichkeiten und kommen gleich zum Geschäft."
 "your name", "who are you", "who art thou" -> "Cassandra."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Cassandra."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Cassandra."
 
 -- OPTIONAL TRIGGERS
 
@@ -123,7 +123,7 @@ english, "gold" -> "A gold coin equals a hundred silver coins."
 
 -- Optional: Catching typical NPC phrases
 "sell", "buy", "wares", "price", "trade", "purchase" -> "I just change money. I do not offer any other services.", trade
-"kauf", "waren", "preis", "Handel", "veräußer", "erwerb" -> "Ich wechsle einfach nur Geld. Ich biete keine anderen Dienste an.", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich wechsle einfach nur Geld. Ich biete keine anderen Dienste an.", trade
 
 -- Optional: Gods - use the triggers of the god the NPC worships or fights
 english, "Ronagan" -> "You don't think that Ronagan is one of the evil guys, do you? If so, you have to learn a lot about the nature of the gods."
@@ -136,8 +136,6 @@ english, "rosaline", "edwards" -> "Queen Rosaline just tolerates my profession -
 "rosaline", "edwards" -> "Königin Rosaline toleriert lediglich meine Tätigkeit - Geld zu wechseln ist nicht sonderlich ehrbar."
 english, "Cadomyr" -> "Cadomyr is my home and I love it. Whether Cadomyr loves me or not... I do not know."
 "Cadomyr" -> "Cadomyr ist meine Heimat und ich liebe es. Ob nun Cadomyr mich auch liebt oder nicht - das weiß ich nicht."
-english, ".*" -> "I don't want to talk about it."
-german, ".*" -> "Ich will nicht darüber reden."
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
@@ -153,3 +151,5 @@ cycletext "#me klimpert mit ein paar Münzen.", "#me rattles some coins."
 cycletext "#me betrachtet eine Münze und sagt: 'Königin Rosalines Porträt ist wirklich schmeichelhaft.'.", "#me beholds a coin and says: 'Queen Rosaline's potrait is charming.'."
 cycletext "Geld macht nicht glücklich, aber kein Geld macht unglücklich!", "Money doesn't make you happy, but no money makes you sad!"
 cycletext "Ich wechsle Geld!", "I change money!"
+cycletext "#me zählt emsig Münzen.", "#me assiduously counts money."
+cycletext "#me betrachtet eine Goldmünze.", "#me glances lovingly at a gold coin."

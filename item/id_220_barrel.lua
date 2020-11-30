@@ -12,159 +12,67 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- white dye (2683) + gray cloth (176) --> white cloth (178)
--- color dye + (white cloth (178) or grey cloth (176) --> colored cloth (see below for details)
 
--- additional tool: dyeing rod (2781)
+-- UPDATE items SET itm_script='item.id_220_barrel' WHERE itm_id IN (220);
 
--- UPDATE common SET com_script='item.id_220_barrel' WHERE com_itemid IN (220);
+local common = require("base.common")
 
-require("base.common")
-require("content.gathering")
-require("base.licence")
+local M = {}
 
-module("item.id_220_barrel", package.seeall)
+local dragonCaveBarrelPos = {
+    position(660, 634, -3),
+    position(786, 653, -3),
+    position(821, 655, -3),
+    position(821, 656, -3),
+    position(786, 635, -3),
+    position(786, 634, -3),
+}
 
--- format: {dyeID, neededClothID, producedClothID}
-dyersList = {
-  {2678, {178, 176}, 175},  -- black
-  {2679, {178, 176}, 54},   -- green
-  {2680, {178, 176}, 179},  -- blue
-  {2681, {178, 176}, 174},  -- red
-  {2682, {178, 176}, 177},  -- yellow
-  {2683, {176,0}, 178}   -- white
-};
+local BarrelContents
 
-function UseItem(User, SourceItem, ltstate)
-	if base.licence.licence(User) then --checks if user is citizen or has a licence
-		return -- avoids crafting if user is neither citizen nor has a licence
-	end
+function M.UseItem(User, SourceItem, ltstate)
 
-	content.gathering.InitGathering();
-	local dyeing = content.gathering.dyeing;
+    for i = 1, #dragonCaveBarrelPos do
+        if (SourceItem.pos == dragonCaveBarrelPos[i]) then
+            BarrelContents(User, SourceItem)
+            return
+        end
+    end
 
-	base.common.ResetInterruption( User, ltstate );
-	if ( ltstate == Action.abort ) then -- work interrupted
-		if (User:increaseAttrib("sex",0) == 0) then
-			gText = "seine";
-			eText = "his";
-		else
-			gText = "ihre";
-			eText = "her";
-		end
-		User:talk(Character.say, "#me unterbricht "..gText.." Arbeit.", "#me interrupts "..eText.." work.")
-		return
-	end
-
-	if not base.common.CheckItem( User, SourceItem ) then -- security check
-		return
-	end
-
-	-- additional tool item is needed
-	if (User:countItemAt("all",2781)==0) then
-		base.common.HighInformNLS( User,
-		"Du brauchst einen Färberstab um Stoffe zu färben.",
-		"You need a dyeing rod for dyeing cloth." );
-		return
-	end
-	local toolItem = User:getItemAt(5);
-	if ( toolItem.id ~= 2781 ) then
-		toolItem = User:getItemAt(6);
-		if ( toolItem.id ~= 2781 ) then
-			base.common.HighInformNLS( User,
-			"Du musst den Färberstab in der Hand haben!",
-			"You have to hold the dyeing rod in your hand!" );
-			return
-		end
-	end
-
-	if not base.common.FitForWork( User ) then -- check minimal food points
-		return
-	end
-
-	if not base.common.IsLookingAt( User, SourceItem.pos ) then -- check looking direction
-		base.common.TurnTo( User, SourceItem.pos ); -- turn if necessary
-	end
-
-	-- any other checks?
-
-	local dye = nil;
-	for _,d in pairs(dyersList) do
-		if (User:countItemAt("all",d[1])>0 and (User:countItemAt("all",d[2][1])>0 or User:countItemAt("all",d[2][2])>0)) then
-			dye = d;
-			break;
-		end
-	end
-
-	if (dye == nil) then -- check for items to work on
-		base.common.HighInformNLS( User,
-		"Du brauchst weiße Farbe und grauen Stoff oder eine andere Farbe und weißen oder grauen Stoff um zu färben.",
-		"You need white dye and grey cloth or any other dye and white or grey cloth for dyeing." );
-		return;
-	end
-
-	if ( ltstate == Action.none ) then -- currently not working -> let's go
-		dyeing.SavedWorkTime[User.id] = dyeing:GenWorkTime(User,toolItem);
-		User:startAction( dyeing.SavedWorkTime[User.id], 0, 0, 0, 0);
-		User:talk(Character.say, "#me beginnt Stoff zu färben.", "#me starts to dye cloth.")
-		return
-	end
-
-	-- since we're here, we're working
-
-	if dyeing:FindRandomItem(User) then
-		return
-	end
-
-	User:learn( dyeing.LeadSkill, dyeing.SavedWorkTime[User.id], dyeing.LearnLimit);
-	User:eraseItem( dye[1], 1 ); -- erase the item we're working on
-	if User:countItemAt("all",dye[2][2]) == 0 then
-		User:eraseItem( dye[2][1], 5 ); -- erase the item we're working on
-	else
-		User:eraseItem( dye[2][2], 5 ); -- erase the item we're working on
-	end
-	local amount = 5; -- set the amount of items that are produced
-	local notCreated = User:createItem( dye[3], amount, 333, nil ); -- create the new produced items
-	if ( notCreated > 0 ) then -- too many items -> character can't carry anymore
-		world:createItemFromId( dye[3], notCreated, User.pos, true, 333, nil );
-		world:createItemFromId( 51, 1, User.pos, true, 333, nil ); -- giving back the bucket
-		base.common.HighInformNLS(User,
-		"Du kannst nichts mehr halten und der Rest fällt zu Boden.",
-		"You can't carry any more and the rest drops to the ground.");
-	else -- character can still carry something
-		notCreated = User:createItem( 51, 1, 333, nil ); -- giving back the bucket
-		if ( notCreated > 0 ) then
-			world:createItemFromId( 51, 1, User.pos, true, 333, nil );
-			base.common.HighInformNLS(User,
-			"Du kannst nichts mehr halten und der Rest fällt zu Boden.",
-			"You can't carry any more and the rest drops to the ground.");
-		end
-	end
-
-	if (notCreated == 0) then -- character can go on
-		dye = nil;
-		for _,d in pairs(dyersList) do
-			if (User:countItemAt("all",d[1])>0 and (User:countItemAt("all",d[2][1])>0 or User:countItemAt("all",d[2][2])>0)) then
-				dye = d;
-				break;
-			end
-		end
-		if (dye ~= nil) then  -- there are still items we can work on
-			dyeing.SavedWorkTime[User.id] = dyeing:GenWorkTime(User,toolItem);
-			User:startAction( dyeing.SavedWorkTime[User.id], 0, 0, 0, 0);
-		else -- no items left
-			base.common.HighInformNLS(User,
-			"Du hast keine Farbe und passenden Stoff mehr.",
-			"You have no dye and respective cloth anymore.");
-		end
-	end
-
-	if base.common.GatheringToolBreaks( User, toolItem ) then -- damage and possibly break the tool
-		base.common.HighInformNLS(User,
-		"Dein alter Färberstab zerbricht.",
-		"Your old dyeing rod breaks.");
-		return
-	end
 end
+
+function BarrelContents(User, barrelItem)
+
+    -- skip if already tripped in the last 5 minutes
+    local serverTime = world:getTime("unix")
+    local trippingTime = barrelItem:getData("tripping_time")
+
+    if (trippingTime ~= "" and ((tonumber(trippingTime) + 1800) > serverTime)) then
+        User:inform("Du findest nichts in diesem Fass.",
+                    "You find nothing inside this barrel.")
+        return
+    end
+    -- safe tripping time
+    barrelItem:setData("tripping_time", serverTime)
+    world:changeItem(barrelItem)
+
+    local random_number = math.random(1,100)
+    if random_number >= 0 and random_number <= 35 then
+        User:inform("Du suchst bis zum Boden, findest aber nicht als Rattenkot.", "You search to the bottom but find nothing but rat droppings.")
+    elseif random_number >= 36 and random_number <= 70 then
+        User:inform("Beim Suchen findest du einen Stapel Geldbörsen - aber alle sind leer.", "As you search you find a stash of money bags, that are all empty.")
+    elseif random_number >= 71 and random_number <= 90 then
+        User:inform("Du findest eine Silbermünze.","You discover a silver coin.")
+        common.CreateItem(User, 3077, 1, 333, nil) -- silver coin
+    elseif random_number >= 91 and random_number <=100 then
+        local monPos = common.getFreePos(barrelItem.pos, 2) -- radius 2 around vase
+        world:createMonster(211, monPos, -20)
+        world:gfx(41, monPos) -- swirly
+        User:inform("Während du suchst, schleicht irgendwas aus den Schatten um dich herum.",
+            "As you are searching, something sneaks in from the shadows around you.")
+    end
+end
+
+return M

@@ -16,7 +16,7 @@
 -- NPC Name: Alysa Lorthelia                                         Runewick --
 -- NPC Job:  Baker                                                            --
 --                                                                            --
--- NPC Race: human                      NPC Position:  907, 794, 1            --
+-- NPC Race: human                      NPC Position:  939, 826, 0            --
 -- NPC Sex:  female                     NPC Direction: south                  --
 --                                                                            --
 -- Author:   Regallo                                                          --
@@ -26,10 +26,10 @@
 name = "Alysa Lorthelia"
 race = human
 sex = female
-position = 907, 794, 1
-direction = south
+position = 939, 826, 0
+direction = east
 affiliation = "Runewick"
-job = "Baker"
+job = "Baker and housekeeper"
 
 language = common
 language = human
@@ -38,7 +38,7 @@ autointroduce = on
 
 author = "Regallo"
 
-lookatDE = "Eine große, edele Frau steht hinter der Theke und bereitet emsig Essen zu."
+lookatDE = "Eine große, edle Frau steht hinter der Theke und bereitet emsig Essen zu."
 lookatUS = "A tall, proud woman stands behind the counter, preparing food quickly."
 useMsgDE = "Fass mich nicht an!"
 useMsgUS = "Hands off!"
@@ -63,23 +63,17 @@ itemShoes = 53
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
--- 10% Tools (Cook/Baker): 51, 121, 227 (buys also 118, 2495)
--- 10% Baked food: 1153, 354, 303, 353, 453, 454, 49, 191
--- 10% Baker's resources: 2, 2529 (buys also 5)
--- 5% Beer: 1909
--- 10% Dishes: 1155, 554, 559, 555, 557, 2922, 1154, 2277, 556, 2459, 1152, 2276, 2278, 2456, 2923, 306, 2940, 3051
-
-sellItems = 51, 121, 227, 1153, 354, 303, 353, 453, 454, 49, 191, 2, 2529, 1155, 554, 559, 555, 557, 2922, 1154, 2277, 556, 2459, 1152, 2276, 2278, 2456, 2923, 306, 2940, 3051, 1909
-buyPrimaryItems = 51, 121, 227, 118, 2495, 1153, 354, 303, 353, 453, 454, 49, 191, 2, 5, 2529, 1155, 554, 559, 555, 557, 2922, 1154, 2277, 556, 2459, 1152, 2276, 2278, 2456, 2923, 306, 2940, 3051
-buySecondaryItems = 1909
-tradeNotEnoughMoneyMsg "Du hast nicht genug Geld!", "You don't have enough money!"
-tradeFinishedMsg "Danke, komm doch bald wieder.", "Thanks, come back soon."
+sellItems = 121, 227, 72, 126, 429, 51, 2495, 2031, 191, 453, 3568, 49, 3631, 3609, 454, 353, 303, 3571, 354, 3723, 1153, 3610, 2499, 2500, 2497, 2501, 785, 3720, 787, 791, 786, 788, 517, 783, 3721, 784, 789, 3722, 3611, 1316, 1315, 1320, 1321, 1322, 1319, 1323, 1318, 3051, 3573, 3715, 3716, 2459, 556, 1154, 2277, 2922, 3570, 557, 555, 559, 554, 1155, 2456, 2923, 2278, 2276, 3569, 3572, 3712, 3711, 1152, 73, 355, 1209, 1210, 307, 1149, 1150, 69, 2586, 2502, 469, 552, 553, 1151, 2934, 2940, 63, 2696, 333, 306, 455, 3914, 3915, 3916, 3606, 3709, 3710, 3713, 3714, 2529, 431, 43
+-- peel, cooking spoon, fishing rod, sickle, candle mould, bucket, pan, collection pan
+-- bread roll, cookies, baked potato, bread, sausage on bread, banana bread, blackberry muffin, apple pie, cherry cake, egg salad sandwich, strawberry cake, nutbread, custard pie, elderberry pie, bottle of cider, bottle of wine, bottle of mead, bottle of beer, bottle of banana juice, bottle of fir needle tea, bottle of virgins weed tea, bottle of grape juice, bottle of cabbage juice, bottle of carrot juice, bottle of rum, bottle of blackberry juice, bottle of green tea, bottle of tangerine juice, bottle of strawberry juice, bottle of druids tea, bottle of orange juice, bottle of bear slayer, bottle of berry booze, bottle of stone face, bottle of absinthe, bottle of orange schnapps, bottle of cherry schnapps, bottle of mulled wine, bottle of elven wine, sausage, cheese, veggie hash, mystery meat, trout fillet dish, salmon dish, egg dish, meat dish, sausages dish, egg salad, steak dish, rabbit dish, lamb dish, venison dish, chicken dish, mushroom soup, onion soup, cabbage stew, mulligan, potato soup, fish soup, beer soup, goulash, chicken soup, trout, salmon, horse mackerel, rose fish, pork, brown egg, white egg, raw leather, fur, bottle of milk, lamp oil, deer meat, rabbit meat, chicken meat, lamb meat, raw steak, entrails, feathers, horn, ham, smoked trout, smoked horse mackerel, smoked rose fish, smoked salmon, grilled steak, smoked chicken, smoked rabbit, grilled lamb, grilled venison, honeycomb, wax, candles
+buyPrimaryItems = 191, 453, 3568, 49, 3631, 3609, 454, 353, 303, 3571, 354, 3723, 1153, 3610, 2499, 2500, 2497, 2501, 785, 3720, 787, 791, 786, 788, 517, 783, 3721, 784, 789, 3722, 3611, 1316, 1315, 1320, 1321, 1322, 1319, 1323, 1318, 3051, 3573, 3715, 3716, 2459, 556, 1154, 2277, 2922, 3570, 557, 555, 559, 554, 1155, 2456, 2923, 2278, 2276, 3569, 3572, 3712, 3711, 1152, 73, 355, 1209, 1210, 307, 1149, 1150, 69, 2586, 2502, 469, 552, 553, 1151, 2934, 2940, 63, 2696, 333, 306, 455, 3914, 3915, 3916, 3606, 3709, 3710, 3713, 3714, 2529, 431, 43
+-- bread roll, cookies, baked potato, bread, sausage on bread, banana bread, blackberry muffin, apple pie, cherry cake, egg salad sandwich, strawberry cake, nutbread, custard pie, elderberry pie, bottle of cider, bottle of wine, bottle of mead, bottle of beer, bottle of banana juice, bottle of fir needle tea, bottle of virgins weed tea, bottle of grape juice, bottle of cabbage juice, bottle of carrot juice, bottle of rum, bottle of blackberry juice, bottle of green tea, bottle of tangerine juice, bottle of strawberry juice, bottle of druids tea, bottle of orange juice, bottle of bear slayer, bottle of berry booze, bottle of stone face, bottle of absinthe, bottle of orange schnapps, bottle of cherry schnapps, bottle of mulled wine, bottle of elven wine, sausage, cheese, veggie hash, mystery meat, trout fillet dish, salmon dish, egg dish, meat dish, sausages dish, egg salad, steak dish, rabbit dish, lamb dish, venison dish, chicken dish, mushroom soup, onion soup, cabbage stew, mulligan, potato soup, fish soup, beer soup, goulash, chicken soup, trout, salmon, horse mackerel, rose fish, pork, brown egg, white egg, raw leather, fur, bottle of milk, lamp oil, deer meat, rabbit meat, chicken meat, lamb meat, raw steak, entrails, feathers, horn, ham, smoked trout, smoked horse mackerel, smoked rose fish, smoked salmon, grilled steak, smoked chicken, smoked rabbit, grilled lamb, grilled venison, honeycomb, wax, candles
+tradeNotEnoughMoneyMsg "Bist du sicher, dass du dir das leisten kannst?", "Are you sure you can afford this?"
+tradeFinishedMsg "Danke sehr!", "Thank you very much."
 tradeFinishedWithoutTradingMsg "Nichts gefunden was dir gefällt?", "Don't you like my wares?"
-tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
+tradeWrongItemMsg "Ich glaub, das werde ich nicht kaufen.", "I guess I do not buy this."
 
 -- Template Version 1.02, 12/02/2010 by Estralis Seborian
--- This NPC is supposed to trade (all goods are sold and bought, percentage indicates ratio of price bought/sold):
-
 -- Name: Alysa Lorthelia
 -- Occupation: Baker
 -- Race: Human
@@ -100,27 +94,34 @@ tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
 -- she thinks she is. She is constantly watching her weight. She thinks the only good thing about her is the size of her boobs.
 -- Alysa wishes more than anything that should could be a fairy of legend because unlike dwarves like her Faries are pretty.
 
-"kauf", "waren", "preis", "handel", "veräußer", "erwerb" -> "Lass uns handeln!", trade
+-- Help
+"Help" -> inform("[Game Help] This NPC is Alysa Lorthelia the baker and housekeeper. Keywords: Hello, trade, cook.")
+"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Alysa Lorthelia die Bäckerin und Haushälterin. Schlüsselwörter: Hallo, Handel, Kochen.")
+
+-- Trade
+"kauf", "waren", "preis", "handel", "veräußer", "veräusser", "erwerb" -> "Lass uns handeln!", trade
 "sell", "buy", "wares", "price", "trade", "purchase" -> "Let's trade!", trade
 
--- Help
-"Help" -> inform("[Game Help] This NPC is Alysa Lorthelia the baker. Keywords: buy, sell, trade.")
-"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Alysa Lorthelia die Bäckerin. Schlüsselwörter: Handel, kaufe, verkaufe.")
-
 -- General speech
-"Hello", "Greet", "Hail", "Good day", "Good morning", "Good Evening" -> "Hello, would you like something to eat? My wares are pretty tasty!", " Nice to meet you, I'm Alysa Lorthelia.", "Ah, you startled me! Hello, my apologies."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Hallo, mögt Ihr etwas essen?Ich finde das Essen welches ich hergestellt habe schmeckt.", "Freut mich euch zu treffen. Ich bin Alysa Lorthelia.", "Ah! Ihr habt mich erschreckt, Hallo, tut mir leid."
-english, "Hiho", "Hallo", "Hey", "Greeb" -> "Hello, would you like something to eat? My wares are pretty tasty!", " Nice to meet you, I'm Alysa Lorthelia.", "Ah, you startled me! Hello, my apologies."
-"Hiho", "Hallo", "Hey", "Greeb" -> "Hallo, mögt Ihr etwas essen?Ich finde das Essen welches ich hergestellt habe schmeckt.", "Freut mich euch zu treffen. Ich bin Alysa Lorthelia.", "Ah! Ihr habt mich erschreckt, Hallo, tut mir leid."
-"Farewell", "Bye", "Fare well", "See you" -> "Will I ever see you again? ", "Thank you so, so much for talking to me.", "Please have a good day. Can you visit again please?"
+"Hello", "Greet", "Hail", "Good day", "Good morning", "Good Evening" -> "Hello, would you like something to eat? My wares are pretty tasty!", "Nice to meet you, I'm Alysa Lorthelia.", "Ah, you startled me! Hello, my apologies."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Hallo, mögt Ihr etwas essen? Ich finde das Essen, welches ich gekocht habe, schmeckt.", "Freut mich Euch zu treffen. Ich bin Alysa Lorthelia.", "Ah! Ihr habt mich erschreckt, Hallo, tut mir leid."
+english, "Hiho", "Hallo", "Hey", "Greeb" -> "Hello, would you like something to eat? My wares are pretty tasty!", "Nice to meet you, I'm Alysa Lorthelia.", "Ah, you startled me! Hello, my apologies."
+"Hiho", "Hallo", "Hey", "Greeb" -> "Hallo, mögt Ihr etwas essen? Ich finde das Essen, welches ich gekocht habe, schmeckt.", "Freut mich Euch zu treffen. Ich bin Alysa Lorthelia.", "Ah, Ihr habt mich erschreckt! Entschuldigt, hallo erstmal."
+"Farewell", "Bye", "Fare well", "See you" -> "Will I ever see you again?", "Thank you so, so much for talking to me.", "Please have a good day. Can you visit again please?"
 "Tschüß", "Tschüss", "Wiedersehen", "Gehab wohl" -> "Werde ich Euch wiedersehen?", "Vielen, vielen, vielen Dank, dass Ihr mit mir gesprochen habt.", "Ich wünsche Euch einen schönen Tag. Bitte kommt mal wieder vorbei."
 english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Will I ever see you again? ", "Thank you so, so much for talking to me.", "Please have a good day. Can you visit again please?"
 "Farewell", "Bye", "Fare well", "See you" -> "Will I ever see you again? ", "Thank you so, so much for talking to me.", "Please have a good day. Can you visit again please?"
 "Ciao", "Adieu", "Au revoir", "Farebba" -> "Werde ich Euch wiedersehen?", "Vielen, vielen, vielen Dank, dass Ihr mit mir gesprochen habt.", "Ich wünsche Euch einen schönen Tag. Bitte kommt mal wieder vorbei."
 "How are you", "How feel", "How do you do" -> "I don't feel great today. My stomach hurts but it's not because of my food! Please don't think my food is bad!", "My head is all dizzy.", "I think I ate too much. I shouldn't eat for another few days."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Ich fühle mich heute nicht gut. Ich habe Magenschmerzen. Aber das liegt nicht an meinem Essen. Bitte denkt nicht, es läge an meinem Essen!", "Mir ist schwindelig.", "Ich habe zuviel gegessen. Ich sollte die nächsten zwei Tage nichts Essen."
-"your name", "who are you", "who art thou" -> "I'm the daughter of the sword crafter Asha Lorthelia.", "I'm the oldest Lorthelia daughter, but no: I can't craft ornate weapons like my mother. Instead I bake.", "I am Alysa Lorthelia, the baker... at least for now."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin die Tochter der Waffenschmiedin Asha Lorthelai.", "Ich bin die älteste Tochter der Lotheila, aber ich kann keine verzierten Waffen herstellen. Daher backe ich.", "Ich bin Alysa Lothelia, die Bäckerin, zumondest zur Zeit noch."
+"your name", "who are you", "who art thou" -> "I'm the daughter of the sword crafter Aysha Lorthelia.", "I'm the oldest Lorthelia daughter, but no: I can't craft ornate weapons like my mother. Instead I bake.", "I am Alysa Lorthelia, the baker... at least for now."
+"Ihr name", "dein name", "wer bist du", "wer seid Ihr", "wie heißt", "wie heisst" -> "Ich bin die Tochter der Waffenschmiedin Aysha Lorthelia.", "Ich bin die älteste Tochter der Lorthelia, aber ich kann keine verzierten Waffen herstellen. Daher backe ich.", "Ich bin Alysa Lorthelia, die Bäckerin, zumndest zur Zeit noch."
+
+-- Mandatory: Catching quest triggers. Modify if the NPC does quests
+english, "quest", "mission" -> "I don't have any tasks for you."
+"quest", "mission" -> "Ich vergebe keine Aufgaben."
+"task", "adventure", "order" -> "I don't have any tasks for you."
+"Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ich vergebe keine Aufgaben."
 
 -- Small talk: The talk here should focus on possible questions. Feel free to add more!
 "profession" -> "I bake all kinds of fresh goods.", "I sell people the food that myself and old John Sights bake.", "I started working as a baker many moons ago."
@@ -135,12 +136,12 @@ english, "Gobaith", "Gobiath" -> "There were fairies somewhere in that world.", 
 -- More small talk; add at least five triggers, e.g. about the profession of the NPC or his enviroment
 "Cook", "Food", "Bake" -> "I didn't think I'd love cooking so much. I was born to become fat. That's why now I never eat anything I make."
 "Kochen", "Essen", "backen" -> "Ich denke nicht, dass Kochen Spaß macht. Ich kam schon fett auf die Welt. Daher esse ich nichts was ich koche."
-"Boob", "Breast", "Tit" -> "Last person who tried that on with me died of syphilis. Not that I had anything to do with it!"
-"Busen", "Brust", "Titten" -> "Ich sehe, dass Ihr meinen Busen anstarrt, aber das stört mich nicht. Ich fühle mich hübsch, wenn Ihr starrt. Aber wagt es nicht meinen Bauch anzustarren."
+"Boob", "Breast" -> "Last person who tried that on with me died of syphilis. Not that I had anything to do with it!"
+"Busen", "Brust" -> "Ich sehe, dass Ihr meinen Busen anstarrt, aber das stört mich nicht. Ich fühle mich hübsch, wenn Ihr starrt. Aber wagt es nicht meinen Bauch anzustarren."
 "Fat", "Weight", "Heavy" -> "I met Ce, the cook there. She's so talented. We're going to have a bake off soon."
 "Fett", "Gewicht", "Schwer" -> "Ich traft Ce, die Köchin hier. sie ist so hübsch und talentiert. Wir machen bald einen Kochwettbewerb."
 "glass mirror", "Ce", english -> "I met Ce, the cook there. She's so talented. We're going to have a bake off soon."
-"Glas Spiegel", "Ce" -> "Ich traf Ce, die Köchin hier. sie ist so hübsch und talentiert. Wir machen bald einen Kochwettbewerb."
+"Glas Spiegel", "Ce" -> "Ich traf Ce, die Köchin hier. Sie ist so hübsch und talentiert. Wir machen bald einen Kochwettbewerb."
 "John Sights", english -> "He's an old man. He's nice and he gave me this job. Though he does look at me a funny way sometimes."
 "John Sights" -> "Er ist ein alter Mann. Er ist nett und gab mir den Job hier. Manchmal starrt er auf meinen Busen."
 "Mother", "Mom", "Aysha" -> "Mum constantly works. I don't think I've ever seen her sleep."
@@ -151,10 +152,10 @@ english, "Gobaith", "Gobiath" -> "There were fairies somewhere in that world.", 
 "Schwester" -> "Ich bin froh, dass ich nicht auf sie aufpassen muss. Diese Nervensäge."
 
 -- Faction stuff. Please remove if you send the template to outsiders!
-"archmage" -> "The Archmage only uses enchanted weapons made by Asha Lorthelia, my mother."
-"Erzmagier" -> "Der Erzmagier nutzt nichts außer den verzauberten Waffen, welche meine Mutter, Asha Lorthelia, hergestellt hat."
-english, "Elvaine", "Morgan" -> "Who? Oh.. right, that guy."
-"Elvaine", "Morgan" -> "Wer? Ach.. richtig, der."
+"archmage" -> "The Archmage only uses enchanted weapons made by Aysha Lorthelia, my mother."
+"Erzmagier" -> "Der Erzmagier nutzt nichts außer den verzauberten Waffen, welche meine Mutter, Aysha Lorthelia, hergestellt hat."
+english, "Elvaine", "Morgan" -> "Who? Oh, right, that guy."
+"Elvaine", "Morgan" -> "Wer? Ach, richtig, der."
 english, "Runewick" -> "I live here. I don't really dwell on it."
 "Runewick" -> "Ich lebe hier. Ich denke nichts anderes über diesen Ort."
 english, "Valerio", "Guilianni", "Don" -> "My mother doesn't care for him, no idea why."
@@ -178,7 +179,7 @@ english, "salkama" -> "My father says that they only care about faction related 
 
 -- Gods - use the triggers of the god the NPC worships or fights
 "god" -> "The gods cursed me with this body. The only god I will serve is one who will make me pretty."
-"Götter" -> " die Götter straften mich mit diesem Körper. Der einzige Gott zu dem ich beten werde, ist der, der mir Schönheit gibt."
+"Götter" -> "Die Götter straften mich mit diesem Körper. Der einzige Gott, zu dem ich beten werde, ist der, der mir Schönheit gibt."
 
 -- Catching typical NPC phrases
 "tell something" -> "I wish I was a fairy."
@@ -187,14 +188,6 @@ english, "salkama" -> "My father says that they only care about faction related 
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Alysa ", "Lorthelia" -> "That's me, Alysa Lorthelia."
 "Alysa", "Lorthelia" -> "Das bin ich, Alysa Lorthelia."
-"Yes" -> "Okay."
-"Ja" -> "In Ordnung."
-"No" -> "Oh no!"
-"Nein" -> "Oh..nein!"
-
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-english, chance(20.0), ".*" -> "That has nothing to do with me. I'm sorry."
-german, chance(20.0), ".*" -> "Das hat nichts mit mir zu tun, entschuldigt."
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
@@ -202,12 +195,12 @@ german, chance(20.0), ".*" -> "Das hat nichts mit mir zu tun, entschuldigt."
 -- Emotes are possible also starting with "#me ....".
 
 cycletext "Dieses Mädchen ist so dünn.", "That girl is so skinny."
-cycletext "Ich habe Hunger. Ich meine, ich habe keinen Hunger.", "Ugh.. I'm hungry. No I'm not! Mind over matter!"
-cycletext "Kommt, esst mein Brot, schmeckt besser als cadomyrische Sandratte!", "Come and eat my bread! It's better than a Cadomyrian sand rat. At least.. I hope so."
-cycletext "Der alte John Sights sagte mir, ich solle Euch sagen, dass ich Alysa Lorthelia bin, die Tochter der Waffenschmiedin Asha Lorthelia.", "Old John Sights asked me to tell everyone that I'm Alysa Lorthelia, daughter of Aysha the armourer!"
+cycletext "Ich habe Hunger. Ich meine, ich habe keinen Hunger. Der Wille besiegt das Fleisch.", "Ugh. I'm hungry. No I'm not! Mind over matter!"
+cycletext "Kommt, esst mein Brot, schmeckt besser als cadomyrische Sandratte!", "Come and eat my bread! It's better than a Cadomyrian sand rat. At least I hope so."
+cycletext "Der alte John Sights sagte mir, ich solle Euch sagen, dass ich Alysa Lorthelia bin, die Tochter der Waffenschmiedin Aysha Lorthelia.", "Old John Sights asked me to tell everyone that I'm Alysa Lorthelia, daughter of Aysha the armourer!"
 cycletext "Ich backe Brot so gut, wie meine Mutter Waffen herstellt.", "I bake bread just as well as my mother crafts weapons!"
 cycletext "Mein Magen schmerzt. Dieses Brot um mich herum. Das ist Folter!", "My stomach hurts. All this bread around me. It's torture!"
 cycletext "Calthors kurze Abhandlung über die Geschichte der Feen ist das beste Buch, das ich jemals gelesen habe.", "The Calthor Digest on the history of fairies is the best book I've ever read!"
-cycletext "Wohin ist Papa schon wieder verschwunden? Er ist ständig weg!", "Dad wandered off again.. but where to? He's always gone!"
+cycletext "Wohin ist Papa schon wieder verschwunden? Er ist ständig weg!", "Dad wandered off again. But where to? He's always gone!"
 cycletext "Ich werde Ce-Ce im Kochwettbewerb schlagen.", "I will destroy Ce-Ce in the next cook-off."
 cycletext "Ich frage mich, ob Mutter sich jemals einen freien Tag gönnt.", "I wonder if mum ever takes a day off."

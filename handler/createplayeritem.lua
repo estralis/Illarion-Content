@@ -12,20 +12,22 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
-require("base.class")
+local class = require("base.class")
+local common = require("base.common")
+local M = {}
 
-module("handler.createplayeritem", package.seeall)
-
-createPlayerItem = base.class.class(function(creplitem, ply, ID, qual, amnt)
+M.createPlayerItem = class(function(creplitem, ply, ID, qual, amnt)
     creplitem.player=ply;
     creplitem.itemId=ID;
     creplitem.quality=qual;
     creplitem.amount=amnt;
 end);
 
-function createPlayerItem:execute()
-    person=self.player
-    person:createItem(self.itemId, self.amount,self.quality,nil);
+function M.createPlayerItem:execute()
+    local person = self.player
+    common.CreateItem(person, self.itemId, self.amount, self.quality, nil)
 end
+
+return M

@@ -71,12 +71,12 @@ itemShoes = 369
 "Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Königin Rosaline Edwards von Cadomyr. Schlüsselwörter: Es lebe die Königin, Cadomyr, Feinde, Sir Reginald, Gruft, Grab.")
 
 -- quest
-queststatus(642) = 1, item(144, all) > 0, english, "." -> inform("[Quest 'Find Queen Rosaline Edwards' end]"), deleteItem(144, 1), queststatus(642) = 2, rankpoints + 5, "Oh, flowers! However, do not think you can win my favour, but I will accept the attempt this time."
-queststatus(642) = 1, item(144, all) > 0, "." -> inform("[Quest 'Finde Königin Rosaline Edwards' Ende]"), deleteItem(144, 1), queststatus(642) = 2, rankpoints + 5, "Oh, flowers! Aber glaubt nicht, dass ihr damit meine Gunst gewinnen könnt, auch wenn euren Versuch dieses Mal durchgehen lassen werde."
+queststatus(642) = 1, item(144, all) > 0, english, ".*", town = Cadomyr -> inform("[Quest 'Find Queen Rosaline Edwards' end]"), deleteItem(144, 1), queststatus(642) = 2, rankpoints + 5, "Oh, flowers! However, do not think you can win my favour, but I will accept the attempt this time."
+queststatus(642) = 1, item(144, all) > 0, ".*", town = Cadomyr -> inform("[Quest 'Finde Königin Rosaline Edwards' Ende]"), deleteItem(144, 1), queststatus(642) = 2, rankpoints + 5, "Oh, Blumen! Aber glaubt nicht, dass ihr damit meine Gunst gewinnen könnt, auch wenn ich euren Versuch dieses Mal durchgehen lassen werde."
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Speak, but choose your words wisely for my time is short.", "Ah, a servant of mine, good, what news do you bear from my realm?", "You dare to disturb me? Fine, fortunately for you I needed a distraction."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Sagt, was wollt ihr von eurer Königin? Sprecht schnell oder ich werde euch Beine machen.", "Ah, einer meiner Untertanen. Gut, was für Kunde bringt ihr aus meinem Reich?", "Ihr wagt es, mich zu stören. Fein, ich kann etwas Abwechslung gut vertragen."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Sagt, was wollt ihr von eurer Königin? Sprecht schnell oder ich werde euch Beine machen.", "Ah, einer meiner Untertanen. Gut, was für Kunde bringt ihr aus meinem Reich?", "Ihr wagt es, mich zu stören. Fein, ich kann etwas Abwechslung gut vertragen."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Speak, but choose your words wisely for my time is short.", "Ah, a servant of mine, good, what news do you bear from my realm?", "You dare to disturb me? Fine, fortunately for you I needed a distraction."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Sagt, was wollt ihr von eurer Königin? Sprecht schnell oder ich werde euch Beine machen.", "Ah, einer meiner Untertanen. Gut, was für Kunde bringt ihr aus meinem Reich?", "Ihr wagt es, mich zu stören. Fein, ich kann etwas Abwechslung gut vertragen."
 "Farewell", "Bye", "Fare well", "See you" -> "#me waves: 'Begone.'", "Go with Malachin's blessings and do deeds to honour Cadomyr's name.", "Very well, be off and serve me as I do Cadomyr.", "Fare thee well, and be sure to speak fondly of Cadomyr on your travels."
@@ -86,7 +86,9 @@ english, "Ciao", "Adieu", "Au revoir" -> "#me waves: 'Begone.'", "Go with Malach
 "How are you", "How feel", "How do you do" -> "No queen could be better, I assure you, with the service of the noblest and truest of men at her side.", "Glorious, truly Zhambra has blessed me with the most honourable servants.", "Truth be told my skin is yearning for the soothing comfort of donkey milk, but that is neither here nor there I suppose."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Ich bin die unbestrittene Monarchin eines glorreichen Reiches der edelsten Leute. Wie geht es mir wohl?", "Mir würde es weit besser gehen, wenn ihr niederknien würdet. Jetzt!", "Mir käme ein Bad in Eselsmilch gerade recht. Dieser ganze Sand schadet meiner feinen Haut."
 "your name", "who are you", "who art thou" -> "Who am I? You dare address me in such a manner? Be assured if my mood were not so temperate you'd be bellowing my name from the dungeons with your cries for mercy!", "Poor child you must have been born from under a rock if you don't know my name. Do not disgrace me with your daft shortcomings, ask any of my humble servants who I am.", "You must be some distant traveller to have the nerve to ask the Queen of Cadomyr her name. Be gone from me I haven't the time for you."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Wer ich bin? Ihr habt die Kühnheit zuzugeben, dass ihr nicht wisst, wer ich bin? Aus meinen Augen!", "Wenn ihr wirklich nicht wisst, wer ich bin, dann fragt einen meiner Diener.", "Schämt ihr euch nicht, eine Königin albarischen Geblüts nach ihrem Namen zu fragen?"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Wer ich bin? Ihr habt die Kühnheit zuzugeben, dass ihr nicht wisst, wer ich bin? Aus meinen Augen!", "Wenn ihr wirklich nicht wisst, wer ich bin, dann fragt einen meiner Diener.", "Schämt ihr euch nicht, eine Königin albarischen Geblüts nach ihrem Namen zu fragen?"
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin keine Marktfrau."
 
 -- Quest 107: A message from Groktan Flintsplit
 queststatus(107) = 12, "message", "news", "letter", "scroll", "parchment" -> inform("[Quest status] The Reminder V: You deliver the message from Groktan Flintsplit to Queen Rosaline Edwards."), queststatus(107) = 13, "#me shouts in fury and crumples the letter in her firm grasp, 'Tell that filthy bastard he'll get my throne over my dead body!"
@@ -101,30 +103,30 @@ english, "quest", "mission" -> "Ah, a loyal subject. Very well, ask one of my se
 "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ah, ein loyaler Diener, wie fein. Bitte fragt einen meiner Diener, was ihr heute für mich tun könnt. Ich kann mich nicht mit Details aufhalten, ich muss ein ganzes Königreich regieren, nicht nur euch."
 
 -- Reward for quest 622
-queststatus(642) > 0, queststatus(643) = 0, english, chance(10.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(1), "#me nods and hands you an item silently."
-queststatus(642) > 0, queststatus(643) = 0, german, chance(10.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(1), "#me nickt und reicht dir leise einen Gegenstand."
-queststatus(642) > 0, queststatus(643) = 0, english, chance(11.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(2), "#me nods and hands you an item silently."
-queststatus(642) > 0, queststatus(643) = 0, german, chance(11.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(2), "#me nickt und reicht dir leise einen Gegenstand."
-queststatus(642) > 0, queststatus(643) = 0, english, chance(13.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(3), "#me nods and hands you an item silently."
-queststatus(642) > 0, queststatus(643) = 0, german, chance(13.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(3), "#me nickt und reicht dir leise einen Gegenstand."
-queststatus(642) > 0, queststatus(643) = 0, english, chance(14.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(4), "#me nods and hands you an item silently."
-queststatus(642) > 0, queststatus(643) = 0, german, chance(14.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(4), "#me nickt und reicht dir leise einen Gegenstand."
-queststatus(642) > 0, queststatus(643) = 0, english, chance(17.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(5), "#me nods and hands you an item silently."
-queststatus(642) > 0, queststatus(643) = 0, german, chance(17.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(5), "#me nickt und reicht dir leise einen Gegenstand."
-queststatus(642) > 0, queststatus(643) = 0, english, chance(20.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(6), "#me nods and hands you an item silently."
-queststatus(642) > 0, queststatus(643) = 0, german, chance(20.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(6), "#me nickt und reicht dir leise einen Gegenstand."
-queststatus(642) > 0, queststatus(643) = 0, english, chance(25.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(7), "#me nods and hands you an item silently."
-queststatus(642) > 0, queststatus(643) = 0, german, chance(25.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(7), "#me nickt und reicht dir leise einen Gegenstand."
-queststatus(642) > 0, queststatus(643) = 0, english, chance(34.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(8), "#me nods and hands you an item silently."
-queststatus(642) > 0, queststatus(643) = 0, german, chance(34.0), "Mordak", "Kharud" -> queststatus(643) = 1, treasure(8), "#me nickt und reicht dir leise einen Gegenstand."
-queststatus(642) > 0, queststatus(643) = 0, english, chance(51.0), "Mordak", "Kharud" -> item(198, 1, 999, "gemLevel" = "1"), queststatus(643) = 1, "#me nods and hands you an item silently."
-queststatus(642) > 0, queststatus(643) = 0, german, chance(51.0), "Mordak", "Kharud" -> item(198, 1, 999, "gemLevel" = "1"), queststatus(643) = 1, "#me nickt und reicht dir leise einen Gegenstand."
-queststatus(642) > 0, queststatus(643) = 0, english, chance(100.0), "Mordak", "Kharud" -> item(197, 1, 999, "gemLevel" = "1"), queststatus(643) = 1, "#me nods and hands you an item silently."
-queststatus(642) > 0, queststatus(643) = 0, german, chance(100.0), "Mordak", "Kharud" -> item(197, 1, 999, "gemLevel" = "1"), queststatus(643) = 1, "#me nickt und reicht dir leise einen Gegenstand."
+queststatus(642) > 0, queststatus(643) = 0, english, chance(10.0), "Kharud" -> queststatus(643) = 1, treasure(1), "#me nods and hands you an item silently."
+queststatus(642) > 0, queststatus(643) = 0, german, chance(10.0), "Kharud" -> queststatus(643) = 1, treasure(1), "#me nickt und reicht dir leise einen Gegenstand."
+queststatus(642) > 0, queststatus(643) = 0, english, chance(11.0), "Kharud" -> queststatus(643) = 1, treasure(2), "#me nods and hands you an item silently."
+queststatus(642) > 0, queststatus(643) = 0, german, chance(11.0), "Kharud" -> queststatus(643) = 1, treasure(2), "#me nickt und reicht dir leise einen Gegenstand."
+queststatus(642) > 0, queststatus(643) = 0, english, chance(13.0), "Kharud" -> queststatus(643) = 1, treasure(3), "#me nods and hands you an item silently."
+queststatus(642) > 0, queststatus(643) = 0, german, chance(13.0), "Kharud" -> queststatus(643) = 1, treasure(3), "#me nickt und reicht dir leise einen Gegenstand."
+queststatus(642) > 0, queststatus(643) = 0, english, chance(14.0), "Kharud" -> queststatus(643) = 1, treasure(4), "#me nods and hands you an item silently."
+queststatus(642) > 0, queststatus(643) = 0, german, chance(14.0), "Kharud" -> queststatus(643) = 1, treasure(4), "#me nickt und reicht dir leise einen Gegenstand."
+queststatus(642) > 0, queststatus(643) = 0, english, chance(17.0), "Kharud" -> queststatus(643) = 1, treasure(5), "#me nods and hands you an item silently."
+queststatus(642) > 0, queststatus(643) = 0, german, chance(17.0), "Kharud" -> queststatus(643) = 1, treasure(5), "#me nickt und reicht dir leise einen Gegenstand."
+queststatus(642) > 0, queststatus(643) = 0, english, chance(20.0), "Kharud" -> queststatus(643) = 1, treasure(6), "#me nods and hands you an item silently."
+queststatus(642) > 0, queststatus(643) = 0, german, chance(20.0), "Kharud" -> queststatus(643) = 1, treasure(6), "#me nickt und reicht dir leise einen Gegenstand."
+queststatus(642) > 0, queststatus(643) = 0, english, chance(25.0), "Kharud" -> queststatus(643) = 1, treasure(7), "#me nods and hands you an item silently."
+queststatus(642) > 0, queststatus(643) = 0, german, chance(25.0), "Kharud" -> queststatus(643) = 1, treasure(7), "#me nickt und reicht dir leise einen Gegenstand."
+queststatus(642) > 0, queststatus(643) = 0, english, chance(34.0), "Kharud" -> queststatus(643) = 1, treasure(8), "#me nods and hands you an item silently."
+queststatus(642) > 0, queststatus(643) = 0, german, chance(34.0), "Kharud" -> queststatus(643) = 1, treasure(8), "#me nickt und reicht dir leise einen Gegenstand."
+queststatus(642) > 0, queststatus(643) = 0, english, chance(51.0), "Kharud" -> item(3525, 1, 999, "gemLevel" = "1"), queststatus(643) = 1, "#me nods and hands you an item silently."
+queststatus(642) > 0, queststatus(643) = 0, german, chance(51.0), "Kharud" -> item(3525, 1, 999, "gemLevel" = "1"), queststatus(643) = 1, "#me nickt und reicht dir leise einen Gegenstand."
+queststatus(642) > 0, queststatus(643) = 0, english, chance(100.0), "Kharud" -> item(3519, 1, 999, "gemLevel" = "1"), queststatus(643) = 1, "#me nods and hands you an item silently."
+queststatus(642) > 0, queststatus(643) = 0, german, chance(100.0), "Kharud" -> item(3519, 1, 999, "gemLevel" = "1"), queststatus(643) = 1, "#me nickt und reicht dir leise einen Gegenstand."
 
 -- -- Quest by Zassaria Riverbank (Ask for me II)
-queststatus(701) = 13, item(225, all, "descriptionEn" = "This crown belongs to Rosaline Edwards.") > 0, english, "Zassaria", "lizard", "crown", "missing", "belong", "porperty", "riverbank" -> deleteItem(225, 1, "descriptionEn" = "This crown belongs to Rosaline Edwards."), queststatus(701) = 14, "What? Oh, thank you for returning my extra crown. I don't know how it got all the way to Runewick. You may leave now."
-queststatus(701) = 13, item(225, all, "descriptionDe" = "Diese Krone gehört Rosaline Edwards.") > 0, "Zassaria", "Echsenmensch", "Krone", "verloren", "gehören", "Eigentum", "riverbank" -> deleteItem(225, 1, "descriptionDe" = "Diese Krone gehört Rosaline Edwards."), queststatus(701) = 14, "Was? Oh, danke das Ihr meine Ersatzkrone zurückbringt. Ich weiß nicht wie sie bis nach Runewick gekommen ist. Ihr könnt jetzt gehen."
+queststatus(701) = 13, item(225, all, "descriptionEn" = "This crown belongs to Rosaline Edwards.") > 0, english, "Zassaria", "lizard", "crown", "missing", "belong", "porperty", "riverbank", "message" -> deleteItem(225, 1, "descriptionEn" = "This crown belongs to Rosaline Edwards."), queststatus(701) = 14, "What? Oh, thank you for returning my extra crown. I don't know how it got all the way to Runewick. You may leave now."
+queststatus(701) = 13, item(225, all, "descriptionDe" = "Diese Krone gehört Rosaline Edwards.") > 0, "Zassaria", "Echsenmensch", "Krone", "verloren", "gehören", "Eigentum", "riverbank", "Nachricht" -> deleteItem(225, 1, "descriptionDe" = "Diese Krone gehört Rosaline Edwards."), queststatus(701) = 14, "Was? Oh, danke das Ihr meine Ersatzkrone zurückbringt. Ich weiß nicht wie sie bis nach Runewick gekommen ist. Ihr könnt jetzt gehen."
 
 -- Small talk: The talk here should focus on possible questions. Feel free to add more!
 "profession" -> "Profession? Foolish traveller, I am the Queen, my profession is to rule this kingdom!"
@@ -158,11 +160,10 @@ english, "Hassan" -> "Ah, yes, I think Hassan is the name of my royal fan waver.
 english, "Reginald" -> "My father, Sir Reginald Edwards, was the King of Cadomyr. Now, his only child inherits the throne, me."
 "King", "father" -> "My father, Sir Reginald Edwards, was the King of Cadomyr. Now, his only child inherits the throne, me."
 "Cape" -> "Cape Farewell? Tis true that even the lizardmen obey my orders. If you are searching their kind, Cape Farewell is certainly the best place to start."
-english, "Zerarisa" -> "Indeed, even the lizardmen obey my orders. Some of them usually dwell at Cape Farewell."
 "lizard" -> "The lizardmen have proven loyal subjects. Most of them call Cape Farewell home."
 "orc" -> "You might presume that a queen of Albarian origin would dislike orcs, but he who swears loyalty to me and follows the old customs is my subject, even if green."
 english, "Ioannes", "Faber" -> "Ah, you are speaking about my royal treasurer. He serves me right and just. I trust him to manage the treasury of Cadomyr."
-english, "Anthar", "Vilicon" -> "My loyal chancellor; you are surprised he's an elf? He's a perfect example of loyality to the throne!"
+english, "Anthar", "Vilicon" -> "My loyal chancellor; you are surprised he's an elf? He's a perfect example of loyalty to the throne!"
 
 -- More small talk; add at least five triggers - german
 "Hexe", "Schlampe" -> "Was? Jemand behauptet, ich sei eine Hexe? Auf den Scheiterhaufen mit ihm!"
@@ -187,7 +188,6 @@ english, "Anthar", "Vilicon" -> "My loyal chancellor; you are surprised he's an 
 "Königin" -> "Das bin ich: Königin Rosaline Edwards von Cadomyr. Jetzt verhaltet euch entsprechend.", "Normalerweise sprechen mich meine Untertanen so an: 'Eure Hoheit' oder 'Allmächtige Königin'.", "Ich trage den Namen Edwards mit Stolz. Genauso solltet ihr ihn auch aussprechen."
 "König", "Vater", "Reginald" -> "Mein Vater, Sir Reginald Edwards, war der König von Cadomyr. Und nun hat sein einziges Kind den Thron inne. Ich verstehe nicht, warum einige Leute diesen alten Brauch nicht aktzeptieren."
 "Kap", "Abschied" -> "Fürwahr, sogar die Echsenwesen gehorchen meinen Befehlen. Einige von ihnen leben am Kap des Abschiedes."
-"Zerarisa" -> "Fürwahr, sogar die Echsenwesen gehorchen meinen Befehlen. Einige von ihnen leben am Kap des Abschiedes."
 "Echse" -> "Fürwahr, sogar die Echsenwesen gehorchen meinen Befehlen. Einige von ihnen leben am Kap des Abschiedes."
 "Ork" -> "Ihr denkt vielleicht, eine Königin aus albarischem Geschlecht verabscheut Orks. Aber wer mir die Treue schwört und die alten Sitten achtet, der ist mein Untertan, sei er auch grün."
 "Ioannes", "Faber" -> "Ah, ihr redet von meinem königlichen Kämmerer. Er dient mir aufrichtig und treu. Ich vertraue ihm bei der Verwaltung der königlichen Reichtümer."
@@ -273,12 +273,6 @@ english, "STFU" -> "I heard that, scum!"
 "tell something" -> "I will tell you something, my realm is named Cadomyr and I will do anything to make it prosper."
 "erzähl was", "erzähl etwas" -> "Lasst euch das gesagt sein; mein Reich nennt sich Cadomyr und ich werde alles in meiner Macht liegende tun, um es gedeihen zu lassen."
 
--- Last catch: Think about keywords the player might say and that are not caught until here
-"Yes" -> "Good.", "Wonderful.", "Right."
-"Ja" -> "Gut.", "Wunderbar.", "Recht so."
-"No" -> "You dare to disagree with me?", "'No'? That word is unfamiliar to me.", "You must mean, 'Yes, my Queen!'"
-"Nein" -> "Wagt ihr es, zu widersprechen?", "'Nein', dieses Wort ist mir unbekannt.", "Wolltet ihr nicht vielmehr sagen: 'Ja, meine Königin!'"
-
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
 -- Every NPC should contain at least 10 of those messages.
@@ -287,11 +281,12 @@ english, "STFU" -> "I heard that, scum!"
 cycletext "#me kämmt sich die Haare und flucht vor sich hin.", "#me combs her hair, cursing under her breath about sand."
 cycletext "Auf die Knie! Sofort!", "Kneel before the Gods and honour your Queen!"
 cycletext "Vernünftige Diener zu finden wird auch immer schwieriger.", "Finding proper servants becomes harder and harder..."
-cycletext "Wo ist Hassan schon wieder! Schickt nach meinem Fächelwedler, mir ist heiß!", "Where is Hassan again? Send word to my fan waver, it is hot!"
+cycletext "Wo ist Hassan schon wieder! Schickt nach meinem Fächerwedler, mir ist heiß!", "Where is Hassan again? Send word to my fan waver, it is hot!"
 cycletext "#me starrt auf ihre in fein gefertigte Sandalen gekleideten Füße und murmelt: 'Blau könnte meinen Zehennägeln auch mal gut stehen.'", "#me stares at her feet, clad in fine sandals, murmuring, 'I should consider painting my toenails blue.'"
 cycletext "Diplomatie, Urteile, regieren, Krieg führen - eine Königin hat es nicht leicht. Alles für Cadomyr!", "Diplomacy, sentencing, ruling, warfare - a queen has a hard day. All for Cadomyr!"
 cycletext "Gehorcht!", "Obey!"
 cycletext "Bringt mir Eselsmilch und bereitet mein Bad vor.", "Bring forth the donkey milk and prepare my bath."
 cycletext "Befehle, Befehle, Befehle. Warum muss ich immer jedem sagen, was er zu tun hat? Denkt denn hier niemand außer mir?", "Orders, orders, orders. Why do I have to tell everyone what do? Can't they read my mind yet?"
 cycletext "Cadomyr wurde nicht auf Sand gebaut; Cadomyr wurde auf Traditionen gebaut, die älter sind als so manches Sandkorn.", "Cadomyr was not founded on sand; it was founded on traditions, even older than most sand grains."
-cycletext "Wer hat da ein Licht auf Fenstersims entzündet? Was geht nur wieder in diesem Palast vor sich.", "Tell Hassan to come and feed me some grapes!"
+cycletext "Wer hat da ein Licht auf dem Fenstersims entzündet? Was geht nur wieder in diesem Palast vor sich.", "This candle in the window? Who lit that?"
+cycletext "Benachrichtigt Hassan, dass er mir Trauben bringe!", "Tell Hassan to come and feed me some grapes!"

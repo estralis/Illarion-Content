@@ -16,20 +16,21 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- INSERT INTO "quests" ("qst_id", "qst_script") VALUES (79, 'quest.myrthe_mildthorn_79_runewick');
      
-require("base.common")
-module("quest.myrthe_mildthorn_79_runewick", package.seeall)
+local common = require("base.common")
+local monsterQuests = require("monster.base.quests")
+local M = {}
      
-GERMAN = Player.german
-ENGLISH = Player.english
+local GERMAN = Player.german
+local ENGLISH = Player.english
      
 -- Insert the quest title here, in both languages
-Title = {}
+local Title = {}
 Title[GERMAN] = "Eine Höhle im Wald"
 Title[ENGLISH] = "A Cave in the Woods"
      
 -- Insert an extensive description of each status here, in both languages
 -- Make sure that the player knows exactly where to go and what to do
-Description = {}
+local Description = {}
 Description[GERMAN] = {}
 Description[ENGLISH] = {}
 Description[GERMAN][1] = "Gehe zur Höhle im Wald und töte in ihrer Nähe 10 Wölfe. Kehre anchließend zu Myrthe Mildthorn zurück."
@@ -77,57 +78,89 @@ Description[ENGLISH][21] = "You have fulfilled all the tasks for Myrthe Mildthor
 
 
 -- Insert the position of the quest start here (probably the position of an NPC or item)
-Start = {785, 748, 0}
+local Start = {785, 748, 0}
 
  
 -- For each status insert a list of positions where the quest will continue, i.e. a new status can be reached there
-QuestTarget = {}
-QuestTarget[1] = {position(784, 772, 0), position (782, 711, 0)} -- Cave
-QuestTarget[2] = {position(784, 772, 0), position (782, 711, 0)} -- Cave
-QuestTarget[3] = {position(784, 772, 0), position (782, 711, 0)} -- Cave
-QuestTarget[4] = {position(784, 772, 0), position (782, 711, 0)} -- Cave
-QuestTarget[5] = {position(784, 772, 0), position (782, 711, 0)} -- Cave
-QuestTarget[6] = {position(784, 772, 0), position (782, 711, 0)} -- Cave 
-QuestTarget[7] = {position(784, 772, 0), position (782, 711, 0)} -- Cave
-QuestTarget[8] = {position(784, 772, 0), position (782, 711, 0)} -- Cave
-QuestTarget[9] = {position(784, 772, 0), position (782, 711, 0)} -- Cave
-QuestTarget[10] = {position(784, 772, 0), position (782, 711, 0)} -- Cave
+local QuestTarget = {}
+QuestTarget[1] = {position(784, 772, 0), position (792, 716, 0)} -- Cave
+QuestTarget[2] = {position(784, 772, 0), position (792, 716, 0)} -- Cave
+QuestTarget[3] = {position(784, 772, 0), position (792, 716, 0)} -- Cave
+QuestTarget[4] = {position(784, 772, 0), position (792, 716, 0)} -- Cave
+QuestTarget[5] = {position(784, 772, 0), position (792, 716, 0)} -- Cave
+QuestTarget[6] = {position(784, 772, 0), position (792, 716, 0)} -- Cave 
+QuestTarget[7] = {position(784, 772, 0), position (792, 716, 0)} -- Cave
+QuestTarget[8] = {position(784, 772, 0), position (792, 716, 0)} -- Cave
+QuestTarget[9] = {position(784, 772, 0), position (792, 716, 0)} -- Cave
+QuestTarget[10] = {position(784, 772, 0), position (792, 716, 0)} -- Cave
 QuestTarget[11] = {position(784, 772, 0)}
 QuestTarget[12] = {position(784, 772, 0)}
-QuestTarget[13] = {position(784, 772, 0), position (753, 713, 0)} -- Cave
-QuestTarget[14] = {position(784, 772, 0), position (753, 713, 0)} -- Cave
-QuestTarget[15] = {position(784, 772, 0), position (753, 713, 0)} -- Cave
-QuestTarget[16] = {position(784, 772, 0), position (753, 713, 0)} -- Cave
-QuestTarget[17] = {position(784, 772, 0), position (753, 713, 0)} -- Cave
+QuestTarget[13] = {position(784, 772, 0), position (745, 710, 0)} -- Cave
+QuestTarget[14] = {position(784, 772, 0), position (745, 710, 0)} -- Cave
+QuestTarget[15] = {position(784, 772, 0), position (745, 710, 0)} -- Cave
+QuestTarget[16] = {position(784, 772, 0), position (745, 710, 0)} -- Cave
+QuestTarget[17] = {position(784, 772, 0), position (745, 710, 0)} -- Cave
 QuestTarget[18] = {position(784, 772, 0)}
 QuestTarget[19] = {position(784, 772, 0)}
 QuestTarget[20] = {position(785, 748, 0)}
 QuestTarget[21] = {position(785, 748, 0)}
 
-
 -- Insert the quest status which is reached at the end of the quest
-FINAL_QUEST_STATUS = 22
+local FINAL_QUEST_STATUS = 22
+
+-- Register the monster kill parts of the quest.
+monsterQuests.addQuest{
+    questId = 79,
+    locations = {
+    {position = position(774, 711, 0), radius = 40},
+    {position = position(768, 710, 1), radius = 40}
+    },
+    queststatus = {from = 1, to = 11},
+    questTitle = {german = "Eine Höhle im Wald I", english = "A cave in the Woods I"},
+    monsterName = {german = "Wölfe", english = "wolves"},
+    npcName = "Myrthe Mildthorn",
+    raceIds = {39} -- all wolves
+}
+monsterQuests.addQuest{
+    questId = 79,
+    location = {position = position(774, 711, 0), radius = 40},
+    queststatus = {from = 13, to = 18},
+    questTitle = {german = "Eine Höhle im Wald II", english = "A cave in the Woods II"},
+    monsterName = {german = "Hunde", english = "dogs"},
+    npcName = "Myrthe Mildthorn",
+    raceIds = {58} -- all dogs
+}
+monsterQuests.addQuest{
+    questId = 79,
+    location = {position = position(774, 711, 0), radius = 40},
+    queststatus = {from = 20, to = 21},
+    questTitle = {german = "Eine Höhle im Wald III", english = "A cave in the Woods III"},
+    monsterName = {german = "die Spinne", english = "the spider"},
+    npcName = "Myrthe Mildthorn",
+    raceIds = {19} -- all spiders
+}
      
-     
-function QuestTitle(user)
-    return base.common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
+function M.QuestTitle(user)
+    return common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
 end
      
-function QuestDescription(user, status)
+function M.QuestDescription(user, status)
     local german = Description[GERMAN][status] or ""
     local english = Description[ENGLISH][status] or ""
      
-    return base.common.GetNLS(user, german, english)
+    return common.GetNLS(user, german, english)
 end
 
-function QuestStart()
+function M.QuestStart()
     return Start
 end
      
-function QuestTargets(user, status)
+function M.QuestTargets(user, status)
     return QuestTarget[status]
 end
      
-function QuestFinalStatus()
+function M.QuestFinalStatus()
     return FINAL_QUEST_STATUS
 end
+
+return M

@@ -12,25 +12,19 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- UPDATE common SET com_script='item.id_311_glassblowpipe' WHERE com_itemid=311;
+-- UPDATE items SET itm_script='item.id_311_glassblowpipe' WHERE itm_id=311;
 
-require("content.craft.glassblowing")
-require("base.licence")
-require("base.lookat")
+local glassblowing = require("craft.final.glassblowing")
+local jewel = require("item.general.jewel")
 
-module("item.id_311_glassblowpipe", package.seeall)
+local M = {}
 
-function UseItem(User, SourceItem, ltstate)
-	if base.licence.licence(User) then --checks if user is citizen or has a licence 
-		return -- avoids crafting if user is neither citizen nor has a licence
-	end
+M.LookAtItem = jewel.LookAtItem
 
-    content.craft.glassblowing.glassblowing:showDialog(User, SourceItem)
+function M.UseItem(User, SourceItem, ltstate)
+    glassblowing.glassblowing:showDialog(User, SourceItem)
 end
 
-function LookAtItem(User, Item)
-    world:itemInform(User, Item, base.lookat.GetItemDescription(User, Item, base.lookat.JEWELLERY))
-end
-
+return M

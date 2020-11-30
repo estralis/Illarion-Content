@@ -12,32 +12,304 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
+local common = require("base.common")
+local quests = require("monster.base.quests")
+local hooks = require("monster.base.hooks")
+local treasure = require("item.base.treasure")
+local arena = require("base.arena")
+local mugWithLid = require("item.id_310_mug_with_lid")
+local levels = require("monster.base.levels")
 
+local M = {}
 
-module("monster.base.base", package.seeall)
+local killers = {}
 
--- Checks if a monster archer is in range to its target.
--- Return true if the montser is an archer AND in range. Otherwise false.
-function isMonsterArcherInRange(archer,target)
-
-	local lItem = archer:getItemAt(Character.left_tool)
-	local rItem = archer:getItemAt(Character.right_tool)
-	local rAttFound, rAttWeapon = world:getWeaponStruct(rItem.id)
-    local lAttFound, lAttWeapon = world:getWeaponStruct(lItem.id)
-	
-	local range = false
-	if lAttFound and lAttWeapon.WeaponType == 7 then
-		range = lAttWeapon.Range
-	elseif rAttFound and rAttWeapon.WeaponType == 7 then
-		range = rAttWeapon.Range
-	end
-	
-	if range then
-		return (archer:distanceMetric(target) <= range)
-	else
-		return false
-	end
-
+local function _isNumber(value)
+    return type(value) == "number"
 end
+
+local function _isTable(value)
+    return type(value) == "table"
+end
+
+local function _isRange(value)
+    if not _isTable(value) then
+        return false
+    end
+
+    if _isNumber(value.min) and _isNumber(value.max) then
+        return true
+    elseif _isNumber(value[1]) and _isNumber(value[2]) then
+        return true
+    else
+        return false
+    end
+end
+
+local function _getValueFromRange(value)
+    if not _isRange(value) then
+        error("This function requires a range.")
+    end
+
+    local min = value.min or value[1]
+    local max = value.max or value[2]
+
+    if min > max then
+        error("The minimal value of the range is larger then the maximal value.")
+    end
+
+    return math.random() * (max - min) + min
+end
+
+local function performRandomTalk(monster, msgs)
+    local langSkill = monster:getSkill(Character.commonLanguage)
+    if langSkill < 100 then
+        monster:increaseSkill(Character.commonLanguage, 100 - langSkill)
+    end
+
+    local germanMessage, englishMessage = msgs:getRandomMessage() --choses a random message
+    common.TalkNLS(monster, Character.say, germanMessage, englishMessage ) --does the talking in both languages
+end
+
+local function performRegeneration(monster)
+    if (math.random() < 0.3) and (monster:increaseAttrib("hitpoints", 0) < 10000) then
+        local con = monster:increaseAttrib("constitution", 0)
+        local healAmount = 2 * con
+        monster:increaseAttrib("hitpoints", healAmount)
+    end
+end
+
+local function reportAttack(monster, enemy)
+    killers[monster.id] = enemy
+end
+
+local function cleanupMonster(monster)
+    killers[monster.id] = nil
+    hooks.cleanHooks(monster)
+end
+
+local function reportMonsterDeath(monster)
+    local killer = killers[monster.id]
+    if killer ~= nil and (not isValidChar(killer) or not killer:isInRange(monster, 12)) then
+        killer = nil
+    end
+
+    if killer ~= nil and not arena.isArenaMonster(monster) then
+        quests.checkQuest(killer, monster)
+    end
+    hooks.executeOnDeath(monster, killer)
+end
+
+local function copyMergeTables(table1, table2)
+    local dataCopy = {}
+    for key, value in pairs(table1) do
+        dataCopy[key] = value
+    end
+    for key, value in pairs(table2) do
+        dataCopy[key] = value
+    end
+    return dataCopy
+end
+
+local function dropLootItem(monster, lootItemData)
+    local amount = math.random(lootItemData.minAmount, lootItemData.maxAmount)
+    local quality = math.random(lootItemData.minQuality, lootItemData.maxQuality)
+    local durability = math.random(lootItemData.minDurability, lootItemData.maxDurability)
+
+    local data = lootItemData.data
+    if lootItemData.itemId == 505 then
+        -- It's a treasure map! Populate it with a valid location.
+        local mapData = treasure.createMapData()
+        if _isTable(mapData) then
+            data = copyMergeTables(data, mapData)
+        end
+    
+    elseif lootItemData.itemId == 310 then -- mug with lid; give it a proper collector's mug id
+        data = {mugId = mugWithLid.getRandomMugId()}
+    end
+
+    local createdItem = world:createItemFromId(lootItemData.itemId, amount, monster.pos, true, quality * 100 + durability, data)
+    createdItem.wear = 4
+    world:changeItem(createdItem)
+end
+
+local function dropLootCategory(monster, lootData)
+    local randomTry = math.random()
+    for _, itemInfo in pairs(lootData) do
+        if itemInfo.probability >= randomTry then
+            dropLootItem(monster, itemInfo)
+            return
+        else
+            randomTry = randomTry - itemInfo.probability
+        end
+    end
+end
+
+local function performDrop(monster)
+    if not arena.isArenaMonster(monster) and not hooks.isNoDrop(monster) then
+        local loot = monster:getLoot()
+
+        for _, category in pairs(loot) do
+            dropLootCategory(monster, category)
+        end
+    end
+end
+
+function M.generateCallbacks(msgs)
+    local t = {}
+
+    function t.enemyNear(monster, _)
+        if math.random() < 3e-4 then --once each 5 minutes (3e-4) in average a message is spoken (is called very often)
+            performRandomTalk(monster, msgs)
+        end
+        return false
+    end
+
+    function t.enemyOnSight(monster, _)
+        performRegeneration(monster)
+        if math.random() < 3e-3 then --once each 5 minutes (3e-3) in average a message is spoken
+            performRandomTalk(monster, msgs)
+        end
+        return false
+    end
+
+    t.onAttacked = reportAttack
+    t.onCasted = reportAttack
+
+    function t.onDeath(monster)
+        performDrop(monster)
+        reportMonsterDeath(monster)
+        cleanupMonster(monster)
+    end
+
+    return t
+end
+
+M.SKIN_COLOR = 0
+M.HAIR_COLOR = 1
+
+function M.white()
+    return {255, 255, 255}
+end
+
+function M.setColor(params)
+    if not _isTable(params) then
+        error("The parameter for the setColor function are not set.")
+    end
+
+    if params.monster == nil or not isValidChar(params.monster) then
+        error("The referenced monster is not set or not valid.")
+    end
+
+    if not _isNumber(params.target) then
+        error("The required target value is not set.")
+    end
+
+    local colorTarget = tonumber(params.target)
+
+    if colorTarget ~= M.SKIN_COLOR and colorTarget ~= M.HAIR_COLOR then
+        error("The required target is not set to a valid target.")
+    end
+
+    local red, green, blue, alpha
+    if params.hue ~= nil and params.saturation ~= nil and params.value ~= nil then
+        -- HSV Mode
+        local hue, saturation, value
+        if _isRange(params.hue) then
+            hue = _getValueFromRange(params.hue)
+        elseif _isNumber(params.hue) then
+            hue = tonumber(params.hue)
+        else
+            error("Hue parameter contains a unexpected value.")
+        end
+
+        if _isRange(params.saturation) then
+            saturation = _getValueFromRange(params.saturation)
+        elseif _isNumber(params.saturation) then
+            saturation = tonumber(params.saturation)
+        else
+            error("Saturation parameter contains a unexpected value.")
+        end
+
+        if _isRange(params.value) then
+            value = _getValueFromRange(params.value)
+        elseif _isNumber(params.value) then
+            value = tonumber(params.value)
+        else
+            error("Value parameter contains a unexpected value.")
+        end
+
+        red, green, blue = common.HSVtoRGB(hue, saturation, value)
+    elseif params.red ~= nil and params.green ~= nil and params.blue ~= nil then
+        if _isRange(params.red) then
+            red = _getValueFromRange(params.red)
+        elseif _isNumber(params.red) then
+            red = tonumber(params.red)
+        else
+            error("Red parameter contains a unexpected value.")
+        end
+
+        if _isRange(params.green) then
+            green = _getValueFromRange(params.green)
+        elseif _isNumber(params.green) then
+            green = tonumber(params.green)
+        else
+            error("Green parameter contains a unexpected value.")
+        end
+
+        if _isRange(params.blue) then
+            blue = _getValueFromRange(params.blue)
+        elseif _isNumber(params.blue) then
+            blue = tonumber(params.blue)
+        else
+            error("Blue parameter contains a unexpected value.")
+        end
+    elseif _isTable(params.color) then
+        if _isNumber(params.color[1]) then
+            red = tonumber(params.color[1])
+        else
+            error("Color parameter is not a valid color.")
+        end
+
+        if _isNumber(params.color[2]) then
+            green = tonumber(params.color[2])
+        else
+            error("Color parameter is not a valid color.")
+        end
+
+        if _isNumber(params.color[3]) then
+            blue = tonumber(params.color[3])
+        else
+            error("Color parameter is not a valid color.")
+        end
+    else
+        error("No colour was set.")
+    end
+
+    if params.alpha ~= nil then
+        if _isRange(params.alpha) then
+            alpha = _getValueFromRange(params.alpha)
+        elseif _isNumber(params.alpha) then
+            alpha = tonumber(params.alpha)
+        else
+            error("Alpha parameter contains a unexpected value.")
+        end
+    else
+        alpha = 255
+    end
+
+    red = math.floor(red + 0.5)
+    green = math.floor(green + 0.5)
+    blue = math.floor(blue + 0.5)
+    alpha = math.floor(alpha + 0.5)
+
+    if colorTarget == M.SKIN_COLOR then
+        params.monster:setSkinColour(colour(red, green, blue, alpha))
+    else
+        params.monster:setHairColour(colour(red, green, blue, alpha))
+    end
+end
+
+return M

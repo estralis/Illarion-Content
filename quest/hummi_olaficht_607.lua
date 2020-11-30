@@ -16,20 +16,20 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- INSERT INTO "quests" ("qst_id", "qst_script") VALUES (607, 'quest.hummi_olaficht_607');
 
-require("base.common")
-module("quest.hummi_olaficht_607", package.seeall)
+local common = require("base.common")
+local M = {}
 
-GERMAN = Player.german
-ENGLISH = Player.english
+local GERMAN = Player.german
+local ENGLISH = Player.english
 
 -- Insert the quest title here, in both languages
-Title = {}
+local Title = {}
 Title[GERMAN] = "Der mächtige Turniergewinner"
 Title[ENGLISH] = "The mighty tournament champion"
 
 -- Insert an extensive description of each status here, in both languages
 -- Make sure that the player knows exactly where to go and what to do
-Description = {}
+local Description = {}
 Description[GERMAN] = {}
 Description[ENGLISH] = {}
 Description[GERMAN][1] = "Finde Tronuk und frage ihn nach 'Geschichte' um den Namen des Gewinners zu erfahren. Hinweis: Er kann in der Nähe von Cadomyr gefunden werden."
@@ -45,39 +45,41 @@ Description[ENGLISH][5] = "Hummi does not have any other quests for you, just mo
 
 
 -- Insert the position of the quest start here (probably the position of an NPC or item)
-Start = {681, 318, 0}
+local Start = {681, 311, 0}
 
 
 -- For each status insert a list of positions where the quest will continue, i.e. a new status can be reached there
-QuestTarget = {}
+local QuestTarget = {}
 QuestTarget[1] = {position(164, 621, 0)} -- Tronruk
 QuestTarget[2] = {position(164, 621, 0)} -- Tronruk
-QuestTarget[3] = {position(681, 318, 0)} -- Hummi
-QuestTarget[4] = {position(681, 318, 0)} -- Hummi
+QuestTarget[3] = {position(681, 311, 0)} -- Hummi
+QuestTarget[4] = {position(681, 311, 0)} -- Hummi
 
 -- Insert the quest status which is reached at the end of the quest
-FINAL_QUEST_STATUS = 5
+local FINAL_QUEST_STATUS = 5
 
 
-function QuestTitle(user)
-    return base.common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
+function M.QuestTitle(user)
+    return common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
 end
 
-function QuestDescription(user, status)
+function M.QuestDescription(user, status)
     local german = Description[GERMAN][status] or ""
     local english = Description[ENGLISH][status] or ""
 
-    return base.common.GetNLS(user, german, english)
+    return common.GetNLS(user, german, english)
 end
 
-function QuestStart()
+function M.QuestStart()
     return Start
 end
 
-function QuestTargets(user, status)
+function M.QuestTargets(user, status)
     return QuestTarget[status]
 end
 
-function QuestFinalStatus()
+function M.QuestFinalStatus()
     return FINAL_QUEST_STATUS
 end
+
+return M

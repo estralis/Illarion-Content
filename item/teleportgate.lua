@@ -12,87 +12,83 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- teleporter gate
--- Nop
+-- UPDATE items SET itm_script='item.teleportgate' WHERE itm_id IN (10,792,794,795)
 
--- UPDATE common SET com_script='item.teleportgate' WHERE com_itemid IN (10,792,794,795)
+local common = require("base.common")
 
-require("base.common")
-require("base.factions")
+local M = {}
 
-module("item.teleportgate", package.seeall)
+local function akalutCadomyrBlockade(user, sourceItem, destination)
 
---[[
-        --TargetName[ 1 ]="Galmair";
-        TargetCoor[ 1 ]={ 424, 245, 0 };
-
-        --TargetName[ 2 ]="Cadomyr";
-        TargetCoor[ 2 ]={ 127, 647, 0 };
-
-        --TargetName[ 3 ]="Runewick";
-        TargetCoor[ 3 ]={ 788, 826, 0 };
-
-        --TargetName[ 4 ]="Wilderland";
-        TargetCoor[ 4 ]={ 683, 307, 0 };
-
-        --TargetName[ 5 ]="Safepoint 1";
-        TargetCoor[ 5 ]={ 0, 7, 0 };
-
-        --TargetName[ 6 ]="Safepoint 2";
-        TargetCoor[ 6 ]={ 1, 7, 0 };
-
-        --TargetName[ 7 ]="Safepoint 3";
-        TargetCoor[ 7 ]={ 2, 7, 0 };
-
-        --TargetName[ 8 ]="Safepoint 4";
-        TargetCoor[ 8 ]={ 3, 7, 0 };
-
-        --TargetName[ 9 ]="Safepoint 5";
-        TargetCoor[ 9 ]={ 4, 7, 0 };
-
-]]
-
-function CharacterOnField( User )
+    local foundValue, value = ScriptVars:find("akalutCadomyrBlockade")
+    if not foundValue or tonumber(value) == 0 then
+        return false
+    end
     
-	if (User:getType() ~= 0) then -- only players, else end of script
+    local cadomyrCheckPos = position(114, 635, 0)
+    
+    if user:distanceMetricToPosition(cadomyrCheckPos) <= 100 or math.sqrt((cadomyrCheckPos.x - destination.x)^2 + (cadomyrCheckPos.y - destination.y)^2) <= 100 then
+    
+        world:erase(sourceItem, sourceItem.number)
+        world:gfx(45, sourceItem.pos)
+        user:inform("Du spürst ein schmerzhaftes Prickeln, als das Portal zusammenbricht.", "You feel a painful prickling as the portal collapses.", Character.highPriority)
+        return true
+    
+    end
+    
+    return false
+    
+end
+
+function M.CharacterOnField( User )
+
+    if (User:getType() ~= 0) then -- only players, else end of script
         return
     end
 
     local SourceItem = world:getItemOnField( User.pos );
-	local destCoordX, destCoordY, destCoordZ
-	local dest
-	local destFound = false
+    local destCoordX, destCoordY, destCoordZ
+    local dest
+    local destFound = false
 
     destCoordX = SourceItem:getData("destinationCoordsX")
-	destCoordY = SourceItem:getData("destinationCoordsY")
-	destCoordZ = SourceItem:getData("destinationCoordsZ")
-	if (destCoordX ~= "") and (destCoordY ~= "") and (destCoordZ ~= "") then
-	    destCoordX = tonumber(destCoordX)	
-	    destCoordY = tonumber(destCoordY)		
- 	    destCoordZ = tonumber(destCoordZ)
-		dest = position(destCoordX,destCoordY,destCoordZ)
+    destCoordY = SourceItem:getData("destinationCoordsY")
+    destCoordZ = SourceItem:getData("destinationCoordsZ")
+    if (destCoordX ~= "") and (destCoordY ~= "") and (destCoordZ ~= "") then
+        destCoordX = tonumber(destCoordX)
+        destCoordY = tonumber(destCoordY)
+         destCoordZ = tonumber(destCoordZ)
+        dest = position(destCoordX,destCoordY,destCoordZ)
         destFound = true
-	end	
-	
-	if destFound then -- destination was defined
-		world:makeSound( 13, dest )
-		world:gfx( 41, User.pos )
-		User:warp( dest );
-		world:gfx( 41, User.pos )
+    end
+    
+    if destFound then -- destination was defined
+    
+        if akalutCadomyrBlockade(User, SourceItem, dest) then
+            return
+        end
+    
+        world:makeSound( 13, dest )
+        world:gfx( 41, User.pos )
+        User:warp( dest );
+        world:gfx( 41, User.pos )
 
-		base.common.InformNLS( User,
-		"Du machst eine magische Reise.",
-		"You travel by the realm of magic." );
+        common.InformNLS( User,
+        "Du machst eine magische Reise.",
+        "You travel by the realm of magic." );
 
-		if ( SourceItem.wear ~= 255 ) then
-			if ( SourceItem.quality > 200 ) then
-					SourceItem.quality = SourceItem.quality - 100;
-					world:changeItem( SourceItem );
-			else
-				world:erase( SourceItem, SourceItem.number );
-			end
-		end	
-	end
+        if ( SourceItem.wear ~= 255 ) then
+            if ( SourceItem.quality > 200 ) then
+                    SourceItem.quality = SourceItem.quality - 100;
+                    world:changeItem( SourceItem );
+            else
+                world:erase( SourceItem, SourceItem.number );
+            end
+        end
+    end
 end
+
+return M
+

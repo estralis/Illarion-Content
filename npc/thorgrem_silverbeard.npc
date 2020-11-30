@@ -14,7 +14,7 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------AC
 -- NPC Name: Thorgrem Silverbeard                                     Galmair --
--- NPC Job:  Smith and Miner                                                  --
+-- NPC Job:  Blacksmith                                                       --
 --                                                                            --
 -- NPC Race: dwarf                      NPC Position:  387, 273, 0            --
 -- NPC Sex:  male                       NPC Direction: west                   --
@@ -29,7 +29,7 @@ sex = male
 position = 387, 273, 0
 direction = west
 affiliation = "Galmair"
-job = "Smith and Miner"
+job = "Blacksmith"
 
 language = common
 language = dwarf
@@ -37,9 +37,10 @@ defaultLanguage = common
 autointroduce = on
 
 author = "Zot"
+author = "Estralis Seborian"
 
-lookatDE = ""
-lookatUS = ""
+lookatDE = "Dieser NPC ist Thorgrem Silverbeard der Schmied."
+lookatUS = "This NPC is Thorgrem Silverbeard the blacksmith."
 useMsgDE = "Fass mich nicht an!"
 useMsgUS = "Hands off!"
 wrongLangDE = "#me schaut dich verwirrt an."
@@ -58,104 +59,219 @@ itemHands = 0
 itemTrousers = 825
 itemShoes = 698
 
+-- Quest 1: Gathering. Player gets a gathering tool. Player gathers materials for 10 intermediate products.
+-- Quest 2: Intermediate production. Player gets a tool for intermediate production. Player produces 10 intermediate products.
+-- Quest 3: Final production. Player gets a tool for final production. Player delivers final products made of 10 intermediate products. Reward: 50 % of item.worth. Rank Layman / Laie
+-- Rank quests:
+-- Level 10: Novice / Anfänger. Reward: 10 Raw materials (e.g. coal)
+-- Level 20: Apprentice / Lehrling. Reward: 20 Raw materials (e.g. wool)
+-- Level 30: Initiate / Initiat. Reward: 10 Intermediate products (e.g. boards)
+-- Level 40: Journeyman / Geselle. Reward: 20 Intermediate products (e.g. thread), journeyman's certificate
+-- Level 50: Specialist / Spezialist. Reward: 10 Uncommon resources (e.g. handles)
+-- Level 60: Expert / Experte. Reward: 20 Uncommon resources (e.g. gold ingots)
+-- Level 70: Adept / Adept. Reward: 5 Rare resources (e.g. merinium ingots)
+-- Level 80: Artisan / Artisane. Reward: 10 Rare resources (e.g. heartwood)
+-- Level 90: Master / Meister. Reward: 5 Pure elements, master's tool
+-- Level 100: Grandmaster / Großmeister. Reward: 10 Pure elements, grandmaster's medal
+
 -- Help
-"Help" -> inform("[Game Help] This NPC is Thorgrem Silverbeard the smith. Keywords: quest, smithing, craft")
-"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Thorgrem Silverbeard der Schmied. Schlüsselwörter: Quest, Schmieden, Handwerk")
+"Help" -> inform("[Game Help] This NPC is Thorgrem Silverbeard the blacksmith. Keywords: Hello, Quest, blacksmithing.")
+"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Thorgrem Silverbeard der Schmied. Schlüsselwörter: Hallo, Quest, Schmieden.")
 
 -- General speech
-"Hello", "Greet", "Hail", "Good day", "Good morning", "Good Evening" -> "Hello, can I help you?", "Nice to meet you, I'm Thorgrem Silverbeard."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Hallo, kann ich Euch helfen?", "Freut mich Euch zu treffen. Ich bin Thorgrem Silverbeard."
-english, "Hiho", "Hallo", "Hey", "Greeb" -> "Hello, can I help you?", "Nice to meet you, I'm Thorgrem Silverbeard."
-"Hiho", "Hallo", "Hey", "Greeb" -> "Hallo, kann ich Euch helfen?", "Freut mich Euch zu treffen. Ich bin Thorgrem Silverbeard"
-"Farewell", "Bye", "Fare well", "See you" -> "I wish you a nice day.", "I hope we meet again, goodbye."
-"Tschüß", "Tschüss", "Wiedersehen" -> "Ich wünsche Euch noch einen schönen Tag.", "Ich hoffe wir sehen uns wieder. Auf bald!"
-english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "I wish you a nice day.", "I hope we meet again, goodbye."
-"Ciao", "Adieu", "Au revoir", "Farebba" -> "Ich wünsche Euch noch einen schönen Tag.", "Ich hoffe wir sehen uns wieder. Auf bald!"
-"How are you", "How feel", "How do you do" -> "I feel fine, thank you for asking."
-"Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Mir geht es gut, danke für die Nachfrage."
-"your name", "who are you", "who art thou" -> "I'm Thorgrem Silverbeard, who are you?"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin Thorgrem Silverbeard. Wer bist du?"
+"Hello", "Greet", "Hail", "Good day", "Good morning", "Good Evening" -> "Now what, do I need to help you?", "Not sure it is nice to meet you but I'm Thorgrem Silverbeard."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Hallo, muss ich dir jetzt helfen?", "Sollte ich mich freuen, dich kennenzulernen? Egal, ich bin Thorgrem Silverbeard."
+english, "Hiho", "Hallo", "Hey", "Greeb" -> "Now what, do I need to help you?", "Not sure it is nice to meet you but I'm Thorgrem Silverbeard."
+"Hiho", "Hallo", "Hey", "Greeb" -> "Hallo, muss ich dir jetzt helfen?", "Sollte ich mich freuen, dich kennenzulernen? Egal, ich bin Thorgrem Silverbeard."
+"Farewell", "Bye", "Fare well", "See you" -> "I wish you a day. Nice, bad, your call.", "I hope we meet again. Or not."
+"Tschüß", "Tschüss", "Wiedersehen" -> "Ich wünsche noch einen Tag. Obs ein schöner wird, liegt an dir.", "Ich hoffe wir sehen uns wieder. Oder auch nicht."
+english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "I wish you a day. Nice, bad, your call.", "I hope we meet again. Or not."
+"Ciao", "Adieu", "Au revoir", "Farebba" -> "Ich wünsche noch einen Tag. Obs ein schöner wird, liegt an dir.", "Ich hoffe wir sehen uns wieder. Oder auch nicht."
+"How are you", "How feel", "How do you do" -> "How am I supposed to feel?"
+"Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Wie soll's mir schon gehen?"
+"your name", "who are you", "who art thou" -> "I'm Thorgrem Silverbeard. That matters."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich bin Thorgrem Silverbeard. Das ist wichtig."
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader. Not at all."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin doch kein Händler!"
 
 -- Small talk: The talk here should focus on possible questions. Feel free to add more!
-"profession" -> "I'm a smith of course, maybe I'll have a little task for you later."
-"beruf" -> "Ich bin natürlich ein Schmied. Vielleicht habe ich später eine kleine Aufgabe für dich."
-english, "job" -> "I'm a smith of course, maybe I'll have a little task for you later."
-"job" -> "Ich bin natürlich ein Schmied. Vielleicht habe ich später eine kleine Aufgabe für dich."
+"profession" -> "Short legs, long beard; what do you think I am? A blacksmith of course!"
+"beruf" -> "Kurze Beine, langer Bart; was denkst du wohl, bin ich? Ein Schmied natürlich!"
+english, "job" -> "Short legs, long beard; what do you think I am? A blacksmith of course!"
+"job" -> "Kurze Beine, langer Bart; was denkst du wohl, bin ich? Ein Schmied natürlich!"
 
--- help triggers
-english, "smith" -> "If you want to smith you need ingots and a hammer of course. Blacksmiths need a normal hammer, finesmiths need a finesmithing hammer, though."
-"schmied" -> "Wenn du schmieden willt dann brauchst du Barren und natürlich einen Hammer. Schmiede benutzen einen gewöhnlichen Hammer, Goldschmiede dagegen brauchen einen Feinschmiedehammer."
-english, "craft" -> "If you need help with smithing, ask me for a task."
-german, "hand" -> "Wenn du Hilfe beim Schmieden brauchst frag mich nach einer Aufgabe."
+-- Help triggers
+"smith", "craft" -> "If you want to smith you need ingots and a hammer of course. Blacksmiths need a normal hammer, finesmiths need a finesmithing hammer, though. Armourers have their own hammer, too."
+"schmied", "handwerk" -> "Wenn du schmieden willt, dann brauchst du Barren und natürlich einen Hammer. Schmiede benutzen einen gewöhnlichen Hammer, Goldschmiede dagegen brauchen einen Feinschmiedehammer. Und Rüstschmiede haben auch ihren eigenen Hammer."
 
--- Quests
-queststatus(708) > 0, queststatus(712) = 3, english, town = Galmair, "quest", "mission", "joey", "licavoli" -> queststatus(712) = 4, "Ah Joey sent you, but you have already asked me for something to do. If you want to learn something about gem grinding or brick making, talk with Seleseth at the grinder next me. You can ask Tony Spirotelli at the workbench over there if you want to know more about carpentry though."
-queststatus(708) > 0, queststatus(712) = 3, town = Galmair, "quest", "mission", "joey", "licavoli" -> queststatus(712) = 4, "Ah Joey hat dich geschickt aber du hast mich bereits nach einer Aufgabe gefragt. Willst du etwas über das Edelsteinschleifen oder Ziegelmachen lernen, dann frag Seleseth, die Echse neben mir. Liegt dir das Schreinerhandwerk eher, dann frag Tony Spirotelli bei der Werkbank dort drüben."
-queststatus(708) > 0, queststatus(712) = 3, town = Galmair, "task", "adventure", "order" -> queststatus(712) = 4, "Ah Joey sent you, but you have already asked me for something to do. If you want to learn something about gem grinding or brick making, talk with Seleseth at the grinder next me. You can ask Tony Spirotelli at the workbench over there if you want to know more about carpentry though."
-queststatus(708) > 0, queststatus(712) = 3, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> queststatus(712) = 4, "Ah Joey hat dich geschickt aber du hast mich bereits nach einer Aufgabe gefragt. Willst du etwas über das Edelsteinschleifen oder Ziegelmachen lernen, dann frag Seleseth, die Echse neben mir. Liegt dir das Schreinerhandwerk eher, dann frag Tony Spirotelli bei der Werkbank dort drüben."
-queststatus(708) = 0, queststatus(712) = 3, english, town = Galmair, "quest", "mission", "joey", "licavoli" -> item(2763, 1, 777), queststatus(712) = 4, queststatus(708) = 1, "Could you bring me 10 pieces of iron ore from the Malachite Mine and also 10 lumps of coal from the Dark Hole Mine? If you leave the workshop to the south, and follow the street south, you will get to the Malachite Mine. The Dark Hole Mine is outside the city, you can find it if you go north west from the main gate. I'll give you my old pick-axe to mine the ore."
-queststatus(708) = 0, queststatus(712) = 3, town = Galmair, "quest", "mission", "joey", "licavoli" -> item(2763, 1, 777), queststatus(712) = 4, queststatus(708) = 1, "Kannst du mir 10 Brocken Eisenerz von der Malachitmine und außerdem noch 10 Klumpen Kohle von der Dunkellochmine bringen? Verlass die Werkstatt und folge der Straße die nach Süden führt, um zur Malachitmine zu gelangen. Die Dunkellochmine ist außerhalb der Stadt im Nordwesten. Hier ich gebe dir meine alte Spitzhacke, um das Erz abzubauen."
-queststatus(708) = 0, queststatus(712) = 3, town = Galmair, "task", "adventure", "order" -> item(2763, 1, 777), queststatus(712) = 4, queststatus(708) = 1, "Could you bring me 10 pieces of iron ore from the Malachite Mine and also 10 lumps of coal from the Dark Hole Mine? If you leave the workshop to the south, and follow the street south, you will get to the Malachite Mine. The Dark Hole Mine is outside the city, you can find it if you go north west from the main gate. I'll give you my old pick-axe to mine the ore."
-queststatus(708) = 0, queststatus(712) = 3, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> item(2763, 1, 777), queststatus(712) = 4, queststatus(708) = 1, "Kannst du mir 10 Brocken Eisenerz von der Malachitmine und außerdem noch 10 Klumpen Kohle von der Dunkellochmine bringen? Verlass die Werkstatt und folge der Straße die nach Süden führt, um zur Malachitmine zu gelangen. Die Dunkellochmine ist außerhalb der Stadt im Nordwesten. Hier ich gebe dir meine alte Spitzhacke, um das Erz abzubauen."
+-- Quest 1: Gathering. Player gets a gathering tool. Player gathers materials for 10 intermediate products. 
+queststatus(708) = 0, english, town = Galmair, "quest", "mission" -> item(2763, 1, 333), queststatus(708) = 1, "Let's get started. To become a real blacksmith, you'll need iron ore and coal. Get ten pieces of iron ore from the Malachite Mine and also ten lumps of coal from the Dark Hole Mine. If you leave the workshop to the south, and follow the street south, you will get to the Malachite Mine. The Dark Hole Mine is outside the city, you can find it if you go north west from the main gate. I'll give you my old pick-axe to mine the ore.", inform("[Guild Quest] The Blacksmithing Guild of Galmair I. For more information see the quest log (Q).")
+queststatus(708) = 0, town = Galmair, "task", "adventure", "order" -> item(2763, 1, 333), queststatus(708) = 1, "Let's get started. To become a real blacksmith, you'll need iron ore and coal. Get ten pieces of iron ore from the Malachite Mine and also ten lumps of coal from the Dark Hole Mine. If you leave the workshop to the south, and follow the street south, you will get to the Malachite Mine. The Dark Hole Mine is outside the city, you can find it if you go north west from the main gate. I'll give you my old pick-axe to mine the ore.", inform("[Guild Quest] The Blacksmithing Guild of Galmair I. For more information see the quest log (Q).")
+queststatus(708) = 0, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> item(2763, 1, 333), queststatus(708) = 1, "Dann mal los. Um ein echter Schmied zu werden, brauchst du Eisenerz und Kohle. Besorg zehn Brocken Eisenerz aus der Malachitmine und noch zehn Klumpen Kohle aus der Dunkellochmine. Verlasse die Werkstatt und folg der Straße die nach Süden führt, um zur Malachitmine zu gelangen. Die Dunkellochmine ist außerhalb der Stadt im Nordwesten. Hier, ich gebe dir meine alte Spitzhacke, um das Erz abzubauen.", inform("[Gildenquest] Die Schmiedegilde von Galmair I. Detaillierte Informationen findest du im Questlog (Q).")
 
--- first quest without newbie questgiver
-queststatus(708) = 0, english, town = Galmair, "quest", "mission" -> item(2763, 1, 555), queststatus(708) = 1, "Could you bring me 10 pieces of iron ore from the Malachite Mine and also 10 lumps of coal from the Dark Hole Mine? If you leave the workshop to the south, and follow the street south, you will get to the Malachite Mine. The Dark Hole Mine is outside the city, you can find it if you go north west from the main gate. I'll give you my old pick-axe to mine the ore."
-queststatus(708) = 0, town = Galmair, "quest", "mission" -> item(2763, 1, 555), queststatus(708) = 1, "Kannst du mir 10 Brocken Eisenerz von der Malachitmine und außerdem noch 10 Klumpen Kohle von der Dunkellochmine bringen? Verlass die Werkstatt und folg der Straße die nach Süden führt, um zur Malachitmine zu gelangen. Die Dunkellochmine ist außerhalb der Stadt im Nordwesten. Hier ich gebe dir meine alte Spitzhacke, um das Erz abzubauen."
-queststatus(708) = 0, town = Galmair, "task", "adventure", "order" -> item(2763, 1, 555), queststatus(708) = 1, "Could you bring me 10 pieces of iron ore from the Malachite Mine and also 10 lumps of coal from the Dark Hole Mine? If you leave the workshop to the south, and follow the street south, you will get to the Malachite Mine. The Dark Hole Mine is outside the city, you can find it if you go north west from the main gate. I'll give you my old pick-axe to mine the ore."
-queststatus(708) = 0, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> item(2763, 1, 555), queststatus(708) = 1, "Kannst du mir 10 Brocken Eisenerz von der Malachitmine und außerdem noch 10 Klumpen Kohle von der Dunkellochmine bringen? Verlass die Werkstatt und folg der Straße die nach Süden führt, um zur Malachitmine zu gelangen. Die Dunkellochmine ist außerhalb der Stadt im Nordwesten. Hier ich gebe dir meine alte Spitzhacke, um das Erz abzubauen."
+-- Quest 1: Solved
+queststatus(708) = 1, item(21, all) > 9, item(22, all) > 9, english, town = Galmair, "quest", "mission" -> queststatus(708) = 2, "So, now you know how to get raw materials for smithing. Keep the stuff for your next task.", inform("[Guild Quest] Ask Thorgrem Silverbeard for your next task.")
+queststatus(708) = 1, item(21, all) > 9, item(22, all) > 9, town = Galmair, "task", "adventure", "order", "coal", "iron"  -> queststatus(708) = 2, "So, now you know how to get raw materials for smithing. Keep the stuff for your next task.", inform("[Guild Quest] Ask Thorgrem Silverbeard for your next task.")
+queststatus(708) = 1, item(21, all) > 9, item(22, all) > 9, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "kohle", "eisen" -> queststatus(708) = 2, "So, nun weißt du, wie man sich Ressourcen für das Schmieden besorgt. Behalt den Kram für deine nächste Aufgabe.", inform("[Gildenquest] Frage Thorgrem Silverbeard nach deiner nächsten Aufgaben.")
 
--- not enough stuff
-queststatus(708) = 1, item(21, all) > 9, item(22, all) > 9, english, town = Galmair, "quest", "mission", "coal", "iron" -> queststatus(708) = 2, "Well done, thank you. I'll take ten pieces of ore and ten lumps of coal. You can keep the other ten for your next task."
-queststatus(708) = 1, item(21, all) > 9, item(22, all) > 9, town = Galmair, "quest", "mission", "kohle", "eisen" -> queststatus(708) = 2, "Gut gemacht, danke. Ich nehme zehn Stück vom Erz und zehn von der Kohle. Den Rest kannst du für die nächste Aufgabe behalten."
-queststatus(708) = 1, item(21, all) > 9, item(22, all) > 9, town = Galmair, "task", "adventure", "order" -> queststatus(708) = 2, "Well done, thank you. I'll take ten pieces of ore and ten lumps of coal. You can keep the other ten for your next task."
-queststatus(708) = 1, item(21, all) > 9, item(22, all) > 9, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> queststatus(708) = 2, "Gut gemacht, danke. Ich nehme zehn Stück vom Erz und zehn von der Kohle. Den Rest kannst du für die nächste Aufgabe behalten."
+-- Quest 1: Not enough items
+queststatus(708) = 1, english, town = Galmair, "quest", "mission" -> "Ten pieces of iron ore and ten lumps of coal. Is that too difficult for you?"
+queststatus(708) = 1, town = Galmair, "task", "adventure", "order", "coal", "iron" -> "Ten pieces of iron ore and ten lumps of coal. Is that too difficult for you?"
+queststatus(708) = 1, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "kohle", "eisen" -> "Zehn Stück Eisenerz und zehn Haufen Kohle. Ist das etwa zu schwer für dich?"
 
--- first quest solved
-queststatus(708) = 1, item(21, all) < 10, english, town = Galmair, ".+" -> "That's not everything I was looking for. Did you forget that I told you to bring me 10 pieces of iron ore and 10 lumps of coal?"
-queststatus(708) = 1, item(21, all) < 10, town = Galmair, ".+" -> "Da fehlt aber noch etwas. Ich wollte 10 Eisenerze sowie 10 Kohleklumpen von dir. Hast du das vergessen?"
-queststatus(708) = 1, item(22, all) < 10, english, town = Galmair, ".+" -> "That's not everything I was looking for. Did you forget that I told you to bring me 10 pieces of iron ore and 10 lumps of coal?"
-queststatus(708) = 1, item(22, all) < 10, town = Galmair, ".+" -> "Da fehlt aber noch etwas. Ich wollte 10 Eisenerze und 10 Kohleklumpen von dir. Hast du das vergessen?"
+-- Quest 2: Intermediate production. Player gets a tool for intermediate production. Player produces 10 intermediate products.
+queststatus(708) = 2, english, town = Galmair, "quest", "mission" -> item(2751, 1, 333), queststatus(708) = 3, "Let's go on. Smelt ten iron ingots at the bloomery over there. Here, I'll even give you crucible-pincers for smelting the ore.", inform("[Guild Quest] The Blacksmithing Guild of Galmair II. For more information see the quest log (Q).")
+queststatus(708) = 2, town = Galmair, "task", "adventure", "order" -> item(2751, 1, 333), queststatus(708) = 3, "Let's go on. Smelt ten iron ingots at the bloomery over there. Here, I'll even give you crucible-pincers for smelting the ore.", inform("[Guild Quest] The Blacksmithing Guild of Galmair II. For more information see the quest log (Q).")
+queststatus(708) = 2, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> item(2751, 1, 333), queststatus(708) = 3, "Lass uns weitermachen. Erschmelze zehn Eisenbarren in dem Rennofen neben mir. Hier, ich gebe dir sogar eine Tiegelzange.", inform("[Gildenquest] Die Schmiedegilde von Galmair II. Detaillierte Informationen findest du im Questlog (Q).")
 
--- second quest
-queststatus(708) = 2, english, town = Galmair, "quest", "mission" -> item(2751, 1, 333), queststatus(708) = 3, "I have another task for you, aye. Could you smelt me ten iron ingots at the furnace over there? Here I'll even give you the crucible-pincers for smelting the ore."
-queststatus(708) = 2, town = Galmair, "quest", "mission" -> item(2751, 1, 333), queststatus(708) = 3, "Ich hätte einen weitere Aufgabe für dich, aye. Kannst du zehn Eisenbarren bei der Esse neben mir schmelzen? Hier, ich gebe dir sogar eine Tiegelzange zum schmelzen."
-queststatus(708) = 2, town = Galmair, "task", "adventure", "order" -> item(2751, 1, 333), queststatus(708) = 3, "I have another task for you, aye. Could you smelt me ten iron ingots at the furnace over there? Here I'll even give you the crucible-pincers for smelting the ore."
-queststatus(708) = 2, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> item(2751, 1, 333), queststatus(708) = 3, "Ich hätte einen weitere Aufgabe für dich, aye. Kannst du zehn Eisenbarren bei der Esse neben mir schmelzen? Hier, ich gebe dir sogar eine Tiegelzange zum schmelzen."
-queststatus(708) = 3, item(2535, all) > 9, english, town = Galmair, "quest", "mission", "iron", "ingots" -> queststatus(708) = 4, "Well done. Please keep the iron ingots for your next task."
-queststatus(708) = 3, item(2535, all) > 9, town = Galmair, "quest", "mission", "eisen", "barren" -> queststatus(708) = 4, "Gut gemacht. Bitte behalte die Eisenbarren für deine nächste Aufgabe."
-queststatus(708) = 3, item(2535, all) > 9, town = Galmair, "task", "adventure", "order" -> queststatus(708) = 4, "Well done. Please keep the iron ingots for your next task."
-queststatus(708) = 3, item(2535, all) > 9, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> queststatus(708) = 4, "Gut gemacht. Bitte behalte die Eisenbarren für deine nächste Aufgabe"
-queststatus(708) = 3, item(2535, all) < 10, english, town = Galmair, ".+" -> "That's not ten iron ingots yet. Please come back later when you've finished the task."
-queststatus(708) = 3, item(2535, all) < 10, town = Galmair, ".+" -> "Das sind noch keine 10 Eisenbarren, die ich von dir wollte. Komm wieder, wenn du die Aufgabe erledigt hast."
-queststatus(708) = 4, english, town = Galmair, "quest", "mission" -> item(23, 1, 555), item(122, 1, 555), queststatus(708) = 5, "You want another task? Well alright. Could you smith me five pins and five goblets please? The hammer with the yellow handle is for blacksmithing and the hammer with the red handle is for finesmithing. Here I'll give you one of each kind so you can practise a little bit."
-queststatus(708) = 4, town = Galmair, "quest", "mission" -> item(23, 1, 555), item(122, 1, 555), queststatus(708) = 5, "Du willst noch eine Aufgabe? Na gut, meinetwegen. Bitte stell mir fünf Nägel, sowie fünf Kelche her. Der Hammer mit dem gelben Griff ist für das Schmieden gedacht, der mit dem roten Griff für das Feinschmieden. Hier ich gebe dir jeweils einen zum üben."
-queststatus(708) = 4, town = Galmair, "task", "adventure", "order" -> item(23, 1, 555), item(122, 1, 555), queststatus(708) = 5, " wYou want another task? Well alright. Could you smith me five pins and five goblets please? The hammer with the yellow handle is for blacksmithing and the hammer with the red handle is for finesmithing. Here I'll give you one of each kind so you can practise a little bit."
-queststatus(708) = 4, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> item(23, 1, 555), item(122, 1, 555), queststatus(708) = 5, "Du willst noch eine Aufgabe? Na gut, meinetwegen. Bitte stell mir fünf Nägel, sowie fünf Kelche her. Der Hammer mit dem gelben Griff ist für das Schmieden gedacht, der mit dem roten Griff für das Feinschmieden. Hier ich gebe dir jeweils einen zum üben."
-queststatus(708) = 5, item(2738, all) > 4, item(1858, all) > 4, english, town = Galmair, "quest", "mission", "pin", "goblet" -> deleteItem(2738, 5), deleteItem(1858, 5), queststatus(708) = 6, "Well done, thank you very much. I don't think you need my help any longer, good luck!"
-queststatus(708) = 5, item(2738, all) > 4, item(1858, all) > 4, town = Galmair, "quest", "mission", "nägel", "kelch" -> deleteItem(2738, 5), deleteItem(1858, 5), queststatus(708) = 6, "Gut gemacht, vielen Dank. Ich denke, du kommst nun auch ohne meine Hilfe zurecht."
-queststatus(708) = 5, item(2738, all) > 4, item(1858, all) > 4, town = Galmair, "task", "adventure", "order" -> deleteItem(2738, 5), deleteItem(1858, 5), queststatus(708) = 6, "Well done, thank you very much. I don't think you need my help any longer, good luck!"
-queststatus(708) = 5, item(2738, all) > 4, item(1858, all) > 4, town = Galmair, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> deleteItem(2738, 5), deleteItem(1858, 5), queststatus(708) = 6, "Gut gemacht, vielen Dank. Ich denke, du kommst nun auch ohne meine Hilfe zurecht."
-queststatus(708) = 5, item(2738, all) < 5, english, town = Galmair, ".+" -> "You haven't solved the task yet. Please come back again if you have five pins and five goblets for me."
-queststatus(708) = 5, item(2738, all) < 5, town = Galmair, ".+" -> "Du hast die Aufgabe noch nicht erfüllt wie ich sehe. Bitte bring mir fünf Nägel und fünf Kelche."
-queststatus(708) = 5, item(1858, all) < 5, english, town = Galmair, ".+" -> "You haven't solved the task yet. Please come back again if you have five pins and fünf goblets for me."
-queststatus(708) = 5, item(1858, all) < 5, town = Galmair, ".+" -> "Du hast die Aufgabe noch nicht erfüllt wie ich sehe. Bitte bring mir fünf Nägel und fünf Kelche."
+-- Quest 2: Solved
+queststatus(708) = 3, item(2535, all) > 9, english, town = Galmair, "quest", "mission" -> queststatus(708) = 4, "Not bad I must admit. Keep the iron ingots for your next task.", inform("[Guild Quest] Ask Thorgrem Silverbeard for your next task.")
+queststatus(708) = 3, item(2535, all) > 9, town = Galmair, "task", "adventure", "order", "iron", "ingot" -> queststatus(708) = 4, "Not bad I must admit. Keep the iron ingots for your next task.", inform("[Guild Quest] Ask Thorgrem Silverbeard for your next task.")
+queststatus(708) = 3, item(2535, all) > 9, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Eisen", "Barren" -> queststatus(708) = 4, "Sieht gar nicht mal schlecht aus. Behalte die Eisenbarren für deine nächste Aufgabe.", inform("[Gildenquest] Frage Thorgrem Silverbeard nach deiner nächsten Aufgaben.")
 
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-queststatus(708) = 6, english, town = Galmair, ".*" -> "I don't have anything more for you to do. Thank you for the help though!"
-queststatus(708) = 6, german, town = Galmair, ".*" -> "Ich habe nichts weiter für Euch zu tun. Aber danke Euch nochmals für Eure Hilfe!"
-queststatus(708) < 6, english, town = Galmair, ".*" -> "I could use some help, just ask me for a task."
-queststatus(708) < 6, german, town = Galmair, ".*" -> "Ich könnte etwas Hilfe gebrauchen, fragt mich ruhig nach einer Aufgabe."
-english, ".*" -> "You are not a citizen of Galmair. I don't have anything for you to do."
-german, ".*" -> "Ihr scheint kein Bürger Galmairs zu sein. Ich habe nichts für Euch zu tun."
+-- Quest 2: Not enough items
+queststatus(708) = 3, english, town = Galmair, "quest", "mission" -> "That's not ten iron ingots yet. Please come back later when you've finished the task."
+queststatus(708) = 3, town = Galmair, "task", "adventure", "order", "iron", "ingot" -> "That's not ten iron ingots yet. Please come back later when you've finished the task."
+queststatus(708) = 3, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Eisen", "Barren" -> "Das sind noch keine zehn Eisenbarren. Komm wieder, wenn du die Aufgabe erledigt hast."
+
+-- Quest 3: Final production. Player gets a tool for final production. Player delivers final products made of 10 intermediate products. Reward: 50 % of item.worth. Rank Layman / Laie
+queststatus(708) = 4, english, town = Galmair, "quest", "mission" -> item(23, 1, 333), queststatus(708) = 5, "You want another task? Well, alright. Smith ten pins to show me you know how to forge iron. Have this hammer - don't mix it up with the armourer's hammer and the finesmithing hammer.", inform("[Guild Quest] The Blacksmithing Guild of Galmair III. For more information see the quest log (Q).")
+queststatus(708) = 4, town = Galmair, "task", "adventure", "order" -> item(23, 1, 333), queststatus(708) = 5, "You want another task? Well, alright. Smith ten pins to show me you know how to forge iron. Have this hammer - don't mix it up with the armourer's hammer and the finesmithing hammer.", inform("[Guild Quest] The Blacksmithing Guild of Galmair III. For more information see the quest log (Q).")
+queststatus(708) = 4, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> item(23, 1, 333), queststatus(708) = 5, "Du willst noch eine Aufgabe? Na gut, meinetwegen. Schmiede zehn Nägel um zu beweisen, dass du begriffen hast, wie man Eisen in Form schmiedet. Nimm diesen Hammer - Verwechsle ihn nicht mit dem Feinschmiedehammer und dem Hammer des Rüstschmieds.", inform("[Gildenquest] Die Schmiedegilde von Galmair III. Detaillierte Informationen findest du im Questlog (Q).")
+
+-- Quest 3: Solved
+queststatus(708) = 5, item(2738, all) > 9, english, town = Galmair, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Layman with the Blacksmithing Guild of Galmair. You are awarded twenty silver coins."), deleteItem(2738, 10), queststatus(708) = 6, money + 2000, "Well done, thanks for the pins. I make you an official member of the Blacksmithing Guild of Galmair. Here is some money that will help you to set up your business. Come back once you are more experienced."
+queststatus(708) = 5, item(2738, all) > 9, town = Galmair, "task", "adventure", "order", "pin" -> inform("[Guild rank] You advance to the rank of Layman with the Blacksmithing Guild of Galmair. You are awarded twenty silver coins."), deleteItem(2738, 10), queststatus(708) = 6, money + 2000, "Well done. I make you an official member of the Blacksmithing Guild of Galmair. Here is some money that will help you to set up your business. Come back once you are more experienced."
+queststatus(708) = 5, item(2738, all) > 9, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Nägel", "Nagel" -> inform("[Gildenrang] Die Schmiedegilde von Galmair erhebt dich in den Rang eines Laiens. Du erhältst zwanzig Silberstücke."), deleteItem(2738, 10), queststatus(708) = 6, money + 2000, "Gut gemacht, danke für die Nägel. Du bist nun ein offizielles Mitglied der Schmiedegilde von Galmair. Hier ist etwas Geld, welches dir helfen wird, deine Geschäfte auszubauen. Komm erneut zu mir, wenn du erfahrener bist."
+
+-- Quest 3: Not enough items
+queststatus(708) = 5, english, town = Galmair, "quest", "mission" -> "You haven't solved the task yet. Please come back again when you have ten pins."
+queststatus(708) = 5, town = Galmair, "task", "adventure", "order", "pin" -> "You haven't solved the task yet. Please come back again when you have ten pins."
+queststatus(708) = 5, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Nägel", "Nagel" -> "Wie ich sehe, hast du hast die Aufgabe noch nicht erfüllt. Bitte bring mir zehn Nägel."
+
+-- Level 10: Novice / Anfänger. Reward: 10 Raw materials (e.g. coal)
+skill(blacksmithing) > 9, queststatus(708) = 6, english, town = Galmair, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Novice with the Blacksmithing Guild of Galmair. You are awarded ten lumps of coal."), item(21, 10, 333), queststatus(708) = 7, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some coal for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 9, queststatus(708) = 6, town = Galmair, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Novice with the Blacksmithing Guild of Galmair. You are awarded ten lumps of coal."), item(21, 10, 333), queststatus(708) = 7, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some coal for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 9, queststatus(708) = 6, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Schmiedegilde von Galmair erhebt dich in den Rang eines Anfängers. Du erhältst zehn Klumpen Kohle."), item(21, 10, 333), queststatus(708) = 7, "Die Schmiedegilde von Galmair hat mich angewiesen, dich zu befördern. Nimm diese Kohlen für weitere Arbeitsschichten. Komm erneut zu mir, wenn du erfahrener bist."
+
+-- Level < 10: Not experienced enough
+skill(blacksmithing) < 10, queststatus(708) = 6, english, town = Galmair, "quest", "mission" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Layman.", inform("[Guild rank] You need skill level 10 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 10, queststatus(708) = 6, town = Galmair, "task", "adventure", "order", "rank" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Layman.", inform("[Guild rank] You need skill level 10 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 10, queststatus(708) = 6, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Du bist noch nicht erfahren genug, um in der Schmiedegilde von Galmair aufzusteigen. Du hast derzeit den Rang eines Laiens inne.", inform("[Gildenrang] Du brauchst Level 10 in Schmieden um in der Schmiedegilde aufzusteigen.")
+
+-- Level 20: Apprentice / Lehrling. Reward: 20 Raw materials (e.g. wool)
+skill(blacksmithing) > 19, queststatus(708) = 7, english, town = Galmair, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Apprentice with the Blacksmithing Guild of Galmair. You are awarded twenty pieces of iron ore."), item(22, 20, 333), queststatus(708) = 8, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some iron ore for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 19, queststatus(708) = 7, town = Galmair, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Apprentice with the Blacksmithing Guild of Galmair. You are awarded twenty pieces of iron ore."), item(22, 20, 333), queststatus(708) = 8, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some iron ore for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 19, queststatus(708) = 7, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Schmiedegilde von Galmair erhebt dich in den Rang eines Lehrlings. Du erhältst zwanzig Stücke Eisenerz."), item(22, 20, 333), queststatus(708) = 8, "Die Schmiedegilde von Galmair hat mich angewiesen, dich zu befördern. Nimm dieses Eisenerz für weitere Arbeitsschichten. Komm erneut zu mir, wenn du erfahrener bist."
+
+-- Level < 20: Not experienced enough
+skill(blacksmithing) < 20, queststatus(708) = 7, english, town = Galmair, "quest", "mission" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Novice.", inform("[Guild rank] You need skill level 20 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 20, queststatus(708) = 7, town = Galmair, "task", "adventure", "order", "rank" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Novice.", inform("[Guild rank] You need skill level 20 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 20, queststatus(708) = 7, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Du bist noch nicht erfahren genug, um in der Schmiedegilde von Galmair aufzusteigen. Du hast derzeit den Rang eines Anfängers inne.", inform("[Gildenrang] Du brauchst Level 20 in Schmieden um in der Schmiedegilde aufzusteigen.")
+
+-- Level 30: Initiate / Initiat. Reward: 10 Intermediate products (e.g. boards)
+skill(blacksmithing) > 29, queststatus(708) = 8, english, town = Galmair, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Initiate with the Blacksmithing Guild of Galmair. You are awarded ten iron ingots."), item(2535, 10, 333), queststatus(708) = 9, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some iron ingots for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 29, queststatus(708) = 8, town = Galmair, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Initiate with the Blacksmithing Guild of Galmair. You are awarded ten iron ingots."), item(2535, 10, 333), queststatus(708) = 9, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some iron ingots for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 29, queststatus(708) = 8, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Schmiedegilde von Galmair erhebt dich in den Rang eines Initiatens. Du erhältst zehn Eisenbarren."), item(2535, 10, 333), queststatus(708) = 9, "Die Schmiedegilde von Galmair hat mich angewiesen, dich zu befördern. Nimm diese Eisenbarren für weitere Arbeitsschichten. Komm erneut zu mir, wenn du erfahrener bist."
+
+-- Level < 30: Not experienced enough
+skill(blacksmithing) < 30, queststatus(708) = 8, english, town = Galmair, "quest", "mission" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Apprentice.", inform("[Guild rank] You need skill level 30 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 30, queststatus(708) = 8, town = Galmair, "task", "adventure", "order", "rank" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Apprentice.", inform("[Guild rank] You need skill level 30 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 30, queststatus(708) = 8, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Du bist noch nicht erfahren genug, um in der Schmiedegilde von Galmair aufzusteigen. Du hast derzeit den Rang eines Lehrlings inne.", inform("[Gildenrang] Du brauchst Level 30 in Schmieden um in der Schmiedegilde aufzusteigen.")
+
+-- Level 40: Journeyman / Geselle. Reward: 20 Intermediate products (e.g. thread), journeyman's certificate
+skill(blacksmithing) > 39, queststatus(708) = 9, english, town = Galmair, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Journeyman with the Blacksmithing Guild of Galmair. You are awarded twenty iron plates and a journeyman's certificate."), item(2537, 20, 333), queststatus(708) = 10, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some iron plates for further working shifts. Come back once you are more experienced.", item(3109, 1, 333, "nameDe" = "Gesellenbrief", "nameEn" = "Journeyman's Certificate", "rareness" = "1", "descriptionEn" = "The owner of this certificate has successfully passed the examination as Journeyman. Thorgrem Silverbeard - Blacksmithing Guild of Galmair", "descriptionDe" = "Der Inhaber dieses Gesellenbriefes hat erfolgreich das Examen zum Gesellen bestanden. Thorgrem Silverbeard - Schmiedegilde von Galmair")
+skill(blacksmithing) > 39, queststatus(708) = 9, town = Galmair, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Journeyman with the Blacksmithing Guild of Galmair. You are awarded twenty iron plates and a journeyman's certificate."), item(2537, 20, 333), queststatus(708) = 10, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some iron plates for further working shifts. Come back once you are more experienced.", item(3109, 1, 333, "nameDe" = "Gesellenbrief", "nameEn" = "Journeyman's Certificate", "rareness" = "1", "descriptionEn" = "The owner of this certificate has successfully passed the examination as Journeyman. Thorgrem Silverbeard - Blacksmithing Guild of Galmair", "descriptionDe" = "Der Inhaber dieses Gesellenbriefes hat erfolgreich das Examen zum Gesellen bestanden. Thorgrem Silverbeard - Schmiedegilde von Galmair")
+skill(blacksmithing) > 39, queststatus(708) = 9, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Schmiedegilde von Galmair erhebt dich in den Rang eines Gesellens. Du erhältst zwanzig Eisenplatten und einen Gesellenbrief."), item(2537, 20, 333), queststatus(708) = 10, "Die Schmiedegilde von Galmair hat mich angewiesen, dich zu befördern. Nimm diese Eisenplatten für weitere Arbeitsschichten. Komm erneut zu mir, wenn du erfahrener bist.", item(3109, 1, 333, "nameDe" = "Gesellenbrief", "nameEn" = "Journeyman's Certificate", "rareness" = "1", "descriptionEn" = "The owner of this certificate has successfully passed the examination as Journeyman. Thorgrem Silverbeard - Blacksmithing Guild of Galmair", "descriptionDe" = "Der Inhaber dieses Gesellenbriefes hat erfolgreich das Examen zum Gesellen bestanden. Thorgrem Silverbeard - Schmiedegilde von Galmair")
+
+-- Level < 40: Not experienced enough
+skill(blacksmithing) < 40, queststatus(708) = 9, english, town = Galmair, "quest", "mission" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Initiate.", inform("[Guild rank] You need skill level 40 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 40, queststatus(708) = 9, town = Galmair, "task", "adventure", "order", "rank" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Initiate.", inform("[Guild rank] You need skill level 40 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 40, queststatus(708) = 9, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Du bist noch nicht erfahren genug, um in der Schmiedegilde von Galmair aufzusteigen. Du hast derzeit den Rang eines Initiatens inne.", inform("[Gildenrang] Du brauchst Level 40 in Schmieden um in der Schmiedegilde aufzusteigen.")
+
+-- Level 50: Specialist / Spezialist. Reward: 10 Uncommon resources (e.g. handles)
+skill(blacksmithing) > 49, queststatus(708) = 10, english, town = Galmair, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Specialist with the Blacksmithing Guild of Galmair. You are awarded ten axe handles."), item(2525, 10, 333), queststatus(708) = 11, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some axe handles for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 49, queststatus(708) = 10, town = Galmair, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Specialist with the Blacksmithing Guild of Galmair. You are awarded ten axe handles."), item(2525, 10, 333), queststatus(708) = 11, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some axe handles for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 49, queststatus(708) = 10, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Schmiedegilde von Galmair erhebt dich in den Rang eines Spezialistens. Du erhältst zehn Axtgriffe."), item(2525, 10, 333), queststatus(708) = 11, "Die Schmiedegilde von Galmair hat mich angewiesen, dich zu befördern. Nimm diese Axtgriffe für weitere Arbeitsschichten. Komm erneut zu mir, wenn du erfahrener bist."
+
+-- Level < 50: Not experienced enough
+skill(blacksmithing) < 50, queststatus(708) = 10, english, town = Galmair, "quest", "mission" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Journeyman.", inform("[Guild rank] You need skill level 50 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 50, queststatus(708) = 10, town = Galmair, "task", "adventure", "order", "rank" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Journeyman.", inform("[Guild rank] You need skill level 50 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 50, queststatus(708) = 10, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Du bist noch nicht erfahren genug, um in der Schmiedegilde von Galmair aufzusteigen. Du hast derzeit den Rang eines Gesellens inne.", inform("[Gildenrang] Du brauchst Level 50 in Schmieden um in der Schmiedegilde aufzusteigen.")
+
+-- Level 60: Expert / Experte. Reward: 20 Uncommon resources (e.g. gold ingots)
+skill(blacksmithing) > 59, queststatus(708) = 11, english, town = Galmair, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Expert with the Blacksmithing Guild of Galmair. You are awarded twenty sword handles."), item(2584, 20, 333), queststatus(708) = 12, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some sword handles for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 59, queststatus(708) = 11, town = Galmair, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Expert with the Blacksmithing Guild of Galmair. You are awarded twenty sword handles."), item(2584, 20, 333), queststatus(708) = 12, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some sword handles for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 59, queststatus(708) = 11, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Schmiedegilde von Galmair erhebt dich in den Rang eines Expertens. Du erhältst zwanzig Schwertgriffe."), item(2584, 20, 333), queststatus(708) = 12, "Die Schmiedegilde von Galmair hat mich angewiesen, dich zu befördern. Nimm diese Schwertgriffe für weitere Arbeitsschichten. Komm erneut zu mir, wenn du erfahrener bist."
+
+-- Level < 60: Not experienced enough
+skill(blacksmithing) < 60, queststatus(708) = 11, english, town = Galmair, "quest", "mission" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Specialist.", inform("[Guild rank] You need skill level 60 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 60, queststatus(708) = 11, town = Galmair, "task", "adventure", "order", "rank" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Specialist.", inform("[Guild rank] You need skill level 60 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 60, queststatus(708) = 11, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Du bist noch nicht erfahren genug, um in der Schmiedegilde von Galmair aufzusteigen. Du hast derzeit den Rang eines Spezialistens inne.", inform("[Gildenrang] Du brauchst Level 60 in Schmieden um in der Schmiedegilde aufzusteigen.")
+
+-- Level 70: Adept / Adept. Reward: 5 Rare resources (e.g. merinium ingots)
+skill(blacksmithing) > 69, queststatus(708) = 12, english, town = Galmair, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Adept with the Blacksmithing Guild of Galmair. You are awarded five pieces of merinium ore."), item(2534, 5, 333), queststatus(708) = 13, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some merinium ore for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 69, queststatus(708) = 12, town = Galmair, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Adept with the Blacksmithing Guild of Galmair. You are awarded five pieces of merinium ore."), item(2534, 5, 333), queststatus(708) = 13, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some merinium ore for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 69, queststatus(708) = 12, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Schmiedegilde von Galmair erhebt dich in den Rang eines Adeptens. Du erhältst fünf Stück Meriniumerz."), item(2534, 5, 333), queststatus(708) = 13, "Die Schmiedegilde von Galmair hat mich angewiesen, dich zu befördern. Nimm dieses Meriniumerz für weitere Arbeitsschichten. Komm erneut zu mir, wenn du erfahrener bist."
+
+-- Level < 70: Not experienced enough
+skill(blacksmithing) < 70, queststatus(708) = 12, english, town = Galmair, "quest", "mission" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Expert.", inform("[Guild rank] You need skill level 70 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 70, queststatus(708) = 12, town = Galmair, "task", "adventure", "order", "rank" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Expert.", inform("[Guild rank] You need skill level 70 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 70, queststatus(708) = 12, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Du bist noch nicht erfahren genug, um in der Schmiedegilde von Galmair aufzusteigen. Du hast derzeit den Rang eines Expertens inne.", inform("[Gildenrang] Du brauchst Level 70 in Schmieden um in der Schmiedegilde aufzusteigen.")
+
+-- Level 80: Artisan / Artisane. Reward: 10 Rare resources (e.g. heartwood)
+skill(blacksmithing) > 79, queststatus(708) = 13, english, town = Galmair, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Artisan with the Blacksmithing Guild of Galmair. You are awarded ten merinium ingots."), item(2571, 10, 333), queststatus(708) = 14, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some merinium ingots for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 79, queststatus(708) = 13, town = Galmair, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Artisan with the Blacksmithing Guild of Galmair. You are awarded ten merinium ingots."), item(2571, 10, 333), queststatus(708) = 14, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some merinium ingots for further working shifts. Come back once you are more experienced."
+skill(blacksmithing) > 79, queststatus(708) = 13, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Schmiedegilde von Galmair erhebt dich in den Rang eines Artisanens. Du erhältst zehn Meriniumbarren."), item(2571, 10, 333), queststatus(708) = 14, "Die Schmiedegilde von Galmair hat mich angewiesen, dich zu befördern. Nimm diese Meriniumbarren für weitere Arbeitsschichten. Komm erneut zu mir, wenn du erfahrener bist."
+
+-- Level < 80: Not experienced enough
+skill(blacksmithing) < 80, queststatus(708) = 13, english, town = Galmair, "quest", "mission" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Adept.", inform("[Guild rank] You need skill level 80 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 80, queststatus(708) = 13, town = Galmair, "task", "adventure", "order", "rank" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Adept.", inform("[Guild rank] You need skill level 80 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 80, queststatus(708) = 13, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Du bist noch nicht erfahren genug, um in der Schmiedegilde von Galmair aufzusteigen. Du hast derzeit den Rang eines Adeptens inne.", inform("[Gildenrang] Du brauchst Level 80 in Schmieden um in der Schmiedegilde aufzusteigen.")
+
+-- Level 90: Master / Meister. Reward: 5 Pure elements, master's tool
+skill(blacksmithing) > 89, queststatus(708) = 14, english, town = Galmair, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Master with the Blacksmithing Guild of Galmair. You are awarded five pieces of pure air and a special tool."), item(2551, 5, 333), queststatus(708) = 15, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some pure air for further working shifts. Come back once you are more experienced.", item(23, 1, 999, "rareness" = "1", "descriptionEn" = "Master of the Blacksmithing Guild of Galmair", "descriptionDe" = "Meister der Schmiedegilde von Galmair")
+skill(blacksmithing) > 89, queststatus(708) = 14, town = Galmair, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Master with the Blacksmithing Guild of Galmair. You are awarded five pieces of pure air and a special tool."), item(2551, 5, 333), queststatus(708) = 15, "The Blacksmithing Guild of Galmair authorised me to promote you. Have some pure air for further working shifts. Come back once you are more experienced.", item(23, 1, 999, "rareness" = "1", "descriptionEn" = "Master of the Blacksmithing Guild of Galmair", "descriptionDe" = "Meister der Schmiedegilde von Galmair")
+skill(blacksmithing) > 89, queststatus(708) = 14, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Schmiedegilde von Galmair erhebt dich in den Rang eines Meisters. Du erhältst fünf Stück reine Luft und ein besonderes Werkzeug."), item(2551, 5, 333), queststatus(708) = 15, "Die Schmiedegilde von Galmair hat mich angewiesen, dich zu befördern. Nimm diese reine Luft für weitere Arbeitsschichten. Komm erneut zu mir, wenn du erfahrener bist.", item(23, 1, 999, "rareness" = "1", "descriptionEn" = "Master of the Blacksmithing Guild of Galmair", "descriptionDe" = "Meister der Schmiedegilde von Galmair")
+
+-- Level < 90: Not experienced enough
+skill(blacksmithing) < 90, queststatus(708) = 14, english, town = Galmair, "quest", "mission" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Artisan.", inform("[Guild rank] You need skill level 90 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 90, queststatus(708) = 14, town = Galmair, "task", "adventure", "order", "rank" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Artisan.", inform("[Guild rank] You need skill level 90 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 90, queststatus(708) = 14, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Du bist noch nicht erfahren genug, um in der Schmiedegilde von Galmair aufzusteigen. Du hast derzeit den Rang eines Artisanens inne.", inform("[Gildenrang] Du brauchst Level 90 in Schmieden um in der Schmiedegilde aufzusteigen.")
+
+-- Level 100: Grandmaster / Großmeister. Reward: 10 Pure elements, grandmaster's medal
+skill(blacksmithing) > 99, queststatus(708) = 15, english, town = Galmair, "quest", "mission" -> inform("[Guild rank] You advance to the rank of Grandmaster with the Blacksmithing Guild of Galmair. You are awarded ten pieces of pure fire and a grandmaster's medal."), item(2553, 10, 333), queststatus(708) = 16, "Congratulations, you are now a true Grandmaster of the Blacksmithing Guild of Galmair. This pure fire shall help you to manufacture the best goods of Illarion.", item(3535, 1, 999, "nameDe" = "Großmeistermedallie", "nameEn" = "Grandmaster's Medal", "rareness" = "2", "descriptionEn" = "Grandmaster of the Blacksmithing Guild of Galmair", "descriptionDe" = "Großmeister der Schmiedegilde von Galmair")
+skill(blacksmithing) > 99, queststatus(708) = 15, town = Galmair, "task", "adventure", "order", "rank" -> inform("[Guild rank] You advance to the rank of Grandmaster with the Blacksmithing Guild of Galmair. You are awarded ten pieces of pure fire and a grandmaster's medal."), item(2553, 10, 333), queststatus(708) = 16, "Congratulations, you are now a true Grandmaster of the Blacksmithing Guild of Galmair. This pure fire shall help you to manufacture the best goods of Illarion.", item(3535, 1, 999, "nameDe" = "Großmeistermedallie", "nameEn" = "Grandmaster's Medal", "rareness" = "2", "descriptionEn" = "Grandmaster of the Blacksmithing Guild of Galmair", "descriptionDe" = "Großmeister der Schmiedegilde von Galmair")
+skill(blacksmithing) > 99, queststatus(708) = 15, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> inform("[Gildenrang] Die Schmiedegilde von Galmair erhebt dich in den Rang eines Großmeisters. Du erhältst zehn Stück reines Feuer und eine Großmeistermedallie."), item(2553, 10, 333), queststatus(708) = 16, "Gratulation, du bist nun ein echter Großmeister der Schmiedegilde von Galmair. Dieses reine Feuer soll dir helfen, die besten Waren ganz Illarions herzustellen.", item(3535, 1, 999, "nameDe" = "Großmeistermedallie", "nameEn" = "Grandmaster's Medal", "rareness" = "2", "descriptionEn" = "Grandmaster of the Blacksmithing Guild of Galmair", "descriptionDe" = "Großmeister der Schmiedegilde von Galmair")
+
+-- Level < 100: Not experienced enough
+skill(blacksmithing) < 100, queststatus(708) = 15, english, town = Galmair, "quest", "mission" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Master.", inform("[Guild rank] You need skill level 100 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 100, queststatus(708) = 15, town = Galmair, "task", "adventure", "order", "rank" -> "You are not experienced enough for a promotion with the Blacksmithing Guild of Galmair. Your current rank is Master.", inform("[Guild rank] You need skill level 100 in blacksmithing to advance in the ranks of the Blacksmithing Guild.")
+skill(blacksmithing) < 100, queststatus(708) = 15, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rang" -> "Du bist noch nicht erfahren genug, um in der Schmiedegilde von Galmair aufzusteigen. Du hast derzeit den Rang eines Meisters inne.", inform("[Gildenrang] Du brauchst Level 100 in Schmieden um in der Schmiedegilde aufzusteigen.")
+
+-- Response after quest is done
+queststatus(708) = 16, english, town = Galmair, "quest", "mission" -> "All hail Grandmaster %CHARNAME!"
+queststatus(708) = 16, town = Galmair, "task", "adventure", "order" -> "All hail Grandmaster %CHARNAME!"
+queststatus(708) = 16, town = Galmair, "quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ein Hoch auf Großmeister %CHARNAME!"
+
+-- No quests for Non Galmairians
+english, "quest", "mission" -> "Get lost. Galmair first!"
+"task", "adventure", "order" -> "Get lost. Galmair first!"
+"quest", "mission", "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Scher dich vom Acker. Galmair zuerst!"
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
 -- Every NPC should contain at least 10 of those messages.
 -- Emotes are possible also starting with "#me ....".
 
-cycletext "#me schaut sich gelangweilt um.", "#me looks around bored."
+cycletext "#me schaut sich gereizt um.", "#me looks about crankily."
 cycletext "#me streicht sich über seinen Bart.", "#me runs a hand over his beard."
-cycletext "Wenn du Hilfe beim Schmieden brauchst, dann frag mich nur!", "If you need any help smithing, just ask me!"
 cycletext "#me gähnt verhalten.", "#me yawns restrained."
 cycletext "Ein Bier! Bringt mir ein Bier!", "A beer, bring me a beer!"
 cycletext "#me grummelt.", "#me grumbles."
+cycletext "#me wirft den Hammer weg und blickt auf den Amboß.", "#me tosses a hammer to the ground and looks at the anvil."
+cycletext "Arr! Es gibt nichts Besseres als Schmieden.", "Arrr! There isn't anything better than blacksmithing."
+cycletext "#me untersucht die Qualität eines Eisenbarrens.", "#me examines the quality of an iron ingot."
+cycletext "#mes Kleidung ist voller Metallspäne.", "#me's clothes are covered in metal shards."
+cycletext "Mit diesem Hammer kann ich alles schmieden.", "With this hammer I can make anything."
+cycletext "Tritt der Schmiedegilde von Galmair bei!", "Join the blacksmithing guild of Galmair!"

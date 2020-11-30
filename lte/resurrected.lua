@@ -12,19 +12,19 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
-require("base.common")
-module("lte.resurrected", package.seeall)
+local common = require("base.common")
+local M = {}
 
-attribs={"strength","dexterity","constitution","agility","intelligence","perception","willpower","essence"};
+local attribs = {"strength","dexterity","constitution","agility","intelligence","perception","willpower","essence"}
 
-function addEffect( rebirthEffect, Reborn )
+function M.addEffect( rebirthEffect, Reborn )
     if Reborn:isAdmin() then
-	  return false;
+      return false;
     end
 
-        base.common.InformNLS( Reborn,
+        common.InformNLS( Reborn,
         "[Wiederbelebung] Du fühlst dich noch sehr schwach.",
         "[Respawn] You feel very weak." );
     local maxChange = 0;
@@ -40,26 +40,29 @@ function addEffect( rebirthEffect, Reborn )
         regEffect:addValue( "maxHP", math.floor( 10000 / ( maxChange + 1 ) ) );
         rebirthEffect:addValue( "maxChange", maxChange );
     end;
-	local multi = 1;
-	local lastDeath = Reborn:getQuestProgress(20);
-	local now = base.common.GetCurrentTimestamp();
-	Reborn:setQuestProgress(20,now);
-	if lastDeath>0 and (now-lastDeath)>3600 then
-		multi = 2;
-	end
-	rebirthEffect:addValue("multiRes",multi); -- multiplier for multiple resurrection
-	local callValue = 600 * multi;
-	rebirthEffect.nextCalled=math.random(callValue-300,callValue+300);
+    local multi = 1;
+    local lastDeath = Reborn:getQuestProgress(20);
+    local now = common.GetCurrentTimestamp();
+    Reborn:setQuestProgress(20,now);
+    if lastDeath>0 and (now-lastDeath)>3600 then
+        multi = 2;
+    end
+    rebirthEffect:addValue("multiRes",multi); -- multiplier for multiple resurrection
+    if Reborn:isNewPlayer() then
+        multi = 0.5
+    end
+    local callValue = 600 * multi;
+    rebirthEffect.nextCalled=math.random(callValue-300,callValue+300);
     return true;
 end;
 
-function loadEffect( rebirthEffect, Reborn )
+function M.loadEffect( rebirthEffect, Reborn )
     if Reborn:isAdmin() then
-	  return;
+      return;
     end
 
 
-    base.common.InformNLS( Reborn,
+    common.InformNLS( Reborn,
         "[Wiederbelebung] Du fühlst dich noch immer schwach.",
         "[Respawn] You feel still weak." );
 
@@ -93,24 +96,24 @@ function loadEffect( rebirthEffect, Reborn )
     end;
 end;
 
-function callEffect( rebirthEffect, Reborn )
+function M.callEffect( rebirthEffect, Reborn )
     if Reborn:isAdmin() then
-	  return false;
+      return false;
     end
 
-	local foundMulti, multi = rebirthEffect:findValue("multiRes");
-	if not foundMulti then
-		multi = 1;
-		rebirthEffect:addValue("multiRes",1);
-	end
-	local callValue = 600 * multi;
+    local foundMulti, multi = rebirthEffect:findValue("multiRes");
+    if not foundMulti then
+        multi = 1;
+        rebirthEffect:addValue("multiRes",1);
+    end
+    local callValue = 600 * multi;
     rebirthEffect.nextCalled=math.random(callValue-300,callValue+300);
 
-	--Addition by Estralis: AFK chars do not regenerate!
-	if Reborn:idleTime() > 300 then --absolutely no regneration effect if the player is afk for more than five minutes
-	    return true;
-	end;
-	
+    --Addition by Estralis: AFK chars do not regenerate!
+    if Reborn:idleTime() > 300 then --absolutely no regeneration effect if the player is afk for more than five minutes
+        return true;
+    end;
+
     local changeBy = 0;
     local foundChange = false;
     local maxChange = 0;
@@ -144,13 +147,13 @@ function callEffect( rebirthEffect, Reborn )
     return callAgain;
 end;
 
-function removeEffect( rebirthEffect, Reborn )
+function M.removeEffect( rebirthEffect, Reborn )
     if Reborn:isAdmin() then
     Reborn:inform("Admins do not suffer from resurrection.");
-	  return;
+      return;
     end
-	
-	base.common.InformNLS( Reborn,
+
+    common.InformNLS( Reborn,
         "[Wiederbelebung] Du hast dich vollständig erholt.",
         "[Respawn] You have fully recovered." );
 
@@ -170,12 +173,12 @@ function removeEffect( rebirthEffect, Reborn )
 end;
 
 -- NOTE: function is saved locally in npc_yellowcross.lua; Workaround for Mantis issue #451
-function doubleEffect( rebirthEffect, Reborn )
+function M.doubleEffect( rebirthEffect, Reborn )
     if Reborn:isAdmin() then
-	  return false;
+      return false;
     end
 
-    base.common.InformNLS( Reborn,
+    common.InformNLS( Reborn,
         "[Wiederbelebung] Du fühlst dich noch sehr schwach.",
         "[Respawn] You feel very weak." );
     local maxChange = 0;
@@ -196,12 +199,14 @@ function doubleEffect( rebirthEffect, Reborn )
         regEffect:addValue( "maxHP", math.floor( 10000 / ( maxChange + 1 ) ) );
         rebirthEffect:addValue( "maxChange", maxChange );
     end;
-	local foundMulti, multi = rebirthEffect:findValue("multiRes");
-	if not foundMulti then
-		multi = 1;
-	end
-	multi = multi +1;
-	rebirthEffect:addValue("multiRes",multi);
-	Reborn:setQuestProgress(20,base.common.GetCurrentTimestamp());
+    local foundMulti, multi = rebirthEffect:findValue("multiRes");
+    if not foundMulti then
+        multi = 1;
+    end
+    multi = multi +1;
+    rebirthEffect:addValue("multiRes",multi);
+    Reborn:setQuestProgress(20,common.GetCurrentTimestamp());
     return true;
 end
+
+return M

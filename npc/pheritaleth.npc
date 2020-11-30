@@ -81,9 +81,9 @@ queststatus(702) = 10, item(234, all, "nameDe" = "Echt großer Goldnugget") > 0, 
 
 -- Mandatory: General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "I foretell that you did not come to me to chat about inane things. We should strictly get to business, mine is transmuting gems."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Ich nehme an, ihr seid nicht zu mir gekommen um über Unwichtiges Gewäsch zu reden. Lasst uns zur Sache kommen, mein Geschäft ist das Vereinen von Edelsteinen."
-english, "Hiho", "Hallo", "Hey", "Greeb" -> "I foretell that you did not come to me to chat about inane things. We should strictly get to business, mine transmuting is gems."
-"Hiho", "Hallo", "Hey", "Greeb" -> "Ich nehme an, ihr seid nicht zu mir gekommen um über Unwichtiges Gewäsch zu reden. Lasst uns zur Sache kommen, mein Geschäft ist das Vereinen von Edelsteinen."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Ich nehme an, ihr seid nicht zu mir gekommen um über unwichtiges Gewäsch zu reden. Lasst uns zur Sache kommen, mein Geschäft ist das Vereinen von Edelsteinen."
+english, "Hiho", "Hallo", "Hey", "Greeb" -> "I foretell that you did not come to me to chat about inane things. We should strictly get to business, mine is transmuting gems."
+"Hiho", "Hallo", "Hey", "Greeb" -> "Ich nehme an, ihr seid nicht zu mir gekommen um über unwichtiges Gewäsch zu reden. Lasst uns zur Sache kommen, mein Geschäft ist das Vereinen von Edelsteinen."
 "Farewell", "Bye", "Fare well", "See you" -> "Happy mining.", "Farewell."
 "Tschüß", "Tschüss", "Wiedersehen", "Gehab wohl" -> "Viel Spaß in der Mine.", "Gehabt euch wohl."
 english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Happy mining.", "Farewell."
@@ -91,13 +91,21 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Happy mining.", "Farewell."
 "How are you", "How feel", "How do you do" -> "Fine! Let's talk about gems."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Gut. Nun lasst uns über Edelsteine reden."
 "your name", "who are you", "who art thou" -> gemcraft, "They call me Pheritaleth and I am skilled in gem transmutation."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich werde Pheritaleth genannt und bin eine Edelsteinkünstlerin."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich werde Pheritaleth genannt und bin eine Edelsteinkünstlerin."
 
 -- OPTIONAL TRIGGERS
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin keine Marktfrau."
 
 -- Gemcraft
-"gemcraft", "transmute", "combine", "enchant" -> gemcraft, "Let me take a look at your gems..."
-"verwandel", "verein", "kombinier", "verzauber" -> gemcraft, "Dann lasst mal eure Edelsteine sehen..."
+"gem", "magic", "smithing", "gemcraft", "transmute", "combine", "enchant" -> gemcraft, "Let me take a look at your gems..."
+"Edelstein", "magisch", "Schmieden", "verwandel", "verein", "kombinier", "verzauber" -> gemcraft, "Dann lasst mal eure Edelsteine sehen..."
+
+-- Mandatory: Catching quest triggers. Modify if the NPC does quests
+english, "quest", "mission" -> "I don't have any tasks for you."
+"quest", "mission" -> "Ich vergebe keine Aufgaben."
+"task", "adventure", "order" -> "I don't have any tasks for you."
+"Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ich vergebe keine Aufgaben."
 
 -- Optional: Small talk - The talk here should focus on possible questions. Feel free to add more!
 "profession" -> "My profession is to transmute magical gems. I have several aeons of experience, so do not question my expertise."
@@ -106,21 +114,25 @@ english, "job" -> "My profession is to transmute magical gems. I have several ae
 "job" -> "Mein Beruf ist es, magische Edelsteine zu vereinen. Ich habe mehrere Zeitalter an Erfahrung, also stellt meine Kompetenz nicht in Frage."
 
 -- Optional: More small talk - add at least five triggers, e.g. about the profession of the NPC or his enviroment
-"gem" -> "I know a lot about all the gems. Just throw in a keyword!"
+"gem" -> "I know a lot about all the gems. Just tell me what gem you are interested in!"
 english, "Amethyst" -> "Amethysts are the the clubs amongst gems. Their beauty is rather crude but natural."
 "Ruby" -> "Some say, rubies were made of Brágon's fire, but I know better why they are so red..."
 english, "Obsidian" -> "Obsidian is known to be used in dark rituals, but keep in mind that evil deeds are done by evil men, not by gems."
+"Blackstone" -> "Obsidian is known to be used in dark rituals, but keep in mind that evil deeds are done by evil men, not by gems."
 "Sapphire" -> "Those who don't know any better see a connection between sapphires and Tanora. How I laughed when I first heard that rumour!"
+"Bluestone" -> "Those who don't know any better see a connection between sapphires and Tanora. How I laughed when I first heard that rumour!"
 "Emerald" -> "Emeralds are the gems many people forgot about; I have never heard idiotic theories about their origin."
 "Topaz" -> "I keep wondering why some people search for topaz along the shores. You may as well wait for them to drop from the sky."
 "Diamond" -> "The diamond is the king amongst the gems. They are extremely rare and powerful."
-"Edelstein" -> "Ich weiß eine Menge über die Edelsteine. Gebt mir einfach ein Stichwort!"
+"Edelstein" -> "Ich weiß eine Menge über die Edelsteine. Sagt mir einfach, welche Edelsteine euch interessieren!"
 "Amethyst" -> "Die Amethysten sind die Knüppel unter den Edelsteinen. Ihre Schönheit ist von roher, aber natürlicher Art."
 "Rubin" -> "Manche glauben, Rubine wurden aus Brágons Feuer geschaffen, aber ich weiß, warum sie wirklich so rot sind..."
 "Obsidian" -> "Der Obsidian ist dafür bekannt, in dunklen Ritualen Verwendung zu finden. Denkt aber immer daran, dass diejenigen böse sind, die Böses tun, und nicht die Edelsteine."
+"Schwarzstein" -> "Der Obsidian ist dafür bekannt, in dunklen Ritualen Verwendung zu finden. Denkt aber immer daran, dass diejenigen böse sind, die Böses tun, und nicht die Edelsteine."
 "Saphir" -> "Die Unwissenden denken, Tanora hötte etwas mit den Saphiren zu tun. Wie habe ich gelacht, als ich diesen Quatsch das erste mal gehört habe."
+"Blaustein" -> "Die Unwissenden denken, Tanora hötte etwas mit den Saphiren zu tun. Wie habe ich gelacht, als ich diesen Quatsch das erste mal gehört habe."
 "Smaragd" -> "Viele haben vergessen, dass es Smaragde überhaupt gibt. Ich habe noch keine schwachsinnigen Theorien über ihre Herkunft gehört."
-"Topaz" -> "Ich wundere mich immer wieder darüber, warum die Leute Topase an der Küste suchen. Genausogut könnte man darauf warten, dass sie einem auf den Kopf fallen."
+"Topas" -> "Ich wundere mich immer wieder darüber, warum die Leute Topase an der Küste suchen. Genausogut könnte man darauf warten, dass sie einem auf den Kopf fallen."
 "Diamant" -> "Die Diamanten sind die Könige der Edelsteine. Sie sind äußerst selten und mächtig."
 
 -- Optional: Gods - use the triggers of the god the NPC worships or fights
@@ -150,13 +162,20 @@ english, "Gobaith", "Gobiath" -> "Fury."
 -- Every NPC should contain at least 10 of those messages.
 -- Emotes are possible also starting with "#me ....".
 
-cycletext "Meine Vorfahren haben schon Edelsteine geschliffen als euer Stamm noch nicht mal gegründet war.", "My ancestors cut gems back when your tribe was not even founded."
-cycletext "Manche werden nie verstehen, welche Macht die Edelsteine haben und sie für einfache Klunker halten.", "Some people will never understand the power of gems and regard them as just rocks."
-cycletext "Wenn ihr nach Tand sucht, geht zu Jacobus, dem Juwelier.", "If you need ordinary bling-bling, go to Jacobus, the jeweller."
+cycletext "Meine Vorfahren haben schon Edelsteine geschliffen, als euer Stammbaum noch nicht einmal Wurzeln schlug!", "My ancestors cut gems back when your family tree hadn't even taken root yet!"
+cycletext "Manche werden nie verstehen, welche Macht die Edelsteine haben und sie für einfache Klunker halten.", "Some people will never understand the power of gems and mistaken them for simple rocks."
+cycletext "Wenn ihr nach Tand sucht, geht zu Jacobus, dem Juwelier.", "If you need ordinary frippery, go to Jacobus, the jeweller."
+cycletext "Ob die Steine der Macht schwächer werden, je mehr magische Steine mit ihrer Hilfe erschaffen werden? Ein grausiger Gedanke!", "I wonder.. do the Queen's great gems grow weaker the more magical gems are made with their power? A terrible thought!"
 cycletext "In jedem Edelstein liegt wahre Macht.", "True magic lies within every gem."
 cycletext "Schaut, wie dieser hier funkelt.", "Look at it, it is sparkling."
-cycletext "Funkel wie ein Diamant.", "Shine bright like a diamond."
-cycletext "Wenn ein Mann sagt, dass die Augen einer Frau wie Edelsteine strahlen, meint er damit, dass er ihr sie rausschneiden möchte?", "If a man says that a woman's eyes look like gemstones, does he imply that he wants to cut them out of her face?"
+cycletext "Funkel wie ein... Rubin!", "Shine bright like a... ruby!"
+cycletext "Wenn ein Zwerg sagt, dass die Augen einer Frau wie Edelsteine strahlen, meint er damit, dass er ihr sie rausschneiden möchte?", "If a dwarf says that a woman's eyes look like gemstones, does he imply that he wants to cut them out of her face?"
 cycletext "Zwerge lieben Granit, Elfen lieben Edelsteine.", "Dwarves love granite, elves love gemstones."
 cycletext "Diamanten sind die besten Freunde einer Elfin.", "Diamonds are an elf's best friend."
 cycletext "Habt ihr Edelsteine?", "Got any gems?"
+cycletext "Gewöhnlichen Schmuck gibt es bei Jacobus, dem Juwelier. Dort drüben, vor der Werkstatt.", "You can get common jewellry from Jacobus. He is, well, the jeweller! Back there in front of the workshop."
+cycletext "So mancher Topas sticht einem mit seinem Glanz ins Auge. Doch ist er erst mit Magie durchzogen, so scheint er das Sonnenlicht selbst zu beherbergen.", "Many a common topaz may catch your eye. But if it infused with magic, you might just think the sunshine itself is trapped inside."
+cycletext "Was ein Jammer, dass es kaum magische Diamanten gibt. Allerdings, wurden nicht bei den letzten Spielen in Galmair welche an die Sieger vergeben?", "It's a pity there are hardly any magical diamonds. Although, weren't some given to the winners of the last games in Galmair?"
+cycletext "Ich kann magische Steine aus eurer Ausrüstung lösen, ohne sie zu zerbrechen. Das ist allerdings nicht sehr einfach und kostet euch etwas.", "I can extract magical gems from your equipment. However, that is not an easy process and will cost you some coins."
+cycletext "Wahre Freundschaft ist wie ein Diamant. Rar, rein und sehr kostbar!", "True friendship is like a diamond. Rare, pure and very valuable."
+cycletext "Entschuldigt, möchtet ihr vielleicht eure magischen Steine bei mir zusammenfügen lassen?", "Excuse me, would you like me to combine your magical gems by any chance?"

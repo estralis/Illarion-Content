@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- INSERT INTO triggerfields VALUES (495,728,0,'triggerfield.raptor_hole');
 -- INSERT INTO triggerfields VALUES (488,726,0,'triggerfield.raptor_hole');
@@ -27,12 +27,14 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- INSERT INTO triggerfields VALUES (465,737,0,'triggerfield.raptor_hole');
 -- INSERT INTO triggerfields VALUES (451,736,0,'triggerfield.raptor_hole');
 
-require("base.common")
-module("triggerfield.raptor_hole", package.seeall)
+local common = require("base.common")
 
+local M = {}
 
-function MoveToField(char)
-	if char:getType() ~= Character.player then --Player will be ingored
-		world:makeSound(26,char.pos); --Rrroaaaarrrr!
-	end	
+function M.MoveToField(char)
+    if char:getType() ~= Character.player then --Player will be ingored
+        world:makeSound(26, char.pos) --Rrroaaaarrrr!
+    end
 end
+
+return M

@@ -67,12 +67,12 @@ itemShoes = 326
 -- When you are done, please hit the "Rebuild Script" button.
 
 -- Help
-"Help" -> inform("[Game Help] This NPC is Frederik Silvereye the notary. Keywords: 'become citizen','leave','give up citizenship', 'rank', 'licence'.")
-"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Frederik Silvereye der Notar. Schlüsselwörter: Bürger werden,'verlassen','beende Bürgerstatus','Rang', 'Lizenz'.")
+"Help" -> inform("[Game Help] This NPC is Frederik Silvereye the notary. Keywords: 'become citizen','leave','give up citizenship', 'rank', 'licence', 'building'.")
+"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Frederik Silvereye der Notar. Schlüsselwörter: Bürger werden,'verlassen','beende Bürgerstatus','Rang', 'Lizenz', 'Gebäude'.")
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Be greeted.", "Greetings.", "Good day."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Zum Gruße.", "Seid gegrüßt.", "Guten Tag."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Zum Gruße.", "Seid gegrüßt.", "Guten Tag."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Be greeted.", "Greetings.", "Good day."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Zum Gruße.", "Seid gegrüßt.", "Guten Tag."
 "Farewell", "Bye", "Fare well", "See you" -> "Malachin with you.", "Farewell.", "Goodbye."
@@ -82,24 +82,24 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Malachin with you.", "Farew
 "How are you", "How feel", "How do you do" -> "I'm fine, thank you for your concern.", "I can't complain, even if some more action wouldn't be that bad.", "Very good, and you?"
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Mir geht es gut, danke der Nachfrage.", "Ich kann nicht klagen, auch wenn ein bisschen mehr Abenteuer mal wieder nicht schlecht wäre.", "Ganz gut, und euch?"
 "your name", "who are you", "who art thou" -> "My name is Frederik Silvereye, I take care of the new arrivals in this place.", "I'm Frederik Silvereye, I am the notary of Galmair.", "You can call me Frederik Silvereye, as notary of this town I could put you on the citizen list of this beautiful place."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Mein Name ist Frederik Silvereye, ich kümmere mich um die Neuankömmlinge dieses Ortes.", "Mein Name ist Frederik Silvereye, ich bin der Notar Galmairs.", "Man nennt mich Frederik Silvereye, als Notar kann Ich euch zum Bürger unseres schönen Ortes eintragen."
-
--- Becoming citizen in Galmair
-english, town = Cadomyr, "become citizen", "gain citizenship" -> town = Galmair, "You are now a citizen of Galmair!", "Welcome to Galmair!"
-town = Cadomyr, "Bürger werden", "Bürgerschaft beantragen" -> town = Galmair, "Ihr seid jetzt Bürger von Galmair!", "Willkommen in Galmair!"
-english, town = Runewick, "become citizen", "gain citizenship" -> town = Galmair, "You are now a citizen of Galmair!", "Welcome to Galmair!"
-town = Runewick, "Bürger werden", "Bürgerschaft beantragen" -> town = Galmair, "Ihr seid jetzt Bürger von Galmair!", "Willkommen in Galmair!"
-english, town = None, "become citizen", "gain citizenship" -> town = Galmair, "You are now a citizen of Galmair!", "Welcome to Galmair!"
-town = None, "Bürger werden", "Bürgerschaft beantragen" -> town = Galmair, "Ihr seid jetzt Bürger von Galmair!", "Willkommen in Galmair!"
-english, "become citizen", "gain citizenship" -> town = Galmair, "You are now a citizen of Galmair!", "Welcome to Galmair!"
-"Bürger werden", "Bürgerschaft beantragen" -> town = Galmair, "Ihr seid jetzt Bürger von Galmair!", "Willkommen in Galmair!"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Mein Name ist Frederik Silvereye, ich kümmere mich um die Neuankömmlinge dieses Ortes.", "Mein Name ist Frederik Silvereye, ich bin der Notar Galmairs.", "Man nennt mich Frederik Silvereye, als Notar kann Ich euch zum Bürger unseres schönen Ortes eintragen."
 
 -- Player is already citizen
 english, town = Galmair, "become citizen", "gain citizenship" -> town = Galmair, "You are already a citizen of Galmair!"
 town = Galmair, "Bürger werden", "Bürgerschaft beantragen" -> town = Galmair, "Ihr seid bereits Bürger von Galmair!"
 
+-- Becoming citizen in Galmair
+english, town = Cadomyr, "become citizen", "gain citizenship" -> town = Galmair, "You are now a citizen of Galmair!"
+town = Cadomyr, "Bürger werden", "Bürgerschaft beantragen" -> town = Galmair, "Ihr seid jetzt Bürger von Galmair!"
+english, town = Runewick, "become citizen", "gain citizenship" -> town = Galmair, "You are now a citizen of Galmair!"
+town = Runewick, "Bürger werden", "Bürgerschaft beantragen" -> town = Galmair, "Ihr seid jetzt Bürger von Galmair!"
+english, town = None, "become citizen", "gain citizenship" -> town = Galmair, "You are now a citizen of Galmair!"
+town = None, "Bürger werden", "Bürgerschaft beantragen" -> town = Galmair, "Ihr seid jetzt Bürger von Galmair!"
+english, "become citizen", "gain citizenship" -> town = Galmair, "You are now a citizen of Galmair!"
+"Bürger werden", "Bürgerschaft beantragen" -> town = Galmair, "Ihr seid jetzt Bürger von Galmair!"
+
 -- terminating citizenship, leaving Galmair (208)
-english, town = Galmair, "give up citizenship", "terminating citizen ship", "leave", "leaving" -> queststatus(208) = 1, "Oh, you no longer want to be a citizen of Galmair?"
+english, town = Galmair, "give up citizenship", "terminate", "leave", "leaving" -> queststatus(208) = 1, "Oh, you no longer want to be a citizen of Galmair?"
 town = Galmair, "beende Bürgerstatus", "verlassen", "verlasse", "annuliere" -> queststatus(208) = 1, "Oh, Ihr wollt kein Büger in Galmair mehr sein?"
 
 -- answer yes
@@ -115,6 +115,12 @@ queststatus(208) = 1, ".*" -> queststatus(208) = 0, "Mhm, ... Der Don wird sich 
 "which town", "which faction" -> "You belong to %TOWN!"
 
 -- RANK informations
+
+-- Leader
+rank > 10, town = Galmair, sex = male, "rank" -> "#me bows deeply."
+rank > 10, town = Galmair, sex = female, "rank" -> "#me bows deeply."
+rank > 10, town = Galmair, sex = male, "rang" -> "#me verbeut sich erfürchtig."
+rank > 10, town = Galmair, sex = female, "rang" -> "#me verbeut sich erfürchtig."
 
 -- Rank 10
 rank > 9, english, town = Galmair, sex = male, "rank" -> "Tycoon %CHARNAME, be welcome. It is truly an honour to see you!"
@@ -185,30 +191,30 @@ rank > 0, town = Galmair, sex = female, "rang" -> "Du bist noch ganz neu hier. D
 "lizenz", town = Galmair, sex = male -> "Ihr benötigt keine Lizenz, da ihr Bürger dieser Stadt seid."
 "lizenz", town = Galmair, sex = female -> "Ihr benötigt keine Lizenz, da ihr Bürgerin dieser Stadt seid."
 "licence","license", town = Cadomyr, town = Runewick, rank < 100 -> "You look as though you are quite new here, thus, you can currently use our tools for free."
-"lizenz", town = Cadomyr, town = Runewick, rank < 100 -> "Ihr wirkt als würdet ihr neu hier sein. Daher könnt ihr unsere Geräte zurzeit frei benutzen."
-"licence","license" -> inform("[Licence] You can choose between 'Alpha', 'Beta' and 'Gamma' licences. Alpha costs one gold coin and allow you to use the tools for one real time hour. Beta costs two gold coins for three real time hours. Gamma costs three gold coins for eight real time hours. Say the name of the type of licence you want in order to buy it. You can buy several at the same time. They will be added to each other."), "I sell three kinds of licences. 'Alpha', 'Beta' and 'Gamma'. Alpha allows you to use our static tools for thee hours and costs only one gold coin. Beta allows you to use our static tools for nine hours and costs only two gold coins. Gamma allows you to use our static tools for one day and costs only three gold coins. Which one do you want?"
-"lizenz" -> inform("Lizenz] Du kannst zwischen 'Alpha', 'Beta' und 'Gamma' wählen. Alpha kostet eine Goldmünze und erlaubt dir die Nutzung der Geräte für eine Echtzeit-Stunde. Beta kostet zwei Goldmünzen für drei Echtzeit-Stunden. Gamma kostet drei Goldmünzen für acht Echtzeit-Stunden. Sage den Namen des Typen, um zu bestellen. Du kannst mehrere gleichzeitig kaufen. Diese werden dann summiert."), "Ich verkaufe drei Arten von Lizenzen. 'Alpha', 'Beta' und 'Gamma'. Mit Alpha ist es möglich, unsere Geräte für drei Stunden zu einem Preis von nur einer Goldmünze zu nutzen. Mit Beta ist es möglich, unsere Geräte für neun Stunden zu einem Preis von nur zwei Goldmünzen zu nutzen. Und mit Gamma ist es möglich, unsere Geräte für einen Tag zu einem Preis von nur drei Goldmünzen zu nutzen. Welche möchtet ihr?"
+"lizenz", town = Cadomyr, town = Runewick, rank < 100 -> "Ihr wirkt als würdet ihr neu hier sein. Daher könnt ihr unsere Werkzeuge zurzeit frei benutzen."
+"licence","license" -> inform("[Licence] You can choose between 'Alpha', 'Beta' and 'Gamma' licences. Alpha costs one gold coin and allows you to use the tools for one real time hour. Beta costs two gold coins for three real time hours. Gamma costs three gold coins for eight real time hours. Say the name of the type of licence you want in order to buy it. You can buy several at the same time. They will be added to each other."), "I sell three kinds of licences. 'Alpha', 'Beta' and 'Gamma'. Alpha allows you to use our static tools for thee hours and costs only one gold coin. Beta allows you to use our static tools for nine hours and costs only two gold coins. Gamma allows you to use our static tools for one day and costs only three gold coins. Which one do you want?"
+"lizenz" -> inform("Lizenz] Du kannst zwischen 'Alpha', 'Beta' und 'Gamma' wählen. Alpha kostet eine Goldmünze und erlaubt dir die Nutzung der Werkzeuge für eine Echtzeit-Stunde. Beta kostet zwei Goldmünzen für drei Echtzeit-Stunden. Gamma kostet drei Goldmünzen für acht Echtzeit-Stunden. Sage den Namen des Typen, um zu bestellen. Du kannst mehrere gleichzeitig kaufen. Diese werden dann summiert."), "Ich verkaufe drei Arten von Lizenzen. 'Alpha', 'Beta' und 'Gamma'. Mit Alpha ist es möglich, unsere Werkzeuge für drei Stunden zu einem Preis von nur einer Goldmünze zu nutzen. Mit Beta ist es möglich, unsere Werkzeuge für neun Stunden zu einem Preis von nur zwei Goldmünzen zu nutzen. Und mit Gamma ist es möglich, unsere Werkzeuge für einen Tag zu einem Preis von nur drei Goldmünzen zu nutzen. Welche möchtet ihr?"
 "alpha", "beta", "gamma", town = Galmair, english -> "There is no need for you to buy a licence, since you are a citizen."
 "alpha", "beta", "gamma", town = Galmair, sex = male -> "Ihr benötigt keine Lizenz, da ihr Bürger dieser Stadt seid."
 "alpha", "beta", "gamma", town = Galmair, sex = female -> "Ihr benötigt keine Lizenz, da ihr Bürgerin dieser Stadt seid."
 "alpha", english, money < 10000 -> "You need more money in order to buy licence 'Alpha', one gold as a matter of fact."
 "alpha", money < 10000 -> "Ihr benötigt mehr Geld, um Lizenz 'Alpha' zu kaufen. Eine Goldmünze, um genau zu sein."
 "alpha", english, queststatus(813) > 0 -> money - 10000, queststatus(813) + 12, inform("[Licence purchased] You bought licence 'Alpha' for one gold coin. You can use the static tools of this town for an additional one real time hour. The time has been added to your time left."), "You are free to use our tools for an additional three hours."
-"alpha", queststatus(813) > 0 -> money - 10000, queststatus(813) + 12, inform("[Lizenz erworben] Du hast die Lizenz 'Alpha' für eine Goldmünze erworben. Du kannst die Geräte dieser Stadt für eine weitere Echtzeit-Stunde frei benutzen. Die Stunden wurden zu deiner verbliebenen Zeit aufsummiert."), "Euch ist es nun gestattet, unsere Geräte für weitere drei Stunden zu verwenden."
+"alpha", queststatus(813) > 0 -> money - 10000, queststatus(813) + 12, inform("[Lizenz erworben] Du hast die Lizenz 'Alpha' für eine Goldmünze erworben. Du kannst die Werkzeuge dieser Stadt für eine weitere Echtzeit-Stunde frei benutzen. Die Stunden wurden zu deiner verbliebenen Zeit aufsummiert."), "Euch ist es nun gestattet, unsere Werkzeuge für weitere drei Stunden zu verwenden."
 "alpha", english -> money - 10000, queststatus(813) + 12, inform("[Licence purchased] You bought licence 'Alpha' for a gold coin. You can use the static tools of this town for the next real time hour."),"Wonderful, you are free to use our tools for the next three hours."
-"alpha" -> money - 10000, queststatus(813) + 12, inform("[Lizenz erworben] Du hast die Lizenz 'Alpha' für eine Goldmünze erworben. Du kannst die Geräte dieser Stadt für die nächste Echtzeit-Stunde frei benutzen."), "Wunderbar, euch ist es nun gestattet, unsere Geräte für die nächsten drei Stunden zu verwenden."
+"alpha" -> money - 10000, queststatus(813) + 12, inform("[Lizenz erworben] Du hast die Lizenz 'Alpha' für eine Goldmünze erworben. Du kannst die Werkzeuge dieser Stadt für die nächste Echtzeit-Stunde frei benutzen."), "Wunderbar, euch ist es nun gestattet, unsere Werkzeuge für die nächsten drei Stunden zu verwenden."
 "beta", english, money < 20000 -> "You need more money in order to buy licence 'Beta', two gold coins as a matter of fact."
 "beta", money < 20000 -> "Ihr benötigt mehr Geld, um Lizenz 'Beta' zu kaufen. Zwei Goldmünzen, um genau zu sein."
 "beta", english, queststatus(813) > 0 -> money - 20000, queststatus(813) + 36, inform("[Licence purchased] You bought licence 'Beta' for two gold coins. You can use the static tools of this town for an additional three real time hours. The time has been added to your time left."), "You are free to use our tools for an additional nine hours."
-"beta", queststatus(813) > 0 -> money - 20000, queststatus(813) + 36, inform("[Lizenz erworben] Du hast die Lizenz 'Beta' für zwei Goldmünzen erworben. Du kannst die Geräte dieser Stadt für weitere drei Echtzeit-Stunden frei benutzen. Die Stunden wurden zu deiner verbliebenen Zeit aufsummiert."), "Euch ist es nun gestattet, unsere Geräte für weitere neun Stunden zu verwenden."
+"beta", queststatus(813) > 0 -> money - 20000, queststatus(813) + 36, inform("[Lizenz erworben] Du hast die Lizenz 'Beta' für zwei Goldmünzen erworben. Du kannst die Werkzeuge dieser Stadt für weitere drei Echtzeit-Stunden frei benutzen. Die Stunden wurden zu deiner verbliebenen Zeit aufsummiert."), "Euch ist es nun gestattet, unsere Werkzeuge für weitere neun Stunden zu verwenden."
 "beta", english -> money - 20000, queststatus(813) + 36, inform("[Licence purchased] You bought licence 'Beta' for two gold coins. You can use the static tools of this town for the next three real time hours."), "Wonderful, you are free to use our tools for the next nine hours."
-"beta" -> money - 20000, queststatus(813) + 36, inform("[Lizenz erworben] Du hast die Lizenz 'Beta' für zwei Goldmünzen erworben. Du kannst die Geräte dieser Stadt für die nächsten drei Echtzeit-Stunden frei benutzen."), "Wunderbar, euch ist es nun gestattet, unsere Geräte für die nächsten neun Stunden zu verwenden."
+"beta" -> money - 20000, queststatus(813) + 36, inform("[Lizenz erworben] Du hast die Lizenz 'Beta' für zwei Goldmünzen erworben. Du kannst die Werkzeuge dieser Stadt für die nächsten drei Echtzeit-Stunden frei benutzen."), "Wunderbar, euch ist es nun gestattet, unsere Werkzeuge für die nächsten neun Stunden zu verwenden."
 "gamma", english, money < 30000 -> "You need more money in order to buy licence 'Gamma', three gold coins as a matter of fact."
 "gamma", money < 30000 -> "Ihr benötigt mehr Geld, um Lizenz 'Gamma' zu kaufen. Drei Goldmünzen, um genau zu sein."
 "gamma", english, queststatus(813) > 0 -> money - 30000, queststatus(813) + 96, inform("[Licence purchased] You bought licence 'Gamma' for three gold coins. You can use the static tools of this town for an additional eight real time hours. The time has been added to your time left."), "You are free to use our tools for an additional day."
-"gamma", queststatus(813) > 0 -> money - 30000, queststatus(813) + 96, inform("[Lizenz erworben] Du hast die Lizenz 'Gamma' für drei Goldmünzen erworben. Du kannst die Geräte dieser Stadt für weitere acht Echtzeit-Stunden frei benutzen. Die Stunden wurden zu deiner verbliebenen Zeit aufsummiert."), "Euch ist es nun gestattet, unsere Geräte für einen weiteren Tag zu verwenden."
+"gamma", queststatus(813) > 0 -> money - 30000, queststatus(813) + 96, inform("[Lizenz erworben] Du hast die Lizenz 'Gamma' für drei Goldmünzen erworben. Du kannst die Werkzeuge dieser Stadt für weitere acht Echtzeit-Stunden frei benutzen. Die Stunden wurden zu deiner verbliebenen Zeit aufsummiert."), "Euch ist es nun gestattet, unsere Werkzeuge für einen weiteren Tag zu verwenden."
 "gamma", english -> money - 30000, queststatus(813) + 96, inform("[Licence purchased] You bought licence 'Gamma' for three gold coins. You can use the static tools of this town for the next eight real time hours."), "Wonderful, you are free to use our tools for a day."
-"gamma" -> money - 30000, queststatus(813) + 96, inform("[Lizenz erworben] Du hast die Lizenz 'Gamma' für drei Goldmünzen erworben. Du kannst die Geräte dieser Stadt für die nächsten acht Echtzeit-Stunden frei benutzen."), "Wunderbar, euch ist es nun gestattet, unsere Geräte für einen Tag zu verwenden."
+"gamma" -> money - 30000, queststatus(813) + 96, inform("[Lizenz erworben] Du hast die Lizenz 'Gamma' für drei Goldmünzen erworben. Du kannst die Werkzeuge dieser Stadt für die nächsten acht Echtzeit-Stunden frei benutzen."), "Wunderbar, euch ist es nun gestattet, unsere Werkzeuge für einen Tag zu verwenden."
 
 -- Catching quest triggers. Modify if the NPC does quests.
 english, "quest", "mission" -> "At the moment I have everything, but thanks for asking.", "Maybe another time, I already have everything I need."
@@ -225,12 +231,107 @@ english, "Gobaith", "Gobiath" -> "Never heard of that. Is it something to eat?"
 "Gobaith", "Gobiath" -> "Nie davon gehört. Ist es etwas zu Essen?"
 "my name" -> "It's a pleasure to meet you."
 "mein Name" -> "Ich freue mich Euch kennenzulernen."
+english, "deal" -> "We deal with everything in Galmair. But once, I made a special deal. A famous painter wanted to take residence but could not pay. He drew a picture of the Don instead. Miggs liked it. To get it he discharged all my debts."
+"Geschäft" -> "Du kannst mit allem in Galmair ein Geschäft machen. Ich hatte mal einen Maler hier, der kein Geld hatte. Er zeichnete stattdessen ein Bild vom Don, das Miggs unbedingt haben wollte. So bin ich damals meine Schulden losgeworden."
 
 -- More small talk; add at least five triggers, e.g. about the profession of the NPC or his enviroment
 "chair" -> "I like my chair!"
 "Stuhl" -> "Ich mag meinen Stuhl!"
 "table" -> "Don't walk on the table! You can't imagine what uncivilised people enter this house here."
 "Tisch" -> "Nicht auf dem Tisch laufen! Ihr könnte Euch nicht vorstellen was für unzivilisierte Leute dieses Haus betreten."
+
+-- Optional: More small talk - add at least five triggers, e.g. about the profession of the NPC or his enviroment
+"building" -> inform("[Keywords] Market, temple, teleporter, library, Well of Dreams, Villa Goldvein, workshop, guardroom, Dark Alley, Galmair's Crest, Scoria Mine"), "Be more precise! Market, temple, teleporter, donkey stable, library, Well of Dreams, Villa Goldvein, workshop, guardroom, Dark Alley, Galmair's Crest or the Scoria Mine?"
+"Gebäude" -> inform("[Schlüsselwörter] Markt, Tempel, Teleporter, Bibliothek, Quelle der Träume, Villa Goldader, Werkstatt, Wachstube, Dunkle Gasse, Galmairs Krone, Schlackengrube"), "Etwas genauer! Markt, Tempel, Teleporter, Eselstall, Bibliothek, Quelle der Träume, Villa Goldader, Werkstatt, Wachstube, Dunkle Gasse, Galmairs Krone oder die Schlackengrube?"
+"people" -> "There were only dwarves here in the past. Nowadays we have all kind of folks here, even orcs, which you can find in the Flicker Swale... Or would you like to meet Lotta? *grins*"
+"Leute" -> "Früher waren hier nur Zwerge, aber heutzutage haben wir alle möglichen Leute hier. Selbst Orks, welche du unten in der Schimmersenke finden kannst... Oder willst du Lotta treffen? *grinst*"
+"history" -> "The history of our town can be read about in our library. Unfortunately, we lost our actual history book, but our Don was kind enough to provide his personal notes."
+"Geschichte" -> "Die Geschichte unserer Stadt kannst du in unserer Bibliothek nachlesen. Leider wurde das eigentliche Geschichtsbuch verloren. Aber der Don war so nett und hat uns seine persönlichen Notizen zur Verfügung gestellt."
+"event" -> "Several events regarding our town can be read about in our library. Unfortunately, we lost our actual history book, but our Don was kind enough to provide his personal notes."
+"Ereignis", "Geschehnis" -> "Sämtliche Ereignisse betreffend unserer Stadt kannst du in unserer Bibliothek nachlesen. Leider wurde das eigentliche Geschichtsbuch verloren. Aber der Don war so nett und hat uns seine persönlichen Notizen zur Verfügung gestellt."
+"law" -> "Actually, we have only one rule. You just have to know, coins and thus the Don rules, because he has most. You will find more recommendations though in the Scoria Mine on some columns around the Hog Dens and Cameo Pit."
+"Gesetz" -> "Wir haben eigentlich keine Gesetze. Du musst nur wissen, dass hier Münzen und deshalb der Don herrscht, weil er die meisten hat. Aber du kannst mehr Empfehlungen unten in der Schlackengrube um und zwischen Gemmenschacht und Schweinebaue finden."
+"ruler" -> "We have only had two rulers so far. Our Don Valerio Guilianni and his father Tommaso Guilianni. You can find more information about the latter in the notes of the Don, our new history book."
+"Herrscher" -> "Wir hatten lediglich zwei Herrscher bisher. Unseren Don Valerio Guilianni und seinen Vater Tommaso Guilianni. Informationen über letzteren findest du in den Aufzeichnungen des Don, unserem neuem Geschichtsbuch."
+"market" -> "Everything has to be explained to you. Just run through the town to the Well of Dreams and you will see it. You cannot miss it. *points to the town gate*"
+"Markt" -> "Alles muss man dir erklären. Lauf einfach durch die Stadt zur Quelle der Träume und du wirst ihn sehen. Du kannst ihn nicht verfehlen. *zeigt auf das Stadttor*"
+"temple" -> inform("[Keywords] Temple of Irmorom, Temple of Ronagan, Temple of Nargun"), "We have temples for each of our three gods here: Temple of Irmorom, Temple of Ronagan and Temple of Nargun."
+"Tempel" -> inform("[Schlüsselwörter] Tempel des Irmorom, Tempel des Ronagan, Tempel des Nargun"), "Wir haben je einen Tempel für unsere drei Götter hier. Tempel des Irmorom, Tempel des Ronagan and Tempel des Nargun."
+"Well Dreams" -> "The Well of Dreams is the other side of the town. Therefore, enter the town, head past the market and Villa Goldvein and you are there, but usually, people avoid this place. *smirks*"
+"Quelle Träume" -> "Die Quelle der Träume ist an der anderen Seite der Stadt. Daher rein mit dir, passiere den Markt und die Villa Goldader und du bist dort. Aber Leute meiden diesen Ort normal. *grinst*"
+"Villa Goldvein" -> "The Villa Goldvein is the other side of the town, close to the Well of Dreams. It is a place for the richer ones among us."
+"Villa Goldader" -> "Die Villa Goldader ist an der anderen Seite der Stadt, nahe der Quelle der Träume. Sie ist ein Ort für die reicheren unter uns."
+"Workshop" -> "The Workshop is on the left side, behind the road to the Malachite Mine. It is a place for smiths and other craftsmen."
+"Werkstatt" -> "Die Werkstatt is auf der linken Seite nach der Straße zur Malachitmine. Sie ist ein Ort für Schmiede und andere Handwerker."
+"Guardroom" -> "The Guardroom is close to the town wall, on the right side after the Dark Alley. You will also find someone inside who will help you to remember things. *smirks*"
+"Wachstube" -> "Die Wachstube ist nach der Stadtmauer auf der rechten Seite nach der Dunklen Gasse. Du wirst dort auch jemand finden der dir helfen wird Dinge in Erinnerung zu behalten. *grinst*"
+"Dark Alley" -> "The Dark Alley is behind the donkey stable. Do I really have to explain to you what you can do there? *smirks*"
+"Dunkle Gasse" -> "Die Dunkle Gasse ist hinter dem Eselstall. Muss ich dir wirklich erklären was du da hinten alles machen kannst? *grinst*"
+
+"Galmair's Crest", "Galmairs Crest" -> inform("[Keywords] Guilianni Residence, Council Chamber, Golden Dreams, Treasury, Library"), "Galmair's Crest is at the heart of Galmair and the residence of our Don. The building is close to the market and inside you can find: the Guilianni Residence, Don's Council Chamber, Golden Dreams, Treasury and Library."
+"Galmairs Krone", "Galmair Krone" -> inform("[Schlüsselwörter] Guilianni Residenz, Konzil Kammer, Goldträume, Schatzkammer, Bibliothek"), "Galmairs Krone ist das Herz von Galmair und die Residenz unseres Don. Das Gebäude ist nahe dem Markt und du findest drinnen: Guiliannis Residenz, Dons Konzil Kammer, Goldträume, Schatzkammer und Bibliothek."
+"Library" -> "Our library in Galmair's Crest contains all our books. Among these are our books about history, locations, gods, towns and so on. Just take a look there."
+"Bibliothek" -> "Unsere Bibliothek in Galmairs Krone enthält all unsere Bücher. Unter diesen findest du unser Geschichtsbuch, Bücher über Orte, Götter, Städte und so weiter. Siehe einfach nach."
+"Guilianni Residence" -> "In this place within Galmair's Crest you will find and meet our Don."
+"Guilianni Residenz" -> "An diesem Ort in Galmairs Krone findest und triffst du unseren Don."
+"Council Chamber" -> "This is a conference room in Galmair's Crest used to discuss how to improve our treasury, for example."
+"Konzil Kammer" -> "Dies ist ein Konferenzraum in Galmairs Krone für Diskussionen wie man die Schatzkammer vergrößern könnte zum Beispiel."
+"Golden Dreams" -> "The room Golden Dreams, within Galmair's Crest, is the private room of the Don."
+"Goldträume" -> "Der Raum Goldträume in Galmairs Krone ist der private Raum des Don."
+"Treasury" -> "Ha, ha... of course you would like to know more about this room in Galmair's Crest. Stop dreaming! I do not think that you will ever be in this room. *smirks*"
+"Schatzkammer" -> "Ha, ha... klar würdest du gerne mehr über diesen Raum in Galmairs Krone wissen. Denkste! Ich glaub kaum, dass du den je von innen sehen wirst. *kichert*"
+"Scoria Mine" -> inform("[Keywords] The Winged Sow Tavern, Flicker Swale, Hog Dens, Cameo Pit, Sewers."), "The Scoria Mine is situated after the market, on the right side. You have to take the elevator to get down and you will find following shafts there: The Winged Sow Tavern, Flicker Swale, Hog Dens, Cameo Pit and Sewers."
+"Schlackengrube" -> inform("[Schlüsselwörter] Taverne zur Geflügelten Sau, Schimmersenke, Schweinebaue, Gemmenschacht, Abwasserschächte"), "Die Schlackengrube ist nach dem Markt auf der rechten Seite. Du musst den Aufzug verwenden um hinunter zu kommen. Du findest folgende Schächte dort: Taverne zur Geflügelten Sau, Schimmersenke, Schweinebaue, Gemmenschacht und Abwasserschächte."
+"elevator" -> "The elevator will help you to get down into the Scoria Mine. From there you have access all the shafts of the Scoria Mine. You will find the elevator on the other side of the town."
+"Aufzug" -> "Der Aufzug wird dir helfen hinunter in die Schlackengrube zu kommen. Von dort hast du Zugang zu allen Schächten in der Schlackengrube. Du kannst den Aufzug auf der anderen Seite der Stadt finden."
+"Winged Sow Tavern" -> "This place is in the Scoria Mine and has two entrances. The main entrance is via the Scoria Mine elevator and the second one is down a ladder, on the right before the elevator. Follow the signposts. You will find good beer and entertainment there."
+"Taverne Geflügelten Sau" -> "Dieser Ort in der Schlackengrube hat zwei Eingänge. Den Haupteingang über den Aufzug der Schlackengrube und den zweiten über eine Leiter knapp vor dem Aufzug. Folge den Wegweisern. Wie dem auch sei, du wirst gutes Bier und gute Unterhaltung dort finden."
+english, "Tavern" -> "This place is in the Scoria Mine has and two entrances. The main entrance is via the Scoria Mine elevator and the second one is down a ladder, on the right before the elevator. Follow the signposts. You will find good beer and entertainment there."
+"Tavern" -> "Dieser Ort in der Schlackengrube hat zwei Eingänge. Den Haupteingang über die Schlackengrube Aufzug und den zweiten über eine Leiter knapp vor dem Aufzug. Folge den Wegweisern. Wie dem auch sei, du wirst gutes Bier und Unterhaltung dort finden."
+"Flicker Swale" -> inform("[Keyword]Game room, Temple of Nargun"), "Flicker Swale can be found in the Scoria Mine, just follow the signposts. There you can also find the Game room and the Temple of Nargun."
+"Schimmersenke" -> inform("[Schlüsselwort]Spielraum, Tempel des Nargun"), "Die Schimmersenke kann in der Schlackengrube gefunden werde. Folge einfach den Wegweisern. Dort findest du auch den Spielraum und den Tempel des Nargun."
+"Gameroom" -> "The Game room in the Flicker Swale offers you a great opportunity to get the money of others... or to lose your own! *smirks*"
+"Spielraum" -> "Der Spielraum in der Schlimmersenke ermöglicht dir anderen das Geld abzuknüpfen...oder dein eigenes zu verlieren. *kichert*"
+"Hog Dens" -> "The Hog Dens can be found in the Scoria Mine, just follow the signposts. This place is mainly used by our green friends, the orcs."
+"Schweinebaue" -> "Die Schweinebaue können in der Schlackengrube gefunden werde. Folge einfach den Wegweisern. Dieser Ort wird hauptsächlich von unseren grünen Freunden verwendet - den Orks."
+"Cameo Pit" -> "The Cameo Pit can be found in the Scoria Mine, just follow the signposts. It contains the flats for those who do not have enough money to live at Villa Goldvein."
+"Gemmenschacht" -> "Der Gemmenschacht kann in der Schlackengrube gefunden werde. Folge einfach den Wegweisern. Er beinhaltet die Wohnungen jener, welche nicht genügend Geld haben um in der Villa Goldader zu wohnen."
+"Sewers" -> "The Sewers can be found in the Scoria Mine, just follow the signposts. You will find some creatures living at this place so you can try your luck there. *smirks*"
+"Abwassersch" -> "Die Abwasserschächte kann in der Schlackengrube gefunden werde. Folge einfach den Wegweisern. Dort findest du diverse Kreaturen. Versuch einfach dein Glück dort. *kichert*"
+english, "Hinterland" -> inform("[Keywords] Sleepy Bujhaar Inn, Census office, Sport Hole, Malachite Mine, Miner's club, Miner's spring, Woodcorner, Stinky Fisherman, The Platform, Dark Hole Mine, Farmland, Copperbridge, Blackbridge"), "In the so called Hinterlands you can find: Sleepy Bujhaar Inn, Census office, Sport Hole, Malachite Mine, Miner's club, Miner's spring, Woodcorner, Stinky Fisherman, The Platform, Black Hole Mine, Farmland, Copperbridge and Blackbridge."
+"Hinterland" -> inform("[Schlüsselwörter] Gasthof zum schläfrigen Bujhaar, Zensusbüro, Tollloch, Malachitmine, Schürfers Club, Schürfers Quelle, Waldeck, Stinkender Fischer, Plattform, Dunkellochmine, Ackerland, Kupferbrücke, Schwarzbrücke."), "Im sogenannten Hinterland findest du: Gasthof zum schläfrigen Bujhaar, Zensusbüro, Tollloch, Malachitmine, Schüfers Club, Schüfers Quelle, Waldeck, Stinkender Fischer, Plattform, Dunkellochmine, Ackerland, Kupferbrücke and Schwarzbrücke."
+"Sleepy Bujhaar Inn" -> "The Sleepy Bujhaar Inn can be found on the road to the Malachite Mine, after the Census office. Just look for signposts. You can rest and eat there if you want."
+"Gasthof Bujhaar" -> "Das Gasthaus zum Schlafenden Bujhaar kann an der Straße zur Malachitmine nach dem Zensusbüro gefunden werden. Folge einfach den Wegschildern. Du kannst dort essen oder rasten wenn du möchtest."
+"Malachite Mine" -> "The Malachite mine is in the south of Galmair. Just enter the town and walk south while you follow the signposts. You can get iron, copper and gold there. There is also an entrance to the Shadowland."
+"Malachitmine" -> "Die Malachitmine ist im Süden von Galmair. Gehe in die Stadt und folge den Wegweisern in den Süden. Du wirst dort Eisen, Kupfer und Gold finden. Es hat auch einen Eingang zum Schattenland dort."
+"Miner's Club","Miners Club" -> "The Miner's Club is a place to rest for the miners of the Malachite mine, which is very close. The club was founded by the Father of the Don, Don Tommaso Guilianni and he spent a lot of time there."
+"Schürfers Club" -> "Der Schürfers Club ist ein Ort zum Rasten für die Schürfer in der Malachitmine, welche sehr nahe ist. Der Club wurde errichtet vom Vater des Don, Don Tommaso Guilianni, der dort viel Zeit verbracht hat."
+"Miner's Spring","Miners Spring" -> "The Miner's spring is next to the Miner's Club, and rumors say that people who rest there become better miners."
+"Schürfers Quelle" -> "Die Schürfers Quelle ist neben dem Schürfers Club, und Gerüchten zufolge werden Leute die dort rasten bessere Schürfer."
+"Woodcorner" -> "That is a camp for lumberjacks and it is very close. Just behind the teleporter. *points north*"
+"Waldeck" -> "Das ist ein Lager für Holzfäller und es liegt sehr nahe. Gleich hinter dem Teleporter. *zeigt in den Norden"
+"Stinky Fisherman" -> "The Stinky Fisherman is a place for fishers and it is south from here, on the north bank of the Malachite creek."
+"Stinkende Fischer" -> "Der Stinkende Fischer ist ein Ort für Fischer und ist südlich von hier am Nordufer des Malachitbaches."
+"Platform" -> "The Platform is a place for fishers close to the Copperbridge *points east*. It was also used by lizards to rise and pray in the past. "
+"Plattform" -> "Die Plattform ist ein Ort für Fischer nahe der Kupferbrücke *zeigt in den Osten*. Sie wurde früher auch von Echsen genutzt zum Schlüpfen und Beten."
+"Dark Hole Mine" -> "The Dark Hole Mine is far in the north. You have to walk east, over the Copperbridge, to the north over the Blackbridge, past the harbour, and then you are there. Just follow the signposts. You can find coal there."
+"Dunkellochmine" -> "Die Dunkellochmine ist weit im Norden. Du musst in den Osten gehen, über die Kupferbrücke, dann in den Norden über die Schwarzbrücke, beim Hafen vorbei und dann bist du da. Folge einfach den Wegschildern. Du wirst Kohle dort finden."
+"Farmland" -> "The Farmland is just here. *points south*"
+"Ackerland" -> "Das Ackerland ist gleich hier. *zeigt in den Süden*"
+"Copperbridge" -> inform("[Keyword] location"), "The Copperbridge in the east leads you over the Malachite creek to Nargun's Plain fist and then on to the Hemp Necktie Inn, if you want to go to those locations."
+"Kupferbrücke" -> inform("[Schlüsselwort] Ort"), "Die Kupferbrücke im Osten führt dich zuerst über den Malachit Bach zu Narguns Ebene und dann zum Gasthof zur Hanfschlinge, falls du zu diesen Orten gehen möchtest."
+"Blackbridge" -> inform("[Keyword] location"), "The Blackbridge in the northeast leads you over the Bounding Stream to the Swamp and Northern Woods, if you want to go to those locations."
+"Schwarzbrücke" -> inform("[Schlüsselwort] Ort"), "Die Schwarzbrücke, im Nordosten von hier, führt dich über den Grenzstrom zum Sumpf und den Nördlichen Wäldern, falls du zu diesen Orten gehen möchtest."
+"Shadowland" -> "A dangerous place at the south end of the Malachite mine. Do not go there alone. For more information, ask someone else."
+"Schattenland" -> "Ein gefährlicher Ort am südlichen Ende der Malachitmine. Geh nicht alleine dort hin. Für mehr Information frage jemand anderen."
+"Temple Ronagan", "Ronagan Temple" -> "The Temple of Ronagan can be found in the Scoria Mine. Just follow the signposts, but keep in mind that the temple is currently flooded."
+"Tempel Ronagan", "Ronagan Tempel" -> "Der Tempel von Ronagan kann in der Schlackengrube gefunden werden. Folge einfach den Wegweisern, aber beachte, dass der Tempel momentan überflutet ist."
+"Temple Irmorom", "Irmorom Temple" -> "The Temple of Irmorom is close to Villa Goldvein. You can pray to Irmorom there and hope that you become a rich person."
+"Tempel Irmorom", "Irmorom Tempel" -> "Der Tempel des Irmorom ist nahe der Villa Goldader. Du kannst dort zu Irmorom beten und hoffen, dass du reich wirst."
+"Temple Nargun", "Nargun Temple" -> "The Temple of Nargun in the Flicker Swale is a place for all those who follow Nargun. Obvious, isn't it?"
+"Tempel Nargun", "Nargun Tempel" -> "Der Temepl des Nargun in der Schimmersenke ist ein Ort für jene die Nargun folgen. Klar, oder?"
+"Sport Hole" -> "The Sport Hole is used for those people who think they can betray the Don. It is on the road to the Malachite mine close to the bridge there over the Malachite creek."
+"Tollloch" -> "Das Tolloch wird für jene Leute verwendet, die der Meinung sind den Don betrügen zu können. Es ist an der Straße zur Malachitmine kurz vor der Brücke über den Malachit Bach."
 
 -- Faction stuff. Please remove if you send the template to outsiders!
 "archmage" -> "No comment.", "I won't comment on that."
@@ -293,24 +394,18 @@ english, "Zhambra" -> "There are 16 gods. Five created Illarion. One god is evil
 "Zhambra" -> "Es gibt 16 Götter. Fünf schufen Illarion. Einer ist böse.", "Fragt einen Priester wenn Ihr mehr wissen wollt. Ich bin bloß ein Notar."
 
 -- Catching typical NPC phrases
-"what sell", "what buy", "list wares", "price of" -> "I am not a trader, but if you give me money, you can become a citizen of Galmair.", trade
+"what sell", "what buy", "list wares", "price of" -> "I am not a trader, but if you give me money, you can become a citizen of Galmair."
 "was verkauf", "was kauf", "warenliste", "preis von" -> "Ich bin kein Händler. Wenn du mir Geld gibst, kannst du Bürger von Galmair werden."
 "tell something" -> "Everyone should become a citizen of Galmair, that way I can make lots of money!"
 "erzähl was", "erzähl etwas" -> "Jeder sollte Bürger Glamairs werden, so kann ich viel Geld verdienen!"
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin kein Händler."
 
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Frederik", "Silvereye" -> "Yes, that's me!", "Who? Me?", "#me waves."
 "Frederik ", "Silvereye" -> "Ja, das bin ich!", "Wer? Ich?", "#me winkt"
-"Yes" -> "#me nods."
-"Ja" -> "#me nickt."
-"No" -> "#me shakes his head."
-"Nein" -> "#me schüttelt den Kopf."
 "bless you" -> "Thanks."
 "gesundheit" -> "Danke."
-
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-english, chance(20.0), ".*" -> "...pardon?", "Well...", "#me looks around."
-german, chance(20.0), ".*" -> "...bitte?", "Mhm....", "#me schaut sich um."
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.

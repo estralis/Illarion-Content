@@ -1,0 +1,226 @@
+-- Illarion Server
+-- 
+-- This program is free software: you can redistribute it and/or modify it under
+-- the terms of the GNU Affero General Public License as published by the Free
+-- Software Foundation, either version 3 of the License, or (at your option) any
+-- later version.
+-- 
+-- This program is distributed in the hope that it will be useful, but WITHOUT
+-- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+-- FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+-- details.
+-- 
+-- You should have received a copy of the GNU Affero General Public License
+-- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------------------------------------------------------AC
+-- NPC Name: Ssalva                                                      none --
+-- NPC Job: Templar                                                        --
+--                                                                            --
+-- NPC Race: lizardman                  NPC Position:  567, 230, 0            --
+-- NPC Sex:  female                       NPC Direction: southwest            --
+--                                                                            --
+-- Author:   Evie                                                             --
+--                                                     easyNPC Parser v1.23.1 --
+--------------------------------------------------------------------------------
+
+name = "Ssalva"
+race = lizardman
+sex = female
+position = 567, 230, 0
+direction = southwest
+affiliation = "None"
+job = "Templar"
+
+language = common
+language = lizard
+defaultLanguage = common
+autointroduce = on
+
+author = "Evie"
+
+lookatDE = "Dieser NPC ist Ssalva"
+lookatUS = "This is NPC Ssalva."
+useMsgDE = "Fass mich nicht an!"
+useMsgUS = "Hands off!"
+wrongLangDE = "#me schaut dich verwirrt an."
+wrongLangUS = "#me looks at you confused."
+radius = 0
+hairID = 6
+beardID = 0
+colorHair = 120, 50, 250
+colorSkin = 150, 150, 250
+itemHead = 0
+itemChest = 181
+itemCoat = 2418
+itemMainHand = 2784
+itemSecondHand = 0
+itemHands = 48
+itemTrousers = 461
+itemShoes = 53
+
+-- Help
+"Help" -> inform("[Game Help] This is NPC Ssalva. Keywords are: Quest, task, Tanora, Zelphia, mother, rogue, extremist, Lake of Life, water, and prayer.")
+"Hilfe" -> inform("[Spielhilfe] Dies ist NPC Ssalva. Stichworte sind: Aufgabe, Tanora, Zelphia, Mutter, Schurke, Extremist, See des Lebens, Wasser und Gebet.")
+
+-- General speech
+"Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Blesssingss and greetingss of zze Mozzer."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Grüssse und Segensswünsche der Mutter."
+english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greetinzss of zze Mozzer to you. Blesssed are we zziss day.", "Blesssingss and greetingss of zze Mozzer."
+"Hiho", "Hallo", "Hey", "Greeb" -> "Grüssse und Segensswünsche der Mutter."
+"Farewell", "Bye", "Fare well", "See you" -> "Sswim sstrong. May zze Mozzer guide you back."
+"Tschüß", "Tschüss", "Wiedersehen", "Gehab wohl" -> "Schwimme kräftig. Möge Mutter dich zurückgeleiten."
+"How are you", "How feel", "How do you do" -> "Ssalva iss fine and doing zze work of zze Mozzer."
+"Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Ssalva geht es gut und ssie macht ihre Arbeit für Mutter."
+"your name", "who are you", "who art thou" -> "Sshe iss Ssalva, zze true sservant of zze Mozzer."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst", "wie heißen", "wie heisst", "wie heissen" -> "Sie ist Ssalva, wahre Dienerin der Mutter."
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin keine Marktfrau."
+
+-- Small talk: The talk here should focus on possible questions. Feel free to add more!
+"water" -> "Water iss zze life of uss all, zze gift of zze mother."
+"Wasser" -> "Wassser ist unser aller Leben, das Geschenk der Mutter."
+"prayer", "worship" -> "Zze zzealotss have many prayerss in zze name of zze Mozzzer. Many of zzem are not proper prayerss."
+"Gebet", "Andacht" -> "Die Fanatiker haben viele Anbeter im Namen der Mutter. Viele von ihnen ssind keine guten Glaubenden."
+english, "Tanora", "Zelphia", "Mozzer" -> "Zze Mozzer iss everyzzing. Zze extremisstss do foul zzingss in her name."
+"Mother" -> "Zze Mozzer iss everyzzing. Zze extremisstss do foul zzingss in her name."
+"Tanora", "Zelphia", "Mozzer", "Mutter" -> "Mutter ist Alless. Die Extremisten tun schreckliche Dinge in ihrem Namen."
+"Lake", "life" -> "Ssalva does ssee zzat zziss iss a large underground lake, which zze Mozzer hass given sspecial life for it glowss brightly. Ssalva greatly wisshess to one day sswim in zziss lake."
+"See des", "Leben" -> "Ssalva hat gesehen, dass es ein grossser unterirdischer See ist, welchem Mutter besonderes Leben mit strahlendem Leuchten gegeben hat. Ssalvas grössster Wunsch ist eines Tages in diesem See zu schwimmen."
+english, "Zzarn", "Ska" -> "Zziss group of zealotss are vilifying zze Mozzer's name."
+"rogue", "extremist" -> "Zziss group of zealotss are vilifying zze Mozzer's name."
+"Zzarn", "Ska", "Schurke", "Extremist" -> "Diesse Gruppe von Fanatikern verunglimpfen den Namen der Mutter."
+
+-- Faction
+"archmage" -> "Ssalva only hass alliance to zze Mozzer. Zze otherss are of no importance."
+"Erzmagier" -> "Ssalva hat nur einen Bund mit Mutter. Alle anderen sind ohne Bedeutung."
+english, "Elvaine", "Morgan" -> "Ssalva only hass alliance to zze Mozzer. Zze otherss are of no importance."
+"Elvaine", "Morgan" -> "Ssalva hat nur einen Bund mit Mutter. Alle anderen sind ohne Bedeutung."
+english, "Runewick" -> "Ssalva only hass alliance to zze Mozzer. Zze otherss are of no importance."
+"Runewick" -> "Ssalva hat nur einen Bund mit Mutter. Alle anderen sind ohne Bedeutung."
+english, "Valerio", "Guilianni", "Don" -> "Ssalva only hass alliance to zze Mozzer. Zze otherss are of no importance."
+"Valerio", "Guilianni", "Don" -> "Ssalva hat nur einen Bund mit Mutter. Alle anderen sind ohne Bedeutung."
+english, "Galmair" -> "Ssalva only hass alliance to zze Mozzer. Zze otherss are of no importance."
+"Galmair" -> "Ssalva hat nur einen Bund mit Mutter. Alle anderen sind ohne Bedeutung."
+"Queen" -> "Ssalva only hass alliance to zze Mozzer. Zze otherss are of no importance."
+"Königin" -> "Ssalva hat nur einen Bund mit Mutter. Alle anderen sind ohne Bedeutung."
+english, "rosaline", "edwards" -> "Ssalva only hass alliance to zze Mozzer. Zze otherss are of no importance."
+"rosaline", "edwards" -> "Ssalva hat nur einen Bund mit Mutter. Alle anderen sind ohne Bedeutung."
+english, "Cadomyr" -> "Ssalva only hass alliance to zze Mozzer. Zze otherss are of no importance."
+"Cadomyr" -> "Ssalva hat nur einen Bund mit Mutter. Alle anderen sind ohne Bedeutung."
+
+-- Quests
+--Find the entrance to the Lake of Life Dungeon
+queststatus(501) = 0, english, "quest", "mission" -> inform("[New quest] Zzarn'K'Ska of Zelphia I"), queststatus(501) = 1, "Ksss. Ssomewhere easst of here iss zze Underground Lake of Life. It iss an area zzat hass been taken over by radical religiouss zealotss of zze Mozzer. Find a way to zzeir sstronghold. We musst errradicate zzem."
+queststatus(501) = 0, "quest", "mission" -> inform("[Neue Quest] Zzarn'K'Ska von Zelphia I"), queststatus(501) = 1, "Ksss. Irgendwo östlich von hier ist der Ssee des Lebenss. Der Bereich wird beherrscht von einer Gruppe radikal religiöser Fanatiker der Mutter. Finde einen Weg in ihre Festung. Wir müssen sie ausmerzen."
+queststatus(501) = 0, "task", "adventure", "order" -> inform("[New quest] Zzarn'K'Ska of Zelphia I"), queststatus(501) = 1, "Ksss. Ssomewhere easst of here iss zze Underground Lake of Life. It iss an area zzat hass been taken over by radical religiouss zealotss of zze Mozzer. Find a way to zzeir sstronghold. We musst errradicate zzem."
+queststatus(501) = 0, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> inform("[Neue Quest] Zzarn'K'Ska von Zelphia I"), queststatus(501) = 1, "Ksss. Irgendwo östlich von hier ist der Ssee des Lebenss. Der Bereich wird beherrscht von einer Gruppe radikal religiöser Fanatiker der Mutter. Finde einen Weg in ihre Festung. Wir müssen sie ausmerzen."
+--if not done
+queststatus(501) = 1, english, ".+" -> "Ksss. *Swishes her tail agitatedly* Zze must find a way to zze stronghold."
+queststatus(501) = 1, ".+" -> "Ksss. *wedelt aufgeregt mit ihrem Schwanz* Sie muss Weg in die Festung finden."
+
+-- if done
+queststatus(501) = 2, english, ".+" -> inform("[Quest solved] You are awarded twenty-five silver coins."), money + 2500, queststatus(501) = 3, "Zzzz. Good you found zzem. We musst take further meassuress against zze Zzarn'K'Ska. Take zzis reward as a token of gratitude."
+queststatus(501) = 2, ".+" -> inform("[Quest gelöst] Du erhältst fünfundzwanzig Silberstücke."), money + 2500, queststatus(501) = 3, "Zzzz. Gut, du hast ssie gefunden. Wir müssen weitere Maßnahmen gegen sie ergreifen. Zzarn´K´Ska. Nimm diesse Belohnung als Zeichen des Dankes."
+
+--Receive second quest
+--find route to second island
+queststatus(501) = 3, english, "quest", "mission" -> inform("[New quest] Zzarn'K'Ska of Zelphia II"), queststatus(501) = 4, "Sss. There iss two large islandss? Find zze way to zze ssecond one. We must prevail."
+queststatus(501) = 3, "quest", "mission" -> inform("[Neue Quest] Zzarn'K'Ska von Zelphia II"), queststatus(501) = 4, "Sss. Da sind zwei große Inseln? Finde einen Weg zur zweiten Insel. Wir müssen sie beherrschen."
+queststatus(501) = 3, "task", "adventure", "order" -> inform("[New quest] Zzarn'K'Ska of Zelphia II"), queststatus(501)= 4, "Sss. There iss two large islandss? Find zze way to zze ssecond one. We must prevail."
+queststatus(501) = 3, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> inform("[Neue Quest] Zzarn'K'Ska von Zelphia II"), queststatus(501) = 4, "Sss. Da sind zwei große Inseln? Finde einen Weg zur zweiten Insel. Wir müssen sie beherrschen."
+-- if not done
+queststatus(501) = 4, english, ".+" -> "Ksss. Accesss to zze ssecond island iss necesssary to face zzisss zzreat to zze mozzer. Keep looking!"
+queststatus(501) = 4, ".+" -> "Ksss. Der Zugang zur zweiten Insel ist notwendig, um bestehen zu können vor der Bedrohung für die Mutter. Sssuche weiter!"
+
+-- if done
+queststatus(501) = 5, english, ".+" -> inform("[Quest solved] You are awarded fifty silver coins."), money + 5000, queststatus(501) = 6, "Yesss, Yesss very good. Let uss plan more."
+queststatus(501) = 5, ".+" -> inform("[Quest gelöst] Du erhältst fünfzig Silberstücke."), money + 5000, queststatus(501) = 6, "Ja, ja, sehr gut. Lass uns weiterplanen."
+
+--Receive third quest
+--kill 5 peaceful undead
+queststatus(501) = 6, english, "quest", "mission" -> inform("[New quest] Zzarn'K'Ska of Zelphia III"), queststatus(501) = 7, "Ksss.  Zzey do have undead walking around below.  Zzey not be hostile, but Ssalva would have you releasse five of zzeir ssoulss by killing zzem to go onto zze Muzzer."
+queststatus(501) = 6, "quest", "mission" -> inform("[Neue Quest] Zzarn'K'Ska von Zelphia III"), queststatus(501) = 7, "Ksss.  Da ssind Untote die dort unten herumsstreizzen. Die ssind nicht gefährlizz. Aber Ssalva wünszzt, dass du fünf von ihnen tötesst. Ihre Sselen ssollen ssur Mutter gehen."
+queststatus(501) = 6, "task", "adventure", "order" -> inform("[New quest] Zzarn'K'Ska of Zelphia III"), queststatus(501) = 7, "Ksss.  Zzey do have undead walking around below.  Zzey not be hostile, but Ssalva would have you releasse five of zzeir ssoulss by killing zzem to go onto zze Muzzer."
+queststatus(501) = 6, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> inform("[Neue Quest] Zzarn'K'Ska von Zelphia III"), queststatus(501) = 7, "Ksss.  Da ssind Untote die dort unten herumsstreizzen. Die ssind nicht gefährlizz. Aber Ssalva wünszzt, dass du fünf von ihnen tötesst. Ihre Sselen ssollen ssur Mutter gehen."
+
+--if done
+queststatus(501) = 12, english, ".+" -> inform("[Quest solved] You are awarded seventy-five silver coins."), money + 7500, queststatus(501) = 13, "Zzey be wizz zze Muzzer now zzeir ssoulss be at resst.  Ssalva doess zzank you."
+queststatus(501) = 12, ".+" -> inform("[Quest gelöst] Du erhältst fünfundsiebzig Silberstücke."), money + 7500, queststatus(501) = 13, "Ihre Sselen ruhen nun mit der Mutter. Ssalva ssagt Danke."
+-- if not done
+queststatus(501) > 7, queststatus(501) < 11, english, ".+" -> "You musst releasse five ssoulss of the peaceful undead back to zze Muzzer."
+queststatus(501) > 7, queststatus(501) < 11, ".+" -> "Du ssollsst fünf Sselen befreien, damit ssie ssurück ssur Mutter gehen können."
+
+--Receive fourth quest
+--waterblossom to offering plate
+queststatus(501) = 13, english, "quest", "mission"-> inform("[New quest] Zzarn'K'Ska of Zelphia IV"), queststatus(501) = 14, "Pleasse find a water blosssom and give it to zze Goddess Tanora at the altar, which stands in the Lake of Life.  Requesst a blesssing before we continue, assking for her undersstanding in what musst be done. *place the item on the offering plate inside the dungeon*"
+queststatus(501) = 13, "quest", "mission"-> inform("[Neue Quest] Zzarn'K'Ska von Zelphia IV"), queststatus(501) = 14, "Bitte finde eine Wassserblüte und gib diese der Göttin Tanora beim Altar, welcher im See des Lebens steht. Erbitte ihren Ssegen und ihr Verständnis für das, was wir tun müssen, bevor wir fortfahren. *lege den Gegenstand auf die Opferplatte im Verlies*"
+queststatus(501) = 13, "task", "adventure", "order" -> inform("[New quest] Zzarn'K'Ska of Zelphia IV"), queststatus(501) = 14, "Pleasse find a water blosssom and give it to zze Goddess Tanora at the altar, which stands in the Lake of Life.  Requesst a blesssing before we continue, assking for her undersstanding in what musst be done. *place the item on the offering plate inside the dungeon*"
+queststatus(501) = 13, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> inform("[Neue Quest] Zzarn'K'Ska von Zelphia IV"), queststatus(501) = 14, "Bitte finde eine Wassserblüte und gib diese der Göttin Tanora beim Altar, welcher im See des Lebens steht. Erbitte ihren Ssegen und ihr Verständnis für das, was wir tun müssen, bevor wir fortfahren. *lege den Gegenstand auf die Opferplatte im Verlies*"
+--if not done
+queststatus(501) = 14, english, ".+" -> "Ksss. Zze musst honour zee Mozzer before we can proceed. Provide her wizz zze water blosssom offering. *Place the item on the offering plate inside the dungeon.*"
+queststatus(501) = 14, ".+" -> "Ksss. Bevor wir weitermachen musst du Mutter ehren. Biete ihr die Wassserblüte an. *Lege den Gegenstand auf die Opferplatte im Verlies.*"
+
+--if done
+queststatus(501) = 15, english, ".+" -> inform("[Quest solved] You are awarded five custard pies."), item(1153, 5), queststatus(501) = 16, "Zze Mozzer will look over uss becausse of your gift. We may now continue in confidence."
+queststatus(501) = 15, ".+" -> inform("[Quest gelöst] Du erhältst fünf Eiercremetorten."), item(1153, 5), queststatus(501) = 16, "Mutter wird wegen deiner Gabe über uns wachen. Wir können nun mit Zuversicht fortfahren."
+
+--Receive fifth quest
+--Take items to Zenia in Lake of Life, 1-custard pie, 2 fish soup, 20 eggs, and five of each fish type
+queststatus(501) = 16, english, "quest", "mission"-> inform("[New quest] Zzarn'K'Ska of Zelphia V"), queststatus(501) = 17, "Pleasse go ssee a dear friend of mine. Zenia will give you ssome information I require in exchange for ssome itemss sshe hass been craving. Pleasse bring Zenia one cusstard pie, two fissh soupss, 20 eggss, and five of each type of fish (salmon, trout, horse mackerel, and rose fish). You can find Zenia ssomewhere hiding on an island in the Lake of Life."
+queststatus(501) = 16, "quest", "mission"-> inform("[Neue Quest] Zzarn'K'Ska von Zelphia V"), queststatus(501) = 17, "Bitte ssuch einen guten Freund von mir auf. Zzenia wird dir einige Informationen geben, die ich benötige, im Tausch gegen einige Dinge, die ssie verlangt. Bitte bringe Zzenia eine Eiercremetorte, zzwei Fischssuppen, 20 Eier und fünf Fische jeder Art (Lachs, Forelle, Stachelmakrele, and Rotbarsch). Du kannsst Zzenia irgendwo auf einer Inssel im Ssee des Lebenss finden, wo ssie ssich versteckt."
+queststatus(501) = 16, "task", "adventure", "order" -> inform("[New quest] Zzarn'K'Ska of Zelphia V"), queststatus(501) = 17, "Pleasse go ssee a dear friend of mine. Zenia will give you ssome information I require in exchange for ssome itemss sshe hass been craving. Pleasse bring Zenia one cusstard pie, two fissh soupss, 20 eggss, and five of each type of fish (salmon, trout, horse mackerel, and rose fish). You can find Zenia ssomewhere hiding on an island in the Lake of Life."
+queststatus(501) = 16, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> inform("[Neue Quest] Zzarn'K'Ska von Zelphia V"), queststatus(501) = 17, "Bitte ssuch einen guten Freund von mir auf. Zzenia wird dir einige Informationen geben, die ich benötige, im Tausch gegen einige Dinge, die ssie verlangt. Bitte bringe Zzenia eine Eiercremetorte, zzwei Fischssuppen, 20 Eier und fünf Fische jeder Art (Lachs, Forelle, Stachelmakrele, and Rotbarsch). Du kannsst Zzenia irgendwo auf einer Inssel im Ssee des Lebenss finden, wo ssie ssich versteckt."
+--if not done
+queststatus(501) = 17, english, ".+" -> "Takess zzese gifts to Zenia and get informations from her."
+queststatus(501) = 17, ".+" -> "Nimm diesse Geschenke für Zzenia und hole die Informationen von ihr."
+--if done
+queststatus(501) = 18, english, ".+" -> inform("[Quest solved] You are awarded a red steel shield and one hundred fifty silvercoins."), money + 15000, item(2388, 1, 799), queststatus(501) = 19, "Ksss. Zat iss mosst interessting newss. If you can helpss me more, we will erradicate zzem."
+queststatus(501) = 18, ".+" -> inform("[Quest gelöst] Du erhältst ein rotes Stahlschild und einhundertfünfzig Silberstücke."), money + 15000, item(2388, 1, 799), queststatus(501) = 19, "Zsss. Dass ssind ssehr interesssante Neuigkeiten. Wenn du mir weiterhin helfen kannsst, dann werden wir ssie ausslöschen."
+
+--Receive sixth quest
+--Kill 15 lizards in Lake of Life
+queststatus(501) = 19, english, "quest", "mission"-> inform("[New quest] Zzarn'K'Ska of Zelphia VI"), queststatus(501) = 20, "Sssss. We musst get rid of zzesse Lake of Life renegadess. Pleasse kill 15 for Ssalva. Clear waterss Ssalva doess wissh for you in your endeavour."
+queststatus(501) = 19, "quest", "mission"-> inform("[Neue Quest] Zzarn'K'Ska von Zelphia VI"), queststatus(501) = 20, "Sssss. Wir müssen diese Abtrünnigen vom See des Lebens loswerden. Bitte töte 15 von ihnen für Ssalva. Klare Wassser wünscht Ssalva für deine Bemühungen."
+queststatus(501) = 19, "task", "adventure", "order" -> inform("[New quest] Zzarn'K'Ska of Zelphia VI"), queststatus(501) = 20, "Sssss. We musst get rid of zzesse Lake of Life renegadess. Pleasse kill 15 for Ssalva. Clear waterss Ssalva doess wissh for you in your endeavour."
+queststatus(501) = 19, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> inform("[Neue Quest] Zzarn'K'Ska von Zelphia VI"), queststatus(501) = 20, "Sssss. Wir müssen diese Abtrünnigen vom See des Lebens loswerden. Bitte töte 15 von ihnen für Ssalva. Klare Wassser wünscht Ssalva für deine Bemühungen."
+--if not done
+queststatus(501) > 19, queststatus(501) < 35, english, ".+" -> "Ksss!!! Kill 15 Renegadess for Ssalva. Zziss musst be done!"
+queststatus(501) > 19, queststatus(501) < 35, ".+" -> "Ksss!!! Töte 15 Abtrünnige für Ssalva. Es muss getan werden."
+--if done
+queststatus(501) = 35, english, ".+" -> inform("[Quest solved] You are awarded one hundred fifty silver coins."), money + 15000, queststatus(501) = 36, "Yesss, yesss very good. One more ssstep sshould do it."
+queststatus(501) = 35, ".+" -> inform("[Quest gelöst] Du erhältst einhundertfünfzig Silberstücke."), money + 15000, queststatus(501) = 36, "Ja, ja, nur noch ein Schritt bleibt zu tun."
+
+--Receive seventh quest
+--Kill Lizard Templar warrior
+queststatus(501) = 36, english, "quest", "mission"-> inform("[New quest] Zzarn'K'Ska of Zelphia VII"), queststatus(501) = 37, "It'z time to take out zzeir leader. Kill zze temple warrior to break zzeir morale."
+queststatus(501) = 36, "quest", "mission"-> inform("[Neue Quest] Zzarn'K'Ska von Zelphia VII"), queststatus(501) = 37, "Es wird Zeit ihren Anführer zu beseitigen. Töte den Tempelkrieger, um ihre Moral zu brechen."
+queststatus(501) = 36, "task", "adventure", "order" -> inform("[New quest] Zzarn'K'Ska of Zelphia VII"), queststatus(501) = 37, "It'z time to take out zzeir leader. Kill zze temple warrior to break zzeir morale."
+queststatus(501) = 36, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> inform("[Neue Quest] Zzarn'K'Ska von Zelphia VII"), queststatus(501) = 37, "Es wird Zeit ihren Anführer zu beseitigen. Töte den Tempelkrieger, um ihre Moral zu brechen."
+--if not done
+queststatus(501) > 36, queststatus(501) < 38, english, ".+" -> "Ksss! If zze leader issn't killed zzey will not break. Kill zze temple warrior to break zzeir morale."
+queststatus(501) > 36, queststatus(501) < 38, ".+" -> "Ksss! Solange ihr Anführer nicht getötet wurde werden sie nicht aufgeben. Töte den Tempelkrieger, um ihre Moral zu brechen."
+--if done
+queststatus(501) = 38, english, ".+" -> inform("[Quest solved] You are awarded a pure water."), item(2554, 1, 999), queststatus(501) = 39, "Zzey should fall now. Zzank you for your effortss. Accept zziss gift of zze Mozzer as a token of gratitude."
+queststatus(501) = 38, ".+"-> inform("[Quest gelöst] Du erhältst eine reines Wasser."), item(2554, 1, 999), queststatus(501) = 39, "Sie sollten jetzt fallen. Danke für deine Bemühungen. Nimm dieses Geschenk der Mutter als Zeichen der Anerkennung."
+
+-- After finished
+queststatus(501) = 39, english, "quest", "mission" -> "Zzey should fall now. Zzank you for your effortss. Ssalva hass nozzing else for you."
+queststatus(501) = 39, "quest", "mission" -> "Sie sollten jetzt fallen. Danke für deine Bemühungen. Ssalva hat nichts für euch zu tun."
+queststatus(501) = 39, "task", "adventure", "order" -> "Zzey should fall now. Zzank you for your effortss. Ssalva hass nozzing else for you."
+queststatus(501) = 39, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Sie sollten jetzt fallen. Danke für deine Bemühungen. Ssalva hat nichts für euch zu tun."
+
+------------------------------------------------------------------------------AC
+-- Cycle Texts - Messages spoken automatically in random intervals.
+-- Every NPC should contain at least 10 of those messages.
+-- Emotes are possible also starting with "#me ....".
+
+cycletext "Möge Mutter uns schützen.", "May zze Mozzer sssave uss."
+cycletext "#mes Schwanz zuckt und sie lässt ihren Blick über das Gebiet streifen.", "#me twitches her tail and looks around the area."
+cycletext "Ssss. Wir müssen die Schurken bestrafen.", "Ssss. We hass to get zze roguess."
+cycletext "Schurken schänden den Namen der Mutter. Hilf mir sie zu beseitigen.", "Roguess are defiling zze Mozzersss name. Join me in eliminating zzem."
+cycletext "Der Zzarn'K'Ska der Zelphia muss aufgehalten werden.", "The Zzarn'K'Ska of Zelphia musst be sstopped."
+cycletext "#me lässt ihre Zunge über die Schnauze gleiten.", "#me swipes her tongue over her snout."
+cycletext "#me kniet, ein Gebet zur Mutter sprechend.", "#me kneels, saying a prayer to the Mother."
+cycletext "#me streicht mit einer Hand über ihren Kamm und schaut sich besorgt um.", "#me runs a hand over the crest scales on her head while looking around worriedly."
+cycletext "#me schnüffelt die Luft, ihre Zunge schnalzt heraus um zu schmecken.", "#me sniffs at the air, flicking out her tongue for a taste."
+cycletext "#me stützt sich auf ihren Schwanz ab, als sie überlegend verweilt.", "#me leans back on her tail and rests contemplating."

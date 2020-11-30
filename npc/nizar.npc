@@ -16,8 +16,8 @@
 -- NPC Name: Nizar                                                   Runewick --
 -- NPC Job:  magical blacksmith                                               --
 --                                                                            --
--- NPC Race: human                      NPC Position:  910, 801, 1            --
--- NPC Sex:  male                       NPC Direction: south                  --
+-- NPC Race: human                      NPC Position:  947, 845, 0            --
+-- NPC Sex:  male                       NPC Direction: west                   --
 --                                                                            --
 -- Author:   Miriam                                                           --
 --                                                     easyNPC Parser v1.23.1 --
@@ -26,8 +26,8 @@
 name = "Nizar"
 race = human
 sex = male
-position = 910, 801, 1
-direction = south
+position = 947, 845, 0
+direction = west
 affiliation = "Runewick"
 job = "magical blacksmith"
 
@@ -58,17 +58,6 @@ itemHands = 527
 itemTrousers = 366
 itemShoes = 698
 
-------------------------------------------------------------------------------AC
--- Trading
--- Here are all items the NPCs is able to trade. They will be displayed inside
--- the merchant dialog.
-
-sellItems = 1
-buyPrimaryItems = 1
-buySecondaryItems = 2
-
--- 297
-
 -- Template Version 1.08, 10/18/2012 by Estralis Seborian
 -- Instructions: Replace all talk consequences with strings ending with a full stop, maximum length is 250 characters. Try to provide more than one answer, one is chosen at random.
 -- Order of triggers: Triggers are checked from top to bottom in the script. Never use very general triggers like "hi" or even ".*" on top of the script unless you know exactly what you are doing.
@@ -92,7 +81,7 @@ buySecondaryItems = 2
 
 -- Mandatory: General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Greetings. Shall I smith something out of gems for you?", "Be greeted. Do you want to combine magical gems? Then you've come to the right place!"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Grüße. Soll ich Euch was magisches aus Edelsteinen zusammenschmieden?", "Seid Gegrüßt. Wollt Ihr Eure magischen Edelsteine kombinieren lassen? Dann seid Ihr hier richtig."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Grüße. Soll ich Euch was magisches aus Edelsteinen zusammenschmieden?", "Seid Gegrüßt. Wollt Ihr Eure magischen Edelsteine kombinieren lassen? Dann seid Ihr hier richtig."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greetings. Shall I smith something out of gems for you?", "Be greeted. Do you want to combine magical gems? Then you've come to the right place!"
 "Hiho", "Hallo", "Hey", "Greeb" -> "Grüße. Soll ich Euch was magisches aus Edelsteinen zusammenschmieden?", "Seid Gegrüßt. Wollt Ihr Eure magischen Edelsteine kombinieren lassen? Dann seid Ihr hier richtig."
 "Farewell", "Bye", "Fare well", "See you" -> "Farewell, and don't forget to come back to Nizar!", "#me bows, 'May Findari be with you, my friend'", "May Findari be with you, my friend."
@@ -102,15 +91,15 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Farewell and do not forget 
 "How are you", "How feel", "How do you do" -> "#me smiles, 'Thanks a lot for you concern, friend. I'm fine, as I never leave this safe haven. What about you?'"
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "#me lächelt: 'Danke für Eure Sorge, mein Freund. Mir geht es gut, da ich die sichere Stadt nicht verlasse. Wie ist es Euch ergangen?'"
 "your name", "who are you", "who art thou" -> "#me bows, 'Nizar, from the Serin desert, and who might you be, friend?"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "#me verneigt sich. 'Nizar aus der Serin Wüste. Es würde mich freuen, wenn Ihr mir euren Namen verratet, mein Freund.'"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "#me verneigt sich. 'Nizar aus der Serin Wüste. Es würde mich freuen, wenn Ihr mir euren Namen verratet, mein Freund.'"
 
 -- TRIGGERS for Gemcraft
-"gem", "magical smithing", "smithing" -> "Ah. I'd love to work for you.", "Of course I'll help you with magical gems.", gemcraft
-"Edelstein", "magisches Schmieden", "Schmieden" -> "Ah. Ich arbeite gern für Euch. Nun denn ...", "Natürlich helfe ich Euch was diese magischen Edelsteinen betrifft!", gemcraft
+"gem", "magic", "smithing", "gemcraft", "transmute", "combine", "enchant" -> "Ah. I'd love to work for you.", "Of course I'll help you with magical gems.", gemcraft
+"Edelstein", "magisch", "Schmieden", "verwandel", "verein", "kombinier", "verzauber" -> "Ah. Ich arbeite gern für Euch. Nun denn ...", "Natürlich helfe ich Euch was diese magischen Edelsteinen betrifft!", gemcraft
 
 -- OPTIONAL TRIGGERS
-queststatus(701) = 1, english, "Zassaria", "lizard", "oil", "lamp", "riverbank" -> queststatus(701) = 2, "Ah yes, thank you for passing on the message. Go talk to Zassaria, I'm sure she will reward you for your service."
-queststatus(701) = 1, "Zassaria", "echse", "öllampe", "lampe", "riverbank" -> queststatus(701) = 2, "Ah ja, vielen Dank dass ihr die Nachricht überbracht habt. Geht und sprecht mit Zassaria, ich bin sicher sie wird euch für eure Arbeit belohnen."
+queststatus(701) = 1, english, ".*"  -> queststatus(701) = 2, "Ah yes, thank you for passing on the message. Go talk to Zassaria, I'm sure she will reward you for your service."
+queststatus(701) = 1, ".*"  -> queststatus(701) = 2, "Ah ja, vielen Dank dass ihr die Nachricht überbracht habt. Geht und sprecht mit Zassaria, ich bin sicher sie wird euch für eure Arbeit belohnen."
 
 -- Optional: Trade Hooks, use only for traders
 -- "sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader, but I will gladly help you with your magical gems.",  gemcraft
@@ -213,10 +202,6 @@ english, "Gobaith", "Gobiath" -> "My apologies, but I've never even heard of it.
 "mein Name" -> "#me verneigt sich. 'Nizar aus der Serin Wüste. Es freut mich ungemein Eure Bekanntschaft zu machen.'", "Es ist eine Ehre Euch zu treffen, besonders an diesem schönen Tag."
 english, "Nizar" -> "#me grins, 'That's me! How can I help?'", "Yep? You want to talk? I always like a good discussion."
 "Nizar" -> "#me grinst. 'Das bin ich! Wie kann ich Euch helfen?", "Ja? Ihr möchtet reden? Ich bin immer für ein gutes Gespräch zu haben."
-"Yes" -> "#me nods, 'I see...'", "#me smiles brightly and nods.", "If I do say so myself, it sounds like a wise decision..."
-"Ja" -> "#me nickt 'Ich verstehe...'", "#me lächelt freundlich und nickt.", "Wenn ich das so sagen darf, mein Freund, dies ist in der Tat eine weise Entscheidung."
-"No" -> "#me nods, 'I see...'", "You know, where I come from if you don't say 'No' three times it essentially means 'Yes'.", "Just take your time to consider your answer, while we talk."
-"Nein" -> "#me nickt. 'Ich verstehe...'", "Ihr wisst, das man dort wo ich herkomme drei mal 'Nein' sagen muss, denn sonst heißt es 'Ja'.", "Nehmt Euch Zeit eure Antwort zu bedenken während wir reden."
 "no no no" -> "Ha! I understand! I'm glad you said it in a way I understand."
 english, "nein nein nein", "nine nine nine", "999" -> "Emergency - which service do you require?"
 "nein nein nein" -> "Nun, Ich verstehe, doch Eure Antwort füllt mein Herz mit Trauer."
@@ -226,18 +211,13 @@ english, "police" -> "I'm afraid we only have town guards."
 english, "ambulance", "hospital", "nhs" -> "I'm not sure such a sophisticated system is in place. An alchemist might have a potion for you!"
 english, "fire" -> "Well go and get a bucket, quick!"
 
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-english, chance(20.0), ".*" -> "#me smiles.", "#me listens attentively.", "I see."
-german, chance(20.0), ".*" -> "#me lächelt.", "#me hört aufmerksam zu.", "Ich verstehe."
-
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
 -- Every NPC should contain at least 10 of those messages.
 -- Emotes are possible also starting with "#me ....".
 
 cycletext "#me lächelt.", "#me smiles brightly."
-cycletext "#me leht sich gegen eine Säule.", "#me leans against the pillar, glancing around quietly."
-cycletext "#me scheint in die Sonne zu starren.", "#me seems to stare off into the realms through the portals."
+cycletext "Magische Edelseine sind janz nett. Aber ich kann se noch mehr veredeln!", "Magical gems are nice. I can make yours even nicer!"
 cycletext "Kommt zu Nizar, wenn Ihr etwas über magische Steine wissen wollt!", "Talk to Nizar if you want to know about magical gems!"
 cycletext "Magische Steine: Je magischer desto besser! Ich mache sie besser!", "Magical stones: more magic means better stuff! I make everything better!"
 cycletext "#me schließt seine Augen.", "#me closes his eyes, thinking quietly."

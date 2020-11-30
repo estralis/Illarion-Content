@@ -16,21 +16,21 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- INSERT INTO quests SET qst_script = 'quest.zassaria_riverbank_701_runewick' WHERE qst_id = 701;
 
-require("base.common")
-require("base.factions")
-module("quest.zassaria_riverbank_701_runewick", package.seeall)
+local common = require("base.common")
+local factions = require("base.factions")
+local M = {}
 
-GERMAN = Player.german
-ENGLISH = Player.english
+local GERMAN = Player.german
+local ENGLISH = Player.english
 
 -- Insert the quest title here, in both languages
-Title = {}
+local Title = {}
 Title[GERMAN] = "Frag für mich"
 Title[ENGLISH] = "Ask for me"
 
 -- Insert an extensive description of each status here, in both languages
 -- Make sure that the player knows exactly where to go and what to do
-Description = {}
+local Description = {}
 Description[GERMAN] = {}
 Description[ENGLISH] = {}
 Description[GERMAN][1] = "Zassaria Riverbank bat dich eine Nachricht an Nizar zu überbringen, einem Händler der auf dem Marktplatz in Runewick zu finden ist."
@@ -65,57 +65,59 @@ Description[GERMAN][15] = "Du hast alle Aufgaben von Zassaria Riverbank erfüllt.
 Description[ENGLISH][15] = "You have fulfilled all tasks of Zassaria Riverbank."
 
 -- Insert the position of the quest start here (probably the position of an NPC or item)
-Start = {900, 800, 1}
+local Start = {910, 849, 0}
 
 -- For each status insert a list of positions where the quest will continue, i.e. a new status can be reached there
-QuestTarget = {}
-QuestTarget[1] = {position(910, 801, 1)} -- Nizar
-QuestTarget[2] = {position(900, 800, 1)}
-QuestTarget[3] = {position(900, 800, 1)}
-QuestTarget[4] = {position(908, 812, 1)} -- Argentus Almsbag
-QuestTarget[5] = {position(900, 800, 1)}
-QuestTarget[6] = {position(900, 800, 1)}
-QuestTarget[7] = {position(897, 781, 2)} -- Neiran el Nyarale
-QuestTarget[8] = {position(900, 800, 1)}
-QuestTarget[9] = {position(900, 800, 1)}
+local QuestTarget = {}
+QuestTarget[1] = {position(947, 845, 0)} -- Nizar
+QuestTarget[2] = {position(910, 849, 0)}
+QuestTarget[3] = {position(910, 849, 0)}
+QuestTarget[4] = {position(956, 829, 0)} -- Argentus Almsbag
+QuestTarget[5] = {position(910, 849, 0)}
+QuestTarget[6] = {position(910, 849, 0)}
+QuestTarget[7] = {position(944, 784, 1)} -- Neiran el Nyarale
+QuestTarget[8] = {position(910, 849, 0)}
+QuestTarget[9] = {position(910, 849, 0)}
 QuestTarget[10] = {position(382, 249, 0)} -- Marianne Forgeron
-QuestTarget[11] = {position(900, 800, 1)}
-QuestTarget[12] = {position(900, 800, 1)}
+QuestTarget[11] = {position(910, 849, 0)}
+QuestTarget[12] = {position(910, 849, 0)}
 QuestTarget[13] = {position(122, 521, 0)} -- Rosaline Edwards
-QuestTarget[14] = {position(900, 800, 1)}
-QuestTarget[15] = {position(900, 800, 1)}
+QuestTarget[14] = {position(910, 849, 0)}
+QuestTarget[15] = {position(910, 849, 0)}
 
 -- Insert the quest status which is reached at the end of the quest
-FINAL_QUEST_STATUS = 15
+local FINAL_QUEST_STATUS = 15
 
 
-function QuestTitle(user)
-    return base.common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
+function M.QuestTitle(user)
+    return common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
 end
 
-function QuestDescription(user, status)
+function M.QuestDescription(user, status)
     local german = Description[GERMAN][status] or ""
     local english = Description[ENGLISH][status] or ""
 
-    return base.common.GetNLS(user, german, english)
+    return common.GetNLS(user, german, english)
 end
 
-function QuestStart()
+function M.QuestStart()
     return Start
 end
 
-function QuestTargets(user, status)
+function M.QuestTargets(user, status)
     return QuestTarget[status]
 end
 
-function QuestFinalStatus()
+function M.QuestFinalStatus()
     return FINAL_QUEST_STATUS
 end
 
-function QuestAvailability(user, status)
-    if base.factions.getMembership(user) == base.factions.runewick and status == 0 then
+function M.QuestAvailability(user, status)
+    if factions.getMembership(user) == factions.runewick and status == 0 then
         return Player.questAvailable
     else
         return Player.questNotAvailable
     end
 end
+
+return M

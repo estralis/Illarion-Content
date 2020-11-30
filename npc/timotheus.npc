@@ -16,8 +16,8 @@
 -- NPC Name: Timotheus                                               Runewick --
 -- NPC Job:  Tailor                                                           --
 --                                                                            --
--- NPC Race: halfling                   NPC Position:  912, 813, 1            --
--- NPC Sex:  male                       NPC Direction: south                  --
+-- NPC Race: halfling                   NPC Position:  952, 835, 0            --
+-- NPC Sex:  male                       NPC Direction: west                  --
 --                                                                            --
 -- Authors:  Estralis Seborian                                                --
 --           Mesha                                                            --
@@ -27,8 +27,8 @@
 name = "Timotheus"
 race = halfling
 sex = male
-position = 912, 813, 1
-direction = south
+position = 952, 835, 0
+direction = west
 affiliation = "Runewick"
 job = "Tailor"
 
@@ -65,44 +65,32 @@ itemShoes = 369
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItems = 6, 47, 51, 58, 2659, 2746, 2781, 384, 2295, 54, 174, 175, 176, 177, 178, 179, 807, 808, 809, 810, 811, 812, 813, 385, 800, 801, 802, 803, 804, 805, 806, 833, 834, 835, 836, 837, 838, 845, 846, 847, 848, 849, 850, 851, 852,  2678, 2679, 2680, 2681, 2682, 2683, 180, 181, 182, 457, 458, 839, 840, 841, 842, 843, 844, 50, 63, 168, 170, 34, 183, 459, 460, 461, 821, 822, 823, 824, 825, 826, 827, 814, 815, 816, 817, 818, 819, 820, 55, 193, 194, 195, 196, 368, 547, 548, 558, 2377, 2378, 2380, 2384, 2416, 2418, 2419, 2420, 2421, 357, 358, 370, 371, 828, 829, 830, 831, 832, 48, 53, 89, 356, 363, 365, 366, 367, 369, 1055, 1056, 1057, 526, 527, 697, 2114, 2760
-buyPrimaryItems = 6, 47, 51, 58, 2659, 2746, 2781, 384, 2295, 54, 174, 175, 176, 177, 178, 179, 807, 808, 809, 810, 811, 812, 813, 385, 800, 801, 802, 803, 804, 805, 806, 833, 834, 835, 836, 837, 838, 845, 846, 847, 848, 849, 850, 851, 852, 1055, 1056, 1057, 2678, 2679, 2680, 2681, 2682, 2683, 180, 181, 182, 457, 458, 839, 840, 841, 842, 843, 844, 50, 63, 168, 170, 34, 183, 459, 460, 461, 821, 822, 823, 824, 825, 826, 827, 814, 815, 816, 817, 818, 819, 820, 55, 193, 194, 195, 196, 368, 547, 548, 558, 2377, 2378, 2380, 2384, 2416, 2418, 2419, 2420, 2421, 357, 358, 370, 371, 828, 829, 830, 831, 832, 48, 53, 89, 356, 362, 363, 364, 365, 366, 367, 369, 526, 527, 697, 698, 2113, 2114, 2760
-tradeNotEnoughMoneyMsg "Oh, ich fürchte Ihr könnt Euch das nicht leisten.", "Oh, I fear you can not afford that."
-tradeFinishedMsg "Vielen Dank, beehrt mich bald wieder!", "Thank you, please come again!"
-tradeFinishedWithoutTradingMsg "Auf Bald!", "Farewell!"
-tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
+sellItems = 47, 58, 2781, 6, 2746, 1500, 369, 1501, 1502, 53, 1503, 1504, 697, 1505, 698, 1506, 1447, 2295, 1448, 1449, 1450, 1451, 1452, 809, 813, 810, 812, 811, 808, 807, 802, 806, 803, 805, 800, 385, 804, 801, 833, 836, 835, 837, 838, 834, 851, 845, 846, 850, 849, 852, 847, 848, 1478, 367, 1479, 1480, 366, 1481, 1482, 2114, 1483, 2113, 1484, 356, 830, 1415, 831, 832, 829, 828, 358, 357, 3868, 370, 3708, 371, 1416, 7, 1417, 1418, 1419, 1420, 1421, 1422, 1423, 1424, 1453, 384, 48, 1454, 526, 1455, 1456, 1457, 527, 1458, 1459, 97, 2760, 89, 196, 2418, 2421, 55, 194, 2378, 2384, 2420, 547, 2419, 2377, 195, 368, 2416, 193, 2380, 548, 558, 457, 182, 180, 458, 181, 841, 842, 844, 843, 840, 839, 1433, 363, 1434, 2407, 365, 1435, 1436, 2399, 2357, 364, 362, 1437, 823, 827, 824, 183, 826, 34, 459, 825, 460, 822, 461, 821, 816, 820, 817, 819, 818, 815, 814, 176, 175, 179, 54, 174, 178, 177, 2678, 2680, 2679, 2681, 2683, 2682, 2586, 69, 2547, 170, 50
+-- needle, mortar, dyeing rod, scissors, razor blade
+-- simple leather shoes, leather shoes, robust leather shoes, simple leather boots, leather boots, robust leather boots, simple fur boots, fur boots, robust fur boots, serinjah leather boots, leather boots of the winds, grey cloth gloves, white cloth gloves, green cloth gloves, black cloth gloves, red cloth gloves, yellow cloth gloves, blue cloth gloves, grey doublet, white doublet, green doublet, black doublet, red doublet, yellow doublet, blue doublet, grey dress, white dress, green dress, black dress, blue dress, light blue dress, red dress, yellow dress, black blue dress, black green dress, black grey dress, black red dress, black white dress, black yellow dress, black red heraldic dress, blue green heraldic dress, blue red heraldic dress, grey heraldic dress, red yellow heraldic dress, white heraldic dress, yellow blue heraldic dress, yellow green heraldic dress, simple short leather leggings, short leather leggings, reinforced short leather leggings, simple leather leggings, leather leggings, reinforced leather leggings, simple short fur trousers, short fur trousers, reinforced short fur trousers, fur trousers, fur trousers of dawn, hat, grey hat with feather, white hat with feather, green hat with feather, red hat with feather, yellow hat with feather, blue hat with feather, red wizard hat, blue wizard hat, yellow wizard hat, colourful wizard hat, witch hat, fine wizard hat, simple horned helmet, horned helmet, coppered horned helmet, silvered horned helmet, gilded horned helmet, bull horned helmet, Norodaj horned helmet, demonic horned helmet, merinium plated horned helmet, dragon horned helmet, simple leather gloves, thief''s gloves, leather gloves, reinforced leather gloves, studded leather gloves, copper studded leather gloves, silver studded leather gloves, gold studded leather gloves, serinjah leather gloves, reinforced serinjah leather gloves, ranger''s gloves, leather bag, rope, sling, grey coat, grey priest robe, white priest robe, green robe, black robe, black cult robe, black coat, black priest robe, novice robe, red priest robe, red mage robe, yellow robe, yellow priest robe, brown priest robe, blue robe, blue coat, mage robe, archmage robe, green shirt, black shirt, red shirt, yellow shirt, blue shirt, grey white skirt, green white skirt, black white skirt, red white skirt, yellow white skirt, blue white skirt, padded armour, leather scale armour, simple rogue armour, light rogue armour, half leather armour, simple hunting armour, hunting armour, light elven armour, assassin''s armour, reinforced hunting armour, full leather armour, assassin''s armour of darkness, grey trousers, white trousers, green trousers, short green trousers, black trousers, short black trousers, short red trousers, red trousers, short yellow trousers, yellow trousers, short blue trousers, blue trousers, grey tunic, white tunic, green tunic, black tunic, red tunic, yellow tunic, blue tunic, grey cloth, black cloth, blue cloth, green cloth, red cloth, white cloth, yellow cloth, black dye, blue dye, green dye, red dye, white dye, yellow dye, fur, raw leather, leather, bale of wool, thread
+buySecondaryItems = 1500, 369, 1501, 1502, 53, 1503, 1504, 697, 1505, 698, 1506, 1447, 2295, 1448, 1449, 1450, 1451, 1452, 809, 813, 810, 812, 811, 808, 807, 802, 806, 803, 805, 800, 385, 804, 801, 833, 836, 835, 837, 838, 834, 851, 845, 846, 850, 849, 852, 847, 848, 1478, 367, 1479, 1480, 366, 1481, 1482, 2114, 1483, 2113, 1484, 356, 830, 1415, 831, 832, 829, 828, 358, 357, 3868, 370, 3708, 371, 1416, 7, 1417, 1418, 1419, 1420, 1421, 1422, 1423, 1424, 1453, 384, 48, 1454, 526, 1455, 1456, 1457, 527, 1458, 1459, 2760, 89, 196, 2418, 2421, 55, 194, 2378, 2384, 2420, 547, 2419, 2377, 195, 368, 2416, 193, 2380, 548, 558, 457, 182, 180, 458, 181, 841, 842, 844, 843, 840, 839, 1433, 363, 1434, 2407, 365, 1435, 1436, 2399, 2357, 364, 362, 1437, 823, 827, 824, 183, 826, 34, 459, 825, 460, 822, 461, 821, 816, 820, 817, 819, 818, 815, 814, 176, 175, 179, 54, 174, 178, 177, 2678, 2680, 2679, 2681, 2683, 2682, 2586, 69, 2547, 170, 50
+-- simple leather shoes, leather shoes, robust leather shoes, simple leather boots, leather boots, robust leather boots, simple fur boots, fur boots, robust fur boots, serinjah leather boots, leather boots of the winds, grey cloth gloves, white cloth gloves, green cloth gloves, black cloth gloves, red cloth gloves, yellow cloth gloves, blue cloth gloves, grey doublet, white doublet, green doublet, black doublet, red doublet, yellow doublet, blue doublet, grey dress, white dress, green dress, black dress, blue dress, light blue dress, red dress, yellow dress, black blue dress, black green dress, black grey dress, black red dress, black white dress, black yellow dress, black red heraldic dress, blue green heraldic dress, blue red heraldic dress, grey heraldic dress, red yellow heraldic dress, white heraldic dress, yellow blue heraldic dress, yellow green heraldic dress, simple short leather leggings, short leather leggings, reinforced short leather leggings, simple leather leggings, leather leggings, reinforced leather leggings, simple short fur trousers, short fur trousers, reinforced short fur trousers, fur trousers, fur trousers of dawn, hat, grey hat with feather, white hat with feather, green hat with feather, red hat with feather, yellow hat with feather, blue hat with feather, red wizard hat, blue wizard hat, yellow wizard hat, colourful wizard hat, witch hat, fine wizard hat, simple horned helmet, horned helmet, coppered horned helmet, silvered horned helmet, gilded horned helmet, bull horned helmet, Norodaj horned helmet, demonic horned helmet, merinium plated horned helmet, dragon horned helmet, simple leather gloves, thief''s gloves, leather gloves, reinforced leather gloves, studded leather gloves, copper studded leather gloves, silver studded leather gloves, gold studded leather gloves, serinjah leather gloves, reinforced serinjah leather gloves, ranger''s gloves, rope, sling, grey coat, grey priest robe, white priest robe, green robe, black robe, black cult robe, black coat, black priest robe, novice robe, red priest robe, red mage robe, yellow robe, yellow priest robe, brown priest robe, blue robe, blue coat, mage robe, archmage robe, green shirt, black shirt, red shirt, yellow shirt, blue shirt, grey white skirt, green white skirt, black white skirt, red white skirt, yellow white skirt, blue white skirt, padded armour, leather scale armour, simple rogue armour, light rogue armour, half leather armour, simple hunting armour, hunting armour, light elven armour, assassin''s armour, reinforced hunting armour, full leather armour, assassin''s armour of darkness, grey trousers, white trousers, green trousers, short green trousers, black trousers, short black trousers, short red trousers, red trousers, short yellow trousers, yellow trousers, short blue trousers, blue trousers, grey tunic, white tunic, green tunic, black tunic, red tunic, yellow tunic, blue tunic, grey cloth, black cloth, blue cloth, green cloth, red cloth, white cloth, yellow cloth, black dye, blue dye, green dye, red dye, white dye, yellow dye, fur, raw leather, leather, bale of wool, thread
+tradeNotEnoughMoneyMsg "Ich verkaufe nur gegen Geld.", "I only sell goods for money."
+tradeFinishedMsg "Das hat sich doch gelohnt.", "That was worth it."
+tradeFinishedWithoutTradingMsg "Och menno.", "C'mon!"
+tradeWrongItemMsg "Das kaufe ich nicht.", "I won't buy that."
 
 -- Template Version 1.03, 01/05/2011 by Estralis Seborian
 -- NPC by Mesha
 -- Revised & translated by Estralis Seborian
--- Bags (97) removed until glitches with selling bags are resolved.
--- This NPC is supposed to trade (all goods are sold and bought, percentage indicates ratio of price bough/sold):
-
--- 10% Tools (Tailor/Tanner/Dyer): 6, 47, 51, 58, 2659, 2746, 2781
--- 10% Cloth gloves: 384, 2295
--- 10% Clothes: 54, 174, 175, 176, 177, 178, 179
--- 10% Doublets: 807, 808, 809, 810, 811, 812, 813
--- 10% Dresses: 385, 800, 801, 802, 803, 804, 805, 806, 833, 834, 835, 836, 837, 838, 845, 846, 847, 848, 849, 850, 851, 852
--- 10% Dye: 2678, 2679, 2680, 2681, 2682, 2683
--- 10% Shirts: 180, 181, 182, 457, 458
--- 10% Skirts: 839, 840, 841, 842, 843, 844
--- 10% Tailor's resources: 50, 63, 168, 170,
--- 10% Trousers: 34, 183, 459, 460, 461, 821, 822, 823, 824, 825, 826, 827
--- 10% Tunics: 814, 815, 816, 817, 818, 819, 820
--- 10% Robes: 55, 193, 194, 195, 196, 368, 547, 548, 558, 2377, 2378, 2380, 2384, 2416, 2418, 2419, 2420, 2421
--- 10% Hats: 357, 358, 370, 371, 828, 829, 830, 831, 832
--- 10% Leather goods: 48, 53, 89, 97, 356, 362, 363, 364, 365, 366, 367, 369, 526, 527, 697, 698, 2113, 2114
-"sell", "buy", "wares", "price", "trade", "purchase" -> "Ah, so you're interested in my wares.", "Take your time to look around.", trade
-"kauf", "waren", "preis", "Handel", "veräußer", "erwerb" -> "Ah, dann interessiert Ihr Euch also für meine Waren.", "Schaut Euch ruhig in Ruhe um.", trade
 
 -- Help
 "Help" -> inform("[Game Help] This NPC is the tailor Timotheus. Keywords: sell, buy, trade, Hello, tailor.")
 "Hilfe" -> inform("[Spielhilfe] Dieser NPC ist der Schneider Timotheus. Schlüsselwörter: kaufe, verkaufe, Handel, Hallo, Schneider.")
 
+-- Trade
+"sell", "buy", "wares", "price", "trade", "purchase" -> "Best tailored goods.", "Take your time to chose what you like.", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Beste Schneiderwaren.", "Sucht euch einfach etwas aus.", trade
+
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Welcome wise one.", "Why, greetings to you!", "Greetings elevated one."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Willkommen, mein weiser Freund.", "Wie jetzt, seid gegrüßt!", "Grüße, mein Großer."
-english, "Hiho", "Hallo", "Hey", "Greeb" -> "Please don't be so informal!", "Well.. Greetings.", "Is that the way people talk on the street nowadays?"
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Willkommen, mein weiser Freund.", "Wie jetzt, seid gegrüßt!", "Grüße, mein Großer."
+english, "Hiho", "Hallo", "Hey", "Greeb" -> "Please don't be so informal!", "Well... Greetings.", "Is that the way people talk on the street nowadays?"
 "Hiho", "Hallo", "Hey", "Greeb" -> "Na, nicht so schnodderig.", "Nun... seid gegrüßt.", "Redet man heutzutage so auf der Straße?"
 "Farewell", "Bye", "Fare well", "See you" -> "May Elara protect your knowledge!", "Insightful journey to you!", "Farewell now!"
 "Tschüß", "Tschüss", "Wiedersehen", "Gehab wohl" -> "Möge Elara eure Weisheit bewahren.", "Eine aufschlussreiche Reise wünsche ich.", "Gehabt euch wohl."
@@ -111,7 +99,7 @@ english, "Ciao", "Adieu", "Au revoir" -> "Trying to charming me, eh? Farewell th
 "How are you", "How feel", "How do you do" -> "I'm feeling wonderful, thank you.", "Great! Did you know the library has books about famous tailors? Amazing literature."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Mir geht es wunderbar, danke.", "Großartig! Wußtet ihr, dass es in der Bibliothek Bücher über berühmte Schneider gibt? Spannende Lektüre, muss ich sagen."
 "your name", "who are you", "who art thou" -> "I am Timotheus.", "Why, Timotheus of course!"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin Timotheus.", "Wie jetzt, Timotheus natürlich!"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich bin Timotheus.", "Wie jetzt, Timotheus natürlich!"
 
 -- Catching quest triggers
 english, "quest" -> "I only sell goods, my apologies. Quests are for the courageous and the empty headed."
@@ -174,16 +162,12 @@ english, "Irmorom" -> "Only dwarves really pray to Irmorom. Everyone else takes 
 "Irmorom" -> "Nur Zwerge beten wirklich zu Irmorom. Anscheinend nimmt Jedermann seine Gaben als selbstverständlich hin."
 
 -- Catching typical NPC phrases
-"tell something" -> "Did you know only we from Runewick have such marvelous clothing? I wonder what rags the people of Galmair wear.", "My robes are the finest in the land!"
+"tell something" -> "Did you know only we from Runewick have such marvellous clothing? I wonder what rags the people of Galmair wear.", "My robes are the finest in the land!"
 "erzähl was", "erzähl etwas" -> "Wußtet ihr, dass nur wir in Runewick hier so feine Kleidung haben? Ich frage mich, in was für Lumpen die Leute in Galmair rumrennen.", "Meine Roben sind die besten im ganzen Land."
 
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Timotheus" -> "Yes, I am Timotheus. Ti-mo-the-us."
 "Timotheus" -> "Ja, ich bin Timotheus. Ti-mo-the-us."
-"Yes" -> "Yes? Yes to what?", "Yes? I'm happy you agree..."
-"Ja" -> "Ja? Wozu ja?", "Ja? Freut mich, dass ihr zustimmt."
-"No" -> "No to what?", "No? You don't like my robes?"
-"Nein" -> "Nein zu was?", "Nein? Ihr mögt meine Roben nicht?"
 
 -- Cycletext: Please add at least(!) five cycletext messages. The more, the better. You can use emotes (#me is green), too.
 

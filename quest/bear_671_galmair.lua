@@ -16,20 +16,20 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- INSERT INTO "quests" ("qst_id", "qst_script") VALUES (671, 'quest.bear_671_galmair');
 
-require("base.common")
-module("quest.bear_671_galmair", package.seeall)
+local common = require("base.common")
+local M = {}
 
-GERMAN = Player.german
-ENGLISH = Player.english
+local GERMAN = Player.german
+local ENGLISH = Player.english
 
 -- Insert the quest title here, in both languages
-Title = {}
+local Title = {}
 Title[GERMAN] = "Der verfressene Bär"
 Title[ENGLISH] = "The greedy bear"
 
 -- Insert an extensive description of each status here, in both languages
 -- Make sure that the player knows exactly where to go and what to do
-Description = {}
+local Description = {}
 Description[GERMAN] = {}
 Description[ENGLISH] = {}
 -- Quest 1
@@ -54,8 +54,8 @@ Description[ENGLISH][8] = "Take one sausage and a loaf of bread to the bear."
 Description[GERMAN][9] = "Vielleicht solltest du Grijas Kokotte nochmal ansprechen, er hat sicher noch mehr für dich zu tun."
 Description[ENGLISH][9] = "Perhaps you should talk to Grijas Kokotte again, he is sure to have more for you to do."
 -- Quest 4
-Description[GERMAN][10] = "Bring 15 Brötchen, 10 Zwiebelsuppen, 10 Fischgerichte und 2 Apfelkuchen zu Grijas Kokotte."
-Description[ENGLISH][10] = "Take fifteen bread rolls, ten bowls of onion soup, ten fish dishes and two apple pies to Grijas Kokotte"
+Description[GERMAN][10] = "Bring 15 Brötchen, 10 Zwiebelsuppen, 10 Forellenfilet mit Beilage und 2 Apfelkuchen zu Grijas Kokotte."
+Description[ENGLISH][10] = "Take fifteen bread rolls, ten bowls of onion soup, ten trout fillet dishes and two apple pies to Grijas Kokotte"
 Description[GERMAN][11] = "Bring 1 Apfelkuchen zum Bären."
 Description[ENGLISH][11] = "Take an apple pie to the bear."
 -- Quest 5 - repeated
@@ -81,7 +81,7 @@ Description[ENGLISH][20] = "Visit the bear."
 
 
 -- For each status insert a list of positions where the quest will continue, i.e. a new status can be reached there
-QuestTarget = {}
+local QuestTarget = {}
 QuestTarget[1] = {334, 260, 0}
 QuestTarget[2] = {275, 260, 0}
 QuestTarget[4] = {334, 260, 0}
@@ -99,25 +99,27 @@ QuestTarget[18] = {275, 260, 0}
 QuestTarget[19] = {275, 260, 0}
 
 -- Insert the quest status which is reached at the end of the quest
-FINAL_QUEST_STATUS = 20
+local FINAL_QUEST_STATUS = 20
 
 
-function QuestTitle(user)
-    return base.common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
+function M.QuestTitle(user)
+    return common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
 end
 
-function QuestDescription(user, status)
+function M.QuestDescription(user, status)
     local german = Description[GERMAN][status] or ""
     local english = Description[ENGLISH][status] or ""
 
-    return base.common.GetNLS(user, german, english)
+    return common.GetNLS(user, german, english)
 end
 
-function QuestTargets(user, status)
+function M.QuestTargets(user, status)
     return QuestTarget[status]
 end
 
-function QuestFinalStatus()
+function M.QuestFinalStatus()
     return FINAL_QUEST_STATUS
 end
 
+
+return M

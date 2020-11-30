@@ -12,29 +12,43 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
---UPDATE common SET com_script='item.id_3076_coppercoins' WHERE com_itemid=3076;
-require("base.common")
 
-module("item.id_3076_coppercoins", package.seeall)
+-- UPDATE items SET itm_script='item.id_3076_coppercoins' WHERE itm_id=3076;
 
-TimeList = {};
+local common = require("base.common")
+local lookat = require("base.lookat")
+local goldenGoblet = require("item.id_224_goldengoblet")
 
-function UseItem(User, SourceItem)
-	if ( SourceItem.number == 1 ) then  --works only with 1 coin
+local M = {}
 
-    	if TimeList[User.id]~=nil then
-			if  ( (math.abs(world:getTime("second") - TimeList[User.id]) ) <=3) then  --1 Rl. second delay
-				return;
-			end
-		end
+local TimeList = {}
 
-		
-		if math.random(2) == 1 then	gValue = "Kopf"; eValue = "head";
-		else gValue = "Zahl"; eValue = "tail"; end    
-		
-		User:talk(Character.say, "#me wirft eine Münze in die Luft und fängt sie wieder auf. Sie zeigt "..gValue..".", "#me throws a coin in the air and catches it again. It shows "..eValue..".")
-      	TimeList[User.id] = world:getTime("second");
-	end
+function M.LookAtItem(User, Item)
+    if Item.number == 1 then
+        lookat.SetSpecialDescription(Item, "Eine einzelne Münze", "A single coin")
+    else
+        lookat.SetSpecialDescription(Item, "Eine Sammlung aus " .. Item.number .. " Münzen", "A collection of " .. Item.number .. " coins")
+    end
+    return lookat.GenerateLookAt(User, Item, lookat.NONE)
 end
+
+function M.UseItem(User, SourceItem)
+
+    if goldenGoblet.putCoinsInGoblet(User, SourceItem) then
+        return
+    end
+
+    if common.spamProtect(User, 5) then
+        return
+    end
+
+    if math.random(2) == 1 then
+        User:talk(Character.say, "#me wirft eine Münze in die Luft und fängt sie wieder auf. Sie zeigt Kopf.", "#me throws a coin in the air and catches it again. It shows head.")
+    else
+        User:talk(Character.say, "#me wirft eine Münze in die Luft und fängt sie wieder auf. Sie zeigt Zahl.", "#me throws a coin in the air and catches it again. It shows tail.")
+    end
+end
+
+return M

@@ -12,66 +12,51 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- Vision, id 83
 -- controll the vision stories in .content.vision
 
-require("base.common")
-require("content.vision")
-module("lte.vision", package.seeall)
+local common = require("base.common")
+local vision = require("content.vision")
+local areas = require("content.areas")
+local M = {}
 
-TypeStory={}
-AmountStory={}
+local TypeStory={}
+local AmountStory={}
 
-function addEffect(Effect,User)               				
-
-end
-
-function callEffect(Effect,User)
-	local theQuestStatus=User:getQuestProgress(664)
-User:inform("queststatus"..theQuestStatus,"queststatus"..theQuestStatus)
---debug("AmountStoryName: "..User.name)
---	if User:getQuestProgress(664) == 0 then
-	if User:getQuestProgress(664) == 1 then
-		findAmountStory, AmountStory = Effect:findValue("AmountStory") --find variable
-		findTypeStory, TypeStory = Effect:findValue("TypeStory") --find variable
-		StoriesAreSet = true
-	end
---[[	local AmountAreas = table.getn(triggerfield.evilrock.EvilRockAreaNames)
-	if User:getQuestProgress(664) == 1 then
-		for i = 1,AmountAreas do
-			if content.areas.PointInArea(User.pos,triggerfield.evilrock.EvilRockAreaNames[i]) then
-				AmountStory = table.getn(content.vision.VisionTextDE[i])
-				TypeStory = i
-				StoriesAreSet = true
-			end
-		end
-	end ]]--
-
-
-	if StoriesAreSet ~= true then
-	else
-		if AmountStory == nil then
-			local AmountStory = 0
-			return false
-		elseif User:getQuestProgress(664) <= AmountStory then
-			content.vision.vision(User,TypeStory)
-			User:setQuestProgress(664,User:getQuestProgress(664)+1)
-		else
-			User:setQuestProgress(664,1)
-			StoriesAreSet = false
-			return false
-		end 
-	end
-	Effect.nextCalled = 200 --Effect gets called each 10 seconds
-	return true
-end
-
-function removeEffect(Effect,User)
+function M.addEffect(Effect,User)
 
 end
 
-function loadEffect(Effect,User)                  			
+function M.callEffect(Effect,User)
+--[[
+    if StoriesAreSet ~= true then
+    else
+        if AmountStory == nil then
+            local AmountStory = 0
+            return false
+        elseif User:getQuestProgress(664) <= AmountStory then
+            vision.vision(User,TypeStory)
+            User:setQuestProgress(664,User:getQuestProgress(664)+1)
+        else
+            User:setQuestProgress(664,1)
+            StoriesAreSet = false
+            return false
+        end
+    end
+]]
+    Effect.nextCalled = 200 --Effect gets called each 10 seconds
+    return true
+end
+
+function M.removeEffect(Effect,User)
 
 end
+
+function M.loadEffect(Effect,User)
+
+end
+
+return M
+

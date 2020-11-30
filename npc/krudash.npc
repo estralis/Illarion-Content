@@ -16,7 +16,7 @@
 -- NPC Name: Krudash                                                  Galmair --
 -- NPC Job:  trader                                                           --
 --                                                                            --
--- NPC Race: orc                        NPC Position:  366, 272, 0            --
+-- NPC Race: orc                        NPC Position:  373, 275, 0            --
 -- NPC Sex:  female                     NPC Direction: west                   --
 --                                                                            --
 -- Author:   Rincewind                                                        --
@@ -26,7 +26,7 @@
 name = "Krudash"
 race = orc
 sex = female
-position = 366, 272, 0
+position = 373, 275, 0
 direction = west
 affiliation = "Galmair"
 job = "trader"
@@ -59,38 +59,29 @@ itemShoes = 53
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItems = 23, 2697, 2710, 2751, 325, 326, 529, 530, 771, 1058, 2112, 2117, 2172, 88, 188, 205, 383, 2629, 2642, 2660, 2711, 2723, 2946, 226, 230, 231, 2647, 2664, 2737, 27, 189, 190, 2675, 2740, 7, 16, 94, 187, 202, 324, 2287, 2290, 2302, 2441, 2444, 2537, 2696, 223, 466, 739, 4, 101, 696, 2357, 2359, 2360, 2364, 2367, 2369, 2389, 2390, 2395, 2399, 2403, 2407, 236, 2550, 2535, 104, 1, 25, 78, 204, 445, 2658, 2701, 2731, 2757, 2775, 2778, 2788, 1046, 1038, 1049, 1047, 1040, 1048, 1053, 77, 1039
-buyPrimaryItems = 23, 2697, 2710, 2751, 325, 326, 528, 529, 530, 531, 699, 770, 771,1058, 2111, 2112, 2116, 2117, 2172, 88, 188, 205, 383, 2629, 2642, 2660, 2711, 2723, 2946, 226, 230, 231, 2647, 2664, 2737, 27, 189, 190, 2675, 2740, 7, 16, 94, 184, 185, 187, 202, 324, 2286, 2287, 2290, 2291, 2302, 2441, 2444, 2537, 2696, 223, 466, 739, 4, 101, 696, 2357, 2359, 2360, 2363, 2364, 2365, 2367, 2369, 2389, 2390, 2393, 2395, 2399, 2400, 2403, 2407, 236, 2550, 2535, 104, 1, 25, 78, 204, 445, 2658, 2701, 2731, 2757, 2775, 2778, 2788, 1046, 1038, 1049, 1047, 1040, 1048, 1053, 77, 1039
-tradeNotEnoughMoneyMsg "Du kannst dir das nicht leisten!", "You can not afford that!"
-tradeFinishedMsg "Danke, komm bald wieder!", "Thanks, come again!"
-tradeFinishedWithoutTradingMsg "Auf Bald!", "Farewell!"
-tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
+sellItems = 2709, 23, 1507, 1508, 1057, 1056, 1058, 1509, 1054, 1510, 1511, 699, 1512, 1460, 1461, 1462, 1463, 1464, 528, 1465, 1466, 1467, 1468, 1469, 1485, 2194, 1486, 1487, 2193, 1488, 1489, 2112, 1490, 2111, 1491, 324, 16, 1425, 2444, 1426, 2441, 1427, 2302, 1428, 2291, 2286, 101, 2359, 2360, 1095, 2403, 1438, 696, 1439, 2389, 1440, 2365, 2400, 1520, 1513, 326, 1514, 1515, 1055, 1516, 771, 1517, 1518, 770, 1519, 1470, 325, 1471, 1472, 1473, 529, 1474, 1475, 530, 531, 1476, 1477, 1492, 2117, 1493, 1494, 2116, 1495, 1496, 2172, 1497, 1498, 1499, 202, 1429, 187, 1430, 2290, 94, 1431, 1432, 2287, 184, 185, 4, 1441, 2364, 1443, 1442, 1444, 2395, 1445, 2369, 2390, 1446, 2367, 2393, 2363, 27, 189, 1524, 398, 190, 2740, 389, 297, 2672, 2675, 91, 444, 2671, 2742, 2629, 2711, 2946, 192, 229, 124, 2642, 2660, 296, 2662, 2776, 25, 78, 1, 2757, 2701, 85, 2658, 2778, 98, 2775, 84, 2788, 206, 2704, 2693, 123, 2656, 2654, 2723, 88, 383, 188, 1527, 205, 2627, 2640, 2626, 1525, 204, 1526, 2731, 2738, 2537, 739, 466, 2645, 294, 2709, 2752, 737, 2751, 122, 23, 74, 2710, 47, 2495, 2763, 2715, 2697, 2746, 9, 6, 271, 24, 126, 2140
+-- armourer's hammer, hammer
+-- simple jackboots, jackboots, robust jackboots, guardian's boots, silversteel boots, coppered guardian's boots, ornate jackboots, silvered guardian's boots, gilded guardian's boots, salkamaerian steel shoes, master's steel shoes, simple chain gloves, chain gloves, reinforced chain gloves, coppered chain gloves, silvered chain gloves, Salkamaerian chain gloves, gilded chain gloves, guard's chain gloves, gladiator's chain gloves, merinium plated chain gloves, templar's chain gloves, simple short scale greaves, short scale greaves, reinforced short scale greaves, simple scale greaves, scale greaves, reinforced scale greaves, simple chain trousers, short chain trousers, reinforced chain trousers, chain pants, holy chain pants, chain helmet, orc helmet, coppered chain helmet, serinjah helmet, silvered chain helmet, storm cap, gilded chain helmet, gynkese mercenary's helmet, chain helmet of darkness, salkamaerian paladin's helmet, flame helmet, chain mail, mercenary armour, guardian's armour, scale armour, silversteel armour, coppered scale armour, lizard armour, silvered scale armour, salkamaerian armour, gilded scale armour, salkamaerian officer's armour, state armour, iron boots, simple steel boots, steel boots, reinforced steel boots, coppered steel boots, dwarven boots, silvered steel boots, albarian steel boots, gilded steel boots, paladin's steel boots, knight boots, knight boots of swiftness, simple steel gloves, steel gloves, reinforced steel gloves, coppered steel gloves, silvered steel gloves, dwarven metal gloves, gilded steel gloves, squire's gloves, Albarian steel gloves, knight gloves, merinium plated steel gloves, grand master's gloves, simple short iron greaves, short iron greaves, reinforced short iron greaves, simple iron greaves, iron greaves, reinforced iron greaves, simple steel greaves, steel greaves, reinforced steel greaves, knight's steel greaves, steel greaves of eternal night, steel cap, reinforced steel cap, steel hat, reinforced steel hat, round steel hat, pot helmet, reinforced pot helmet, albarian mercenary's helmet, albarian soldier's helmet, visored helmet, visored helmet of darkness, plate armour, reinforced plate armour, steel plate, coppered plate armour, reinforced steel plate, silvered plate armour, dwarven plate, gilded plate armour, albarian steel plate, dwarven state armour, albarian knight's armour, albarian noble's armour, heavy plate armour, nightplate, simple dagger, dagger, sharp dagger, coppered dagger, ornate dagger, red dagger, silvered dagger, gilded dagger, ritual dagger, rapier, Malachín dagger, merinium-plated dagger, magical dagger, red fire dagger, light battle axe, halfling axe, battle axe, coppered battle axe, silvered battle axe, gilded battle axe, orc axe, dwarven axe, merinium-plated battle axe, magical dwarven axe, machete, sabre, short sword, serinjah sword, scimitar, longsword, coppered longsword, broadsword, elven sword, silvered longsword, elven rainbowsword, gilded longsword, snake sword, fire longsword, magical longsword, magical serinjah-sword, merinium-plated longsword, fire broadsword, magical broadsword, executioner's axe, longaxe, waraxe, large waraxe, cleaver axe, double axe, fire waraxe, large fire-waraxe, magical waraxe, flamberge, greatsword, claymore, two-handed sword, pins, iron plate, lockpicks, handcuffs, throwing axe, throwing star, armourer's hammer, carving tools, chisel, crucible-pincers, finesmithing hammer, hammer, hatchet, mould, needle, pan, pick-axe, plane, rasp, razor blade, saw, scissors, scythe, shovel, sickle, tongs 
+buyPrimaryItems = 1507, 1508, 1057, 1056, 1058, 1509, 1054, 1510, 1511, 699, 1512, 1460, 1461, 1462, 1463, 1464, 528, 1465, 1466, 1467, 1468, 1469, 1485, 2194, 1486, 1487, 2193, 1488, 1489, 2112, 1490, 2111, 1491, 324, 16, 1425, 2444, 1426, 2441, 1427, 2302, 1428, 2291, 2286, 101, 2359, 2360, 1095, 2403, 1438, 696, 1439, 2389, 1440, 2365, 2400, 1520, 1513, 326, 1514, 1515, 1055, 1516, 771, 1517, 1518, 770, 1519, 1470, 325, 1471, 1472, 1473, 529, 1474, 1475, 530, 531, 1476, 1477, 1492, 2117, 1493, 1494, 2116, 1495, 1496, 2172, 1497, 1498, 1499, 202, 1429, 187, 1430, 2290, 94, 1431, 1432, 2287, 184, 185, 4, 1441, 2364, 1443, 1442, 1444, 2395, 1445, 2369, 2390, 1446, 2367, 2393, 2363, 27, 189, 1524, 398, 190, 2740, 389, 297, 2672, 2675, 91, 444, 2671, 2742, 2629, 2711, 2946, 192, 229, 124, 2642, 2660, 296, 2662, 2776, 25, 78, 1, 2757, 2701, 85, 2658, 2778, 98, 2775, 84, 2788, 206, 2704, 2693, 123, 2656, 2654, 2723, 88, 383, 188, 1527, 205, 2627, 2640, 2626, 1525, 204, 1526, 2731, 2738, 2537, 739, 466, 2645, 294, 2709, 2752, 737, 2751, 122, 23, 74, 2710, 47, 2495, 2763, 2715, 2697, 2746, 9, 6, 271, 24, 126, 2140
+-- simple jackboots, jackboots, robust jackboots, guardian's boots, silversteel boots, coppered guardian's boots, ornate jackboots, silvered guardian's boots, gilded guardian's boots, salkamaerian steel shoes, master's steel shoes, simple chain gloves, chain gloves, reinforced chain gloves, coppered chain gloves, silvered chain gloves, Salkamaerian chain gloves, gilded chain gloves, guard's chain gloves, gladiator's chain gloves, merinium plated chain gloves, templar's chain gloves, simple short scale greaves, short scale greaves, reinforced short scale greaves, simple scale greaves, scale greaves, reinforced scale greaves, simple chain trousers, short chain trousers, reinforced chain trousers, chain pants, holy chain pants, chain helmet, orc helmet, coppered chain helmet, serinjah helmet, silvered chain helmet, storm cap, gilded chain helmet, gynkese mercenary's helmet, chain helmet of darkness, salkamaerian paladin's helmet, flame helmet, chain mail, mercenary armour, guardian's armour, scale armour, silversteel armour, coppered scale armour, lizard armour, silvered scale armour, salkamaerian armour, gilded scale armour, salkamaerian officer's armour, state armour, iron boots, simple steel boots, steel boots, reinforced steel boots, coppered steel boots, dwarven boots, silvered steel boots, albarian steel boots, gilded steel boots, paladin's steel boots, knight boots, knight boots of swiftness, simple steel gloves, steel gloves, reinforced steel gloves, coppered steel gloves, silvered steel gloves, dwarven metal gloves, gilded steel gloves, squire's gloves, Albarian steel gloves, knight gloves, merinium plated steel gloves, grand master's gloves, simple short iron greaves, short iron greaves, reinforced short iron greaves, simple iron greaves, iron greaves, reinforced iron greaves, simple steel greaves, steel greaves, reinforced steel greaves, knight's steel greaves, steel greaves of eternal night, steel cap, reinforced steel cap, steel hat, reinforced steel hat, round steel hat, pot helmet, reinforced pot helmet, albarian mercenary's helmet, albarian soldier's helmet, visored helmet, visored helmet of darkness, plate armour, reinforced plate armour, steel plate, coppered plate armour, reinforced steel plate, silvered plate armour, dwarven plate, gilded plate armour, albarian steel plate, dwarven state armour, albarian knight's armour, albarian noble's armour, heavy plate armour, nightplate, simple dagger, dagger, sharp dagger, coppered dagger, ornate dagger, red dagger, silvered dagger, gilded dagger, ritual dagger, rapier, Malachín dagger, merinium-plated dagger, magical dagger, red fire dagger, light battle axe, halfling axe, battle axe, coppered battle axe, silvered battle axe, gilded battle axe, orc axe, dwarven axe, merinium-plated battle axe, magical dwarven axe, machete, sabre, short sword, serinjah sword, scimitar, longsword, coppered longsword, broadsword, elven sword, silvered longsword, elven rainbowsword, gilded longsword, snake sword, fire longsword, magical longsword, magical serinjah-sword, merinium-plated longsword, fire broadsword, magical broadsword, executioner's axe, longaxe, waraxe, large waraxe, cleaver axe, double axe, fire waraxe, large fire-waraxe, magical waraxe, flamberge, greatsword, claymore, two-handed sword, pins, iron plate, lockpicks, handcuffs, throwing axe, throwing star, armourer's hammer, carving tools, chisel, crucible-pincers, finesmithing hammer, hammer, hatchet, mould, needle, pan, pick-axe, plane, rasp, razor blade, saw, scissors, scythe, shovel, sickle, tongs 
+tradeNotEnoughMoneyMsg "Nub!", "Nub!"
+tradeFinishedMsg "Yubba!", "Yubba!"
+tradeFinishedWithoutTradingMsg "Groar!", "Groar!"
+tradeWrongItemMsg "Nub will, dat.", "Nub want, dat."
 
 -- Template Version 1.03, 01/05/2011 by Estralis Seborian
--- This NPC is supposed to trade (all goods are sold and bought, percentage indicates ratio of price bough/sold):
-
--- 10% Tools (Blacksmith): 23, 2697, 2710, 2751
--- 10% Assorted metal armour: 325, 326, 529, 530, 531, 699, 770, 771, 2111, 2112, 2116, 2117, 2172
--- 10% Axes: 88, 188, 205, 383, 2629, 2642, 2660, 2711, 2723, 2946
--- 10% Concussion weapons: 226, 230, 231, 2647, 2664(Keule), 2737
--- 10% Daggers: 27, 189, 190, 2675, 2740
--- 10% Helmets: 7, 16, 94, 184, 185, 187, 202, 324, 2286, 2287, 2290, 2291, 2302, 2441, 2444
--- 10% Intermediate Metal products: 2537, 2696
--- 10% Iron goods: 223, 466, 739
--- 10% Metal body armour: 4, 101, 696, 2357, 2359, 2360, 2363, 2364, 2365, 2367, 2369, 2389, 2390, 2393, 2395, 2399, 2400, 2403, 2407
--- 10% Metal ingots: 236, 2550, 2535, 104
--- 10% Swords: 1, 25, 78, 204, 445 (Holzschert), 2658, 2701, 2731, 2757, 2775, 2778, 2788
--- 10% Spears: 1046, 1038, 1049, 1047, 1040, 1048, 1053, 77, 1039
-"sell", "buy", "wares", "price", "trade", "purchase" -> "Gâsh! I sell everything made in the forge. Sharpest axes! Mightiest armours! Best tools. Uh!", trade
-"kauf", "waren", "preis", "Handel", "veräußer", "erwerb" -> "Gâsh! Ich verkaufe alles was sie in der Schmiede zusammen bauen. Schärfste Äxte! Mächtigste Rüstungen! Und bestes Werkzeug. Uh!", trade
 
 -- Help
 "Help" -> inform("[Game Help] This NPC is Krudash the arms dealer. Keywords: buy, sell, trade, Er'hja, Kroch'Gurak, Snaga, Alice, Tom"), "Me, Krudash, sell and buy lots of stuff! Taghta?"
 "Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Krudash die Waffenhändlerin. Schlüsselwörter: kaufe, verkaufe, Handel, Er'hja, Kroch'Gurak, Snaga, Alice, Tom"), "Ich, Krudash verkaufe und kaufe viele Dinger! Taghta?"
 
+-- Trade
+"sell", "buy", "wares", "price", "trade", "purchase" -> "Gâsh! I sell everything made in the forge. Sharpest axes! Mightiest armours! Best tools. Uh!", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Gâsh! Ich verkaufe alles, was sie in der Schmiede machen. Schärfste Äxte! Mächtigste Rüstungen! Und bestes Werkzeug. Uh!", trade
+
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Greebas. Do you need sumthing?", "Hurr! Be greeted.", "Hurr. Me, Krudash, sell all you need. For good hack'n sack trip! Hehe!", "Latha math! Greetings-Greetings, mes mean."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Greebas. Brauchst du was, hä?", "Hurr! Sei gegrüßt.", "Hurr. Ich, Krudash verkaufe alles, was 'ner wie du braucht für's hacken und plündarn! Hehe!", "Latha math! Grüße-Grüße, sag ich.", "Sei willkommen, in 'Krudash's Hacken und Plündern'!"
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Greebas. Brauchst du was, hä?", "Hurr! Sei gegrüßt.", "Hurr. Ich, Krudash verkaufe alles, was 'ner wie du braucht für's hacken und plündarn! Hehe!", "Latha math! Grüße-Grüße, sag ich.", "Sei willkommen, in 'Krudash's Hacken und Plündern'!"
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greebas. Do you need sumthing?", "Hurr! Be greeted.", "Hurr. Me, Krudash, sell all you need. For good hack'n sack trip! Hehe!", "Latha math! Greetings-Greetings, mes mean."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Greebas. Brauchst du was, hä?", "Hurr! Sei gegrüßt.", "Hurr. Ich, Krudash verkaufe alles, was 'ner wie du braucht für's hacken und plündarn! Hehe!", "Latha math! Grüße-Grüße, sag ich.", "Sei willkommen, in 'Krudash's Hacken und Plündern'!"
 "Farewell", "Bye", "Fare well", "See you" -> "Farebas. Have a good sackin'!", "Slàn leibhslàn! Would say in the orcish tongue. Tagtha?"
@@ -100,7 +91,7 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Farebas. Have a good sackin
 "How are you", "How feel", "How do you do" -> "Hurr. Mes alrighty! Good shop, good husband, good whelps.", "Uh! I'm a rich and mighty orc! Lots of snagas are mine!", "Hrmpf!"
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Hurr. Mirr gehts gut. Hab nen feinen Laden. N'guten Mann. Und gute welpen!", "Hrmpf!", "Uh! Ich bin ne reiche und mächtige Ork. Und alle Snagas tun, was ich befehle."
 "your name", "who are you", "who art thou" -> "I am Krudash, and this my shop, 'Hack'n Sack', selling all stuff you need for good hack'n sack trip."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin Krudash Und dars ist mein Laden. 'Hack'n Sack' - Hacken und Plündern! Verkaufe alles was du brauchst fürr guttes Hackn und plündarn."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich bin Krudash Und dars ist mein Laden. 'Hack'n Sack' - Hacken und Plündern! Verkaufe alles was du brauchst fürr guttes Hackn und plündarn."
 
 -- Catching quest triggers. Modify if the NPC does quests.
 english, "quest", "mission" -> "I... and my snagas... do all the work, so there is nothing for a maggot like you to do!"
@@ -119,7 +110,7 @@ english, "Gobaith", "Gobiath" -> "Hrmpf! What else is there to say?"
 "mein Name" -> "Hurr, hurr. Was willst du kaufen?"
 
 -- More small talk; add at least five triggers, e.g. about the profession of the NPC or his enviroment
-english, "er hja", "erhja", "er'hja" -> "Oh-h! Er'hja will be my little orcling forever. *grunts happily* Yes, she's fiendishly clever. I will be her proud mommy, forever!", "#me nods. 'Tagtha. Er'hja is my daughter. She have a sister also, yes, Ol'hja, strangers get them mixed up.'", "#me laughs hoarsely. 'Ha-hr. Orclings like Er'hja 'nd Ol'hja cause much trouble for their mommies and daddies...'"
+english, "er hja", "erhja", "er'hja" -> "Oh-h! Er'hja will be my little orcling forever. *grunts happily* Yes, she's fiendishly clever. I will be her proud mummy, forever!", "#me nods. 'Tagtha. Er'hja is my daughter. She have a sister also, yes, Ol'hja, strangers get them mixed up.'", "#me laughs hoarsely. 'Ha-hr. Orclings like Er'hja 'nd Ol'hja cause much trouble for their mummies and daddies...'"
 "er hja", "erhja", "er'hja" -> "Oh-h! Er'hja wird immer meine kleine Orkling bleiben. *grunzt glücklich* Sie ist ist ja so sehr schlau und gewifft. Ich werd immer ihre stolze Mami sein!", "#me nickt. 'Tagtha. Er'hja ist meine Tochter. - Sie hat auch ne' Schwester, ja. Ol'hja, Fremde verwechseln die Beiden oft.'", "#me lacht heiser. 'Ha-hr. Orklinge wie Er'hja 'nd Ol'hja machen Mamis und Papis viele Sorgen...'"
 english, "ali[czs]", "ali[czs]e" -> "Gâsh! Aliz' this weepy flimsy snaga! She complained again, huh? Listen! She's Krudash dirty snaga, so she has to follow Krudash's orders... and I'm Krudash!", "Don't worry about the girl, she isn't worth it. She has to become strong and proud, do a good job. Ye-hs, but she's just going around crying like the puniest of orclings...", "I bought her for a few coins, wasn't much money, no, but now she's snivelling and doesn't do a good job."
 "ali[czs]", "ali[czs]e" -> "Gâsh! Aliz' diese jammernde schwache Snaga! Hat sie sich wieder bei jemanden mitleidig gemacht, hä? Hör zu! Sie's Krudashs dreckige Snaga, also tut sie was Krudash sagt. Und ich bin Krudash!", "Kümmert Euch nich um das Mädchen. Das hat sie sich nämlich gar nicht verdient. Soll sie stark und stolz werden, ihre Arbeit gut tun! Ja-h. Aber sie flennt und häult nur! Wie die kleinsten Orkligne...", "Ch-arr. Ich hab sie damals gekauft, war nicht viel Geld, nein. Aber jetzt ist sie weinerlich und tut ihre Arbeit nicht gut."
@@ -127,14 +118,14 @@ english, "ali[czs]", "ali[czs]e" -> "Gâsh! Aliz' this weepy flimsy snaga! She co
 "hacken", "plündern" -> "Hurr Hurr. Ciamar a'seibh! Wie geht's?", "Hurr Hurr. Brauchst ne Axt, hä?"
 english, "tom", "berry", "thomas", "berryard" -> "Ha-ha! I caught this puny loudmouth on my own... now he has to work, although he's not happy about it. Thomas Berryard is my snaga now!", "#me smashes her fist upon the table angrily. 'Scheschnak! That sneaky dirty swine Berryar'! Once he tried to mix broken glass into my food.'", "Choar! That lousy halfer escaped one day and got lost in the mountains, now 'e hab to batter stones.", "Garh! The dastardly halfer! Thoma' Berryar'! Watch his tiny fists! He'll try to smash them between your legs, whether you're a man or a woman."
 "tom", "berry", "thomas", "berryard" -> "Hä-hä! Ich hab das kleine Großmaul selbst gefangen. Jetz muss er schuften, auch wenn ihm das nicht gefällt. Thomas Berryard, er ist jetzt mein Snaga!", "#me schlägt verärgert mit der Faust auf den Tisch. 'Scheschnak! Dieser hinterlistige Dreckskerl Berryar', hat mir einmal Glasscherben ins Fleisch gemischt.'", "Choar! Der miese Halbling ist 'nes Tags ausgebuchst und hat sich auf der Flucht in d'n Bergen verirrt. Jetzt muss er zur Strafe Steine kloppen.", "Hurr, behalt seine kleinen Fäustchen im Aug! Sonst haut er sie dir zwischen die Beine, da ist's ihm egal ob Mann oder Weib."
-english, "ol hja", "olhja", "ol'hja" -> "Hurr, its difficult to get good job, but Ol'hja became a scout for a band of mercenaries. Kj'at, that's a good job for an orc!", "Tagtha, have you met Ol'hja recently? She's a good orc, isn't she? All men want to become her husband, but she's very stubborn. A pighead, like a donkey! But her mommy is very proud, yes I am. Yes.", "Me Krudash isn't very skillful in the wild far away from town. Where would a Gynkesh learn it, anyway? Ol'hja was taught by Mo'rurt, he's a great hunter. I would bet the best. Taghta?"
+english, "ol hja", "olhja", "ol'hja" -> "Hurr, its difficult to get good job, but Ol'hja became a scout for a band of mercenaries. Kj'at, that's a good job for an orc!", "Tagtha, have you met Ol'hja recently? She's a good orc, isn't she? All men want to become her husband, but she's very stubborn. A pighead, like a donkey! But her mummy is very proud, yes I am. Yes.", "Me Krudash isn't very skilful in the wild far away from town. Where would a Gynkesh learn it, anyway? Ol'hja was taught by Mo'rurt, he's a great hunter. I would bet the best. Taghta?"
 "ol hja", "olhja", "ol'hja" -> "Hurr, is schwer gute Arbeit zu finden. Aber Ol'hja is Späher geworden. Für ne Söldnertruppe. Kj'at, dass is ne gute Arbeit für ne Ork!", "Taghta, hast du Ol'hja mal getroffen? Sie's eine gute Ork nich? Alle Männer wolln sie zur Frau, aber sie hat'n sturen Kopf. Einen Dickschädl, wie'n Esel! Aber ihre Mamy is sehr stolz, ja das bin ich. Ja.", "Ich, Krudash kenn mich nicht aus draußen, wo die Stadt weit weg ist. Aber woher soll's eine Gynkesh auch lernen? Ol'hja hat alles was sie weiß von Mo'rurt gelernt, der is n' guter Jäger. Ich würd sagen der Beste. Taghta?"
 english, "kroch", "Gurak", "Kroch'Gurak" -> "Kroch'Gurak isn't a town, actually, no, but in winter, uncounted orc tribes wander there. Then the whole of the west Norbuk Plateau lives in the giant caves there, and there's pig hunting and wrestling.", "Mes dropped my daughters on isle Gobaith, and as soon as they were big enough, their father decided, they should live in Kroch'Gurak so they were able to grow up amongst other orcs."
 "kroch", "Gurak", "Kroch'Gurak" -> "Kroch'Gurak is keine Stadt, würd ich sagen, nein. Aber im Winter lagern unzählige Orkstämme dort. Das westliche Norbuk Plateou zieht dann in die großen Höhlen dort. Und es gibt Schweinshats und Ringkämpfe.", "Ich hab meine Töchter auf der Insel Gobaith geworfen. Und als sie groß genug waren entschied ihr Vater, das sie nach Kroch'Gurak ziehen sollten. Damit sie unter Orks großwachsen können."
 english, "snaga" -> "Snagas! Those are monkeys... basically, and weak puny orcs who need to be told what to do! A mighty orc like me, Krudash has many snagas. Gâsh! Not for nothing, I'm the smartest here."
 "snaga" -> "Snagas! Das sind Affen... - eigentlich. Und schwächliche Orks, denen man sagt was sie tun müssen! Eine mächtige Ork wie ich, Krudash es bin hat viele Snagas. Gâsh! Bin ja auch die Schlauste hier."
-english, "where com", "krochgurak" -> "Hrach. I come frome Khenserra, but most orcs come frome Kroch'gurak where the clans camp in winter."
-"where com", "krochgurak" -> "Hrach. Ich komme aus Khenserra. Aber viele Orks sind aus Kroch'gurak. Dort'ists wo die Clans im Winter lagern."
+english, "krochgurak" -> "Hrach. I come frome Khenserra, but most orcs come frome Kroch'gurak where the clans camp in winter."
+"krochgurak" -> "Hrach. Ich komme aus Khenserra. Aber viele Orks sind aus Kroch'gurak. Dort'ists wo die Clans im Winter lagern."
 "dwarf", "dwarv" -> "Hurr Hurr. Do you need an axe, huh?"
 "zwerg" -> "Hurr Hurr. Brauchst ne Axt, hä?"
 
@@ -167,10 +158,12 @@ english, "salkama" -> "Scheschnaks. Those are all dirty scheschnak-monkeys. Gosc
 -- Gods - use the triggers of the god the NPC worships or fights
 "god" -> "The ancestors should praised, hail. Praise my fathers."
 "Gott", "Götter" -> "Die Vorfahren sein gepriesen, hâll. Ehre meinen Vätern."
-english, "moshran", "god" -> "Gosh! Nub say tha name! Better talk to Shaman about tha Fatha."
-german, "moshran", "god" -> "Gosh! Du niemals sagst diesen Namen! Besser fragen Schamane über Vatha."
-english, "cherga", "icy witch", "eis Hex" -> "Hurr. Tha icy witch, be God ob ancestors, just ask Grimlug!"
-german, "cherga", "icy witch", "eis Hex" -> "Hurr. Eisig Hexe, Gottin von Ahnen ist. Du fragst Grimlug!"
+english, "moshran" -> "Gosh! Nub say tha name! Better talk to Shaman about tha Fatha."
+"moshran" -> "Gosh! Du niemals sagst diesen Namen! Besser fragen Schamane über Vatha."
+english, "cherga" -> "Hurr. Tha icy witch, be God ob ancestors, just ask Grimlug!"
+"cherga" -> "Hurr. Eisig Hexe, Gottin von Ahnen ist. Du fragst Grimlug!"
+"icy witch" -> "Hurr. Tha icy witch, be God ob ancestors, just ask Grimlug!"
+"eis Hex" -> "Hurr. Eisig Hexe, Gottin von Ahnen ist. Du fragst Grimlug!"
 
 -- Catching typical NPC phrases
 "tell something" -> "Gâsh! I learned about dealing in Gynk! Yp-Yp.", "Hrach! Do you know the blacksmith Frobenius? He sells swords, a horse farrier would be able to make them sharper."
@@ -179,14 +172,6 @@ german, "cherga", "icy witch", "eis Hex" -> "Hurr. Eisig Hexe, Gottin von Ahnen 
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Krudash" -> "Hurr Hurr. Ciamar a'seibh! How goin?", "Hurr Hurr. Do you need an axe, huh?"
 "Krudash" -> "Hurr Hurr. Ciamar a'seibh! Wie geht's?", "Hurr Hurr. Brauchst ne Axt, hä?"
-"Yes" -> "Taghtha? Is good! Yes.", "There we go. Alrighty-right.", "Hurr, hurr. Wahtever you say."
-"Ja" -> "Taghta? Iss gut! Ja-h.", "So machen wir's!", "Hurr, hurr. Alles was du sagst."
-"No" -> "Grâth! Are you sure?", "Then... no, isn't it?", "#me chuckles. 'Is all right.'"
-"Nein" -> "Grâth! Bisst du sicher?", "Dann nicht, nicht wahr?", "#me kichert. 'Ist gut, is' gu-ht.'"
-
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-english, chance(20.0), ".*" -> "Taghta!", "Puny little maggot! What do you want?.", "Uh-h?"
-german, chance(20.0), ".*" -> "Taghta!", "Winzig kleine Made, was willst du?.", "Uh-h?"
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.

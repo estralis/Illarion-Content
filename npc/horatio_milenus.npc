@@ -16,7 +16,7 @@
 -- NPC Name: Horatio Milenus                                          Cadomyr --
 -- NPC Job:  Guard                                                            --
 --                                                                            --
--- NPC Race: human                      NPC Position:  114, 635, 0            --
+-- NPC Race: human                      NPC Position:  120, 642, 0            --
 -- NPC Sex:  male                       NPC Direction: south                  --
 --                                                                            --
 -- Authors:  Kawan Baxter                                                     --
@@ -28,7 +28,7 @@
 name = "Horatio Milenus"
 race = human
 sex = male
-position = 114, 635, 0
+position = 120, 642, 0
 direction = south
 affiliation = "Cadomyr"
 job = "Guard"
@@ -43,7 +43,7 @@ author = "Estralis Seborian"
 author = "Nitram"
 
 lookatDE = "Dieser NPC ist Horatio Milenus der Torwächter, ein großer Mann, eingehüllt in eine schwere Rüstung."
-lookatUS = "This NPC is Horatio Milenus the gate guardian, a tall man encombered in heavy armor."
+lookatUS = "This NPC is Horatio Milenus the gate guardian, a tall man encombered in heavy armour."
 useMsgDE = "Zurück!"
 useMsgUS = "Back up!"
 wrongLangDE = "#me schaut verwirrt umher."
@@ -61,9 +61,10 @@ itemSecondHand = 95
 itemHands = 530
 itemTrousers = 367
 itemShoes = 771
-guardWarpTarget = 114, 643, 0
+guardWarpTarget = 119, 649, 0
 guardRange = 2, 2, 4, 4
 warpedMonsterMsg "Weg mit dir, widerliche Kreatur!", "Go away, nasty creature!"
+warpedMonsterMsg "Hinfort, du Monster!", "Begone, you monster!"
 warpedPlayerMsg "Pass bloß auf! Wir brauchen hier kein Gesindel.", "You'd better watch out! We don't need such lowlifes here."
 hitPlayerMsg "#me verpasst dem Eindringlich einen Hieb 'Verschwinde!'", "#me hits the intruder 'Get lost!'"
 
@@ -84,8 +85,8 @@ hitPlayerMsg "#me verpasst dem Eindringlich einen Hieb 'Verschwinde!'", "#me hit
 -- Hair: Black, shaven
 -- Height: Tall
 -- Body: Broad shoulders, heavily muscular
--- Weapon: huge scimitar, in sand colored leather sheath
--- Cloth: Heavy sand colored armor, quite unusual in the area
+-- Weapon: huge scimitar, in sand coloured leather sheath
+-- Cloth: Heavy sand coloured armour, quite unusual in the area
 
 -- Personality:
 -- Horatio is a solid rock amidst an endless sea of sand. Horatio is a man raised to
@@ -105,7 +106,7 @@ hitPlayerMsg "#me verpasst dem Eindringlich einen Hieb 'Verschwinde!'", "#me hit
 -- sister.
 
 -- Horatio earnestly fought for his city. He gained renowned status from battle. With huge stature and his rare
--- choice in using heavy armor Horatio has taken down up to twenty people by himself. In the process of stopping
+-- choice in using heavy armour Horatio has taken down up to twenty people by himself. In the process of stopping
 -- liquor smuggling operation against 14 bandits an arrow pierced his foot severing the fourth toe on his left foot.
 
 -- While serving as city guard, a young tree cutter's daughter caught his eye. Horatio paid the dowry for her hand in
@@ -134,7 +135,7 @@ hitPlayerMsg "#me verpasst dem Eindringlich einen Hieb 'Verschwinde!'", "#me hit
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "What?", "Welcome to Cadomyr.", "This is Cadomyr, home of beautiful and infinitely wise Queen Rosaline.", "Hello.", "#me just gives a brief nod.", "Greetings to you."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Was?", "Willkommen in Cadomyr.", "Dies ist Cadomyr, Heimat der schönen und unglaublich weisen Königin Rosaline.", "Hallo.", "#me nickt nur kurz.", "Seid gegrüßt."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Was?", "Willkommen in Cadomyr.", "Dies ist Cadomyr, Heimat der schönen und unglaublich weisen Königin Rosaline.", "Hallo.", "#me nickt nur kurz.", "Seid gegrüßt."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "What?", "Welcome to Cadomyr.", "This is Cadomyr, home of beautiful and infinitely wise Queen Rosaline.", "Hello.", "#me just gives a brief nod.", "Greetings to you."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Was?", "Willkommen in Cadomyr.", "Dies ist Cadomyr, Heimat der schönen und unglaublich weisen Königin Rosaline.", "Hallo.", "#me nickt nur kurz.", "Seid gegrüßt."
 "Farewell", "Bye", "Fare well", "See you" -> "Care, the desert can be quite unforgiving.", "Care, make no trouble.", "Care.", "Farewell.", "Good bye."
@@ -144,13 +145,15 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Care, the desert can be qui
 "How are you", "How feel", "How do you do" -> "Don't ask me such silly questions.", "Don't ask me such silly qu- Actually today is a pretty good day.", "I guard, I don't feel.", "I'm on duty. How should I feel?", "Everyday it's the same anyway."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Fragt nicht so ein dummes Zeug.", "Fragt nicht so ein dummes - also genau genommen geht es mir heute recht gut.", "Ich bin ein Wächter, ich habe keine Gefühle.", "Ich bin im Dienst. Wie soll es mir da gehen?", "Ist jeden Tag sowieso immer dasselbe."
 "your name", "who are you", "who art thou" -> "I am Horatio Milenus, guard of this realm.", "I am Horatio Milenus protector of Cadomyr.", "This is Cadomyr. I am Cadomyr.", "My name is Horatio Milenus. I am guarding this town entrance.", "I am Horatio Milenus, town guard of Cadomyr."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin Horatio Milenus, Wächter des Reiches.", "Ich bin Horation Milenus, der Beschützer Cadomyrs.", "Dies ist Cadomyr. Ich bin Cadomyr.", "Mein  Name ist Horatio Milenus. Ich bewache diesen Eingang Stadt.", "Ich bin Horatio Milenus, Stadtwache von Cadomyr."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich bin Horatio Milenus, Wächter des Reiches.", "Ich bin Horation Milenus, der Beschützer Cadomyrs.", "Dies ist Cadomyr. Ich bin Cadomyr.", "Mein  Name ist Horatio Milenus. Ich bewache diesen Eingang Stadt.", "Ich bin Horatio Milenus, Stadtwache von Cadomyr."
 
 -- Catching quest triggers. Modify if the NPC does quests.
 english, "quest", "mission" -> "Well, it is my mission to guard this gate. I do not know what your mission is; apart from serving her majesty, of course."
 "quest", "mission" -> "Nun, meine Aufgabe ist es, dieses Tor zu bewachen. Was eure Aufgabe ist, weiß ich nicht, Hauptsache, ihr dient ihrer Majestät."
 "task", "adventure", "order" -> "Well, it is my mission to guard this gate. I do not know what your mission is; apart from serving her majesty, of course."
 "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Nun, meine Aufgabe ist es, dieses Tor zu bewachen. Was eure Aufgabe ist, weiß ich nicht, Hauptsache, ihr dient ihrer Majestät."
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin kein Händler."
 
 -- Small talk: The talk here should focus on possible questions. Feel free to add more!
 "profession" -> "I am Guard of Cadomyr.", "I serve this realm.", "I serve this mighty city.", "I am a town guard of Cadomyr.", "I serve the noble Queen as a town guard."
@@ -175,7 +178,7 @@ english, "Tomb" -> "The resting place of the greatest of our people is the tomb.
 "Familie" -> "Das geht euch nichts an."
 "Palace" -> "If you have no business at the palace, stay away from there."
 "Palast" -> "Wenn ihr im Palast nichts zu suchen habt, dann haltet euch fern von ihm."
-"Guard" -> "I guard the gate of this city. That it is the mission the queen assigned to me and I am proud to fulfill."
+"Guard" -> "I guard the gate of this city. That it is the mission the queen assigned to me and I am proud to fulfil."
 "Wache" -> "Ich bewache das Tor dieser Stadt. Das ist die Aufgabe, die die Königin mir übertragen hat und es erfüllt mich mit Stolz, sie zu erfüllen."
 
 -- Easter egg
@@ -183,12 +186,12 @@ english, "Tomb" -> "The resting place of the greatest of our people is the tomb.
 "Gefreite" -> "Ich bin kein Gefreiter mehr! Die Königin hat mich befördert, haha!"
 
 -- Faction stuff. Please remove if you send the template to outsiders!
-"archmage" -> "He's quite a merry fellow.", "The towers the archmage of Runewick built must be easy to defend.", "The archmage of Runewick; I better keep my mouth shut now."
-"Erzmagier" -> "Er ist ein ziemlich freundlicher Kerl.", "Die Türme, die der Erzmagier von Runewick hat bauen lassen, sind wohl recht einfach zu verteidigen.", "Der Erzmagier von Runewick; ich sag jetzt besser nichts mehr."
-english, "Elvaine", "Morgan" -> "He's quite a merry fellow.", "The towers the archmage of Runewick built must be easy to defend.", "The archmage of Runewick; I better keep my mouth shut now."
-"Elvaine", "Morgan" -> "Er ist ein ziemlich freundlicher Kerl.", "Die Türme, die der Erzmagier von Runewick hat bauen lassen, sind wohl recht einfach zu verteidigen.", "Der Erzmagier von Runewick; ich sag jetzt besser nichts mehr."
-english, "Runewick" -> "Runewick is a stronghold of magicians, consisting of four magnificent towers, built in the ocean.", "Runewick is a strong city, but the inhabitants have no honour. They do whatever it takes to get what they want."
-"Runewick" -> "Runewick ist eine Feste der Magie, vier mächtige Türme, die in das Meer gebaut wurden.", "Runewick ist eine beeindruckende Stadt, aber ihre Einwohner sind ehrlos. Sie tun, was immer nötig ist, um ihre Ziele zu erreichen."
+"archmage" -> "He's quite a merry fellow.", "The islands must be easy to defend.", "The archmage of Runewick; I better keep my mouth shut now."
+"Erzmagier" -> "Er ist ein ziemlich freundlicher Kerl.", "Die Inseln sind wohl recht einfach zu verteidigen.", "Der Erzmagier von Runewick; ich sag jetzt besser nichts mehr."
+english, "Elvaine", "Morgan" -> "He's quite a merry fellow.", "The islands must be easy to defend.", "The archmage of Runewick; I better keep my mouth shut now."
+"Elvaine", "Morgan" -> "Er ist ein ziemlich freundlicher Kerl.", "Die Inseln sind wohl recht einfach zu verteidigen.", "Der Erzmagier von Runewick; ich sag jetzt besser nichts mehr."
+english, "Runewick" -> "Runewick is a stronghold of magicians built in the ocean.", "Runewick is a strong city, but the inhabitants have no honour. They do whatever it takes to get what they want."
+"Runewick" -> "Runewick ist eine Feste der Magie, die in das Meer gebaut wurden.", "Runewick ist eine beeindruckende Stadt, aber ihre Einwohner sind ehrlos. Sie tun, was immer nötig ist, um ihre Ziele zu erreichen."
 english, "Valerio", "Guilianni", "Don" -> "I overheard the crest of the Don is a pig. That fits!"
 "Valerio", "Guilianni", "Don" -> "Ich habe gehört, dass Wappen des Dons zeigt ein Schwein. Wie passend!"
 english, "Galmair" -> "Galmair is a dirty town where money washes hands clean from any sin."
@@ -259,14 +262,6 @@ english, "Zhambra" -> "It is through Zhambra that I am able to serve Cadomyr."
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Horatio", "Milenus" -> "That is I. State your business."
 "Horatio", "Milenus" -> "Das bin ich. Was ist euer Begehr?"
-"Yes" -> "Yes to what?", "Pardon?"
-"Ja" -> "Ja?", "Pardon?"
-"No" -> "Leave me now or suffer to be arrested."
-"Nein" -> "Geht nun oder ich werde euch unter Arrest stellen."
-
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-english, chance(20.0), ".*" -> "I am the merely a guard of Cadomyr.", "Tell that somebody else.", "Move along.", "Pass along", "Do not loiter!", "In or out?"
-german, chance(20.0), ".*" -> "Ich bin in erster Linie der Wächter Cadomyrs.", "Erzählt das jemanden anderes.", "Geht weiter.", "Weitergehen.", "Lungert hier nicht herum.", "Rein oder raus?"
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
@@ -287,5 +282,5 @@ cycletext "Dieser verdammte Don! Ich weiß nichts über die Tugenden eines echten 
 cycletext "Don Valerio, pah! Wenn es das Gesetz zuließe, würde ich seinen Kopf abschlagen und seinen Körper an die Schweine verfüttern.", "Don Valerio, pah! If Cadomyrian law allowed, I would sever his head and feed his body to the pigs."
 cycletext "Galmair, Galmair, Galmair! Reden die anderen Völker über nichts anderes mehr? Warum sollte ich mich um eine Stadt voller Tunichtgute scheren?", "Galmair, Galmair, Galmair! Do outsiders ever talk about anything else? Why would I care about a city full of incompetents?"
 cycletext "Wer zur Königin will, muss zunächst ein den Palast, wer in den Palast will, muss erst in die Stadt und wer in die Stadt will, muss an mir vorbei.", "Those who wish to see the queen must first be allowed into the palace, those allowed into the palace must first enter the city, those entering the city must first speak to me."
-cycletext "Dies ist Cadomyr und der Palast der Edwards. Die derzeitige Regentin der königlichen albarischen Blutlinie ist die weise und wunderschöne Königin Rosaline.", "This is Cadomyr and the palace of the Edwards. The current regent of the Abarian royal Edward's bloodline is Queen Rosaline Edwards, a Queen who is both wise and beautiful."
+cycletext "Dies ist Cadomyr und der Palast der Edwards. Die derzeitige Regentin der königlichen albarischen Blutlinie ist die weise und wunderschöne Königin Rosaline.", "This is Cadomyr and the palace of the Edwards. The current regent of the Albarian royal Edward's bloodline is Queen Rosaline Edwards, a Queen who is both wise and beautiful."
 cycletext "Rosaline, ihr seid mein Herz und meine Seele.", "Rosaline, you're my heart, you're my soul, I keep it shining everywhere I go."

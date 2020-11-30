@@ -67,12 +67,12 @@ itemShoes = 53
 -- When you are done, please hit the "Rebuild Script" button.
 
 -- Help
-"Help" -> inform("[Game Help] This NPC is Bathelor the high priest of Brágon. Keywords: Hello, Brágon, Quest, Priest, Temple.")
-"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Bathelor der Hohepriester Brágons. Schlüsselwörter: Hallo, Brágon, Quest, Priester, Tempel.")
+"Help" -> inform("[Game Help] This NPC is Bathelor the high priest of Brágon. Keywords: Hello, Brágon, Quest, Priest, Temple, Favour, Sacrifice.")
+"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Bathelor der Hohepriester Brágons. Schlüsselwörter: Hallo, Brágon, Quest, Priester, Tempel, Gunst, Opfergabe.")
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Your pilgrimage has come to an end. You have found the temple of the Five.", "Be greeted in the name of Brágon.", "Hail Brágon! What is it, my child?"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Eure Pilgerfahrt hat eine Ende. Ihr habt den Tempel der Fünf gefunden.", "Seid gegrüßt im Namen Brágons.", "Was gibt es, mein Kind?"
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Eure Pilgerfahrt hat eine Ende. Ihr habt den Tempel der Fünf gefunden.", "Seid gegrüßt im Namen Brágons.", "Was gibt es, mein Kind?"
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Your pilgrimage has come to an end. You have found the temple of the Five.", "Be greeted in the name of Brágon.", "Hail Brágon! What is it, my child?"
 "Hiho", "Hallo", "Hey", "Greeb" -> "Eure Pilgerfahrt hat eine Ende. Ihr habt den Tempel der Fünf gefunden.", "Seid gegrüßt im Namen Brágons.", "Was gibt es, mein Kind?"
 "Farewell", "Bye", "Fare well", "See you" -> "May Brágon speed you into the flames", "May the fire within you never be extinguished!", "Go with Brágon's blessing."
@@ -82,7 +82,11 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Go with Brágon speed.", "An
 "How are you", "How feel", "How do you do" -> "I feel enlightened."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Ich fühle mich erleuchtet."
 "your name", "who are you", "who art thou" -> "I am Bathelor, high priest of Brágon. Praise Brágon!"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin Bathelor, Hohepriester Brágons. Lobet Brágon!"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich bin Bathelor, Hohepriester Brágons. Lobet Brágon!"
+
+--OPTIONAL
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin kein Händler."
 
 -- 1st quest: Visit the shrines of the five
 queststatus(113) = 0, english, "quest", "mission" -> inform("[New quest] A spark to a flame I"), queststatus(113) = 1, "Very well. To prove that you are a truly devout servant of the Five, I want you to pay hommage to them. Visit each of the shrines of the Five in the temple and honour them."
@@ -90,9 +94,9 @@ queststatus(113) = 0, "quest", "mission" -> inform("[Neues Quest] Feuer und Flam
 queststatus(113) = 0, "task", "adventure" -> inform("[New quest] A spark to a flame I"), queststatus(113) = 1, "Very well. To prove that you are a truly devout servant of the Five, I want you to pay hommage to them. Visit each of the shrines of the Five in the temple and honour them."
 queststatus(113) = 0, "Auftrag", "Aufgabe", "Abenteuer" -> inform("[Neues Quest] Feuer und Flamme I"), queststatus(113) = 1, "Sehr gut. Um zu beweisen, dass ihr ein frommer Diener der Fünf seid, möchte ich, dass ihr ihnen huldigt. Besucht jeden der Schreine der Fünf und ehret sie."
 
--- 1st quest solved, reward: 2 candles (43)
-queststatus(113) = 2, english, ".+" -> inform("[Quest solved] You are awarded five candles."), item(43, 5, 333), queststatus(113) = 3, "Praise the Five, hail Brágon! Here, take these candles, for they will guide you through the darkest nights."
-queststatus(113) = 2, ".+" -> inform("[Quest gelöst] Du erhältst fünf Kerzen."), item(43, 5, 333), queststatus(113) = 3, "Lobet die Fünf, gepriesen sei Brágon! Hier, nehmt diese Kerzen, sie werden euch ein Licht in der Dunkelheit sein."
+-- 1st quest solved, reward: 5 candles (43), candlestick (399)
+queststatus(113) = 2, english, ".+" -> inform("[Quest solved] You are awarded five candles and a candlestick."), item(43, 5, 333), item(399, 1, 555), queststatus(113) = 3, "Praise the Five, hail Brágon! Here, take this candlestick and some candles, for they will guide you through the darkest nights."
+queststatus(113) = 2, ".+" -> inform("[Quest gelöst] Du erhältst fünf Kerzen und einen Halter."), item(43, 5, 333), item(399, 1, 555), queststatus(113) = 3, "Lobet die Fünf, gepriesen sei Brágon! Hier, nehmt diesen Kerzenhalter und ein paar Kerzen, sie werden euch ein Licht in der Dunkelheit sein."
 
 -- 1st quest taken but not solved, repeat the instructions
 queststatus(113) = 1, english, "quest", "mission" -> "I told you to honour the five at their shrines. Move!"
@@ -169,13 +173,11 @@ english, "priest" -> "I am the high priest of Brágon. He speaks through my voice
 "five", "old" -> "Eldan is the mind, Ushara is the body, Tanora is the blood and Findari is the breath, but Brágon is the heart!"
 "eleven", "young" -> "Imposters! All of them! Calling themselves gods, they do. They are nothing but minions, serfs!"
 "fire" -> "Blazing flames will consume all that is not just when the end of days has come. Ask the refugees of Gobaith if you want to know what that looks like!"
-"donation", "sacrifi" -> "If you really want to perform acts on behalf of Brágon, ask me for a task."
 "Priest" -> "Ich bin der Hohenpriester Brágons. Er spricht durch meine Stimme und handelt mit meinen Händen. Legt euch mit mir an und ihr legt euch mit dem Herren des Feuers an."
 "Tempel" -> "Dies ist der Tempel der Fünf. Wenn ihr es auch nur wagt, zu fragen, wer die Fünf sind, werde ich euren Körper verbrennen und die verkohlten Überreste an die Krähen verfüttern. Bestaunt ihre Pracht!"
 "Fünf", "alt" -> "Eldan ist der Geist, Ushara der Leib, Tanora das Blut und Findari ist der Atem. Doch Brágon ist das Herz!"
 "Elf", "jung" -> "Betrüger! Sie alle sind Betrüger! Nennen sich selbst Götter. Sie sind nichts als Diener, Leibeigene!"
 "feuer" -> "Lodernde Flammen werden all das vertilgen, was nicht gerecht ist, wenn das Ende der Tage naht. Fragt die Flüchtlinge von Gobaith, wie so etwas aussieht!"
-"Opfer", "Spende" -> "Wenn ihr wirklich Taten im Namen Brágons vollbringen wollt, fragt mich nach einem Auftrag."
 
 -- Faction stuff. Please remove if you send the template to outsiders!
 "archmage" -> "What is his name again? Elvaine? What a stupid name for an infidel."
@@ -203,6 +205,154 @@ english, "gynk", "gync" -> "One day, Gynk will burn. Be it due to a gnomish expe
 english, "salkama" -> "Never trust nor believe a Salkamaerian. Respect them and their deeds, but do not have faith in them repeating what they did once."
 "salkama" -> "Glaubt oder traut niemals einem Salkamaeriern. Respektiert sie, für das, was sie tun, aber legt keinen Glauben darein, dass sich ihre Taten wiederholen werden."
 
+-- Divine rank
+english, "favou?r.*Ushara", "Ushara.*favou?r", queststatus(403) >= expr(250) -> "Ushara is exalted with you!"
+english, "favou?r.*Ushara", "Ushara.*favou?r", queststatus(403) >= expr(200) -> "Ushara is delighted with you."
+english, "favou?r.*Ushara", "Ushara.*favou?r", queststatus(403) >= expr(150) -> "Ushara is charmed by you."
+english, "favou?r.*Ushara", "Ushara.*favou?r", queststatus(403) >= expr(100) -> "Ushara is happy with you, keep it up."
+english, "favou?r.*Ushara", "Ushara.*favou?r", queststatus(403) >= expr(50), queststatus(402) = 1 -> "Ushara is still pleased with you, but beware not to lose your status as priest."
+english, "favou?r.*Ushara", "Ushara.*favou?r", queststatus(403) >= expr(50) -> "Ushara is pleased with you."
+english, "favou?r.*Ushara", "Ushara.*favou?r", queststatus(403) > expr(-50) -> "Ushara is indifferent about you."
+english, "favou?r.*Ushara", "Ushara.*favou?r", queststatus(403) > expr(-100), queststatus(401) = 1 -> "Ushara is displeased with you, if you go on this way you will not be able to call yourself devoted to Ushara anymore."
+english, "favou?r.*Ushara", "Ushara.*favou?r", queststatus(403) > expr(-100) -> "Ushara is displeased with you."
+english, "favou?r.*Ushara", "Ushara.*favou?r", queststatus(403) > expr(-150) -> "Ushara is irritated by you."
+english, "favou?r.*Ushara", "Ushara.*favou?r", queststatus(403) > expr(-200) -> "Ushara is angry on you."
+english, "favou?r.*Ushara", "Ushara.*favou?r", queststatus(403) > expr(-250) -> "Ushara is very angry on you."
+english, "favou?r.*Ushara", "Ushara.*favou?r" -> "Ushara is wrathful about you."
+
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r", queststatus(404) >= expr(250) -> "Brágon is exalted with you!"
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r", queststatus(404) >= expr(200) -> "Brágon is delighted with you."
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r", queststatus(404) >= expr(150) -> "Brágon is charmed by you."
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r", queststatus(404) >= expr(100) -> "Brágon is happy with you, keep it up."
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r", queststatus(404) >= expr(50), queststatus(402) = 2 -> "Brágon is still pleased with you, but beware not to lose your status as priest."
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r", queststatus(404) >= expr(50) -> "Brágon is pleased with you."
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r", queststatus(404) > expr(-50) -> "Brágon is indifferent about you."
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r", queststatus(404) > expr(-100), queststatus(401) = 2 -> "Brágon is displeased with you, if you go on this way you will not be able to call yourself devoted to Brágon anymore."
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r", queststatus(404) > expr(-100) -> "Brágon is displeased with you."
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r", queststatus(404) > expr(-150) -> "Brágon is irritated by you."
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r", queststatus(404) > expr(-200) -> "Brágon is angry on you."
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r", queststatus(404) > expr(-250) -> "Brágon is very angry on you."
+english, "favou?r.*Br[aá]gon", "Br[aá]gon.*favou?r" -> "Brágon is wrathful about you."
+
+english, "favou?r.*Eldan", "Eldan.*favou?r", queststatus(405) >= expr(250) -> "Eldan is exalted with you!"
+english, "favou?r.*Eldan", "Eldan.*favou?r", queststatus(405) >= expr(200) -> "Eldan is delighted with you."
+english, "favou?r.*Eldan", "Eldan.*favou?r", queststatus(405) >= expr(150) -> "Eldan is charmed by you."
+english, "favou?r.*Eldan", "Eldan.*favou?r", queststatus(405) >= expr(100) -> "Eldan is happy with you, keep it up."
+english, "favou?r.*Eldan", "Eldan.*favou?r", queststatus(405) >= expr(50), queststatus(402) = 3 -> "Eldan is still pleased with you, but beware not to lose your status as priest."
+english, "favou?r.*Eldan", "Eldan.*favou?r", queststatus(405) >= expr(50) -> "Eldan is pleased with you."
+english, "favou?r.*Eldan", "Eldan.*favou?r", queststatus(405) > expr(-50) -> "Eldan is indifferent about you."
+english, "favou?r.*Eldan", "Eldan.*favou?r", queststatus(405) > expr(-100), queststatus(401) = 3 -> "Eldan is displeased with you, if you go on this way you will not be able to call yourself devoted to Eldan anymore."
+english, "favou?r.*Eldan", "Eldan.*favou?r", queststatus(405) > expr(-100) -> "Eldan is displeased with you."
+english, "favou?r.*Eldan", "Eldan.*favou?r", queststatus(405) > expr(-150) -> "Eldan is irritated by you."
+english, "favou?r.*Eldan", "Eldan.*favou?r", queststatus(405) > expr(-200) -> "Eldan is angry on you."
+english, "favou?r.*Eldan", "Eldan.*favou?r", queststatus(405) > expr(-250) -> "Eldan is very angry on you."
+english, "favou?r.*Eldan", "Eldan.*favou?r" -> "Eldan is wrathful about you."
+
+english, "favou?r.*Tanora", "Tanora.*favou?r", queststatus(406) >= expr(250) -> "Tanora is exalted with you!"
+english, "favou?r.*Tanora", "Tanora.*favou?r", queststatus(406) >= expr(150) -> "Tanora is charmed by you."
+english, "favou?r.*Tanora", "Tanora.*favou?r", queststatus(406) >= expr(200) -> "Tanora is delighted with you."
+english, "favou?r.*Tanora", "Tanora.*favou?r", queststatus(406) >= expr(100) -> "Tanora is happy with you, keep it up."
+english, "favou?r.*Tanora", "Tanora.*favou?r", queststatus(406) >= expr(50), queststatus(402) = 4 -> "Tanora is still pleased with you, but beware not to lose your status as priest."
+english, "favou?r.*Tanora", "Tanora.*favou?r", queststatus(406) >= expr(50) -> "Tanora is pleased with you."
+english, "favou?r.*Tanora", "Tanora.*favou?r", queststatus(406) > expr(-50) -> "Tanora is indifferent about you."
+english, "favou?r.*Tanora", "Tanora.*favou?r", queststatus(406) > expr(-100), queststatus(401) = 4 -> "Tanora is displeased with you, if you go on this way you will not be able to call yourself devoted to Tanora anymore."
+english, "favou?r.*Tanora", "Tanora.*favou?r", queststatus(406) > expr(-100) -> "Tanora is displeased with you."
+english, "favou?r.*Tanora", "Tanora.*favou?r", queststatus(406) > expr(-150) -> "Tanora is irritated by you."
+english, "favou?r.*Tanora", "Tanora.*favou?r", queststatus(406) > expr(-200) -> "Tanora is angry on you."
+english, "favou?r.*Tanora", "Tanora.*favou?r", queststatus(406) > expr(-250) -> "Tanora is very angry on you."
+english, "favou?r.*Tanora", "Tanora.*favou?r" -> "Tanora is wrathful about you."
+
+english, "favou?r.*Findari", "Findari.*favou?r", queststatus(407) >= expr(250) -> "Findari is exalted with you!"
+english, "favou?r.*Findari", "Findari.*favou?r", queststatus(407) >= expr(150) -> "Findari is charmed by you."
+english, "favou?r.*Findari", "Findari.*favou?r", queststatus(407) >= expr(200) -> "Findari is delighted with you."
+english, "favou?r.*Findari", "Findari.*favou?r", queststatus(407) >= expr(100) -> "Findari is happy with you, keep it up."
+english, "favou?r.*Findari", "Findari.*favou?r", queststatus(407) >= expr(50), queststatus(402) = 5 -> "Findari is still pleased with you, but beware not to lose your status as priest."
+english, "favou?r.*Findari", "Findari.*favou?r", queststatus(407) >= expr(50) -> "Findari is pleased with you."
+english, "favou?r.*Findari", "Findari.*favou?r", queststatus(407) > expr(-50) -> "Findari is indifferent about you."
+english, "favou?r.*Findari", "Findari.*favou?r", queststatus(407) > expr(-100), queststatus(401) = 5 -> "Findari is displeased with you, if you go on this way you will not be able to call yourself devoted to Findari anymore."
+english, "favou?r.*Findari", "Findari.*favou?r", queststatus(407) > expr(-100) -> "Findari is displeased with you."
+english, "favou?r.*Findari", "Findari.*favou?r", queststatus(407) > expr(-150) -> "Findari is irritated by you."
+english, "favou?r.*Findari", "Findari.*favou?r", queststatus(407) > expr(-200) -> "Findari is angry on you."
+english, "favou?r.*Findari", "Findari.*favou?r", queststatus(407) > expr(-250) -> "Findari is very angry on you."
+english, "favou?r.*Findari", "Findari.*favou?r" -> "Findari is wrathful about you."
+
+english, "favou?r" -> inform("[Keywords] favour of Ushara, favour of Brágon, favour of Eldan, favour of Tanora, favour of Findari"), "You want to know whether gods favour you? Which of the elder gods do you mean?"
+
+"gunst.*Ushara", "Ushara.*gunst", queststatus(403) >= expr(250) -> "Ushara ist überschwänglich vor Freude!"
+"gunst.*Ushara", "Ushara.*gunst", queststatus(403) >= expr(200) -> "Ushara ist außerordentlich zufrieden mit dir."
+"gunst.*Ushara", "Ushara.*gunst", queststatus(403) >= expr(150) -> "Ushara ist begeistert von dir."
+"gunst.*Ushara", "Ushara.*gunst", queststatus(403) >= expr(100) -> "Ushara ist glücklich, mach weiter so."
+"gunst.*Ushara", "Ushara.*gunst", queststatus(403) >= expr(50), queststatus(402) = 1 -> "Ushara ist noch zufrieden mit dir, aber sei vorsichtig, nicht deinen Priester Status zu verlieren."
+"gunst.*Ushara", "Ushara.*gunst", queststatus(403) >= expr(50) -> "Ushara ist zufrieden mit dir."
+"gunst.*Ushara", "Ushara.*gunst", queststatus(403) > expr(-50) -> "Ushara ist unentschlossen was dich angeht."
+"gunst.*Ushara", "Ushara.*gunst", queststatus(403) > expr(-100), queststatus(401) = 1 -> "Ushara ist unzufrieden mit dir, wenn du so weiter machst, wirst du bald nicht mehr in der Lage sein, dich Anhänger Usharas zu nennen."
+"gunst.*Ushara", "Ushara.*gunst", queststatus(403) > expr(-100) -> "Ushara ist unzufrieden mit dir."
+"gunst.*Ushara", "Ushara.*gunst", queststatus(403) > expr(-150) -> "Ushara ist enttäuscht von dir."
+"gunst.*Ushara", "Ushara.*gunst", queststatus(403) > expr(-200) -> "Ushara ist zornig auf dich."
+"gunst.*Ushara", "Ushara.*gunst", queststatus(403) > expr(-250) -> "Ushara ist sehr zornig auf dich."
+"gunst.*Ushara", "Ushara.*gunst" -> "Ushara ist rasend vor Zorn auf dich."
+
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst", queststatus(404) >= expr(250) -> "Brágon ist überschwänglich vor Freude!"
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst", queststatus(404) >= expr(200) -> "Brágon ist außerordentlich zufrieden mit dir."
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst", queststatus(404) >= expr(150) -> "Brágon ist begeistert von dir."
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst", queststatus(404) >= expr(100) -> "Brágon ist glücklich, mach weiter so."
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst", queststatus(404) >= expr(50), queststatus(402) = 2 -> "Brágon ist noch zufrieden mit dir, aber sei vorsichtig, nicht deinen Priester Status zu verlieren."
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst", queststatus(404) >= expr(50) -> "Brágon ist zufrieden mit dir."
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst", queststatus(404) > expr(-50) -> "Brágon ist unentschlossen was dich angeht."
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst", queststatus(404) > expr(-100), queststatus(401) = 2 -> "Brágon ist unzufrieden mit dir, wenn du so weiter machst, wirst du bald nicht mehr in der Lage sein, dich Anhänger Brágons zu nennen."
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst", queststatus(404) > expr(-100) -> "Brágon ist unzufrieden mit dir."
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst", queststatus(404) > expr(-150) -> "Brágon ist enttäuscht von dir."
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst", queststatus(404) > expr(-200) -> "Brágon ist zornig auf dich."
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst", queststatus(404) > expr(-250) -> "Brágon ist sehr zornig auf dich."
+"gunst.*Br[aá]gon", "Br[aá]gon.*gunst" -> "Brágon ist rasend vor Zorn auf dich."
+
+"gunst.*Eldan", "Eldan.*gunst", queststatus(405) >= expr(250) -> "Eldan ist überschwänglich vor Freude!"
+"gunst.*Eldan", "Eldan.*gunst", queststatus(405) >= expr(200) -> "Eldan ist außerordentlich zufrieden mit dir."
+"gunst.*Eldan", "Eldan.*gunst", queststatus(405) >= expr(150) -> "Eldan ist begeistert von dir."
+"gunst.*Eldan", "Eldan.*gunst", queststatus(405) >= expr(100) -> "Eldan ist glücklich, mach weiter so."
+"gunst.*Eldan", "Eldan.*gunst", queststatus(405) >= expr(50), queststatus(402) = 3 -> "Eldan ist noch zufrieden mit dir, aber sei vorsichtig, nicht deinen Priester Status zu verlieren."
+"gunst.*Eldan", "Eldan.*gunst", queststatus(405) >= expr(50) -> "Eldan ist zufrieden mit dir."
+"gunst.*Eldan", "Eldan.*gunst", queststatus(405) > expr(-50) -> "Eldan ist unentschlossen was dich angeht."
+"gunst.*Eldan", "Eldan.*gunst", queststatus(405) > expr(-100), queststatus(401) = 3 -> "Eldan ist unzufrieden mit dir, wenn du so weiter machst, wirst du bald nicht mehr in der Lage sein, dich Anhänger Eldans zu nennen."
+"gunst.*Eldan", "Eldan.*gunst", queststatus(405) > expr(-100) -> "Eldan ist unzufrieden mit dir."
+"gunst.*Eldan", "Eldan.*gunst", queststatus(405) > expr(-150) -> "Eldan ist enttäuscht von dir."
+"gunst.*Eldan", "Eldan.*gunst", queststatus(405) > expr(-200) -> "Eldan ist zornig auf dich."
+"gunst.*Eldan", "Eldan.*gunst", queststatus(405) > expr(-250) -> "Eldan ist sehr zornig auf dich."
+"gunst.*Eldan", "Eldan.*gunst" -> "Eldan ist rasend vor Zorn auf dich."
+
+"gunst.*Tanora", "Tanora.*gunst", queststatus(406) >= expr(250) -> "Tanora ist überschwänglich vor Freude!"
+"gunst.*Tanora", "Tanora.*gunst", queststatus(406) >= expr(150) -> "Tanora ist begeistert von dir."
+"gunst.*Tanora", "Tanora.*gunst", queststatus(406) >= expr(200) -> "Tanora ist außerordentlich zufrieden mit dir."
+"gunst.*Tanora", "Tanora.*gunst", queststatus(406) >= expr(100) -> "Tanora ist glücklich, mach weiter so."
+"gunst.*Tanora", "Tanora.*gunst", queststatus(406) >= expr(50), queststatus(402) = 4 -> "Tanora ist noch zufrieden mit dir, aber sei vorsichtig, nicht deinen Priester Status zu verlieren."
+"gunst.*Tanora", "Tanora.*gunst", queststatus(406) >= expr(50) -> "Tanora ist zufrieden mit dir."
+"gunst.*Tanora", "Tanora.*gunst", queststatus(406) > expr(-50) -> "Tanora ist unentschlossen was dich angeht."
+"gunst.*Tanora", "Tanora.*gunst", queststatus(406) > expr(-100), queststatus(401) = 4 -> "Tanora ist unzufrieden mit dir, wenn du so weiter machst, wirst du bald nicht mehr in der Lage sein, dich Anhänger Tanoras zu nennen."
+"gunst.*Tanora", "Tanora.*gunst", queststatus(406) > expr(-100) -> "Tanora ist unzufrieden mit dir."
+"gunst.*Tanora", "Tanora.*gunst", queststatus(406) > expr(-150) -> "Tanora ist enttäuscht von dir."
+"gunst.*Tanora", "Tanora.*gunst", queststatus(406) > expr(-200) -> "Tanora ist zornig auf dich."
+"gunst.*Tanora", "Tanora.*gunst", queststatus(406) > expr(-250) -> "Tanora ist sehr zornig auf dich."
+"gunst.*Tanora", "Tanora.*gunst" -> "Tanora ist rasend vor Zorn auf dich."
+
+"gunst.*Findari", "Findari.*gunst", queststatus(407) >= expr(250) -> "Findari ist überschwänglich vor Freude!"
+"gunst.*Findari", "Findari.*gunst", queststatus(407) >= expr(150) -> "Findari ist begeistert von dir."
+"gunst.*Findari", "Findari.*gunst", queststatus(407) >= expr(200) -> "Findari ist außerordentlich zufrieden mit dir."
+"gunst.*Findari", "Findari.*gunst", queststatus(407) >= expr(100) -> "Findari ist glücklich, mach weiter so."
+"gunst.*Findari", "Findari.*gunst", queststatus(407) >= expr(50), queststatus(402) = 5 -> "Findari ist noch zufrieden mit dir, aber sei vorsichtig, nicht deinen Priester Status zu verlieren."
+"gunst.*Findari", "Findari.*gunst", queststatus(407) >= expr(50) -> "Findari ist zufrieden mit dir."
+"gunst.*Findari", "Findari.*gunst", queststatus(407) > expr(-50) -> "Findari ist unentschlossen was dich angeht."
+"gunst.*Findari", "Findari.*gunst", queststatus(407) > expr(-100), queststatus(401) = 5 -> "Findari ist unzufrieden mit dir, wenn du so weiter machst, wirst du bald nicht mehr in der Lage sein, dich Anhänger Findaris zu nennen."
+"gunst.*Findari", "Findari.*gunst", queststatus(407) > expr(-100) -> "Findari ist unzufrieden mit dir."
+"gunst.*Findari", "Findari.*gunst", queststatus(407) > expr(-150) -> "Findari ist enttäuscht von dir."
+"gunst.*Findari", "Findari.*gunst", queststatus(407) > expr(-200) -> "Findari ist zornig auf dich."
+"gunst.*Findari", "Findari.*gunst", queststatus(407) > expr(-250) -> "Findari ist sehr zornig auf dich."
+"gunst.*Findari", "Findari.*gunst" -> "Findari ist rasend vor Zorn auf dich."
+
+"gunst" -> inform("[Keywords]Gunst der Ushara, Gunst des Brágon, Gunst des Eldan, Gunst der Tanora, Gunst der Findari"), "Du willst wissen, ob die Götter dir gewogen sind? Welchen der älteren Götter meinst du?"
+
+english, "sacrifice" -> "The elder gods are hard to appease, they would only accept pure elements and magic wands.", "If you really want to perform acts on behalf of Brágon, ask me for a task."
+"Opfer", "Opfergabe" -> "Die alten Götter haben hohe Ansprüche, sie akzeptieren nur reine Elemente und Zauberstäbe.", "Wenn ihr wirklich Taten im Namen Brágons vollbringen wollt, fragt mich nach einem Auftrag."
+
 -- Gods - use the triggers of the god the NPC worships or fights
 "god" -> "There are five gods: Brágon, Eldan, Findari, Tanora and Ushara. If you didn't know before, drop dead now."
 "Gott", "Götter" -> "Es gibt fünf Götter: Brágon, Eldan, Findari, Tanora und Ushara. Wenn ihr das nicht wußtet, fallt bitte tot um."
@@ -217,6 +367,7 @@ english, "Tanora", "Zelphia" -> "Tanora is the blood."
 english, "Ushara" -> "Ushara is the body."
 "Ushara" -> "Ushara ist der Leib."
 
+
 -- Catching typical NPC phrases
 "what sell", "what buy", "list wares", "price of" -> "Get the flame out of here!"
 "was verkauf", "was kauf", "warenliste", "preis von" -> "Verbrennt euch!"
@@ -226,10 +377,6 @@ english, "Ushara" -> "Ushara is the body."
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Bathelor" -> "My name is not that important, you can call me your 'Highness' or 'Excellency'."
 "Bathelor" -> "Mein Name ist nicht so wichtig, ihr könnt mich auch 'Durchlaucht' oder 'Exzellenz' nennen."
-"Yes" -> "Hail Brágon!", "Blessed be Brágon!", "Praise Brágon!", "Honour Brágon!"
-"Ja" -> "Gelobet sei Brágon!", "Lobet Brágon!", "Ehret Brágon!"
-"No" -> "Hail Brágon!", "Blessed be Brágon!", "Praise Brágon!", "Honour Brágon!"
-"Nein" -> "Gelobet sei Brágon!", "Lobet Brágon!", "Ehret Brágon!"
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.

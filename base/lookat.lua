@@ -16,40 +16,48 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- Default look-at script
 
-require("base.common")
-require("base.gems")
-require("base.money")
+local common = require("base.common")
+local gems = require("base.gems")
+local money = require("base.money")
+local glyphs = require("base.glyphs")
 
-module("base.lookat", package.seeall)
+local M = {}
+
+local TitleCase
+local AddWeaponOrArmourType
+local AddTypeAndUsable
+local GetGemLevel
+local GetItemDescription
 
 -- init german descriptions
-GenericQualDe = {"perfekt", "exzellent", "sehr gut", "gut", "normal", "mäßig", "schlecht", "sehr schlecht", "schrecklich", "furchtbar"}
-GenericDuraDe = {}
-GenericDuraDe[1] = {"nagelneu", "neu",       "fast neu", "gebraucht", "leicht abgenutzt", "abgenutzt", "sehr abgenutzt", "alt", "rostig",        "klapprig"  }
-GenericDuraDe[2] = {"nagelneu", "neu",       "fast neu", "gebraucht", "leicht abgenutzt", "abgenutzt", "sehr abgenutzt", "alt", "morsch",        "zerfallend"}
-GenericDuraDe[3] = {"nagelneu", "neu",       "fast neu", "gebraucht", "leicht abgenutzt", "abgenutzt", "sehr abgenutzt", "alt", "fadenscheinig", "zerfetzt"  }
-GenericDuraDe[4] = {"funkelnd", "strahlend", "glänzend", "gebraucht", "angekratzt",       "zerkratzt", "matt",           "alt", "stumpf",        "brüchig"   }
+local GenericQualDe = {"perfekt", "exzellent", "sehr gut", "gut", "normal", "mäßig", "schlecht", "sehr schlecht",
+    "schrecklich", "furchtbar"}
+local GenericDuraDe = {}
+GenericDuraDe[1] = {"nagelneu", "neu",       "fast neu", "gebraucht", "leicht abgenutzt", "abgenutzt", "sehr abgenutzt", "alt", "rostig",        "klapprig",    "kaputt"  }
+GenericDuraDe[2] = {"nagelneu", "neu",       "fast neu", "gebraucht", "leicht abgenutzt", "abgenutzt", "sehr abgenutzt", "alt", "morsch",        "zerfallend",  "kaputt"}
+GenericDuraDe[3] = {"nagelneu", "neu",       "fast neu", "gebraucht", "leicht abgenutzt", "abgenutzt", "sehr abgenutzt", "alt", "fadenscheinig", "zerfetzt",    "kaputt"  }
+GenericDuraDe[4] = {"funkelnd", "strahlend", "glänzend", "gebraucht", "angekratzt",       "zerkratzt", "matt",           "alt", "stumpf",        "brüchig",     "kaputt"   }
 
 -- init english descriptions
-GenericQualEn = {"perfect", "excellent", "very good", "good", "normal", "average", "bad", "very bad", "awful", "horrible"}
-GenericDuraEn = {}
-GenericDuraEn[1] = {"brand new", "new",   "almost new", "used", "slightly scraped",   "scraped",   "highly scraped",   "old", "rusty",      "corroded"      }
-GenericDuraEn[2] = {"brand new", "new",   "almost new", "used", "slightly scratched", "scratched", "highly scratched", "old", "rotten",     "nearly decayed"}
-GenericDuraEn[3] = {"brand new", "new",   "almost new", "used", "slightly frayed",    "frayed",    "highly frayed",    "old", "threadbare", "ragged"        }
-GenericDuraEn[4] = {"sparkling", "shiny", "glittery",   "used", "slightly scraped",   "scraped",   "highly scraped",   "old", "tarnished",  "fragile"       }
+local GenericQualEn = {"perfect", "excellent", "very good", "good", "normal", "average", "bad", "very bad", "awful", "horrible"}
+local GenericDuraEn = {}
+GenericDuraEn[1] = {"brand new", "new",   "almost new", "used", "slightly scraped",   "scraped",   "highly scraped",   "old", "rusty",      "corroded",       "broken"}
+GenericDuraEn[2] = {"brand new", "new",   "almost new", "used", "slightly scratched", "scratched", "highly scratched", "old", "rotten",     "nearly decayed", "broken"}
+GenericDuraEn[3] = {"brand new", "new",   "almost new", "used", "slightly frayed",    "frayed",    "highly frayed",    "old", "threadbare", "ragged",         "broken"}
+GenericDuraEn[4] = {"sparkling", "shiny", "glittery",   "used", "slightly scraped",   "scraped",   "highly scraped",   "old", "tarnished",  "fragile",        "broken"}
 
-GenericDuraLm = {90, 80, 70, 60, 50, 40, 30, 20, 10, 0}
+local GenericDuraLm = {90, 80, 70, 60, 50, 40, 30, 20, 10, 1, 0}
 
-NONE = 0
-METAL = 1
-WOOD = 2
-CLOTH = 3
-JEWELLERY = 4
+M.NONE = 0
+M.METAL = 1
+M.WOOD = 2
+M.CLOTH = 3
+M.JEWELLERY = 4
 
-WeaponType = {}
+local WeaponType = {}
 WeaponType[WeaponStruct.slashing] = {de = "Hiebwaffe", en = "Slashing Weapon", skill = Character.slashingWeapons}
-WeaponType[WeaponStruct.concussion] = {de = "Schlagwaffe", en = "Concussion Weapon", skill = Character.concussionWeapons}
-WeaponType[WeaponStruct.puncture] = {de = "Stichwaffe", en = "Puncture Weapon", skill = Character.punctureWeapons}
+WeaponType[WeaponStruct.concussion] = {de = "Schlagwaffe", en = "Blunt Weapon", skill = Character.concussionWeapons}
+WeaponType[WeaponStruct.puncture] = {de = "Stichwaffe", en = "Stabbing Weapon", skill = Character.punctureWeapons}
 WeaponType[WeaponStruct.slashingTwoHand] = WeaponType[WeaponStruct.slashing]
 WeaponType[WeaponStruct.concussionTwoHand] = WeaponType[WeaponStruct.concussion]
 WeaponType[WeaponStruct.punctureTwoHand] = WeaponType[WeaponStruct.puncture]
@@ -60,7 +68,7 @@ WeaponType[WeaponStruct.stone] = {de = "Munition", en = "Ammunition", skill = Ch
 WeaponType[WeaponStruct.stave] = {de = "Zauberstab", en = "Wand"}
 WeaponType[WeaponStruct.shield] = {de = "Schild", en = "Shield", skill = Character.parry}
 
-ArmourType = {}
+local ArmourType = {}
 ArmourType[ArmorStruct.clothing] = {de = "Kleidung", en = "Clothing"}
 ArmourType[ArmorStruct.general] = {de = "Allgemeine Rüstung", en = "General Armour"}
 ArmourType[ArmorStruct.light] = {de = "Leichte Rüstung", en = "Light Armour", skill = Character.lightArmour}
@@ -68,7 +76,7 @@ ArmourType[ArmorStruct.medium] = {de = "Mittlere Rüstung", en = "Medium Armour",
 ArmourType[ArmorStruct.heavy] = {de = "Schwere Rüstung", en = "Heavy Armour", skill = Character.heavyArmour}
 ArmourType[ArmorStruct.juwellery] = {de = "Schmuck", en = "Jewellery"}
 
-function GenerateLookAt(user, item, material)
+function M.GenerateLookAt(user, item, material)
     if user == nil then
         debug("Sanity check failed, no valid character supplied.")
         return
@@ -79,9 +87,9 @@ function GenerateLookAt(user, item, material)
         return
     end
     
-    material = material or NONE
+    material = material or M.NONE
 
-    if material < NONE or material > JEWELLERY then
+    if material < M.NONE or material > M.JEWELLERY then
         debug("Sanity check failed, no valid material supplied.")
     end
     
@@ -90,21 +98,30 @@ function GenerateLookAt(user, item, material)
     
     local isGerman = user:getPlayerLanguage() == Player.german
     
-    local usedName
+    local defaultName, usedName
+    local brokenString
     if isGerman then
+        defaultName = itemCommon.German
         usedName = item:getData("nameDe")
+        brokenString = " (kaputt)"
     else
+        defaultName = itemCommon.English
         usedName = item:getData("nameEn")
+        brokenString = " (broken)"
     end
-    if base.common.IsNilOrEmpty(usedName) then
-        usedName = world:getItemName(item.id, user:getPlayerLanguage())
+    if common.IsNilOrEmpty(usedName) then
+        usedName = defaultName
     end
 
     lookAt.name = TitleCase(usedName)
     
+    if common.isBroken(item) and item.wear ~= 255 and itemCommon.MaxStack == 1 then --static or stackable items are not shown as broken
+        lookAt.name = lookAt.name..brokenString
+    end   
+    
     local rarenessData = item:getData("rareness")
-    if rarenessData == nil then
-        lookAt.rareness = ItemLookAt.commonItem
+    if rarenessData == "" then
+        lookAt.rareness = itemCommon.Rareness;
     else
         local value = tonumber(rarenessData)
         if value ~= nil then
@@ -112,32 +129,46 @@ function GenerateLookAt(user, item, material)
         end
     end
     
-    local usedDescription
+    local defaultDescription, usedDescription
+    local addDescription
     if isGerman then
+        defaultDescription = itemCommon.GermanDescription
         usedDescription = item:getData("descriptionDe")
+        addDescription = glyphs.lookatGlyph(item,Player.german)
     else
+        defaultDescription = itemCommon.EnglishDescription
         usedDescription = item:getData("descriptionEn")
+        addDescription = glyphs.lookatGlyph(item,Player.english)
     end
     
-    if not base.common.IsNilOrEmpty(usedDescription) then
-        lookAt.description = usedDescription
+    if common.IsNilOrEmpty(usedDescription) then
+        lookAt.description = defaultDescription .. addDescription
+    else
+        lookAt.description = usedDescription .. addDescription
     end
+
+    local level = itemCommon.Level
+    lookAt.level = level
     
     if itemCommon.AgeingSpeed < 255 and itemCommon.Weight < 30000 then
         local craftedByData = item:getData("craftedBy")
         
-        if not base.common.IsNilOrEmpty(craftedByData) then
+        if not common.IsNilOrEmpty(craftedByData) then
             lookAt.craftedBy = craftedByData
         end
         
-        lookAt.weight = item.number * itemCommon.Weight
-        
-        if not base.money.IsCurrency(item.id) then
-            lookAt.worth = 20*item.number * itemCommon.Worth
+        if item:getData("lookatNoWeight") ~= "1" then
+            lookAt.weight = item.number * itemCommon.Weight
+        end
+            
+        if item:getData("lookatNoPrice") ~= "1" then
+            if not money.IsCurrency(item.id) then
+                lookAt.worth = 20*item.number * itemCommon.Worth
+            end
         end
         
-        if material > NONE then
-            local itemDura = math.mod(item.quality, 100)
+        if material > M.NONE and item:getData("lookatNoQuality") ~= "1" then
+            local itemDura = math.fmod(item.quality, 100)
             local itemQual = (item.quality - itemDura) / 100
             
             local duraIndex
@@ -167,7 +198,7 @@ function GenerateLookAt(user, item, material)
             lookAt.durabilityValue = itemDura + 1
         end
 
-        lookAt = AddWeaponOrArmourType(lookAt, user, item.id)
+        lookAt = AddWeaponOrArmourType(lookAt, user, item.id, level)
 
         lookAt.diamondLevel = GetGemLevel(item, "magicalDiamond")
         lookAt.emeraldLevel = GetGemLevel(item, "magicalEmerald")
@@ -176,13 +207,13 @@ function GenerateLookAt(user, item, material)
         lookAt.amethystLevel = GetGemLevel(item, "magicalAmethyst")
         lookAt.obsidianLevel = GetGemLevel(item, "magicalObsidian")
         lookAt.topazLevel = GetGemLevel(item, "magicalTopaz")
-        lookAt.bonus = base.gems.getGemBonus(item)
+        lookAt.bonus = gems.getGemBonus(item)
     end
     
     return lookAt
 end
 
-function GenerateItemLookAtFromId(user, itemId, stackSize, data)
+function M.GenerateItemLookAtFromId(user, itemId, stackSize, data)
     local lookAt = ItemLookAt()
     local isGerman = user:getPlayerLanguage() == Player.german
     data = data or {}
@@ -193,7 +224,7 @@ function GenerateItemLookAtFromId(user, itemId, stackSize, data)
     else
         usedName = data["nameEn"]
     end
-    if base.common.IsNilOrEmpty(usedName) then
+    if common.IsNilOrEmpty(usedName) then
         usedName = world:getItemName(itemId, user:getPlayerLanguage())
     end
     lookAt.name = TitleCase(usedName)
@@ -215,15 +246,18 @@ function GenerateItemLookAtFromId(user, itemId, stackSize, data)
         usedDescription = data["descriptionEn"]
     end
     
-    if not base.common.IsNilOrEmpty(usedDescription) then
+    if not common.IsNilOrEmpty(usedDescription) then
         lookAt.description = usedDescription
     end
 
     local itemCommon = world:getItemStatsFromId(itemId)
     lookAt.weight = stackSize * itemCommon.Weight
     lookAt.worth = 20*stackSize * itemCommon.Worth
+
+    local level = itemCommon.Level
+    lookAt.level = level
     
-    lookAt = AddWeaponOrArmourType(lookAt, user, itemId)
+    lookAt = AddWeaponOrArmourType(lookAt, user, itemId, level)
 
     return lookAt
 end
@@ -236,23 +270,22 @@ function TitleCase(name)
     return name:gsub("([%aäöüÄÖÜ])([%wäöüÄÖÜß_']*)", tchelper)
 end
 
-function AddWeaponOrArmourType(lookAt, user, itemId)
+function AddWeaponOrArmourType(lookAt, user, itemId, itemLevel)
     local armourfound, armour = world:getArmorStruct(itemId)
     local weaponfound, weapon = world:getWeaponStruct(itemId)
 
     if weaponfound then
-        lookAt = AddTypeAndLevel(lookAt, user, WeaponType, weapon.WeaponType, weapon.Level)
+        lookAt = AddTypeAndUsable(lookAt, user, WeaponType, weapon.WeaponType, itemLevel)
     else
         if armourfound then
-            lookAt = AddTypeAndLevel(lookAt, user, ArmourType, armour.Type, armour.Level)
+            lookAt = AddTypeAndUsable(lookAt, user, ArmourType, armour.Type, itemLevel)
         end
     end
     
     return lookAt
 end
 
-function AddTypeAndLevel(lookAt, user, nameAndSkillTable, itemType, itemLevel)
-    lookAt.level = itemLevel
+function AddTypeAndUsable(lookAt, user, nameAndSkillTable, itemType, itemLevel)
     local nameAndSkill = nameAndSkillTable[itemType]
     local skill = 100
     
@@ -290,7 +323,7 @@ function GetGemLevel(item, dataEntry)
 end
 
 function GetItemDescription(User, Item, material, Weapon, Priest)
-    return GenerateLookAt(User, Item, material)
+    return M.GenerateLookAt(User, Item, material)
 end
 
 --- Apply a special name to a item. The name is stored in the data values.
@@ -299,7 +332,7 @@ end
 -- @param item the item that is supposed to receive the new values
 -- @param german the german name this item is supposed to display
 -- @param english the english name this item is supposed to display
-function SetSpecialName(item, german, english)    
+function M.SetSpecialName(item, german, english)    
     if item == nil then
         debug("Sanity check failed, no valid item supplied.")
         return
@@ -318,7 +351,7 @@ end
 --  This function does NOT call world:changeItem()! You have to do this yourself.
 --
 -- @param item the item that is supposed to receive the new values
-function UnsetSpecialName(item)
+function M.UnsetSpecialName(item)
     if item == nil then
         debug("Sanity check failed, no valid item supplied.")
         return
@@ -334,7 +367,7 @@ end
 -- @param item the item that is supposed to receive the new values
 -- @param german the german description this item is supposed to display
 -- @param english the english description this item is supposed to display
-function SetSpecialDescription(item, german, english)    
+function M.SetSpecialDescription(item, german, english)    
     if item == nil then
         debug("Sanity check failed, no valid item supplied.")
         return
@@ -353,7 +386,7 @@ end
 --  This function does NOT call world:changeItem()! You have to do this yourself.
 --
 -- @param item the item that is supposed to receive the new values
-function UnsetSpecialDescription(item)
+function M.UnsetSpecialDescription(item)
     if item == nil then
         debug("Sanity check failed, no valid item supplied.")
         return
@@ -368,7 +401,7 @@ end
 --
 -- @param item the item that is supposed to receive the new values
 -- @param rare the rareness value, valid values are: ItemLookAt.commonItem, ItemLookAt.uncommonItem, ItemLookAt.rareItem, ItemLookAt.epicItem
-function SetItemRareness(item, rare)    
+function M.SetItemRareness(item, rare)    
     if item == nil then
         debug("Sanity check failed, no valid item supplied.")
         return
@@ -386,7 +419,7 @@ end
 --  This function does NOT call world:changeItem()! You have to do this yourself.
 --
 -- @param item the item that is supposed to receive the new values
-function UnsetItemRareness(item)
+function M.UnsetItemRareness(item)
     if item == nil then
         debug("Sanity check failed, no valid item supplied.")
         return
@@ -400,7 +433,7 @@ end
 --
 -- @param item the item that is supposed to receive the new values
 -- @param name the name of the person who created this item
-function SetItemCraftedBy(item, name)    
+function M.SetItemCraftedBy(item, name)    
     if item == nil then
         debug("Sanity check failed, no valid item supplied.")
         return
@@ -418,7 +451,7 @@ end
 --  This function does NOT call world:changeItem()! You have to do this yourself.
 --
 -- @param item the item that is supposed to receive the new values
-function UnsetItemCraftedBy(item)
+function M.UnsetItemCraftedBy(item)
     if (item == nil) then
         debug("Sanity check failed, no valid item supplied.")
         return
@@ -426,3 +459,5 @@ function UnsetItemCraftedBy(item)
     
     item:setData("craftedBy", "")
 end
+
+return M

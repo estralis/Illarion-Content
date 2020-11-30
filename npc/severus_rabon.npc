@@ -64,18 +64,14 @@ itemShoes = 369
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItems = 164, 191, 224, 353, 453, 454, 517, 518, 783, 784, 785, 786, 787, 788, 789, 790, 791, 1315, 1316, 1317, 1318, 1319, 1840, 1841, 1842, 1843, 1844, 1853, 1854, 1855, 1856, 1857, 1858, 1859, 1860, 1861, 1908, 1909, 2055, 2056, 2057, 2058, 2059, 2185, 2186, 2187, 2188, 2189, 2276, 2278, 2456, 2496, 2497, 2498, 2499, 2500, 2501, 2922, 2923, 2935, 2952
-buyPrimaryItems = 81, 151, 224, 290, 783, 786, 788, 789, 791, 1315
-buySecondaryItems = 80, 199, 784, 785, 787, 1318, 1316, 1319, 518
-tradeNotEnoughMoneyMsg "Du hast nicht genug Geld!", "You don't have enough money!"
-tradeFinishedMsg "Danke, komm doch bald wieder.", "Thanks, come back soon."
-tradeFinishedWithoutTradingMsg "Nichts gefunden was dir gefällt?", "Don't you like my wares?"
-
--- ----------------------------------------------------------------------------AC
-
--- Stock: big empty bottle, bread roll, golden goblet, apple pie, cookies, muffin, bottle with rum, empty bottle, bottle of blackberry juice, bottle of tangerine juice, bottle of banana juice, bottle of cabbage juice, bottle of tea, bottle of carrot juice, bottle of strawberry juice, empty bottle, bottle of grape juice, bottle of berry booze, bottle of bear slayer, small empty bottle, bottle of Elven wine, bottle of cherry schnapps, (silver, copper, gold)goblet, goblet with water, goblet with wine, goblet with mead, goblet with cider, cider, (empty,full)beer mug, glass, glass with mead, glass with wine, glass with water, glass with cider, wooden cup, cup with water, cup with wine, cup with mead, cup with cider, mulligan, cabbage stew, mushroom soup, blue bottle, orange bottle, grey bottle, green bottle, red bottle, black bottle, sausages dish, onion soup,  soup bowl, plate
-"verkauf", "handel" -> "Lass uns handeln!", trade
-"sell", "trade" -> "Let's trade!", trade
+sellItems = 2186, 2058, 1855, 2189, 2059, 1859, 2188, 2056, 1853, 2187, 2057, 1860, 1841, 1844, 1843, 2496, 1842, 1854, 1861, 1856, 1857, 1909
+--cup with water, glass with water, silver goblet with water, cup with cider, glass with cider, silver goblet with cider, cup with mead, glass with mead, silver goblet with mead, cup with wine, glass with wine, silver goblet with wine, copper goblet with water, copper goblet with cider, copper goblet with mead, bottle of water, copper goblet with wine, golden goblet with water, golden goblet with cider, golden goblet with mead, golden goblet with wine, beer mug
+buySecondaryItems = 2186, 2058, 1855, 2189, 2059, 1859, 2188, 2056, 1853, 2187, 2057, 1860, 1841, 1844, 1843, 2496, 1842, 1854, 1861, 1856, 1857, 1909
+--cup with water, glass with water, silver goblet with water, cup with cider, glass with cider, silver goblet with cider, cup with mead, glass with mead, silver goblet with mead, cup with wine, glass with wine, silver goblet with wine, copper goblet with water, copper goblet with cider, copper goblet with mead, bottle of water, copper goblet with wine, golden goblet with water, golden goblet with cider, golden goblet with mead, golden goblet with wine, beer mug
+tradeNotEnoughMoneyMsg "Ihr könnt eure Rechnung nicht begleichen.", "You can't settle your bill."
+tradeFinishedMsg "Einen schönen Tag noch.", "Have a nice day."
+tradeFinishedWithoutTradingMsg "Ruft einfach nach mir, wenn ihr einen Getränkewunsch habt.", "Just say so when you want to have a drink."
+tradeWrongItemMsg "Ich lehne dankend ab.", "I have to decline."
 
 -- Waiter: Severus Rabon
 -- Occupation: waiter
@@ -94,9 +90,13 @@ tradeFinishedWithoutTradingMsg "Nichts gefunden was dir gefällt?", "Don't you li
 "Help" -> inform("[Game Help] This NPC is Severus Rabon the Waiter. Keywords: Good day, tavern, Linda, trade.")
 "Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Severus Rabon der Ober. Schlüsselwörter: Guten Tag, Taverne, Linda, Handel.")
 
+-- Trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Was darf ich anbieten?", trade
+"sell", "buy", "wares", "price", "trade", "purchase" -> "What is your choice?", trade
+
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Please talk to my daughter. She will seat you and then I will take your order.", "If you're a regular please seat yourself. My tavern is your home.", "If I may be of service I would recommend the stew. It's our signature dish."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin" -> "Redet doch bitte mit meiner Tochter. Sie wird euch einen Platz zeigen und ich nehme dann eure Bestellung entgegen.", "Als Stammgast dürft ihr euch natürlich einen Platz aussuchen. Fühlt euch wie zuhause.", "Wenn ich euch etwas empfehlen dürfte, der Eintopf ist heute vorzüglich. Er ist das Stammessen hier."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin" -> "Redet doch bitte mit meiner Tochter. Sie wird euch einen Platz zeigen und ich nehme dann eure Bestellung entgegen.", "Als Stammgast dürft ihr euch natürlich einen Platz aussuchen. Fühlt euch wie zuhause.", "Wenn ich euch etwas empfehlen dürfte, der Eintopf ist heute vorzüglich. Er ist das Stammessen hier."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Please talk to my daughter. She will seat you and then I will take your order.", "If you're a regular please seat yourself. My business is your home.", "If I may be of service I would recommend the stew. It's our signature dish."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Redet doch bitte mit meiner Tochter. Sie wird euch einen Platz zeigen und ich nehme dann eure Bestellung entgegen.", "Als Stammgast dürft ihr euch natürlich einen Platz aussuchen. Fühlt euch wie zuhause.", "Wenn ich euch etwas empfehlen dürfte, der Eintopf ist heute vorzüglich. Er ist das Stammessen hier."
 "Farewell", "Bye", "Fare well", "See you" -> "Thank you, please come again.", "I would be most grateful if you would bless this institution with your presence once more.", "I hope you enjoyed your meal. Remember you can come back any time. The food is good here and the prices are so low the homeless can afford to it."
@@ -106,11 +106,17 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Thank you please come again
 "How are you", "How feel" -> "I wish Linda would take a break more often. She looks so tired.", "I feel Linda is working too hard. Maybe I should hire an extra hostess.", "May I take your order?"
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Ich wünschte, Linda würde öfter mal eine Pause machen. Sie sieht so müde aus.", "Linda arbeitet eindach zu hart. Ich sollte noch eine Kellnerin einstellen.", "Ihre Bestellung, bitte?"
 "your name", "who are you", "who art thou" -> "I am Severus Rabon, father and tavern owner extrodinaire.", "I am Severus Rabon, father of the Cadomyr's most famous cook Linda Rabon.", "I am Severus. This is my tavern the Unicorn Lion. Me and my wife built this place from scratch along with our first home. Please have a seat, a meal and become part of the family."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin Severus Rabon, Vater und Tavernenbesitzer.", "Ich bin Severus Rabon, Vater von Cadomyrs berühmtester Köchin, Linda Rabon.", "Ich bin Severus. Dies hier ist meine Tavern, der Einhörnige Löwe. Ich und meine Frau haben sie aus dem Nichts aufgebaut, sie ist unsere Heimat. Setzt euch, esst was und werdet Teil der Familie."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich bin Severus Rabon, Vater und Tavernenbesitzer.", "Ich bin Severus Rabon, Vater von Cadomyrs berühmtester Köchin, Linda Rabon.", "Ich bin Severus. Dies hier ist meine Tavern, der Einhörnige Löwe. Ich und meine Frau haben sie aus dem Nichts aufgebaut, sie ist unsere Heimat. Setzt euch, esst was und werdet Teil der Familie."
 
 -- Optional: Trade Hooks, use only for traders
 "sell", "buy", "wares", "price", "trade", "purchase" -> "Your order, please?", "What can I serve you today?", "Yes?", trade
-"kauf", "waren", "preis", "Handel", "veräußer", "erwerb" -> "Ihre Bestellung, bitte.", "Was kann ich ihnen bringen?", "Jawohl?", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ihre Bestellung, bitte.", "Was kann ich ihnen bringen?", "Jawohl?", trade
+
+-- Mandatory: Catching quest triggers. Modify if the NPC does quests
+english, "quest", "mission" -> "I don't have any tasks for you."
+"quest", "mission" -> "Ich vergebe keine Aufgaben."
+"task", "adventure", "order" -> "I don't have any tasks for you."
+"Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ich vergebe keine Aufgaben."
 
 -- Small talk: The talk here should focus on possible questions. Feel free to add more!
 "profession" -> "I own this place here. So what would I call myself? Bartender, waiter? I don't know, just call me Severus.", "Right now I am the waiter and I used to be the cook, but my beautiful and talented daughter has been given a gift from the gods. She is now the cook."
@@ -151,14 +157,10 @@ english, "Irmorom" -> "He's the only one that ever cared about me. I give him te
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Severus", "Rabon" -> "Oh, do you need something?", "That is me.", "Hello. I am Severus Rabon. I would be glad to help you with anything that you need."
 "Severus", "Rabon" -> "Oh, braucht ihr etwas?", "Das bin ich.", "Hallo. Ich bin Severus Rabon. Ich bin euch gerne behilflich, wenn ihr etwas benötigt."
-"Yes" -> "I did not say anything.", "I don't believe I asked a yes or no question.", "Wait, what?"
-"Ja" -> "Hab ich was gesagt?", "Ich glaube nicht, dass ich recht verstehe, um was es geht.", "Wie bitte?"
-"No" -> "I did not say anything.", "I don't believe I asked a yes or no question.", "Wait, what?"
-"Nein" -> "Hab ich was gesagt?", "Ich glaube nicht, dass ich recht verstehe, um was es geht.", "Wie bitte?"
 
 -- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-english, chance(20.0), ".*" -> "This discussion is not relevant to me.", "Maybe talk about something like adventures or missions. People respond well to those words.", "I have no intention of buying your chicken."
-german, chance(20.0), ".*" -> "Irgendwie interessiert mich das nicht.", "Redet doch über Aufgaben oder Abenteuer. Die Leute reden gerne über sowas.", "Ich kaufe keine Hühner."
+english, chance(5.0), ".*" -> "This discussion is not relevant to me.", "Maybe talk about something like adventures or missions. People respond well to those words.", "I have no intention of buying your chicken."
+german, chance(5.0), ".*" -> "Irgendwie interessiert mich das nicht.", "Redet doch über Aufgaben oder Abenteuer. Die Leute reden gerne über sowas.", "Ich kaufe keine Hühner."
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.

@@ -16,15 +16,15 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- Depots
 
--- UPDATE common SET com_script='item.id_321_depot' WHERE com_itemid=321;
+-- UPDATE items SET itm_script='item.id_321_depot' WHERE itm_id=321;
 
-require("base.common")
-require("base.lookat")
+local common = require("base.common")
+local lookat = require("base.lookat")
 
-module("item.id_321_depot", package.seeall)
+local M = {}
 
-function LookAtItem(User, Item)
-    local lookAt = base.lookat.GenerateLookAt(User, Item)
+function M.LookAtItem(User, Item)
+    local lookAt = lookat.GenerateLookAt(User, Item)
     local depotId = tonumber(Item:getData("depot"))
 
     if depotId == 101 then
@@ -34,8 +34,19 @@ function LookAtItem(User, Item)
     elseif depotId == 103 then
         lookAt.description = "Galmair"
     elseif depotId == 104 then
-        lookAt.description = base.common.GetNLS(User, "Gasthof zur Hanfschlinge", "The Hemp Necktie Inn")
+        lookAt.description = common.GetNLS(User, "Gasthof zur Hanfschlinge", "The Hemp Necktie Inn")
+    elseif depotId == 201 then
+        lookAt.description = common.GetNLS(User, "Staatsschatz von Cadomyr", "Cadomyr Treasury")
+    elseif depotId == 202 then
+        lookAt.description = common.GetNLS(User, "Staatsschatz von Runewick", "Runewick Treasury")
+    elseif depotId == 203 then
+        lookAt.description = common.GetNLS(User, "Staatsschatz von Galmair", "Galmair Treasury")
+    else
+        lookAt.description = common.GetNLS(User, "Unbekanntes Depot", "Unknown depot")
     end
     
-    world:itemInform(User, Item, lookAt)
+    return lookAt
 end
+
+return M
+

@@ -12,17 +12,27 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
-require("content.craft.smithing")
-require("base.licence")
+local blacksmithing = require("craft.final.blacksmithing")
+local finesmithing = require("craft.final.finesmithing")
+local armourer = require("craft.final.armourer")
+local common = require("base.common")
 
-module("item.id_172_anvil", package.seeall)
+local M = {}
 
-function UseItem(User, SourceItem, ltstate)
-	if base.licence.licence(User) then --checks if user is citizen or has a licence 
-		return -- avoids crafting if user is neither citizen nor has a licence
-	end
-
-    content.craft.smithing.smithing:showDialog(User, SourceItem)
+function M.UseItem(User, SourceItem, ltstate)
+    if blacksmithing.blacksmithing:isHandToolEquipped(User) then
+        blacksmithing.blacksmithing:showDialog(User, SourceItem);
+    elseif finesmithing.finesmithing:isHandToolEquipped(User) then
+        finesmithing.finesmithing:showDialog(User, SourceItem);
+    elseif armourer.armourer:isHandToolEquipped(User) then
+        armourer.armourer:showDialog(User, SourceItem);
+    else
+        common.HighInformNLS(User,
+            "Dir fehlt ein Werkzeug in deiner Hand um hier zu arbeiten: Hammer, Feinschmiedehammer oder Hammer des Rüstschmieds.",
+            "To work here you have to hold a tool in your hand: Hammer, finesmithing hammer or armourer's hammer.")
+    end
 end
+
+return M

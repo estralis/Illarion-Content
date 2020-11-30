@@ -12,26 +12,34 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
-require("base.common")
 
+local M = {}
+local id_382_ceilingtrowel = require("gm.items.id_382_ceilingtrowel")
 
-module("item.id_316_sand", package.seeall)
+-- UPDATE items SET itm_script='item.id_316_sand' WHERE itm_id = 316;
 
--- UPDATE common SET com_script='item.id_316_sand' WHERE com_itemid = 316;
+local deleteIt
 
-function MoveItemBeforeMove(User, SourceItem, TargetItem)
+function M.MoveItemBeforeMove(User, SourceItem, TargetItem)
     deleteIt=false;
-    GroundItem=world:getItemOnField(TargetItem.pos);
+    local GroundItem = world:getItemOnField(TargetItem.pos)
     if (GroundItem.id==10) then
-        world:erase(GroundItem,1);
+        local removePos = TargetItem.pos
+        world:erase(GroundItem,1)
         deleteIt=true
-        world:gfx(45,TargetItem.pos);
+        world:gfx(45,TargetItem.pos)
+        
+        -- In case the portal is on a gm set spawnpoint, we remove the spawnpoint
+        
+        id_382_ceilingtrowel.saveRemovePosition(removePos)
     end
     return true
 end
 
-function MoveItemAfterMove(User, SourceItem, TargetItem)
+function M.MoveItemAfterMove(User, SourceItem, TargetItem)
     if deleteIt then world:erase(TargetItem,1) end
 end
+
+return M

@@ -16,7 +16,7 @@
 -- NPC Name: Sogg Beermug                                             Galmair --
 -- NPC Job:  Trader                                                           --
 --                                                                            --
--- NPC Race: orc                        NPC Position:  353, 276, 0            --
+-- NPC Race: orc                        NPC Position:  362, 279, 0            --
 -- NPC Sex:  male                       NPC Direction: north                  --
 --                                                                            --
 -- Author:   Rincewind                                                        --
@@ -26,7 +26,7 @@
 name = "Sogg Beermug"
 race = orc
 sex = male
-position = 353, 276, 0
+position = 362, 279, 0
 direction = north
 affiliation = "Galmair"
 job = "Trader"
@@ -58,28 +58,33 @@ itemShoes = 369
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItems = 58, 164, 51, 227, 1909, 1908
-buyPrimaryItems = 58, 164, 51, 227, 1909, 1908
-tradeNotEnoughMoneyMsg "Du kannst dir das nicht leisten!", "You can't afford that!"
-tradeFinishedMsg "Vielen Dank, komm bald wieder!", "Thank you, come again!"
-tradeFinishedWithoutTradingMsg "Farebaaaa...!", "Farebaaaa...!"
-tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
+sellItems = 227, 126, 799, 133, 134, 135, 136, 137, 140, 141, 142, 143, 144, 145, 147, 148, 149, 151, 153, 155, 156, 157, 158, 159, 160, 161, 162, 163, 405, 406, 407, 752, 753, 759, 763, 767, 3787, 2499, 2500, 2497, 2501, 785, 3720, 787, 791, 786, 788, 517, 783, 3721, 784, 789, 3722, 3611, 1316, 1315, 1320, 1321, 1322, 1319, 1323, 1318
+-- cooking spoon, sickle
+-- wicker basket
+-- sun herb, fourleafed oneberry, yellow weed, anger berry, flamegoblet blossom, donf blade, black thistle, sandberry, red elder, virgin's weed, heath flower, blackberry, firnis blossom, fir tree sprout, strawberry, foot leaf, sibanac leaf, steppe fern, rotten tree bark, bulbsponge mushroom, toadstool, red head, herder's mushroom, birth mushroom, champignon, fairy ring mushroom, stinkhorn, elf caps, mandrake, blue birdsberry, nuts, marsh flower, water blossom, silk
+-- bottle of cider, bottle of wine, bottle of mead, bottle of beer, bottle of banana juice, bottle of fir needle tea, bottle of virgins weed tea, bottle of grape juice, bottle of cabbage juice, bottle of carrot juice, bottle of rum, bottle of blackberry juice, bottle of green tea, bottle of tangerine juice, bottle of strawberry juice, bottle of druids tea, bottle of orange juice, bottle of bear slayer, bottle of berry booze, bottle of stone face, bottle of absinthe, bottle of orange schnapps, bottle of cherry schnapps, bottle of mulled wine, bottle of elven wine, 
+buyPrimaryItems = 133, 134, 135, 136, 137, 140, 141, 142, 143, 144, 145, 147, 148, 149, 151, 153, 155, 156, 157, 158, 159, 160, 161, 162, 163, 405, 406, 407, 752, 753, 759, 763, 767, 3787
+-- sun herb, fourleafed oneberry, yellow weed, anger berry, flamegoblet blossom, donf blade, black thistle, sandberry, red elder, virgin's weed, heath flower, blackberry, firnis blossom, fir tree sprout, strawberry, foot leaf, sibanac leaf, steppe fern, rotten tree bark, bulbsponge mushroom, toadstool, red head, herder's mushroom, birth mushroom, champignon, fairy ring mushroom, stinkhorn, elf caps, mandrake, blue birdsberry, nuts, marsh flower, water blossom, silk
+buySecondaryItems = 2499, 2500, 2497, 2501, 785, 3720, 787, 791, 786, 788, 517, 783, 3721, 784, 789, 3722, 3611, 1316, 1315, 1320, 1321, 1322, 1319, 1323, 1318
+-- bottle of cider, bottle of wine, bottle of mead, bottle of beer, bottle of banana juice, bottle of fir needle tea, bottle of virgins weed tea, bottle of grape juice, bottle of cabbage juice, bottle of carrot juice, bottle of rum, bottle of blackberry juice, bottle of green tea, bottle of tangerine juice, bottle of strawberry juice, bottle of druids tea, bottle of orange juice, bottle of bear slayer, bottle of berry booze, bottle of stone face, bottle of absinthe, bottle of orange schnapps, bottle of cherry schnapps, bottle of mulled wine, bottle of elven wine, 
+tradeNotEnoughMoneyMsg "Zu teuer!", "Too expensive!"
+tradeFinishedMsg "Whubeva.", "Whubeva."
+tradeFinishedWithoutTradingMsg "Fareba!", "Fareba!"
+tradeWrongItemMsg "Nah.", "Nah."
 
 -- Template Version 1.03, 01/05/2011 by Estralis Seborian
--- Tradersstuff--
--- Tools (Alchemist): 58, 164, 1008
--- Tools (Brewer): 51, 227
--- Beer: 1909, 1908
-"sell", "buy", "wares", "price", "trade", "purchase" -> "Me sell all bottles and Barrels. Uh... wait. - Nubba you can't buy a barrel. But all things needed to brew! Hurr hurr.", trade
-"kauf", "waren", "preis", "Handel", "veräußer", "erwerb" -> "Isch verkauf Flaschn und Fässa. Uh...wart mal. - Nubba die Fässa kann man nischt kaufen. Aber alles Zeug zum Braun! Hehe.", trade
 
 -- Help
-"Help" -> inform("[Game Help] This NPC is Sogg Beermug the Alchemist. Keywords: buy, sell, trade, Occupation, Runewick, Galmair, Cadomyr"), state = 0, "Help? All ob us need help!...'hic'"
+"Help" -> inform("[Game Help] This NPC is Sogg Beermug the Alchemist. Keywords: buy, sell, trade, occupation, Runewick, Galmair, Cadomyr"), state = 0, "Help? All ob us need help!...'hic'"
 "Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Sogg Beermug der Alchimist. Schlüsselwörter: kaufe, verkaufe, Handel, Beruf, Runewick, Galmair, Cadomyr"), state = 0, "Hilfe brauschn wir alle!...'hick'"
+
+-- Trade
+"sell", "buy", "wares", "price", "trade", "purchase" -> "Me sell all herbs and barrels. Uh... wait. - Nubba you can't buy a barrel. But all things needed to brew! Hurr hurr.", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Isch verkauf Kräuter und Fässa. Uh... wart mal. - Nubba die Fässa kann man nischt kaufen. Aber alles Zeug zum Brauen! Hehe.", trade
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Greebas!", "Hurr! Greetings.", "#me grunts and waves a mug of beer.", "Skoal! Come over 'ere and drink with Sogg!"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Greebas!", "Hurr! Grüße.", "#me grunzt und winkt mit einem Krug Bier.", "Prost! Kommst du her, und trinkst mit Sogg!"
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Greebas!", "Hurr! Grüße.", "#me grunzt und winkt mit einem Krug Bier.", "Prost! Kommst du her, und trinkst mit Sogg!"
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greebas!", "Hurr! Greetings.", "#me grunts and waves a mug of beer.", "Skoal! Come over 'ere and drink with Sogg!"
 "Hiho", "Hallo", "Hey", "Greeb" -> "Greebas!", "Hurr! Grüße.", "#me grunzt und winkt mit einem Krug Bier.", "Prost! Kommst du her, und trinkst mit Sogg!"
 "Farewell", "Bye", "Fare well", "See you" -> "Farebaaaa...!"
@@ -89,7 +94,7 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Farebaaaa...!"
 "How are you", "How feel", "How do you do" -> "Mes just a little bitty drunky..."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Mirr nur kleinig bisschen bertrunkchen..."
 "your name", "who are you", "who art thou" -> "I'm Sogg Beermug. 'hic' Mes guarding tha barrels an' bottles! Uh!"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Isch bin Sogg Beermug. 'hick' Mirr bewacht all die Fässer und Flasch!"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Isch bin Sogg Beermug. 'hick' Mirr bewacht all die Fässer und Flasch!"
 
 -- Catching quest triggers. Modify if the NPC does quests.
 english, "quest", "mission" -> "I havn't any tashks for you."
@@ -108,16 +113,17 @@ english, "Gobaith", "Gobiath" -> "I don' know some Gobiaths! But my granny was n
 "mein Name" -> "Duhu, mirr dich mögen! Willschte wa' zu saufn?"
 
 -- More small talk; add at least five triggers, e.g. about the profession of the NPC or his enviroment
-german, "murgo" -> "Yubba... - Murgo ischn fener Kerl. Treibt sich aber imma rum, scheiner Frau der Krudash... gefällt dasch gar nich. *hick*"
 english, "murgo" -> "Yubba... - Murgo is no good fella. He's always roaming the streets and his woman, Krudash, doesn't like it. *hic*"
-german, "er hja", "erhja", "er'hja" -> "Eh, Er'hja? Sie's Tochta von Murgo 'nd Krudash. Ne feine Orkling, würd isch sage. Hu, die Eltern sin 'ute Freunde von misch."
+"murgo" -> "Yubba... - Murgo ischn fener Kerl. Treibt sich aber imma rum, scheiner Frau der Krudash... gefällt dasch gar nich. *hick*"
 english, "er hja", "erhja", "er'hja" -> "Eh, Er'hja? She's daughter of Murgo 'nd Krudash. She's a good orcling, mes say. Hu, 'er parents be good friends ob mine!"
-english, "ali[czs]", "ali[czs]e", "stout", "jack", "tom", "berry", "thomas", "berryard" -> "Skeschmath! Nerv misch nich, mit diese Snagas. Isch bin Sogg! Misch gibt sich nicht ab mit Snagas."
-german, "ali[czs]", "ali[czs]e", "stout", "jack", "tom", "berry", "thomas", "berryard" -> "Skeschmath! Don't annoy mes with this snagas. Meesh, Sogg! Meesh don't hang around with snagas."
-german, "krudash", "Hack", "sack", "Hacken", "plündern" -> "Yûk. Krudash's Laden, 'Hacken un Plündern' is gleich da drübn. Guter Name für'n Waffnladen, findesch du nich?"
-english, "krudash", "Hack", "sack", "Hacken", "plündern" -> "Yûk. Krudash's shop, ish right there! 'Hack an Sack', good name for an arms dealer, ishn't it?"
+"er hja", "erhja", "er'hja" -> "Eh, Er'hja? Sie's Tochta von Murgo 'nd Krudash. Ne feine Orkling, würd isch sage. Hu, die Eltern sin 'ute Freunde von misch."
+english, "ali[czs]", "ali[czs]e", "stout", "jack", "tom", "berry", "thomas", "berryard" -> "Skeschmath! Don't annoy mes with this snagas. Meesh, Sogg! Meesh don't hang around with snagas."
+"ali[czs]", "ali[czs]e", "stout", "jack", "tom", "berry", "thomas", "berryard" -> "Skeschmath! Nerv misch nich, mit diese Snagas. Isch bin Sogg! Misch gibt sich nicht ab mit Snagas."
+english, "krudash", "Hack", "sack" -> "Yûk. Krudash's shop, ish right there! 'Hack an Sack', good name for an arms dealer, ishn't it?"
+"krudash", "Hack", "sack" -> "Yûk. Krudashs Laden, 'Hacken un Plündern' is gleich da drübn. Guter Name für'n Waffnladen, findesch du nich?"
+"Hacken", "plündern" -> "Yûk. Krudashs Laden, 'Hacken un Plündern' is gleich da drübn. Guter Name für'n Waffnladen, findesch du nich?"
 english, "morurt", "mo'rurt", "mor'urt", "olokwa", "thud", "grimlug", "ol hja", "olhja", "ol'hja" -> "#me claps his chest with his left hand. 'Hurr, Sogg honour our clan!'"
-german, "morurt", "mo'rurt", "mor'urt", "olokwa", "thud", "grimlug", "ol hja", "olhja", "ol'hja" -> "#me klopft sich mit der Faust schlecht gezielt auf die Brust. 'Hurr, Sogg steht zu scheinem Klan.'"
+"morurt", "mo'rurt", "mor'urt", "olokwa", "thud", "grimlug", "ol hja", "olhja", "ol'hja" -> "#me klopft sich mit der Faust schlecht gezielt auf die Brust. 'Hurr, Sogg steht zu scheinem Klan.'"
 
 -- Faction stuff. Please remove if you send the template to outsiders!
 "archmage" -> "Uh! Mes bet this Longear is under the table after two beers. Bah-Gosch!"
@@ -128,36 +134,38 @@ english, "Runewick" -> "Let mes tell 'ou... that beer in Runewick taste like pis
 "Runewick" -> "Lass dir sagn... dasch Bier in Runewick schmeckt wie Pisse."
 english, "Valerio", "Guilianni", "Don" -> "Skoal! Let us drink for honour of the Don!"
 "Valerio", "Guilianni", "Don" -> "Prost! Lasch uns zur Ehre des Dons trinken!"
-english, "Galmair" -> "Yubba. Here's the best place! The Dwarfsh brew the best beer. That's why I'm here! Taghta!"
+english, "Galmair" -> "Yubba. Here's the best place! The dwarves brew the best beer. That's why I'm here! Taghta!"
 "Galmair" -> "Yubba. Hier isch esch am schönsten! Die Schwerge maschen dasch beschte Bier, drum bleib isch hier! Taghta!"
 "Queen" -> "Seems to me this Queen never tried sum Beans Booze. Othawise she wouldn't be so pigheaded. Wug-wug!"
 "Königin" -> "Scheint mir... dische Könischin, hat noch nie 'n Bohnenschnaps getrunken. Schonst wär sie nich so verklemmt. Wug-wug!"
 english, "rosaline", "edwards" -> "Seems to me this Queen never tried sum Beans Booze. Othawise she wouldn't be so pigheaded. Wug-wug!"
 "rosaline", "edwards" -> "Scheint mir... dische Könischin, hat noch nie 'n Bohnenschnaps getrunken. Schonst wär sie nich so verklemmt. Wug-wug!"
 english, "Cadomyr" -> "In Cadomyr, they may have good-looking warriors, but for sure we will able to drink the most booze! Gosch."
-"Cadomyr" -> "In Cadomyr, da wolln schie ja ornliche Kämfer sein, aber unterm Tisch saufn tun wir sie trozdem alle! Gosch."
+"Cadomyr" -> "In Cadomyr, da wolln schie ja ornliche Kämpfer sein, aber unterm Tisch saufn tun wir sie trotzdem alle! Gosch."
 
 -- Main land factions
 english, "albar" -> "I donno care about them."
-german, "albar" -> "Wasch kümmern sche misch? Eh?"
+"albar" -> "Wasch kümmern sche misch? Eh?"
 english, "gynk", "gync" -> "Hurr-hurr! There's the besht Sibanac there."
-german, "gync", "gynk" -> "He-he! Dort gibtsch da' beschte Sibanac."
+"gync", "gynk" -> "He-he! Dort gibtsch da' beschte Sibanac."
 english, "salkama" -> "I heard in Salkamar the people piss into their beer to make it taste better. *laughs*"
-german, "salkama" -> "Isch hab gehört, in Salkamar, pissen schie ins Bier, damits bescher schmekt. *gluckst lachend*"
+"salkama" -> "Isch hab gehört, in Salkamar, pissen schie ins Bier, damits bescher schmeckt. *gluckst lachend*"
 "wo .* her" -> "Kroch'Gurak! Ist, wo meißte Orks von uns komme her von."
-german, "kroch", "gurak", "Kroch'gurak" -> "Kroch'Gurak! Ist, wo meißte Orks von uns komme her von."
 "where .* com" -> "Kroch'Gurak! Is where most ob us orcs come from."
 english, "kroch", "gurak", "Kroch'gurak" -> "Kroch'Gurak! Is where most ob us orcs come from."
+"kroch", "gurak", "Kroch'gurak" -> "Kroch'Gurak! Ist, wo meiste Orks von uns komme her von."
 
 -- Gods - use the triggers of the god the NPC worships or fights
 "god" -> "Me praise Adron! 'nd mes Ancestors for shure!"
 "Gott", "Götter" -> "Ehre Adron! Und menen Vorfahren!"
-german, "moshran", "god" -> "Gosh! Nicht sagst diese Name! Bessa fragen einen Schamanen über Vatha."
-english, "moshran", "god" -> "Gosh! Nub say tha name! Bettu talk to Shaman about tha fatha."
-german, "cherga", "icy witch", "eis Hex" -> "Hurr. Eisig Hexe, Göttin von Ahnen ist. Du fragst Grimlug!"
-english, "cherga", "icy witch", "eis Hex" -> "Hurr. Tha icy witch, be god ob ancestors. Ask Grimlug about her!"
-german, "adron" -> "Honor to Adron, tha fat man with red nose! Yubba. May he help me, guarding all those barrels 'nd bottles!"
-english, "adron" -> "Geerht sei Adron, der fette Mann mit roter Nase! Yubba. Möge er helfen, zu bewachen alle meine Flasch und Fässa!"
+english, "moshran" -> "Gosh! Nub say tha name! Bettu talk to Shaman about tha fatha."
+"moshran" -> "Gosh! Nicht sagst diese Name! Bessa fragen einen Schamanen über Vatha."
+english, "cherga" -> "Hurr. Tha icy witch, be god ob ancestors. Ask Grimlug about her!"
+"cherga" -> "Hurr. Eisig Hexe, Göttin von Ahnen ist. Du fragst Grimlug!"
+"icy witch" -> "Hurr. Tha icy witch, be god ob ancestors. Ask Grimlug about her!"
+"eis Hex" -> "Hurr. Eisig Hexe, Göttin von Ahnen ist. Du fragst Grimlug!"
+english, "adron" -> "Honour to Adron, tha fat man with red nose! Yubba. May he help me, guarding all those barrels 'nd bottles!"
+"adron" -> "Geerht sei Adron, der fette Mann mit roter Nase! Yubba. Möge er helfen, zu bewachen alle meine Flasch und Fässa!"
 
 -- Catching typical NPC phrases
 "tell something" -> "#me glances around the area with dull eyes.", "#me belches loudly.", "Bean's Booze..."
@@ -166,14 +174,6 @@ english, "adron" -> "Geerht sei Adron, der fette Mann mit roter Nase! Yubba. Mög
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "sogg", "beermug" -> "Hurr-hurr... want a beer, eh?", "Hu!?... - Mesch Sogg Beermug, whut do you want?"
 "sogg", "beermug" -> "Hurr-hurr... wilscht n' Bier, eh?", "Hu!?... - Isch bin Sogg Beermug, wasch wollscht ihr von mir?"
-"Yes" -> "Skoal!", "Hurr-hurr. Should be good with me.", "Alrighty-right!"
-"Ja" -> "Prost.", "Hurr-hurr. Solls mir recht sein.", "Alles-klarklar!"
-"No" -> "Gosch!", "Skeschmat! S' that your final answer?", "#me burps."
-"Nein" -> "Gosch!", "Skeschmat! Gneh... is das den letztes Wort?", "#me rülpst."
-
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-english, chance(20.0), ".*" -> "Beer after Wine, is a no go. Better try Wine after Beer!", "Hurr hurr! That's it.", "Daily special... Bean's Booze!"
-german, chance(20.0), ".*" -> "Bier auf Wein, lasch das sein! Aber Wein auf Bier, das rat isch dier!", "Hehe! So ist's.", "Heut empfehl isch... Bohnenschnaps!"
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
@@ -186,8 +186,13 @@ cycletext "Booohnenschnäps!! Isch des Beschte!", "Beans Booooze!! Tha besht booz
 cycletext "#me rülpst herzhaft.", "#me belches loudly."
 cycletext "#me füllt grinsed, abermals seinen Krug.", "#me grins as he refills his mug."
 cycletext "'hick...'", "'hick...'"
-cycletext "'M-mirr bewach...bewach diese Fässa!", "M-me guard those barr'ls!"
+cycletext "'M-mirr bewach... bewach diese Fässa!", "M-me guard those barr'ls!"
 cycletext "'Da-das 's mene Flasch!", "Tha-that 's my bottle!"
-cycletext "#me macht einen konzentrierten Gesichtsausdruck, legt die Zunge zwischen die Lippen. Dann läßt er plötzlich einen melodiösen Wind fahren.", "#me pokes out his tongue in deep concentration. He then rips out a loud fart."
+cycletext "#me macht einen konzentrierten Gesichtsausdruck, legt die Zunge zwischen die Lippen. Dann lässt er plötzlich einen melodiösen Wind fahren.", "#me pokes out his tongue in deep concentration. He then rips out a loud fart."
 cycletext "#me schnaubt ein wenig.", "#me snorts quietly."
 cycletext "#me rülpst, Duft von schalem Bier und gebratenen Fleisch entschwebt in die Nasen der Umgebung.", "#me burps, the scent of stale beer and roasted meat floats into the noses of anyone in the surrounding area."
+cycletext "Fokous! Bring mir ein neues Fass des feinen Gebräus!", "Fokous! Bring meh 'nother barrel ub ta finest brew!"
+cycletext "Bring das Bier! Yubba, unser Bier darf nicht alle werden.", "Guard ta beer, stumpy! Yubba, yoo canna have our beer runnin' low!"
+cycletext "Prost!", "Skoal!"
+cycletext "Heut empfehl isch... Bohnenschnaps!", "Daily special... Bean's Booze!"
+cycletext "Bier auf Wein, lasch das sein! Aber Wein auf Bier, das rat isch dier!", "Beer after Wine, is a no go. Better try Wine after Beer!"

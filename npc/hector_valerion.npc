@@ -91,13 +91,18 @@ itemShoes = 369
 -- 13: Message delivered
 -- 14: Quest 5 solved, reward: magical topaz ring (282), (20 rankpoints)
 
+-- queststatus(685) Overview
+-- QuestID=685
+-- 1;3: No book, send to Fludnar
+-- 6: Buch kaufbar
+
 -- Help
-"Help" -> inform("[Game Help] This NPC is Hector Valerion the royal ambassador. Keywords: Ambassador, quest, despatch, seal, orders.")
+"Help" -> inform("[Game Help] This NPC is Hector Valerion the royal ambassador. Keywords: Ambassador, quest, dispatch, seal, orders.")
 "Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Hector Valerion der königliche Botschafter. Schlüsselwörter: Botschafter, Quest, Depesche, Siegel, Befehle.")
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Be greeted. You interrupt me, so it has to be important.", "#me closes a book and grumbles, 'What is it again?'", "Speak or be quiet, the latter is preferred."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Seid mir gegrüßt. Ihr unterbrecht mich beim Lesen, also muss es wichtig sein.", "#me legt ein Buch beiseite und grummelt: 'Was ist denn jetzt schon wieder?'", "Sprecht oder schweigt, letzteres wäre mir lieber."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Seid mir gegrüßt. Ihr unterbrecht mich beim Lesen, also muss es wichtig sein.", "#me legt ein Buch beiseite und grummelt: 'Was ist denn jetzt schon wieder?'", "Sprecht oder schweigt, letzteres wäre mir lieber."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Be greeted. You interrupt me, so it has to be important.", "#me closes a book and grumbles, 'What is it again?'", "Speak or be quiet, the latter is preferred."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Seid mir gegrüßt. Ihr unterbrecht mich beim Lesen, also muss es wichtig sein.", "#me legt ein Buch beiseite und grummelt: 'Was ist denn jetzt schon wieder?'", "Sprecht oder schweigt, letzteres wäre mir lieber."
 "Farewell", "Bye", "Fare well", "See you" -> "Can I continue reading now? Undisturbed? Thank you!", "Go and don't come back too early.", "There is the door."
@@ -107,9 +112,47 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Can I continue reading now?
 "How are you", "How feel", "How do you do" -> "Just work! But what do I say, you look like somebody with loss of esteem. How about you fulfil a royal mission?"
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befinden" -> "Immer diese Arbeit! Aber was sage ich, ihr seht aus, als wenn ihr voller Tatendrang wäret. Werdet ihr auf eine königliche Mission gehen?"
 "your name", "who are you", "who art thou" -> "My name is Hector, Hector Valerion. I am the royal ambassador and you are...?"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Mein Name ist Hector, Hector Valerion. Ich bin der königliche Botschafter und ihr seid...?"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Mein Name ist Hector, Hector Valerion. Ich bin der königliche Botschafter und ihr seid...?"
 
 -- Catching quest triggers. Modify if the NPC does quests.
+
+-- Foreign quest 'A book about your God'
+-- first librarian
+queststatus(685) = 1, "god", "book" -> inform("[A book about your God] Go to Fludnar Yednos in Runewick and ask if he has the book about your God. You find him in the library. The key word is 'God'."), "It would be a privilege to sell you that book. But you can see yourself, the space for books is limited and especially that book I do not have available. Please ask Fludnar in Runewick. The library over there is much larger.", queststatus(685) = 4, queststatus(686) = 1
+queststatus(685) = 1, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Gehe zu Fludnar Yednos in Runewick und frage ihn, ob er dir das Buch über deinen Gott verkaufen kann. Du findest ihn in der Bücherei. Das Stichwort ist 'Gott'."), "Es wäre mir eine Ehre, dir dieses Buch zu geben. Leider habe ich nicht so viel Platz und gerade dieses Buch ist gerade vergriffen. Frag mal in Runewick bei Fludnar nach, deren Bücherei ist deutlich größer.", queststatus(685) = 4, queststatus(686) = 1
+-- 2nd or 3rd librarian
+queststatus(685) = 3, queststatus(686) < 3, "god", "book" -> inform("[A book about your God] Go to Fludnar Yednos in Runewick and ask if he has the book about your God. You find him in the library. The key word is 'God'."), "It would be a privilege to sell you that book. But you can see yourself, the space for books is limited and especially that book I do not have available. Please ask Fludnar in Runewick. The library over there is much larger.", queststatus(685) = 4, queststatus(686) + 1
+queststatus(685) = 3, queststatus(686) < 3, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Gehe zu Fludnar Yednos in Runewick und frage ihn, ob er dir das Buch über deinen Gott verkaufen kann. Du findest ihn in der Bücherei. Das Stichwort ist 'Gott'."), "Es wäre mir eine Ehre, dir dieses Buch zu geben. Leider habe ich nicht so viel Platz und gerade dieses Buch ist gerade vergriffen. Frag mal in Runewick bei Fludnar nach, deren Bücherei ist deutlich größer.", queststatus(685) = 4, queststatus(686) + 1
+-- circle done, back to 1st librarian
+queststatus(685) = 3, "god", "book" -> inform("[A book about your God] Tell Hector Valerion you buy the book. You need 5 gold coins. The key word is 'God'."), "What a day, just as you went out of the palace somebody got me your book. It was sorted into the wrong bookshelf. I can give it to you now. Such a book is a valuable item. Therefore I have to ask for 5 gold coins in return.", queststatus(685) = 6
+queststatus(685) = 3, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Sage Hector Valerion, dass du das Buch kaufst. Das Stichwort ist 'Gott'."), "Ja so etwas, kaum dass du aus der Tür warst, hat mir jemand ein Exemplar gebracht, das falsch einsortiert war. Jetzt kann ich es dir geben. Ein solches Buch ist aber wertvoll. Deshalb muss ich von dir 5 Gold verlangen.", queststatus(685) = 6
+-- Nicht genug Geld
+queststatus(685) = 6, money < 50000, "god", "book" -> inform("[A book about your God] You need 5 gold coins to buy the book."), "No problem, books can wait until you got the money. You can trust me, I'll reserve the book for you."
+queststatus(685) = 6, money < 50000, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Du benötigst 5 Gold um das Buch zu kaufen"), "Es ist doch kein Problem, wenn du die Münzen noch nicht beisammen hast. Du kannst darauf vertrauen, dass ich das Buch solange aufhebe."
+-- Buch verkaufen
+queststatus(685) = 6, queststatus(401) = 6, money > 49999, "god", "book" -> inform("[A book about your God] You get a book about your worshipped Nargùn."), "Please see this is your book. Stay honourable to your God and Queen Rosalie Edwards always.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_nargun") --6: Nargùn
+queststatus(685) = 6, queststatus(401) = 6, money > 49999, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Du bekommst ein Buch über deinen angebeteten Gott Nargùn."), "Hiermit überreiche ich dir dein Buch. Mögest du immer in Ehre fest zu deinem Gott und zu Königin Edwards stehen.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_nargun") --6: Nargùn
+queststatus(685) = 6, queststatus(401) = 7, money > 49999, "god", "book" -> inform("[A book about your God] You get a book about your worshipped Elara."), "Please see this is your book. Stay honourable to your God and Queen Rosalie Edwards always.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_elara") --7: Elara
+queststatus(685) = 6, queststatus(401) = 7, money > 49999, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Du bekommst ein Buch über deinen angebeteten Göttin Elara."), "Hiermit überreiche ich dir dein Buch. Mögest du immer in Ehre fest zu deinem Gott und zu Königin Edwards stehen.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_elara") --7: Elara
+queststatus(685) = 6, queststatus(401) = 8, money > 49999, "god", "book" -> inform("[A book about your God] You get a book about your worshipped Adron."), "Please see this is your book. Stay honourable to your God and Queen Rosalie Edwards always.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_adron") --8: Adron
+queststatus(685) = 6, queststatus(401) = 8, money > 49999, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Du bekommst ein Buch über deinen angebeteten Gott Adron."), "Hiermit überreiche ich dir dein Buch. Mögest du immer in Ehre fest zu deinem Gott und zu Königin Edwards stehen.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_adron") --8: Adron
+queststatus(685) = 6, queststatus(401) = 9, money > 49999, "god", "book" -> inform("[A book about your God] You get a book about your worshipped Oldra."), "Please see this is your book. Stay honourable to your God and Queen Rosalie Edwards always.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_oldra") --9: Oldra
+queststatus(685) = 6, queststatus(401) = 9, money > 49999, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Du bekommst ein Buch über deinen angebeteten Göttin Oldra."), "Hiermit überreiche ich dir dein Buch. Mögest du immer in Ehre fest zu deinem Gott und zu Königin Edwards stehen.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_oldra") --9: Oldra
+queststatus(685) = 6, queststatus(401) = 10, money > 49999, "god", "book" -> inform("[A book about your God] You get a book about your worshipped Cherga."), "Please see this is your book. Stay honourable to your God and Queen Rosalie Edwards always.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_cherga") --10: Cherga
+queststatus(685) = 6, queststatus(401) = 10, money > 49999, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Du bekommst ein Buch über deinen angebeteten Göttin Cherga."), "Hiermit überreiche ich dir dein Buch. Mögest du immer in Ehre fest zu deinem Gott und zu Königin Edwards stehen.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_cherga") --10: Cherga
+queststatus(685) = 6, queststatus(401) = 11, money > 49999, "god", "book" -> inform("[A book about your God] You get a book about your worshipped Malachin."), "Please see this is your book. Stay honourable to your God and Queen Rosalie Edwards always.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_malachin") --11: Malachín
+queststatus(685) = 6, queststatus(401) = 11, money > 49999, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Du bekommst ein Buch über deinen angebeteten Gott Malachin."), "Hiermit überreiche ich dir dein Buch. Mögest du immer in Ehre fest zu deinem Gott und zu Königin Edwards stehen.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_malachin") --11: Malachín
+queststatus(685) = 6, queststatus(401) = 12, money > 49999, "god", "book" -> inform("[A book about your God] You get a book about your worshipped Irmorom."), "Please see this is your book. Stay honourable to your God and Queen Rosalie Edwards always.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_irmorom") --12: Irmorom
+queststatus(685) = 6, queststatus(401) = 12, money > 49999, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Du bekommst ein Buch über deinen angebeteten Gott Irmorom."), "Hiermit überreiche ich dir dein Buch. Mögest du immer in Ehre fest zu deinem Gott und zu Königin Edwards stehen.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_irmorom") --12: Irmorom
+queststatus(685) = 6, queststatus(401) = 13, money > 49999, "god", "book" -> inform("[A book about your God] You get a book about your worshipped Sirani."), "Please see this is your book. Stay honourable to your God and Queen Rosalie Edwards always.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_sirani") --13: Sirani
+queststatus(685) = 6, queststatus(401) = 13, money > 49999, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Du bekommst ein Buch über deinen angebeteten Göttin Sirani."), "Hiermit überreiche ich dir dein Buch. Mögest du immer in Ehre fest zu deinem Gott und zu Königin Edwards stehen.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_sirani") --10: Cherga
+queststatus(685) = 6, queststatus(401) = 14, money > 49999, "god", "book" -> inform("[A book about your God] You get a book about your worshipped Zhambra."), "Please see this is your book. Stay honourable to your God and Queen Rosalie Edwards always.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_zhambra") --14: Zhambra
+queststatus(685) = 6, queststatus(401) = 14, money > 49999, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Du bekommst ein Buch über deinen angebeteten Gott Zhambra."), "Hiermit überreiche ich dir dein Buch. Mögest du immer in Ehre fest zu deinem Gott und zu Königin Edwards stehen.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_zhambra") --14: Zhambra
+queststatus(685) = 6, queststatus(401) = 15, money > 49999, "god", "book" -> inform("[A book about your God] You get a book about your worshipped Ronagan."), "Please see this is your book. Stay honourable to your God and Queen Rosalie Edwards always.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_ronagan") --15: Ronagan
+queststatus(685) = 6, queststatus(401) = 15, money > 49999, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Du bekommst ein Buch über deinen angebeteten Gott Ronagan."), "Hiermit überreiche ich dir dein Buch. Mögest du immer in Ehre fest zu deinem Gott und zu Königin Edwards stehen.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_ronagan") --15: Ronagan
+queststatus(685) = 6, queststatus(401) = 16, money > 49999, "god", "book" -> inform("[A book about your God] You get a book about your worshipped Moshran."), "Please see this is your book. Stay honourable to your God and Queen Rosalie Edwards always.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_moshran") --16: Moshran
+queststatus(685) = 6, queststatus(401) = 16, money > 49999, "Gott", "Buch" -> inform("[Ein Buch über deinen Gott] Du bekommst ein Buch über deinen angebeteten Gott Moshran."), "Hiermit überreiche ich dir dein Buch. Mögest du immer in Ehre fest zu deinem Gott und zu Königin Edwards stehen.", queststatus(685) = 8, money - 50000, item(128, 1, 999,"book" = "god_moshran") --16: Moshran
+
 -- 1st quest: Bring 5 quills (463), reward 200cp
 
 -- Give out quest 1
@@ -125,18 +168,18 @@ queststatus(108) = 1, item(463, all) < 5, "task", "adventure", "message" -> "How
 queststatus(108) = 1, item(463, all) < 5, "Auftrag", "Aufgabe", "Abenteuer", "Botschaft", "Nachricht" -> "Wie soll ich ohne Federkiele die neuesten Befehle der Königin niederschreiben? Bring mit wenigstens fünf, wenn ihr loyal seid."
 
 -- Quest 1 solved, reward: 200cp, +5 rankpoints
-queststatus(108) = 1, item(463, all) > 4, english, town = Cadomyr, ".+" -> inform("[Quest solved] You are awarded 20 silver coins. You advance in Queen Rosaline Edwards' favour."), money + 2000, deleteItem(463, 5), queststatus(108) = 2, rankpoints + 5, "Very good! With those quills, I can write down today's orders. If you wait a brief moment, you could go on a mission to issue those orders."
+queststatus(108) = 1, item(463, all) > 4, english, town = Cadomyr, ".+" -> inform("[Quest solved] You are awarded 20 silver coins."), money + 2000, deleteItem(463, 5), queststatus(108) = 2, rankpoints + 5, "Very good! With those quills, I can write down today's orders. If you wait a brief moment, you could go on a mission to issue those orders."
 queststatus(108) = 1, item(463, all) > 4, english, ".+" -> inform("[Quest solved] You are awarded 20 silver coins."), money + 2000, deleteItem(463, 5), queststatus(108) = 2, "Very good! With those quills, I can write down today's orders. If you wait a brief moment, you could go on a mission to issue those orders."
-queststatus(108) = 1, item(463, all) > 4, town = Cadomyr, ".+" -> inform("[Quest gelöst] Du erhältst 20 Silberstücke. Dein Ansehen bei Königin Rosaline Edwards steigt."), money + 2000, deleteItem(463, 5), queststatus(108) = 2, rankpoints + 5, "Sehr gut! Mit diesen Federkielen kann ich die Tagesbefehle niederschreiben. Wenn ihr kurz wartet, könnt ihr auf die Mission gehen, die Befehle auszuteilen."
+queststatus(108) = 1, item(463, all) > 4, town = Cadomyr, ".+" -> inform("[Quest gelöst] Du erhältst 20 Silberstücke."), money + 2000, deleteItem(463, 5), queststatus(108) = 2, rankpoints + 5, "Sehr gut! Mit diesen Federkielen kann ich die Tagesbefehle niederschreiben. Wenn ihr kurz wartet, könnt ihr auf die Mission gehen, die Befehle auszuteilen."
 queststatus(108) = 1, item(463, all) > 4, ".+" -> inform("[Quest gelöst] Du erhältst 20 Silberstücke."), money + 2000, deleteItem(463, 5), queststatus(108) = 2, "Sehr gut! Mit diesen Federkielen kann ich die Tagesbefehle niederschreiben. Wenn ihr kurz wartet, könnt ihr auf die Mission gehen, die Befehle auszuteilen."
 
 -- 2nd quest: Bring a message to Robertus
 
 -- Give out quest 2
 queststatus(108) = 2, english, "quest", "mission" -> inform("[New quest] Delayed Mail II: You received a message for Robertus."), queststatus(108) = 3, "The Queen has important orders for her royal builder, Robertus is his name. It is about his latest project. Rush to Robertus at once!"
-queststatus(108) = 2, "quest", "mission" -> inform("[Neues Quest] Späte Post II: Du hast eine Nachricht für Robertus erhalten."), queststatus(108) = 3, "Die Königin hat wichtige Befehle für Robertus, der königlichen Baumeister. Es geht um sein derzeitiges Bauprojekt. Lauft sofort zu Robertus!"
+queststatus(108) = 2, "quest", "mission" -> inform("[Neues Quest] Späte Post II: Du hast eine Nachricht für Robertus erhalten."), queststatus(108) = 3, "Die Königin hat wichtige Befehle für Robertus, den königlichen Baumeister. Es geht um sein derzeitiges Bauprojekt. Lauft sofort zu Robertus!"
 queststatus(108) = 2, "Task", "Adventure", "Message" -> inform("[New quest] Delayed Mail II: You received a message for Robertus."), queststatus(108) = 3, "The Queen has important orders for her royal builder, Robertus is his name. It is about his latest project. Rush to Robertus at once!"
-queststatus(108) = 2, "Auftrag", "Aufgabe", "Abenteuer", "Botschaft", "Nachricht" -> inform("[Neues Quest] Späte Post II: Du hast eine Nachricht für Robertus erhalten."), queststatus(108) = 3, "Die Königin hat wichtige Befehle für Robertus, der königlichen Baumeister. Es geht um sein derzeitiges Bauprojekt. Lauft sofort zu Robertus!"
+queststatus(108) = 2, "Auftrag", "Aufgabe", "Abenteuer", "Botschaft", "Nachricht" -> inform("[Neues Quest] Späte Post II: Du hast eine Nachricht für Robertus erhalten."), queststatus(108) = 3, "Die Königin hat wichtige Befehle für Robertus, den königlichen Baumeister. Es geht um sein derzeitiges Bauprojekt. Lauft sofort zu Robertus!"
 
 -- Quest 2 taken but not solved, repeat the instructions
 queststatus(108) = 3, english, "quest", "mission" -> "Maybe you did not understand? Important orders means, 'Deliver them now!'. Run to Robertus at once!"
@@ -145,10 +188,10 @@ queststatus(108) = 3, "Task", "Adventure", "Message" -> "Maybe you did not under
 queststatus(108) = 3, "Auftrag", "Aufgabe", "Abenteuer", "Botschaft", "Nachricht" -> "Vielleicht habt ihr nicht recht verstanden: Wichtige Befehle bedeutet: 'Überbring sie sofort!'. Lauft also sofort zu Robertus."
 
 -- Quest 2 solved, reward: 50cp, large metal shield (20), +10 rankpoints
-queststatus(108) = 4, english, town = Cadomyr, ".+" -> inform("[Quest solved] You are awarded five silver coins and a large metal shield. You advance in Queen Rosaline Edwards' favour."), money + 500, item(20, 1, 599), queststatus(108) = 5, rankpoints + 10, "Very good, now Robertus has the sketch the Queen drew. As messenger of the Queen, you deserve this shield with her crest."
-queststatus(108) = 4, english, ".+" -> inform("[Quest solved] You are awarded five silver coins and a large metal shield."), money + 500, item(20, 1, 599), queststatus(108) = 5, "Very good, now Robertus has the sketch the Queen drew. As messenger of the Queen, you deserve this shield with her crest."
-queststatus(108) = 4, town = Cadomyr, ".+" -> inform("[Quest gelöst] Du erhältst fünf Silberstücke und einen großen Metallschild. Dein Ansehen bei Königin Rosaline Edwards steigt."), money + 500, item(20, 1, 599), queststatus(108) = 5, rankpoints + 10, "Sehr gut, nun hat Robertus die Skizze der Königin. Als Bote der Königin verdient ihr diesen Schild mit ihrem Wappen."
-queststatus(108) = 4, ".+" -> inform("[Quest gelöst] Du erhältst fünf Silberstücke und einen großen Metallschild."), money + 500, item(20, 1, 599), queststatus(108) = 5, "Sehr gut, nun hat Robertus die Skizze der Königin. Als Bote der Königin verdient ihr diesen Schild mit ihrem Wappen."
+queststatus(108) = 4, english, town = Cadomyr, ".+" -> inform("[Quest solved] You are awarded five silver coins and a large metal shield."), money + 500, item(20, 1, 599, "descriptionEn" = "The shield shows the coat of arms of the house of Edwards, a one-horned lion.", "descriptionDe" = "Das Schild trägt das Wappern der Edwards, den einhörnigen Löwen."), queststatus(108) = 5, rankpoints + 10, "Very good, now Robertus has the sketch the Queen drew. As messenger of the Queen, you deserve this shield with her crest."
+queststatus(108) = 4, english, ".+" -> inform("[Quest solved] You are awarded five silver coins and a large metal shield."), money + 500, item(20, 1, 599, "descriptionEn" = "The shield shows the coat of arms of the house of Edwards, a one-horned lion.", "descriptionDe" = "Das Schild trägt das Wappern der Edwards, den einhörnigen Löwen."), queststatus(108) = 5, "Very good, now Robertus has the sketch the Queen drew. As messenger of the Queen, you deserve this shield with her crest."
+queststatus(108) = 4, town = Cadomyr, ".+" -> inform("[Quest gelöst] Du erhältst fünf Silberstücke und einen großen Metallschild."), money + 500, item(20, 1, 599, "descriptionEn" = "The shield shows the coat of arms of the house of Edwards, a one-horned lion.", "descriptionDe" = "Das Schild trägt das Wappern der Edwards, den einhörnigen Löwen."), queststatus(108) = 5, rankpoints + 10, "Sehr gut, nun hat Robertus die Skizze der Königin. Als Bote der Königin verdient ihr diesen Schild mit ihrem Wappen."
+queststatus(108) = 4, ".+" -> inform("[Quest gelöst] Du erhältst fünf Silberstücke und einen großen Metallschild."), money + 500, item(20, 1, 599, "descriptionEn" = "The shield shows the coat of arms of the house of Edwards, a one-horned lion.", "descriptionDe" = "Das Schild trägt das Wappern der Edwards, den einhörnigen Löwen."), queststatus(108) = 5, "Sehr gut, nun hat Robertus die Skizze der Königin. Als Bote der Königin verdient ihr diesen Schild mit ihrem Wappen."
 
 -- 3rd quest: Bring a message to Arenius Batavius.
 
@@ -165,9 +208,9 @@ queststatus(108) = 6, "Task", "Adventure", "Message" -> "Don't hurry so much tha
 queststatus(108) = 6, "Auftrag", "Aufgabe", "Abenteuer", "Botschaft", "Nachricht" -> "Hetzt euch nicht zu sehr, das ist nicht gut für das Herz. Aber ich glaube, Arenius Batavius wartet sehnsüchtig auf die Informationen, die ihr habt."
 
 -- Quest 3 solved, reward: merinium plated dagger (444), +10 rankpoints
-queststatus(108) = 7, english, town = Cadomyr, ".+" -> inform("[Quest solved] You are awarded a merinium plated dagger. You advance in Queen Rosaline Edwards' favour."), item(444, 1, 699), queststatus(108) = 8, rankpoints + 10, "Thank you for delivering the information to Arenius Batavius. Whoever those Salavesh are, after rereading the books about them, I guess you might need a good dagger for self defense."
-queststatus(108) = 7, english, ".+" -> inform("[Quest solved] You are awarded a merinium plated dagger."), item(444, 1, 699), queststatus(108) = 8, "Thank you for delivering the information to Arenius Batavius. Whoever those Salavesh are, after rereading the books about them, I guess you might need a good dagger for self defense."
-queststatus(108) = 7, town = Cadomyr, ".+" -> inform("[Quest gelöst] Du erhältst einen meriniumbeschichteten Dolch. Dein Ansehen bei Königin Rosaline Edwards steigt."), item(444, 1, 699), queststatus(108) = 8, rankpoints + 10, "Ich danke für das Überbringen der Informationen an Arenius Batavius. Wer auch immer diese Salavesh sind; nach einem erneutem Studium denke ich, dass ihr einen guten Dolch zur Selbstverteidigung braucht."
+queststatus(108) = 7, english, town = Cadomyr, ".+" -> inform("[Quest solved] You are awarded a merinium plated dagger."), item(444, 1, 699), queststatus(108) = 8, rankpoints + 10, "Thank you for delivering the information to Arenius Batavius. Whoever those Salavesh are, after rereading the books about them, I guess you might need a good dagger for self defence."
+queststatus(108) = 7, english, ".+" -> inform("[Quest solved] You are awarded a merinium plated dagger."), item(444, 1, 699), queststatus(108) = 8, "Thank you for delivering the information to Arenius Batavius. Whoever those Salavesh are, after rereading the books about them, I guess you might need a good dagger for self defence."
+queststatus(108) = 7, town = Cadomyr, ".+" -> inform("[Quest gelöst] Du erhältst einen meriniumbeschichteten Dolch."), item(444, 1, 699), queststatus(108) = 8, rankpoints + 10, "Ich danke für das Überbringen der Informationen an Arenius Batavius. Wer auch immer diese Salavesh sind; nach einem erneutem Studium denke ich, dass ihr einen guten Dolch zur Selbstverteidigung braucht."
 queststatus(108) = 7, ".+" -> inform("[Quest gelöst] Du erhältst einen meriniumbeschichteten Dolch."), item(444, 1, 699), queststatus(108) = 8, "Ich danke für das Überbringen der Informationen an Arenius Batavius. Wer auch immer diese Salavesh sind; nach einem erneutem Studium denke ich, dass ihr einen guten Dolch zur Selbstverteidigung braucht."
 
 -- 4th quest: Bring a message to Daerbur Wimbert.
@@ -185,30 +228,30 @@ queststatus(108) = 9, "Task", "Adventure", "Message" -> "The Queen does not appr
 queststatus(108) = 9, "Auftrag", "Aufgabe", "Abenteuer", "Botschaft", "Nachricht" -> "Die Königin wartet nicht gerne. Bald wird sie erfahren, dass ihr dafür verantwortlich seid, dass ihre Edelsteine aus der Dunkellochmine nicht ankommen."
 
 -- Quest 4 solved, reward: 400cp, +15 rankpoints
-queststatus(108) = 10, english, town = Cadomyr, ".+" -> inform("[Quest solved] You are awarded 40 silver coins. You advance in Queen Rosaline Edwards' favour."), money + 4000, queststatus(108) = 11, rankpoints + 15, "Great! Now the treasury of Cadomyr will have more riches. Here is your reward."
+queststatus(108) = 10, english, town = Cadomyr, ".+" -> inform("[Quest solved] You are awarded 40 silver coins."), money + 4000, queststatus(108) = 11, rankpoints + 15, "Great! Now the treasury of Cadomyr will have more riches. Here is your reward."
 queststatus(108) = 10, english, ".+" -> inform("[Quest solved] You are awarded 40 silver coins."), money + 4000, queststatus(108) = 11, "Great! Now the treasury of Cadomyr will have more riches. Here is your reward."
-queststatus(108) = 10, town = Cadomyr, ".+" -> inform("[Quest gelöst] Du erhältst 40 Silberstücke. Dein Ansehen bei Königin Rosaline Edwards steigt."), money + 4000, queststatus(108) = 11, rankpoints + 15, "Großartig! Nun wird noch mehr Kitsch die Schatzkammer Cadomyrs überfluten. Hier, eure Belohnung."
+queststatus(108) = 10, town = Cadomyr, ".+" -> inform("[Quest gelöst] Du erhältst 40 Silberstücke."), money + 4000, queststatus(108) = 11, rankpoints + 15, "Großartig! Nun wird noch mehr Kitsch die Schatzkammer Cadomyrs überfluten. Hier, eure Belohnung."
 queststatus(108) = 10, ".+" -> inform("[Quest gelöst] Du erhältst 40 Silberstücke."), money + 4000, queststatus(108) = 11, "Großartig! Nun wird noch mehr Kitsch die Schatzkammer Cadomyrs überfluten. Hier, eure Belohnung."
 
 -- 5th quest: Bring a message to Archmage Elvaine Morgan.
 
 -- Give out quest 5
-queststatus(108) = 11, english, "quest", "mission" -> inform("[New quest] Delayed Mail V: You received a message for Archmage Elvaine Morgan."), queststatus(108) = 12, "Are you ready for a secret diplomatic mission? Deliver this royal despatch to Archmage Morgan of Runewick. Do not even think about breaking its seal!"
+queststatus(108) = 11, english, "quest", "mission" -> inform("[New quest] Delayed Mail V: You received a message for Archmage Elvaine Morgan."), queststatus(108) = 12, "Are you ready for a secret diplomatic mission? Deliver this royal dispatch to Archmage Morgan of Runewick. Do not even think about breaking its seal!"
 queststatus(108) = 11, "quest", "mission" -> inform("[Neues Quest] Späte Post V: Du hast eine Nachricht für Erzmagier Elvaine Morgan erhalten."), queststatus(108) = 12, "Seid ihr bereit für eine geheime diplomatische Mission? Bringt diese königliche Depesche zu Erzmagier Morgan von Runewick. Und denkt nichtmal dran, das Siegel zu brechen!"
-queststatus(108) = 11, "Task", "Adventure", "Message" -> inform("[New quest] Delayed Mail V: You received a message for Archmage Elvaine Morgan."), queststatus(108) = 12, "Are you ready for a secret diplomatic mission? Deliver this royal despatch to Archmage Morgan of Runewick. Do not even think about breaking its seal!"
+queststatus(108) = 11, "Task", "Adventure", "Message" -> inform("[New quest] Delayed Mail V: You received a message for Archmage Elvaine Morgan."), queststatus(108) = 12, "Are you ready for a secret diplomatic mission? Deliver this royal dispatch to Archmage Morgan of Runewick. Do not even think about breaking its seal!"
 queststatus(108) = 11, "Auftrag", "Aufgabe", "Abenteuer", "Botschaft", "Nachricht" -> inform("[Neues Quest] Späte Post V: Du hast eine Nachricht für Erzmagier Elvaine Morgan erhalten."), queststatus(108) = 12, "Seid ihr bereit für eine geheime diplomatische Mission? Bringt diese königliche Depesche zu Erzmagier Morgan von Runewick. Und denkt nichtmal dran, das Siegel zu brechen!"
 
 -- Quest 5 taken but not solved, repeat the instructions
-queststatus(108) = 12, english, "quest", "mission" -> "Aren't you on a secret mission to deliver a diplomatic despatch to the Archmage of Runewick? Or did I send someone else?"
+queststatus(108) = 12, english, "quest", "mission" -> "Aren't you on a secret mission to deliver a diplomatic dispatch to the Archmage of Runewick? Or did I send someone else?"
 queststatus(108) = 12, "quest", "mission" -> "Seid ihr nicht auf einer geheimen Mission und habt eine diplomatische Depesche zum Erzmagier nach Runewick zu bringen? Oder schickte ich jemand anderes...?"
-queststatus(108) = 12, "Task", "Adventure", "Message" -> "Aren't you on a secret mission to deliver a diplomatic despatch to the Archmage of Runewick? Or did I send someone else?"
+queststatus(108) = 12, "Task", "Adventure", "Message" -> "Aren't you on a secret mission to deliver a diplomatic dispatch to the Archmage of Runewick? Or did I send someone else?"
 queststatus(108) = 12, "Auftrag", "Aufgabe", "Abenteuer", "Botschaft", "Nachricht" -> "Seid ihr nicht auf einer geheimen Mission und habt eine diplomatische Depesche zum Erzmagier nach Runewick zu bringen? Oder schickte ich jemand anderes...?"
 
--- Quest 5 solved, reward: magical topaz (198), topaz ring (282), +20 rankpoints
-queststatus(108) = 13, english, town = Cadomyr, ".+" -> inform("[Quest solved] You are awarded a magical topaz and a topaz ring. You advance in Queen Rosaline Edwards' favour."), item(198, 1, 333, "gemLevel" = "1"), item(282, 1, 999), queststatus(108) = 14, rankpoints + 20, "You helped Her Majesty a lot. Please maintain silence about your journey. Your silence is worth your life and for me, it is worth this ring."
-queststatus(108) = 13, english, ".+" -> inform("[Quest solved] You are awarded a magical topaz and a topaz ring."), item(198, 1, 333, "gemLevel" = "1"), item(282, 1, 999), queststatus(108) = 14, "You helped Her Majesty a lot. Please maintain silence about your journey. Your silence is worth your life and for me, it is worth this ring."
-queststatus(108) = 13, town = Cadomyr, ".+" -> inform("[Quest gelöst] Du erhältst einen magischen Topas und einen Topasring. Dein Ansehen bei Königin Rosaline Edwards steigt."), item(198, 1, 333, "gemLevel" = "1"), item(282, 1, 999), queststatus(108) = 14, rankpoints + 20, "Ihr habt ihrer Majestät sehr geholfen. Bitte bewahrt Stillschweigen über eure Reise. Euer Schweigen ist euch euer Leben und mir diesen Ring wert."
-queststatus(108) = 13, ".+" -> inform("[Quest gelöst] Du erhältst einen magischen Topas und einen Topasring."), item(198, 1, 333, "gemLevel" = "1"), item(282, 1, 999), queststatus(108) = 14, "Ihr habt ihrer Majestät sehr geholfen. Bitte bewahrt Stillschweigen über eure Reise. Euer Schweigen ist euch euer Leben und mir diesen Ring wert."
+-- Quest 5 solved, reward: magical topaz (3525), topaz ring (282), +20 rankpoints
+queststatus(108) = 13, english, town = Cadomyr, ".+" -> inform("[Quest solved] You are awarded a magical topaz and a topaz ring."), item(3525, 1, 333, "gemLevel" = "1"), item(282, 1, 999), queststatus(108) = 14, rankpoints + 20, "You helped Her Majesty a lot. Please maintain silence about your journey. Your silence is worth your life and for me, it is worth this ring."
+queststatus(108) = 13, english, ".+" -> inform("[Quest solved] You are awarded a magical topaz and a topaz ring."), item(3525, 1, 333, "gemLevel" = "1"), item(282, 1, 999), queststatus(108) = 14, "You helped Her Majesty a lot. Please maintain silence about your journey. Your silence is worth your life and for me, it is worth this ring."
+queststatus(108) = 13, town = Cadomyr, ".+" -> inform("[Quest gelöst] Du erhältst einen magischen Topas und einen Topasring."), item(3525, 1, 333, "gemLevel" = "1"), item(282, 1, 999), queststatus(108) = 14, rankpoints + 20, "Ihr habt ihrer Majestät sehr geholfen. Bitte bewahrt Stillschweigen über eure Reise. Euer Schweigen ist euch euer Leben und mir diesen Ring wert."
+queststatus(108) = 13, ".+" -> inform("[Quest gelöst] Du erhältst einen magischen Topas und einen Topasring."), item(3525, 1, 333, "gemLevel" = "1"), item(282, 1, 999), queststatus(108) = 14, "Ihr habt ihrer Majestät sehr geholfen. Bitte bewahrt Stillschweigen über eure Reise. Euer Schweigen ist euch euer Leben und mir diesen Ring wert."
 
 -- No more quests, just nice words of gratitude
 queststatus(108) = 14, english, "quest", "mission" -> "At this moment, you cannot help me anymore. I guess the both of us should do what we do best again... For me, that is reading my book."
@@ -217,9 +260,9 @@ queststatus(108) = 14, "Task", "Adventure", "Message" -> "At this moment, you ca
 queststatus(108) = 14, "Auftrag", "Aufgabe", "Abenteuer", "Botschaft", "Nachricht" -> "Mir ist nicht mehr zu helfen. Wir beide sollten tun, was wir am besten können. Bei mir ist das Bücher lesen."
 
 -- Small talk: The talk here should focus on possible questions. Feel free to add more!
-"profession" -> "I am the royal ambassador, that means I issue the orders of the Queen and diplomatic despatches."
+"profession" -> "I am the royal ambassador, that means I issue the orders of the Queen and diplomatic dispatches."
 "beruf" -> "Ich bin der königliche Botschafter. Das bedeutet, dass ich die Befehle und die diplomatischen Depeschen der Königin kund tue."
-english, "job" -> "I am the royal ambassador, that means I issue the orders of the Queen and diplomatic despatches."
+english, "job" -> "I am the royal ambassador, that means I issue the orders of the Queen and diplomatic dispatches."
 "job" -> "Ich bin der königliche Botschafter. Das bedeutet, dass ich die Befehle und die diplomatischen Depeschen der Königin kund tue."
 english, "Gobaith", "Gobiath" -> "You aren't from Gobaith, are you? If so, my condolescences."
 "Gobaith", "Gobiath" -> "Ihr seid nicht von Gobaith, richtig? Falls doch, mein Beileid."
@@ -230,12 +273,12 @@ english, "Gobaith", "Gobiath" -> "You aren't from Gobaith, are you? If so, my co
 "seal" -> "Never ever even think about breaking the Queen's seal. You'll regret it..."
 "ambassador", "embassador" -> "Did you ever wonder why an ambassador sits in an embassy and not an ambassy? Or why he isn't called embassador?", "Indeed, I am the royal ambassador. That means that you receive orders from the Queen by my hand.", "I used to travel a lot on diplomatic missions, but now I prefer to read a good book."
 "lazy" -> "Lazy, hah. If you had travelled as much as me, you'd understand that I deserve an extended rest now."
-"Order" -> "The orders of the Queen all cross my desk, except for those she yells right in the faces of her lackeys. That makes me somehow... special, no?"
-"despatch", "dispatch" -> "Whenever there is an issue with Galmair or Runewick, the Queen issues despatches. She rarely leaves her palace to deal with our neighbours."
+"Order" -> "The orders of the Queen all cross my desk, except for those she yells right in the faces of her lackeys. That makes me somehow... important, no?"
+"dispatch" -> "Whenever there is an issue with Galmair or Runewick, the Queen issues dispatches. She rarely leaves her palace to deal with our neighbours."
 english, "Hastings", "Baron" -> "Let me see... yes, I have orders for the Baron, it reads, 'Drop dead!'"
 english, "diplomat" -> "The fine art of diplomacy isn't a strength of Cadomyr, but for such things, there is me!"
 "siegel" -> "Brecht niemals ein königliches Siegel. Ihr würdet es bereuen..."
-"Botschafter" -> "Habt ihr euch gefragt, was einen Botschafter von einem Boten unterscheidet? Die Königin hält mich manchmal für zweiteres...", "Fürwahr, ich bin der Botschafter der Königin. Also, ihre Befehle werden duch mich kund getan.", "Dafür war ich oft und gerne in diplomatischer Mission unterwegs. Jetzt ziehe ich es vor, lieber mal ein gutes Buch zu lesen."
+"Botschafter" -> "Habt ihr euch gefragt, was einen Botschafter von einem Boten unterscheidet? Die Königin hält mich manchmal für zweiteres...", "Fürwahr, ich bin der Botschafter der Königin. Also, ihre Befehle werden durch mich kund getan.", "Dafür war ich oft und gerne in diplomatischer Mission unterwegs. Jetzt ziehe ich es vor, lieber mal ein gutes Buch zu lesen."
 "faul" -> "Faul, hah. Wenn ihr so viel gereist wäret wie ich, würdet ihr verstehen, dass ich nun eine längere Rast verdient habe."
 "Befehl" -> "Die Befehle der Königin gehen alle über meinen Schreibtisch. Außer die, die sie ihren Lakaien direkt ins Gesicht schreit. Das macht mich doch irgendwie... wichtig, oder?"
 "Depesche" -> "Wenn es ein Problem mit Galmair oder Runewick gibt sendet die Königin Depeschen aus. Sie verlässt nur ungerne ihren Palast, um sich mit unseren Nachbarn rumzuplagen."
@@ -317,16 +360,14 @@ english, "Zhambra" -> "I am loyal, for Zhambra smiled upon me. I wouldn't do any
 -- Catching typical NPC phrases
 "what sell", "what buy", "list wares", "price of" -> "The only thing I'd buy is my peace. Sometimes, I wish I was a less important man."
 "was verkauf", "was kauf", "warenliste", "preis von" -> "Das einzige, was ich erkaufen würde, wäre meine Ruhe. Ich wünschte manchmal, ich wäre nicht so ein wichtiger Mann."
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin kein Händler."
 "tell something" -> "Let's be honest, you disturb me and I am an important person. So, if you do a royal mission for me, both of us would be happy."
 "erzähl was", "erzähl etwas" -> "Mal ehrlich, ihr stört mich und ich bin eine wichtige Persönlichkeit. Also würdet ihr uns beide glücklich machen, wenn ihr euch auf eine Mission für die Königin begeben würdet."
 
 -- Last catch: Think about keywords the player might say and that are not caught until here.
 english, "Hector", "Valerion" -> "I am proud of being a Valerion. Are you proud to be a...?", "Hector Valerion, at your service.", "I am the royal ambassador and my name is indeed Hector Valerion."
 "Hector", "Valerion" -> "Ich bin stolz darauf, ein Valerion zu sein. Seid ihr stolz darauf ein... was genau nochmal... zu sein?", "Hector Valerion, stets zu Diensten.", "Ich bin der königliche Botschafter und meine Name ist in der Tat Hector Valerion."
-"Yes" -> "Well, no.", "Alright, indeed.", "Who said this?", "#me shrugs.", "I am trying to read!", "#me sighs."
-"Ja" -> "Ja, ne.", "Sicherlich, klar!", "Wer sagt denn sowas?", "#me zuckt mit den Schultern.", "Ich versuche hier zu lesen!", "#me seufzt."
-"No" -> "I guess I forgot which page I was on.", "My book is really interesting. Does the same hold for what you just said?", "Shh!", "Pardon?"
-"Nein" -> "Ich fürchte, ich hab vergessen, auf welcher Seite ich war.", "Mein Buch ist wirklich spannend. Gilt das auch für das, was ihr gerade gesagt habt?", "Psst!", "Pardon?"
 
 -- Cycletext: Add as many random messages as possible
 
@@ -338,7 +379,7 @@ english, "Hector", "Valerion" -> "I am proud of being a Valerion. Are you proud 
 cycletext "Ups, die Post ist da!", "Ups, I have mail."
 cycletext "#me gähnt gelangweilt.", "#me yawns lazily."
 cycletext "#me blättert in einem Buch.", "#me browses a book."
-cycletext "Ich hoffe nur, ich muss nicht schon wieder irgendwelche Depeschen überbringen.", "I just hope I don't have to deliver any despatches."
+cycletext "Ich hoffe nur, ich muss nicht schon wieder irgendwelche Depeschen überbringen.", "I just hope I don't have to deliver any dispatches."
 cycletext "Wann soll ich hier eigentlich mal ungestört zum Lesen kommen?", "When do I get to read undisturbed?"
 cycletext "Ob das Volk heute oder morgen seine Befehle bekommt, was macht das für einen Unterschied? Cadomyr wird es ewig geben!", "Does it make a difference whether the people get their orders today or tomorrow? Cadomyr will last forever!"
 cycletext "Gut, gut, gut...", "Good, good, good..."
@@ -347,3 +388,6 @@ cycletext "Ich hätte heiraten sollen als noch die Zeit dafür war.", "I should ha
 cycletext "Wenn das Leben nicht so läuft, wie man will, sollte man was dagegen tun.", "If life does not turn out how you'd like it, one should do something about it."
 cycletext "Ruhe! Ich lese!", "Silence! I am reading!"
 cycletext "#me betrachtet missmutig eine Schriftrolle, die das königliche Siegel Cadomyrs trägt.", "#me stares morosely at a scroll that bears the royal seal of Cadomyr."
+cycletext "Ich versuche hier zu lesen!", "I am trying to read!"
+cycletext "#me seufzt.", "#me sighs."
+cycletext "Psst!", "Shh!"

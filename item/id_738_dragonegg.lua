@@ -14,18 +14,20 @@ details.
 You should have received a copy of the GNU Affero General Public License along
 with this program.  If not, see <http://www.gnu.org/licenses/>. 
 ]]
--- UPDATE common SET com_script='item.id_738_dragonegg' WHERE com_itemid IN (738);
+-- UPDATE items SET itm_script='item.id_738_dragonegg' WHERE itm_id IN (738);
 
-module("item.id_738_dragonegg", package.seeall)
+local M = {}
 
 
-function MoveItemBeforeMove(User, SourceItem, TargetItem)
+function M.MoveItemBeforeMove(User, SourceItem, TargetItem)
 
-	if SourceItem:getData("spawnSpiders") == "true" then
-		User:inform("Das schleimige Spinnenei rutscht dir aus der Hand.","The slimy spider egg slips from your hands.")
-		return false
-	end
+    if SourceItem:getData("spawnSpiders") == "true" then
+        User:inform("Das schleimige Spinnenei rutscht dir aus der Hand.","The slimy spider egg slips from your hands.")
+        return false
+    end
 
-	return true
+    return true
 
 end
+return M
+

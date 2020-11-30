@@ -12,17 +12,17 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
-require("content.craft.brewing")
-require("base.licence")
 
-module("item.id_339_barrel", package.seeall)
+-- UPDATE items SET itm_script='item.id_339_barrel' WHERE itm_id IN (339,1410,1411);
 
-function UseItem(User, SourceItem, ltstate)
-	if base.licence.licence(User) then --checks if user is citizen or has a licence 
-		return -- avoids crafting if user is neither citizen nor has a licence
-	end
+local brewing = require("craft.final.brewing")
 
-    content.craft.brewing.brewing:showDialog(User, SourceItem)
+local M = {}
+
+function M.UseItem(User, SourceItem, ltstate)
+    brewing.brewing:showDialog(User, SourceItem)
 end
+
+return M

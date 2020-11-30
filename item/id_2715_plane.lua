@@ -12,20 +12,20 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- UPDATE common SET com_script='item.id_2715_plane' WHERE com_itemid IN (2715);
+-- UPDATE items SET itm_script='item.id_2715_plane' WHERE itm_id IN (2715);
 
-require("content.craft.carpentry")
-require("base.lookat")
+local planing = require("craft.final.planing")
+local wood = require("item.general.wood")
 
-module("item.id_2715_plane", package.seeall)
+local M = {}
 
-function UseItem(User, SourceItem, ltstate)
-    content.craft.carpentry.carpentry:showDialog(User, SourceItem)
+M.LookAtItem = wood.LookAtItem
+
+function M.UseItem(User, SourceItem, ltstate)
+    planing.planing:showDialog(User, SourceItem)
 end
 
-function LookAtItem(User, Item)
-    world:itemInform(User, Item, base.lookat.GetItemDescription(User, Item, base.lookat.WOOD))
-end
+return M
 

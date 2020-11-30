@@ -12,61 +12,57 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- UPDATE common SET com_script='item.id_1061_teleport' WHERE com_itemid=1061;
+-- UPDATE items SET itm_script='item.id_1061_teleport' WHERE itm_id=1061;
 
-require("base.common")
+local common = require("base.common")
+local staticteleporter = require("base.static_teleporter")
 
-module("item.id_1061_teleport", package.seeall)
+local M = {}
 
-function UseItem(User, SourceItem, ltstate)
-    if User.pos.z == -40 then
-		User:inform("Nichts passiert.", "Nothing happens.")
-	end
-	
-	local destCoordX; local destCoordY; local destCoordZ
-	local loc
-	local success
-	local radius
-	local myPortal
-	
-	destCoordX = SourceItem:getData("destinationCoordsX")
-	destCoordY = SourceItem:getData("destinationCoordsY")
-	destCoordZ = SourceItem:getData("destinationCoordsZ")
-	if (destCoordX ~= "") and (destCoordY ~= "") and (destCoordZ ~= "") then
-	    success = false;
-		radius = 4;
+function M.UseItem(User, SourceItem, ltstate)
+    if common.isInPrison(User.pos) then
+        User:inform("Nichts passiert.", "Nothing happens.")
+        return
+    end
 
-		for i = 1, 10 do
-			loc = position( User.pos.x - radius + math.random( 2*radius ), User.pos.y - radius + math.random( 2*radius ), User.pos.z )
+    local destCoordX = SourceItem:getData("destinationCoordsX")
+    local destCoordY = SourceItem:getData("destinationCoordsY")
+    local destCoordZ = SourceItem:getData("destinationCoordsZ")
 
-			-- never create it on people
-			-- never create it on items
-			if not world:isCharacterOnField( loc ) and not world:isItemOnField( loc ) and (world:getField( loc ):tile()~=6) then
+    if (destCoordX ~= "") and (destCoordY ~= "") and (destCoordZ ~= "") then
 
-				-- create a gate 
-				myPortal = world:createItemFromId( 10, 1, loc, true, 933 ,nil);
-				myPortal:setData("destinationCoordsX",destCoordX)
-				myPortal:setData("destinationCoordsY",destCoordY)
-				myPortal:setData("destinationCoordsZ",destCoordZ)
-				world:changeItem(myPortal)
-				world:makeSound( 4, loc )
+        if staticteleporter.isBlocked(position(tonumber(destCoordX),tonumber(destCoordY),tonumber(destCoordZ))) then
+            common.InformNLS( User,
+            "Das Buch in deiner Hand schlägt von alleine wieder zu!",
+            "The book in your hand closes itself!" )
+            return
+        end
 
-				success = true;
-				break
-			end
+        local radius = 4;
+        local targetPos = common.getFreePos(User.pos, radius)
 
-		end
+        if targetPos ~= User.Pos then
+            -- create a gate
+            local myPortal = world:createItemFromId( 10, 1, targetPos, true, 933, nil);
+            myPortal:setData("destinationCoordsX", destCoordX)
+            myPortal:setData("destinationCoordsY", destCoordY)
+            myPortal:setData("destinationCoordsZ", destCoordZ)
+            world:changeItem(myPortal)
+            world:makeSound(4, targetPos)
 
-		if not success then -- no free space found
-			base.common.InformNLS( User,
-			"Rings um Dich erzittern Boden und Gegenstände!",
-			"All around you ground and items are trembling!" );
-		end	
-			
-        world:erase( SourceItem, 1 );
+        else -- no free space found
+            common.InformNLS( User,
+            "Rings um Dich erzittern Boden und Gegenstände!",
+            "All around you ground and items are trembling!" )
+        end
+
+        world:erase(SourceItem, 1)
     else
-	   -- no portal book
-	end	
+       -- no portal book
+    end
 end
+
+return M
+

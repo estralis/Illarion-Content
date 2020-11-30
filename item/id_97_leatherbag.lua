@@ -12,28 +12,28 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- UPDATE common SET com_script='item.id_97_leatherbag' WHERE com_itemid=97;
+-- UPDATE items SET itm_script='item.id_97_leatherbag' WHERE itm_id=97;
+local lookat = require("base.lookat")
+local M = {}
 
-module("item.id_97_leatherbag", package.seeall)
+local BAG_LABEL_KEY = "bagLabel"
+local BAG_LABEL_COMMAND = "!bag"
+local MAX_LABEL_LENGTH = 100
 
-BAG_LABEL_KEY = "bagLabel"
-BAG_LABEL_COMMAND = "!bag"
-MAX_LABEL_LENGTH = 100
-
-function LookAtItem(User,Item)
-    local lookAt = base.lookat.GenerateLookAt(User, Item)
+function M.LookAtItem(User,Item)
+    local lookAt = lookat.GenerateLookAt(User, Item)
 
     local bagLabel = Item:getData(BAG_LABEL_KEY)
     if bagLabel ~= "" then
         lookAt.description = bagLabel
     end
 
-    world:itemInform(User, Item, lookAt)
+    return lookAt
 end
 
-function UseItem(User, Item)
+function M.UseItem(User, Item)
     local itemType = Item:getType()
     if (itemType == scriptItem.field)
     or (itemType == scriptItem.inventory)
@@ -62,8 +62,11 @@ function UseItem(User, Item)
                     User:inform("Du beschriftest die Ledertasche mit "..label..".")
                 else
                     User:inform("You label the leather bag with "..label..".")
-                end 
-            end               
+                end
+            end
         end
     end
 end
+
+return M
+

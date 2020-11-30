@@ -15,185 +15,178 @@ You should have received a copy of the GNU Affero General Public License along
 with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 
--- UPDATE common SET com_script='item.bottles' WHERE com_itemid IN (2500, 2496, 2497, 2501, 2499);
+-- UPDATE items SET itm_script='item.bottles' WHERE itm_id IN (2500, 2496, 2497, 2501, 2499);
 
-require("base.common")
-require("base.lookat")
+local common = require("base.common")
+local lookat = require("base.lookat")
+local evilrock = require("triggerfield.evilrock")
 
-module("item.bottles", package.seeall)
+local M = {}
 
-function InitDrinks()
-    if ( drinkList == nil) then
-        -- nameDE, nameEN, leftover item, { {empty target container, filled target container}, ...}
-        drinkList={};
-        drinkList[2500] = {  "Weinflasche", "bottle of wine", 2498,
-        {{1858, 1860}, {224, 1857}, {2055, 2057}, {1840, 1842}, {2185, 2187}} };  -- Kelch, Goldkelch, Glas, Kupferkelch, Holzbecher
+-- nameDE, nameEN, leftover item, { {empty target container, filled target container}, ...}
+local drinkList = {}
+drinkList[2500] = {  "Weinflasche", "bottle of wine", 2498,
+    {{1858, 1860}, {224, 1857}, {2055, 2057}, {1840, 1842}, {2185, 2187}} } -- Kelch, Goldkelch, Glas, Kupferkelch, Holzbecher
 
-        drinkList[2496] = {  "Wasserflasche", "bottle of water", 2498,
-        { {1858, 1855}, {224, 1854}, {2055, 2058},{1840, 1841}, {2185, 2186} } };
+drinkList[2496] = {  "Wasserflasche", "bottle of water", 2498,
+    { {1858, 1855}, {224, 1854}, {2055, 2058},{1840, 1841}, {2185, 2186} } }
 
-        drinkList[2497] = {  "Metflasche", "bottle of mead", 2498,
-        { {1858, 1853}, {224, 1856}, {2055, 2056},{1840, 1843}, {2185, 2188} } };
+drinkList[2497] = {  "Metflasche", "bottle of mead", 2498,
+    { {1858, 1853}, {224, 1856}, {2055, 2056},{1840, 1843}, {2185, 2188} } }
 
-        drinkList[2501] = {  "Bierflasche", "bottle of dark beer", 2498,
-        { {1908, 1909} } };             -- Krug
+drinkList[2501] = {  "Bierflasche", "bottle of dark beer", 2498,
+    { {1908, 1909} } } -- Krug
 
-        drinkList[2499] = {  "Ciderflasche", "bottle of cider", 2498,
-        { {1858, 1859}, {224, 1861},{2055, 2059},{1840, 1844}, {2185, 2189} } };
+drinkList[2499] = {  "Ciderflasche", "bottle of cider", 2498,
+    { {1858, 1859}, {224, 1861},{2055, 2059},{1840, 1844}, {2185, 2189} } }
 
-        -- init descriptions
-        BottleQualDe={"Randvolle ","Volle ","Halbvolle ","Fast leere "};
-        BottleQualEn={"Brimfull ", "Full ","Half full ","Almost empty "};
+local BottleQualDe = {"Randvolle ", "Volle ", "Halbvolle ", "Fast leere "}
+local BottleQualEn = {"Brimfull ", "Full ", "Half full ", "Almost empty "}
+local BottleQualLm = {8, 6, 3, 1}
 
-        BottleQualLm={8,6,3,1};
+local function getEvilrockBucket(User)
+    local Radius = 1
+    for  x = -Radius, Radius do
+        for y = -Radius, Radius do
+            local targetPos = position(User.pos.x + x, User.pos.y + y, User.pos.z)
+            if (world:isItemOnField(targetPos)) then
+                local item = world:getItemOnField(targetPos)
+                if (item.id == 51 and item:getData("evilrockBucket") == "true") then
+                    return item
+                end
+            end
+        end
     end
+    return nil
 end
 
+local function Evilrockentrance(User, SourceItem, ltstate)
+    local evilrockBucket =  getEvilrockBucket(User)
+    if evilrockBucket ~= nil and SourceItem.id == 2496 then
+        common.TurnTo(User, evilrockBucket.pos) -- turn if necessary
 
+        if ( ltstate == Action.none ) then
+            User:startAction( 20, 21, 5, 10, 25)
+            User:talk(Character.say, "#me beginnt den Eimer zu befüllen.", "#me starts to fill bucket.")
+            return true
+        end
 
-function UseItem(User, SourceItem)
+        if ( ltstate == Action.abort ) then
+            common.InformNLS(User, "Du brichst deine Arbeit ab.", "You abort your work.")
+            return true
+        end
 
-    if firstcall==nil then
-        InitDrinks();
-        firstcall=1;
+        world:swap(evilrockBucket, 52, 999)
+
+        world:erase(SourceItem, 1)
+        common.CreateItem(User, 2498, 1, 333, nil)
+
+        for xx = 992, 996 do
+            local EntranceTrap = world:getItemOnField(position(xx,195,0))
+            if EntranceTrap.id == 3097 then
+                world:erase(EntranceTrap,EntranceTrap.number)
+                world:makeSound(4,User.pos)
+                world:makeSound(5,User.pos)
+            end
+        end
+        common.InformNLS(User, "Du hörst ein seltsames Geräusch von unten.", "You hear a strange noise from below.")
+        return true
     end
+    return false
+end
 
-    local progress = User:getQuestProgress(1);
+function M.UseItem(User, SourceItem, ltstate)
 
     local food = drinkList[ SourceItem.id ];
     if (food ~= nil ) then
-	Evilrockentrance(User, SourceItem, ltstate)
-	local TargetItem = base.common.GetTargetItem(User, SourceItem);
-        if( TargetItem ) then
-            for i, combo in pairs(food[4]) do
-                if combo[1] == TargetItem.id then
-					-- fill drink
-					if (TargetItem.number > 1) then
-						world:erase( TargetItem, 1 );
-						User:createItem( combo[2], 1, 333,nil);
-					else
-						TargetItem.id = combo[2];
-						world:changeItem(TargetItem);
-					end
-					world:makeSound(10,User.pos)
+        if Evilrockentrance(User, SourceItem, ltstate) == true then
+            return
+        end
 
-					-- create leftovers
-					if( SourceItem.quality > 199 ) then
-						-- reduce one portion
-						world:changeQuality( SourceItem, -100 );
-					else
-						if( math.random( 50 ) <= 1 ) then
-							base.common.InformNLS( User,
-							"Die leere Flasche ist angeschlagen und unbrauchbar.",
-							"The empty bottle is broken and no longer usable.");
-						else
-							local dataCopy = {descriptionDe=SourceItem:getData("descriptionDe"), descriptionEn=SourceItem:getData("descriptionEn")};
-							local notCreated = User:createItem( food[3], 1, 333, dataCopy); -- create the remnant item
-							if ( notCreated > 0 ) then -- too many items -> character can't carry anymore
-								world:createItemFromId(food[3], notCreated, User.pos, true, 333, dataCopy);
-								base.common.HighInformNLS(User, "Du kannst nichts mehr halten.", "You can't carry any more.");
-							end
-						end
-						world:erase(SourceItem,1);
-					end
+        local TargetItems = {}
+        for _, combo in pairs(food[4]) do
+            table.insert(TargetItems,combo[1])
+        end
+        local foundVessels, vesselItem = common.GetTargetItemAnywhere(User,TargetItems)
+        
+        if foundVessels == 0 then
+            common.InformNLS( User, "Dir fällt auf, dass du gar kein Gefäß hast, welches du füllen könntest.",
+                                    "You notice that you do not have a vessel which you could fill.")
+        elseif foundVessels == 1 then
+            for _, combo in pairs(food[4]) do
+                if combo[1] == vesselItem.id then
+                    -- fill drink
+                    if (vesselItem.number > 1) then
+                        world:erase(vesselItem, 1)
+                        common.CreateItem(User, combo[2], 1, 333, nil)
+                    else
+                        vesselItem.id = combo[2]
+                        world:changeItem(vesselItem)
+                    end
+                    world:makeSound(10,User.pos)
+
+                    -- create leftovers
+                    if( SourceItem.quality > 199 ) then
+                        -- reduce one portion
+                        SourceItem.quality = SourceItem.quality-100
+                        world:changeItem(SourceItem)
+                        --world:changeQuality( SourceItem, -100 );
+                    else
+                        if( math.random( 50 ) <= 1 ) then
+                            common.InformNLS( User,
+                            "Die leere Flasche ist angeschlagen und unbrauchbar.",
+                            "The empty bottle is broken and no longer usable.");
+                        else
+                            local dataCopy = {descriptionDe=SourceItem:getData("descriptionDe"), descriptionEn=SourceItem:getData("descriptionEn")};
+                            common.CreateItem(User, food[3], 1, 333, dataCopy)
+                        end
+                        world:erase(SourceItem, 1)
+                    end
 
                     -- cancel after one found item
                     break;
                 end -- found item
-            end -- search loop
+            end
         else
-            base.common.InformNLS( User,
-                "Nimm die Flasche und ein Trinkgefäß in deine Hände.",
-                "Take the bottle and a drinking vessel in your hands.");
+            common.InformNLS( User, "Du bist dir nicht ganz sicher, welches Gefäß du füllen willst. Vielleicht nimmst du es in die Hand?",
+                                    "You are not sure what vessel you want to fill. Perhaps you could hold one in your hand?")
         end
     else
-        User:inform("unkown bottle item ");
+        --User:inform("unkown bottle item ");
     end
 end
 
-
-function LookAtItem(User, Item)
-    local lookAt = base.lookat.GenerateLookAt(User, Item)
-
-    if firstcall==nil then
-        InitDrinks();
-        firstcall=1;
-    end
-
+function M.LookAtItem(User, Item)
+    local lookAt = lookat.GenerateLookAt(User, Item)
     local food = drinkList[ Item.id ];
     if food == nil then
-        User:inform("unkown bottle item ");
-        return
+        return lookAt
     end
 
     -- decode item quality, extract duration
-    local itemDura=math.mod(Item.quality,100);
+    local itemDura=math.fmod(Item.quality,100);
     local itemQual=(Item.quality-itemDura)/100;
     --User:inform("portions "..itemQual);
 
-	-- build description
+    -- build description
 
     local DisplayText="";
 
     -- build quality text
     for i,qualLimit in pairs(BottleQualLm) do
         if (itemQual>=qualLimit ) then
-            DisplayText = base.common.GetNLS( User, BottleQualDe[i], BottleQualEn[i] );
+            DisplayText = common.GetNLS( User, BottleQualDe[i], BottleQualEn[i] );
             break;
         end
     end
 
-    DisplayText = DisplayText..base.common.GetNLS( User, food[1], food[2] );
-	if lookAt.description ~= nil then -- append the label
-		DisplayText = DisplayText..". "..lookAt.description;
-	end
+    DisplayText = DisplayText..common.GetNLS( User, food[1], food[2] );
+    if lookAt.description ~= nil then -- append the label
+        DisplayText = DisplayText..". "..lookAt.description;
+    end
     lookAt.description = DisplayText
 
-    world:itemInform(User, Item, lookAt)
+    return lookAt
 end
 
-
-
-function Evilrockentrance(User, SourceItem, ltstate)
-  local checkBucket = world:getItemOnField(position(997,199,2))
-  if checkBucket.id == 51 and SourceItem.id == 2496 then
-	local foundSource
-	-- check for empty bucket
-	TargetItem = base.common.GetItemInArea(User.pos, 51);
-	if (TargetItem ~= nil) then
-		if not base.common.IsLookingAt( User, position(997,199,2) ) then -- check looking direction
-			base.common.TurnTo( User, position(997,199,2) ); -- turn if necessary
-		end
-		foundSource=true
-	end
-
-
-	if not foundSource then
-	-- nothing found to fill the bucket.
-	base.common.InformNLS(User,"Du solltest schon einen anderen Eimer zum Umfüllen haben.","You should have another container to transfer the water.");
-	return
-	end
-
-	if ( ltstate == Action.none ) then
-		User:startAction( 20, 21, 5, 10, 25);
-		User:talk(Character.say, "#me beginnt den Eimer zu befüllen.", "#me starts to fill bucket.")
-		return
-	end
-
-	world:swap(checkBucket,52,999)
---[[		local checkFullBucket = world:getItemOnField(position(997,199,3))
-		if checkFullBucket.id == 52 then
-			checkFullBucket.wear=255
-			world:changeItem(checkFullBucket)
-		end ]]
-	triggerfield.evilrock.RemoveEntranceTrap(User)
-
-
-	local notCreated = User:createItem( 2498, 1, 999, nil ); -- create the new produced items
-	if SourceItem.number == 1 then
-		world:erase(SourceItem,1)
-		return
-	end
-  end
-end
-
+return M

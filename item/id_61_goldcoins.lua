@@ -12,33 +12,54 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- I_61.lua Goldm&uuml;nzen einschmelzen
 
--- UPDATE common SET com_script='item.id_61_goldcoins' WHERE com_itemid IN (61);
+-- UPDATE items SET itm_script='item.id_61_goldcoins' WHERE itm_id IN (61);
 
-require("base.common")
+local common = require("base.common")
+local lookat = require("base.lookat")
+local money = require("base.money")
+local goldenGoblet = require("item.id_224_goldengoblet")
 
-module("item.id_61_goldcoins", package.seeall)
+local M = {}
 
-if not InitTime then
-	InitTime=true;
-	TimeList = {};
+local TimeList = {}
+
+function M.LookAtItem(User, Item)
+    if Item.number == 1 then
+        lookat.SetSpecialDescription(Item, "Eine einzelne Münze", "A single coin")
+    else
+        lookat.SetSpecialDescription(Item, "Eine Sammlung aus " .. Item.number .. " Münzen", "A collection of " .. Item.number .. " coins")
+    end
+    return lookat.GenerateLookAt(User, Item, lookat.NONE)
 end
 
-function UseItem(User, SourceItem)
+function M.UseItem(User, SourceItem)
 
-   	if TimeList[User.id]~=nil then
-		if  ( (math.abs(world:getTime("second") - TimeList[User.id]) ) <=3) then  --1 Rl. second delay
-			return;
-		end
-	end
-   	TimeList[User.id] = world:getTime("second");
-		
-	if math.random(2) == 1 then	gValue = "Kopf"; eValue = "head";
-	else gValue = "Zahl"; eValue = "tail"; end    
-	
-	User:talk(Character.say, "#me wirft eine Münze in die Luft und fängt sie wieder auf. Sie zeigt "..gValue..".", "#me throws a coin in the air and catches it again. It shows "..eValue..".")
+    if goldenGoblet.putCoinsInGoblet(User, SourceItem) then
+        return
+    end
 
+    local isRonaganTrap = (SourceItem:getData("ronaganTrap") == "true")
+    if (isRonaganTrap == true) then
+        User:inform("Ein Dieb hat dich in eine Falle gelockt. Er springt aus einem der Schatten und stielt dir ein paar Münzen.", "A thief has lured you into a trap, jumping out from a shadow, he steals some coins from you.")
+
+        -- steal 1% - 5% of characters money in inventroy
+        local wealth = money.CharCoinsToMoney(User)
+        money.TakeMoneyFromChar(User, math.random(math.floor(wealth / 100), math.floor(wealth / 20)))
+        return
+   end
+
+    if common.spamProtect(User, 5) then
+        return
+    end
+
+    if math.random(2) == 1 then
+        User:talk(Character.say, "#me wirft eine Münze in die Luft und fängt sie wieder auf. Sie zeigt Kopf.", "#me throws a coin in the air and catches it again. It shows head.")
+    else
+        User:talk(Character.say, "#me wirft eine Münze in die Luft und fängt sie wieder auf. Sie zeigt Zahl.", "#me throws a coin in the air and catches it again. It shows tail.")
+    end
 end
+
+return M

@@ -12,46 +12,40 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- LTE für das Druidensystem
--- by Falk
--- immunity. Has actually nothing to do with healing potion 328 orange bottle
-
-module("alchemy.lte.id_328_immunity", package.seeall)
-
 -- INSERT INTO longtimeeffects VALUES (328, 'alchemy_immunity', 'alchemy.lte.id_328_immunity');
 
-function getAction(Character,Effect,Runde)
---Hier die eigentlichen Aktionen eintragen  
+local M = {}
+
+function M.addEffect(Effect, Character)
+--Character:inform("debug func addEffect")
 end
 
-function addEffect(Effect, Character)               -- Nur beim ersten Aufruf
---Character:inform("debug func addEffect") 
+function M.callEffect(Effect,Character)
+
+    local foundImmunity, immunity, retVal = nil,nil,false;
+    for i=1,8 do
+        foundImmunity, immunity = Effect:findValue("immunity_"..i);
+        if foundImmunity then
+            if immunity == 0 then
+                Effect:removeValue("immunity_"..i);
+            else
+                Effect:addValue("immunity_"..i,immunity-1);
+                retVal = true;
+            end
+        end
+    end
+    Effect.nextCalled = 10;
+    return retVal;
 end
 
-function callEffect(Effect,Character)                  -- Effect wird ausgeführt
-	
-	local foundImmunity, immunity, retVal = nil,nil,false;
-	for i=1,8 do
-		foundImmunity, immunity = Effect:findValue("immunity_"..i);
-		if foundImmunity then
-			if immunity == 0 then
-				Effect:removeValue("immunity_"..i);
-			else
-				Effect:addValue("immunity_"..i,immunity-1);
-				retVal = true;
-			end
-		end
-	end
-	Effect.nextCalled = 10;
-	return retVal;
+function M.removeEffect(Effect,Character)
+--Character:inform("debug func removeEffect")
 end
 
-function removeEffect(Effect,Character)         
---Character:inform("debug func removeEffect")  
+function M.loadEffect(Effect,Character)
+--Character:inform("debug func loadEffect")
 end
 
-function loadEffect(Effect,Character)                  -- wenn der Charakter erneut einloggt
---Character:inform("debug func loadEffect")   
-end
+return M

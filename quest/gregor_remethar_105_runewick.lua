@@ -16,23 +16,23 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- INSERT INTO "quests" ("qst_id", "qst_script") VALUES (105, 'quest.gregor_remethar_105_runewick');
 
-require("base.common")
-require("base.factions")
-module("quest.gregor_remethar_105_runewick", package.seeall)
+local common = require("base.common")
+local factions = require("base.factions")
+local M = {}
 
-GERMAN = Player.german
-ENGLISH = Player.english
+local GERMAN = Player.german
+local ENGLISH = Player.english
 
 
 -- Insert the quest title here, in both languages
 
-Title = {}
+local Title = {}
 Title[GERMAN] = "Ein Licht am Ende des Tunnels"
 Title[ENGLISH] = "A light at the end of the tunnel"
 
 -- Insert an extensive description of each status here, in both languages
 -- Make sure that the player knows exactly where to go and what to do
-Description = {}
+local Description = {}
 Description[GERMAN] = {}
 Description[ENGLISH] = {}
 Description[GERMAN][1] = "Gehe in die Gruft und entzünde mindestens eines der Ehrenlichter, dann kehre zu Gregor Remethar zurück."
@@ -42,47 +42,49 @@ Description[ENGLISH][2] = "Go to the crypt and light at least one of the lamps i
 
 
 -- Insert the position of the quest start here (probably the position of an NPC or item)
-Start = {907, 804, 0}
+local Start = {862, 789, 0}
 
 
 -- For each status insert a list of positions where the quest will continue, i.e. a new status can be reached there
-QuestTarget = {}
-QuestTarget[1] = {position(907, 804, 0), position(906, 825, -3), position(906, 823, -3)} -- Lights
-QuestTarget[2] = {position(907, 804, 0), position(906, 825, -3), position(906, 823, -3)} -- Lights
+local QuestTarget = {}
+QuestTarget[1] = {position(862, 789, 0), position(873, 796, -3), position(873, 798, -3)} -- Lights
+QuestTarget[2] = {position(862, 789, 0), position(873, 796, -3), position(873, 798, -3)} -- Lights
 
 
 
 -- Insert the quest status which is reached at the end of the quest
-FINAL_QUEST_STATUS = 2
+local FINAL_QUEST_STATUS = 2
 
 
-function QuestTitle(user)
-    return base.common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
+function M.QuestTitle(user)
+    return common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
 end
 
-function QuestDescription(user, status)
+function M.QuestDescription(user, status)
     local german = Description[GERMAN][status] or ""
     local english = Description[ENGLISH][status] or ""
 
-    return base.common.GetNLS(user, german, english)
+    return common.GetNLS(user, german, english)
 end
 
-function QuestStart()
+function M.QuestStart()
     return Start
 end
 
-function QuestTargets(user, status)
+function M.QuestTargets(user, status)
     return QuestTarget[status]
 end
 
-function QuestFinalStatus()
+function M.QuestFinalStatus()
     return FINAL_QUEST_STATUS
 end
 
-function QuestAvailability(user, status)
-    if base.factions.isRunewickCitizen(user) and status == 0 then
+function M.QuestAvailability(user, status)
+    if factions.isRunewickCitizen(user) and status == 0 then
         return Player.questAvailable
     else
         return Player.questNotAvailable
     end
 end
+
+return M

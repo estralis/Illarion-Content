@@ -16,8 +16,8 @@
 -- NPC Name: Gregor Remethar                                         Runewick --
 -- NPC Job:  mortician                                                        --
 --                                                                            --
--- NPC Race: human                      NPC Position:  907, 804, 0            --
--- NPC Sex:  male                       NPC Direction: south                  --
+-- NPC Race: human                      NPC Position:  862, 789, 0            --
+-- NPC Sex:  male                       NPC Direction: west                   --
 --                                                                            --
 -- Author:   Estralis Seborian                                                --
 --                                                       easyNPC Parser v1.23 --
@@ -26,8 +26,8 @@
 name = "Gregor Remethar"
 race = human
 sex = male
-position = 907, 804, 0
-direction = south
+position = 862, 789, 0
+direction = west
 affiliation = "Runewick"
 job = "mortician"
 
@@ -81,7 +81,7 @@ itemShoes = 53
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Ah, one of the living visits me. What brought you here - you want to honour your ancestors in the crypt?"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Ah, einer der Lebenden besucht mich. Was hat euch hergebracht - wollt ihr in der Gruft eure Vorfahren ehren?"
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Ah, einer der Lebenden besucht mich. Was hat euch hergebracht - wollt ihr in der Gruft eure Vorfahren ehren?"
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Ah, one of the living visits me. What brought you here - you want to honour your ancestors in the crypt?"
 "Hiho", "Hallo", "Hey", "Greeb" -> ", einer der Lebenden besucht mich. Was hat euch hergebracht - wollt ihr in der Gruft eure Vorfahren ehren?"
 "Farewell", "Bye", "Fare well", "See you" -> "Go with the blessing of the Gods, and do not return again too soon, if you know what I mean?"
@@ -91,16 +91,18 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Go with the blessing of the
 "How are you", "How feel", "How do you do" -> "I bury those who died. How do you suppose I feel? To appreciate the value of life is indeed not easy."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Ich beerdige diejenigen, die starben. Wie meint ihr wohl, fühle ich mich dabei? Den Wert eines Lebens zu schätzen ist fürwahr nicht einfach."
 "your name", "who are you", "who art thou" -> "My name is Gregor Remethar, I am delighted to meet you and to be able to - still - talk to you."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Mein Name ist Gregor Remethar, es freut mich, mit mich euch - noch -unterhalten zu können."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Mein Name ist Gregor Remethar, es freut mich, mich mit Euch - noch - unterhalten zu können."
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin kein Händler."
 
 -- Catching quest triggers. Modify if the NPC does quests.
--- Quest 1: Take lamp oil (390) and make sure that the light in the tomb is burning
+-- Quest 1: Take lamp oil (469) and make sure that the light in the tomb is burning
 
 -- Give out quest 1
-queststatus(105) = 0, english, town = Runewick, "quest", "mission" -> inform("[New quest] A light at the end of the tunnel"), item(390, 1, 333), queststatus(105) = 1, "Indeed, I have a task for you. Could you please go down into the crypt and make sure the lights burn in front of the urns in honour of the mages? Here, take this lamp oil and come back to me when you have lit the lamps."
-queststatus(105) = 0, town = Runewick, "quest", "mission" -> inform("[Neues Quest] Ein Licht am Ende des Tunnels"), item(390, 1, 333), queststatus(105) = 1, "In der Tat, ich habe einen Auftrag für euch. Könntet ihr bitte in die Gruft gehen und sicherstellen, dass die Ehrenlichter vor den Urnen der Magier brennen? Hier, nehmt dieses Lampenöl und kommt zu mir zurück, wenn ihr die Leuchten angezündet habt."
-queststatus(105) = 0, "task", "adventure", "order" -> inform("[New quest] A light at the end of the tunnel"), item(390, 1, 333), queststatus(105) = 1, "Indeed, I have a task for you. Could you please go down into the crypt and make sure the lights burn in front of the urns in honour of the mages? Here, take this lamp oil and come back to me when you have lit the lamps."
-queststatus(105) = 0, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> inform("[Neues Quest] Ein Licht am Ende des Tunnels"), item(390, 1, 333), queststatus(105) = 1, "In der Tat, ich habe einen Auftrag für euch. Könntet ihr bitte in die Gruft gehen und sicherstellen, dass die Ehrenlichter vor den Urnen der Magier brennen? Hier, nehmt dieses Lampenöl und kommt zu mir zurück, wenn ihr die Leuchten angezündet habt."
+queststatus(105) = 0, english, town = Runewick, "quest", "mission" -> inform("[New quest] A light at the end of the tunnel"), item(469, 1, 333), queststatus(105) = 1, "Indeed, I have a task for you. Could you please go down into the crypt and make sure the lights burn in front of the urns in honour of the mages? Here, take this lamp oil and come back to me when you have lit the lamps."
+queststatus(105) = 0, town = Runewick, "quest", "mission" -> inform("[Neues Quest] Ein Licht am Ende des Tunnels"), item(469, 1, 333), queststatus(105) = 1, "In der Tat, ich habe einen Auftrag für euch. Könntet ihr bitte in die Gruft gehen und sicherstellen, dass die Ehrenlichter vor den Urnen der Magier brennen? Hier, nehmt dieses Lampenöl und kommt zu mir zurück, wenn ihr die Leuchten angezündet habt."
+queststatus(105) = 0, town = Runewick, "task", "adventure", "order" -> inform("[New quest] A light at the end of the tunnel"), item(469, 1, 333), queststatus(105) = 1, "Indeed, I have a task for you. Could you please go down into the crypt and make sure the lights burn in front of the urns in honour of the mages? Here, take this lamp oil and come back to me when you have lit the lamps."
+queststatus(105) = 0, town = Runewick, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> inform("[Neues Quest] Ein Licht am Ende des Tunnels"), item(469, 1, 333), queststatus(105) = 1, "In der Tat, ich habe einen Auftrag für euch. Könntet ihr bitte in die Gruft gehen und sicherstellen, dass die Ehrenlichter vor den Urnen der Magier brennen? Hier, nehmt dieses Lampenöl und kommt zu mir zurück, wenn ihr die Leuchten angezündet habt."
 
 -- Quest 1 taken but not solved, repeat the instructions
 queststatus(105) = 1, english, town = Runewick, "quest", "mission" -> "Well, did you make sure the lights are burning in honour of the tomb? If you do ever light the lamps, come to me for a little compensation."
@@ -108,39 +110,39 @@ queststatus(105) = 1, town = Runewick, "quest", "mission" -> "Nun, habt ihr scho
 queststatus(105) = 1, town = Runewick, "task", "adventure", "order" -> "Well, did you make sure the lights are burning in honour of the tomb? If you do ever light the lamps, come to me for a little compensation."
 queststatus(105) = 1, town = Runewick, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Nun, habt ihr schon sichergestellt, dass die Ehrenlichter in der Gruft brennen? Wenn immer ihr die Leuchten angezündet habt, kommt zu mir für eine kleine Aufwandsentschädigung."
 
--- Quest 1 solved, reward: random, 2 rankpoints if Runewick. Remind the player that the quest can solved over and over again
+-- Quest 1 solved, reward: random. Remind the player that the quest can solved over and over again
 
 -- 20cp 30%
-queststatus(105) = 2, english, chance(30.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded two silver coins. Your reputation with Archmage Elvaine Morgan rises."), money + 200, queststatus(105) = 1, rankpoints + 2, "Ah, you lit the lights of honour. Here, take these two silver coins for your efforts. Come again to me if you ever rekindle the lights."
-queststatus(105) = 2, german, chance(30.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst zwei Silberstücke. Dein Ansehen bei Erzmagier Elvaine Morgan steigt."), money + 200, queststatus(105) = 1, rankpoints + 2, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt diese zwei Silberstücke für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
+queststatus(105) = 2, english, chance(30.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded two silver coins."), money + 200, queststatus(105) = 1, "Ah, you lit the lights of honour. Here, take these two silver coins for your efforts. Come again to me if you ever rekindle the lights."
+queststatus(105) = 2, german, chance(30.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst zwei Silberstücke."), money + 200, queststatus(105) = 1, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt diese zwei Silberstücke für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
 
--- Item 1: More lampoil (390) 10%
-queststatus(105) = 2, english, chance(14.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded a bottle of lamp oil. Your reputation with Archmage Elvaine Morgan rises."), item(390, 1, 333), queststatus(105) = 1, rankpoints + 2, "Ah, you lit the lights of honour. Here, take this lamp oil for your efforts. Come again to me if you ever rekindle the lights."
-queststatus(105) = 2, german, chance(14.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst eine Flasche Lampenöl. Dein Ansehen bei Erzmagier Elvaine Morgan steigt."), item(390, 1, 333), queststatus(105) = 1, rankpoints + 2, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt dieses Lampenöl für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
+-- Item 1: More lampoil (469) 10%
+queststatus(105) = 2, english, chance(14.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded a bottle of lamp oil."), item(469, 1, 333), queststatus(105) = 1, "Ah, you lit the lights of honour. Here, take this lamp oil for your efforts. Come again to me if you ever rekindle the lights."
+queststatus(105) = 2, german, chance(14.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst eine Flasche Lampenöl."), item(469, 1, 333), queststatus(105) = 1, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt dieses Lampenöl für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
 
 -- Item 3: Wax (431) 10%
-queststatus(105) = 2, english, chance(17.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded a piece of wax. Your reputation with Archmage Elvaine Morgan rises."), item(431, 1, 333), queststatus(105) = 1, rankpoints + 2, "Ah, you lit the lights of honour. Here, take this piece of wax for your efforts. Come again to me if you ever rekindle the lights."
-queststatus(105) = 2, german, chance(17.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst ein Stück Wachs. Dein Ansehen bei Erzmagier Elvaine Morgan steigt."), item(431, 1, 333), queststatus(105) = 1, rankpoints + 2, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt dieses Stück Wachs für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
+queststatus(105) = 2, english, chance(17.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded a piece of wax."), item(431, 1, 333), queststatus(105) = 1, "Ah, you lit the lights of honour. Here, take this piece of wax for your efforts. Come again to me if you ever rekindle the lights."
+queststatus(105) = 2, german, chance(17.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst ein Stück Wachs."), item(431, 1, 333), queststatus(105) = 1, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt dieses Stück Wachs für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
 
 -- Item 4: Candles (43) 10%
-queststatus(105) = 2, english, chance(20.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded a candle. Your reputation with Archmage Elvaine Morgan rises."), item(43, 1, 333), queststatus(105) = 1, rankpoints + 2, "Ah, you lit the lights of honour. Here, take this candle for your efforts. Come again to me if you ever rekindle the lights."
-queststatus(105) = 2, german, chance(20.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst eine Kerze. Dein Ansehen bei Erzmagier Elvaine Morgan steigt."), item(43, 1, 333), queststatus(105) = 1, rankpoints + 2, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt diese Kerze für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
+queststatus(105) = 2, english, chance(20.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded a candle."), item(43, 1, 333), queststatus(105) = 1, "Ah, you lit the lights of honour. Here, take this candle for your efforts. Come again to me if you ever rekindle the lights."
+queststatus(105) = 2, german, chance(20.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst eine Kerze."), item(43, 1, 333), queststatus(105) = 1, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt diese Kerze für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
 
 -- Item 5: Torch (391) 10%
-queststatus(105) = 2, english, chance(25.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded a torch. Your reputation with Archmage Elvaine Morgan rises."), item(391, 1, 333), queststatus(105) = 1, rankpoints + 2, "Ah, you lit the lights of honour. Here, take this torch for your efforts. Come again to me if you ever rekindle the lights."
-queststatus(105) = 2, german, chance(25.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst eine Fackel. Dein Ansehen bei Erzmagier Elvaine Morgan steigt."), item(391, 1, 333), queststatus(105) = 1, rankpoints + 2, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt diese Fackel für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
+queststatus(105) = 2, english, chance(25.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded a torch."), item(391, 1, 333), queststatus(105) = 1, "Ah, you lit the lights of honour. Here, take this torch for your efforts. Come again to me if you ever rekindle the lights."
+queststatus(105) = 2, german, chance(25.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst eine Fackel."), item(391, 1, 333), queststatus(105) = 1, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt diese Fackel für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
 
 -- Item 6: Cookies (453) 10%
-queststatus(105) = 2, english, chance(33.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded a cookie. Your reputation with Archmage Elvaine Morgan rises."), item(453, 1, 333), queststatus(105) = 1, rankpoints + 2, "Ah, you lit the lights of honour. Here, take this cookie for your efforts. Come again to me if you ever rekindle the lights."
-queststatus(105) = 2, german, chance(33.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst einen Keks. Dein Ansehen bei Erzmagier Elvaine Morgan steigt."), item(453, 1, 333), queststatus(105) = 1, rankpoints + 2, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt diesen Keks für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
+queststatus(105) = 2, english, chance(33.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded a cookie."), item(453, 1, 333), queststatus(105) = 1, "Ah, you lit the lights of honour. Here, take this cookie for your efforts. Come again to me if you ever rekindle the lights."
+queststatus(105) = 2, german, chance(33.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst einen Keks."), item(453, 1, 333), queststatus(105) = 1, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt diesen Keks für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
 
 -- Item 7: Parchment (2745) 10%
-queststatus(105) = 2, english, chance(50.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded a parchment. Your reputation with Archmage Elvaine Morgan rises."), item(2745, 1, 333), queststatus(105) = 1, rankpoints + 2, "Ah, you lit the lights of honour. Here, take this parchment for your efforts. Come again to me if you ever rekindle the lights."
-queststatus(105) = 2, german, chance(50.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst ein Pergament. Dein Ansehen bei Erzmagier Elvaine Morgan steigt."), item(2745, 1, 333), queststatus(105) = 1, rankpoints + 2, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt dieses Pergament für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
+queststatus(105) = 2, english, chance(50.0), town = Runewick, ".+" -> inform("[Quest solved] You are awarded a parchment."), item(2745, 1, 333), queststatus(105) = 1, "Ah, you lit the lights of honour. Here, take this parchment for your efforts. Come again to me if you ever rekindle the lights."
+queststatus(105) = 2, german, chance(50.0), town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst ein Pergament."), item(2745, 1, 333), queststatus(105) = 1, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt dieses Pergament für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
 
 -- Item 8: Golden ring (235) 10%
-queststatus(105) = 2, english, town = Runewick, ".+" -> inform("[Quest solved] You are awarded a golden ring. Your reputation with Archmage Elvaine Morgan rises."), item(235, 1, 577), queststatus(105) = 1, rankpoints + 2, "Ah, you lit the lights of honour. Here, take this golden ring for your efforts. Come again to me if you ever rekindle the lights."
-queststatus(105) = 2, german, town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst einen Goldring. Dein Ansehen bei Erzmagier Elvaine Morgan steigt."), item(235, 1, 577), queststatus(105) = 1, rankpoints + 2, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt diesen Goldring für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
+queststatus(105) = 2, english, town = Runewick, ".+" -> inform("[Quest solved] You are awarded a golden ring."), item(235, 1, 577), queststatus(105) = 1, "Ah, you lit the lights of honour. Here, take this golden ring for your efforts. Come again to me if you ever rekindle the lights."
+queststatus(105) = 2, german, town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst einen Goldring."), item(235, 1, 577), queststatus(105) = 1, "Ah, ihr habt also die Ehrenlichter angezündet. Hier, nehmt diesen Goldring für eure Mühen. Kommt erneut zu mir, wenn ihr die Lichte erneut entzündet habt."
 
 -- Optional: Catching quest triggers. Modify if the NPC does quests
 -- None members of Runewick
@@ -223,10 +225,6 @@ english, "Cherga" -> "I do not love Cherga, but I honour her. Her acts as Guardi
 -- Last catch: Think about keywords the player might say and that are not caught until here.
 english, "Gregor", "Remethar" -> "I am the local mortician. Nobody loves me, but everyone needs me - eventually."
 "Gregor", "Remethar" -> "Ich bin hier der Leichenbestatter. Niemand liebt mich, aber jeder braucht mich - eines Tages."
-"Yes" -> "Really.", "By Cherga, could you put that differently?", "Honour the dead."
-"Ja" -> "Wirklich.", "Bei Cherga, könntet ihr das anders ausdrücken?", "Ehret die Toten."
-"No" -> "Should I take your measurements for a coffin now or later?", "I do not quite understand. I would have some?", "Pardon?"
-"Nein" -> "Soll ich eure Maße für einen Sarg jetzt aufnehmen oder später?", "Ich verstehe nicht recht. Müßte ich etwa?", "Pardon?"
 
 -- Cycletext: Add as many random messages as possible
 

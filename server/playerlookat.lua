@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- Character description
 
@@ -23,575 +23,424 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 --      = 0 --> short description
 --      = 1 --> long description
 
-require("content.genus")
-require("base.common")
-require("base.factions")
-require("content.lookat.custom")
-require("content.uniquechardescription")
-require("item.altars")
+local genus = require("content.genus")
+local common = require("base.common")
+local lookAt = require("base.lookat")
+local money = require("base.money")
+local itemLookAt = require("server.itemlookat")
+local characterLua = require("base.character")
+local gods = require("content.gods")
 
-module("server.playerlookat", package.seeall)
 
-function lookAtPlayer( SourceCharacter, TargetCharacter, mode)
-	debug(SourceCharacter.name .. " is looking at " .. TargetCharacter.name);
-  content.uniquechardescription.InitPlayerDesc();
-    -- here we go the lookat
-    -- Generate the looking at value
-    LookingAt = mode * 50;
-    LookingAt = LookingAt + SourceCharacter:increaseAttrib( "perception", 0 ) * 2;
-    LookingAt = LookingAt + ( SourceCharacter:distanceMetric( TargetCharacter ) - 2 ) * ( -8 );
-    -- Looking at value is ready
-    -- get the language value
-    
-    --SourceCharacter:inform("mode= "..mode.." lookingat= "..LookingAt);
-    
-    if not base.common.IsLookingAt( SourceCharacter, TargetCharacter.pos ) then
-        base.common.TurnTo( SourceCharacter, TargetCharacter.pos );
+local M = {}
+local MODE_POLITE = 0
+local MODE_STARE = 1
+local MODE_MIRROR = 2
+
+
+
+function M.lookAtPlayer( SourceCharacter, TargetCharacter, mode)
+    local output = ""
+
+    if ( mode ~= MODE_MIRROR) then
+        common.TurnTo( SourceCharacter, TargetCharacter.pos )
     end
     
-	if not CustomLookAt then
-		content.lookat.custom.InitCustomLookAt();
-		CustomLookAt = content.lookat.custom.CustomLookAt;
-	end
-	
-	if mode == 1 then
-		createDevotionInform(SourceCharacter, TargetCharacter);
-	end
-	
-    local lang = SourceCharacter:getPlayerLanguage();
-    -- inform about stats
-    qual,dura=getClothesFactor(TargetCharacter);
-    output = "";
-    if ( LookingAt > 40 ) then
-        -- Er ist |alt, |sehr kräftig |und |trägt |noble |Kleidung, |ein Serinjah-Schwert| und |ein Schild.
-        if ( TargetCharacter:increaseAttrib( "sex", 0 ) == 0 ) then
-            output = ( lang == 0 and "Er ist " or "He is " );
-        else
-            output = ( lang == 0 and "Sie ist " or "She is " );
+    output = output .. M.getCharDescription( SourceCharacter, TargetCharacter, mode)
+
+    SourceCharacter:sendCharDescription( TargetCharacter.id , output )
+
+    if (mode == MODE_STARE) then
+        common.InformNLS(TargetCharacter, "Du fühlst dich beobachtet.", "You feel watched.")
+    end    
+end
+
+local function ignoreDescription(itemId)
+    local itemList = {2745,3109,331,327,59,165,329,166,167,330}
+    --2745:parchment;3109:open pell;content of alchemy\base\alchemy.bottleList
+    return common.isInList(itemId, itemList)
+end
+--Return true if the item should be ignored during examine
+local function isIgnoredItem(itemId)
+    local itemList = {100,228,93,99,382}
+    --100:trowel,228:NULL,93:medal,99:lockpicks,382:caeiling trowel
+    return itemId == nil or itemId == 0 or  common.isInList(itemId, itemList)
+end
+
+local function getCharWears( TargetCharacter, lang, positionAtChar, currentLookingAt, bFirstText, withDetail)
+    local itemAtCharacter = TargetCharacter:getItemAt( positionAtChar )
+    local text = ""
+    local textdescription = ""
+    local specialname = ""
+    if ( itemAtCharacter ~= nil ) and ( itemAtCharacter.id > 0 ) and (currentLookingAt >= 0) and ( isIgnoredItem(itemAtCharacter.id) == false) then
+        if ( bFirstText == false ) then
+            text = text .. "; "
         end
-        output=output .. getAge(TargetCharacter:getRace(),TargetCharacter:increaseAttrib("age",0),lang);
-        --output=output .. " ! ";
-        output=output .. getClothesQualText(qual, lang);
-        --output=output .. " ! ";
-        strength = TargetCharacter:increaseAttrib( "strength", 0 );
-        --output = output .. getText( "intro_attrib", lang );
-        --[[ if ( LookingAt < 45 and strength < 10 ) then
-            output = output .. getText( "strength_2", lang ) .. " ";
-        elseif ( LookingAt < 45 ) then
-            output = output .. getText( "strength_3", lang ) .. " ";
-        elseif ( strength < 6 ) then
-            output = output .. getText( "strength_1", lang ) .. " ";
-        elseif ( strength < 11 ) then
-            output = output .. getText( "strength_2", lang ) .. " ";
-        elseif ( strength < 16 ) then
-            output = output .. getText( "strength_3", lang ) .. " ";
+        specialname = ( lang == 0 and itemAtCharacter:getData("nameDe") or itemAtCharacter:getData("nameEn") )
+        if ( common.IsNilOrEmpty(specialname) ) then
+            text = text .. world:getItemName( itemAtCharacter.id, lang )
         else
-            output = output .. getText( "strength_4", lang ) .. " ";
-        end--]]
-        h=TargetCharacter:increaseAttrib("body_height",0)
-        m=TargetCharacter:increaseAttrib("weight",0)
-        output=output..getFigure(h,m,strength,lang)
-        
-        --output = output .. getText( "outro_attrib", lang );
-        output = output .. getText( "intro_health" , lang );
-        output = output .. getHPText(TargetCharacter:increaseAttrib("hitpoints",0),lang,SourceCharacter) .. " ";   
+            text = text .. specialname
+        end
+        if ignoreDescription(itemAtCharacter.id) == false and withDetail == true then
+            textdescription = ( lang == 0 and itemAtCharacter:getData("descriptionDe") or itemAtCharacter:getData("descriptionEn") )
+            if ( common.IsNilOrEmpty(textdescription) == false ) then
+                text = text .. " (" .. textdescription .. ")"
+            end
+        end
     end
+    return text
+end
 
-    if ( TargetCharacter:increaseAttrib( "sex", 0 ) == 0 ) then
-        output = output .. ( lang == 0 and "Er " or "He " );
+local function getCharAtribute( TargetCharacter, lang, attribute, attributeLimit, textDe, textEn)
+    local valueAttribute = TargetCharacter:increaseAttrib( attribute, 0 )
+    local TargetCharacterSex = TargetCharacter:increaseAttrib( "sex", 0 )
+    local text = ""
+    if ( valueAttribute >= attributeLimit) then
+        text = text .. ( lang == 0 and textDe .. (TargetCharacterSex == 0 and "r" or "") or textEn ) .. ", "
+    end
+    return text
+end
+
+local function getCharRace( TargetCharacter, lang)
+    local raceName = { }
+    local raceID = TargetCharacter:getRace() + 1
+    local TargetCharacterSex = TargetCharacter:increaseAttrib( "sex", 0 )
+    local text = ""
+    -- human,dwarf,halfling, elf,orc,lizard
+    raceName[0] = {"man","dwarf","halfling", "elf","orc","lizard","strange looking person"}
+    raceName[1] = {"Mann","Zwerg","Halbling","Elf","Ork","Echsenmann","seltsam aussehende Person"}
+    raceName[2] = {"woman","dwarfess","halfling woman", "elfess","orcess","lizard woman","strange looking person"}
+    raceName[3] = {"Frau","Zwergin","Halblingsfrau","Elfin","Orkin","Echsenfrau","seltsam aussehende Person"}
+
+    if (raceID > 7) then
+        raceID = 7
+    end
+    
+    if (TargetCharacterSex == 0 ) then
+        text = ( lang == 0 and raceName[1][raceID] or raceName[0][raceID] )
     else
-        output = output .. ( lang == 0 and "Sie " or "She " );
+        text = ( lang == 0 and raceName[3][raceID] or raceName[2][raceID] )
     end
-    -- Er/Sie | trägt | [ einen | grünen Mantel | ] 
-    output = output .. getText( "intro_items", lang );
-    -- Lets check for a coat
-    if checkCoat( TargetCharacter, lang, SourceCharacter ) then
-        -- coat hides the things below, but not for everyone.
-		if checkArmor( TargetCharacter, lang, 45, true, SourceCharacter ) then
-            checkBelt( TargetCharacter, lang, 45, true, SourceCharacter );
-        else    -- no armor
-            checkBelt( TargetCharacter, lang, 45, false, SourceCharacter );
-        end
-    else    -- kein coat!
-        if not checkArmor( TargetCharacter, lang, 0, false, SourceCharacter ) then
-            -- No coat? No armor? He is nacked! p0rn! xD
-            output = output .. getText( "nacked_breast", lang );
-        end
-        --output=output..getText();
-        checkBelt( TargetCharacter, lang, 0, true, SourceCharacter );
-    end
-    output=output..". "; --..getClothesText(qual, dura, lang, TargetCharacter:increaseAttrib( "sex", 0 ),SourceCharacter);
-    output=output..getWeaponText( TargetCharacter, lang, SourceCharacter );
+    return text
+end
+
+local function getMaximumLoad(user)
+    return user:increaseAttrib("strength", 0) * 500 + 5000 -- This calculation is the same the server uses.
+end
+
+local function getCharacterLoad(user)
+    local totalLoad = 0
     
-		--faction additions
-	Faction = base.factions.get(TargetCharacter);
-	if Faction.rankTown == 0 then
-		factiontext = ( lang ==0 and " ("..base.factions.TownRankList[Faction.rankTown].gRank..")" or " ("..base.factions.TownRankList[Faction.rankTown].eRank..")" );
-	else
-		factiontext = ( (lang ==0 and " ("..base.factions.TownRankList[Faction.rankTown].gRank.." "..base.factions.TownNameGList[Faction.tid][1].."s)" ) 
-				or 	" ("..base.factions.TownRankList[Faction.rankTown].eRank.." of "..base.factions.TownNameEList[Faction.tid][1]..")" );
-	end
-	output = output .. factiontext;
-	
-    checkCustomInventory(TargetCharacter, SourceCharacter);
-	  
-    SourceCharacter:sendCharDescription( TargetCharacter.id , output );
-    --SourceCharacter:inform("now checking diseaseeeee:");
-    --found,diseaseEffect = TargetCharacter.effects:find(28);
-    --if found then
-        --SourceCharacter:talk(Character.say,"found!");
-        --fndStr,disStr=diseaseEffect:findValue("diseaseStr");
-        --SourceCharacter:talk(Character.say,"Char infiziert. Str="..disStr);
-    --end
-
-    if (mode == 1) then
-        if (TargetCharacter:getPlayerLanguage() == 0) then
-            TargetCharacter:inform( "Du fühlst dich beobachtet.",Player.mediumPriority );
-            if base.common.IsLookingAt( TargetCharacter, SourceCharacter.pos ) then
-                if ( SourceCharacter:increaseAttrib( "sex", 0 ) == 0 ) then
-                    TargetCharacter:sendCharDescription( SourceCharacter.id , "Er scheint dich anzustarren." );
-                else
-                    TargetCharacter:sendCharDescription( SourceCharacter.id , "Sie scheint dich anzustarren." );
-                end
-            end
-        else
-            TargetCharacter:inform( "You feel watched.",Player.mediumPriority );
-            if base.common.IsLookingAt( TargetCharacter, SourceCharacter.pos ) then
-                if ( SourceCharacter:increaseAttrib( "sex", 0 ) == 0 ) then
-                    TargetCharacter:sendCharDescription( SourceCharacter.id , "He appears to stare at you." );
-                else
-                    TargetCharacter:sendCharDescription( SourceCharacter.id , "She appears to stare at you." );
-                end
-            end
-        end
-    end
-	if(content.uniquechardescription.PlayerDescriptionsDE[TargetCharacter.id] ~= nil) then
-		for i,v in pairs(content.uniquechardescription.PlayerDescriptionsDE[TargetCharacter.id]) do
-			base.common.InformNLS(SourceCharacter, content.uniquechardescription.PlayerDescriptionsDE[TargetCharacter.id][i], content.uniquechardescription.PlayerDescriptionsEN[TargetCharacter.id][i]);
-		end
-	end
-end
-
-function checkCoat( TargetCharacter, lang, SourceCharacter )
-    local coat = TargetCharacter:getItemAt( Character.coat );
-    if ( coat ~= nil ) and ( coat.id > 0 ) then
-        -- The dude has a coat!
-        output = output .. getText( "genus_"..content.genus.GenusData( coat.id ), lang );
-        output = output .. world:getItemName( coat.id, lang );
-		handleCustomLookat( TargetCharacter, SourceCharacter, coat );
-        return true;
-    end
-    return false;
-end
-
-function checkArmor( TargetCharacter, lang, modify, belowcoat, SourceCharacter )
-    if ( LookingAt > modify ) then
-        local breast = TargetCharacter:getItemAt( Character.breast );
-        if ( breast ~= nil ) and ( breast.id > 0 ) then
-            if belowcoat then
-                output = output .. " " .. getText( "below_coat", lang );
-            end
-            output = output .. getText( "genus_"..content.genus.GenusData( breast.id ), lang );
-            output = output .. world:getItemName( breast.id, lang );
-			handleCustomLookat( TargetCharacter, SourceCharacter, breast );
-            return true;
-        end
-    end
-    return false;
-end
-
-function checkBelt( TargetCharacter, lang, modify, withend, SourceCharacter )
-    if ( LookingAt > ( 25 + modify ) ) then
-        -- now lets check the bloody belt
-        got_money = false;
-        first_item = true;
-        for i=12,17 do
-            item = TargetCharacter:getItemAt( i );
-			handleCustomLookat( TargetCharacter, SourceCharacter, item );
-            item = ( item == nil and 0 or item.id );
-            if ( item ~= 0 and item ~= 228 and item ~= 93 and item ~= 99 and item ~= 100 and item ~= 382 ) then
-                if first_item then
-                    output = output .. " ";
-                    if withend then
-                        output = output .. getText( "and", lang );
-                    end
-                    output = output .. getText( "intro_belt", lang );
-                end
-            
-                if (( item == 62 ) or ( item == 3076 ) or ( item == 3077 )) then
-                    if not got_money then
-                        got_money = true;
-                        if not first_item then
-                            output = output .. ", ";
-                        end
-                        output = output .. getText( "money_found", lang );
-                    end
-                elseif ( item ~= 0 ) then
-                    if not first_item then
-                        output = output .. ", ";
-                    end
-                    --output = output .. getText( "genus_"..content.genus.GenusData( item.id ), lang );
-                    output = output .. world:getItemName( item, lang ).."";
-                end
-                if first_item then
-                    first_item = false;
-                end
-            end
-        end
-    end
-end
-
-function getText( identifier, language )
-    if initMod==nil then
-        textModule={};
-        textModule[0]={};
-        textModule[1]={};
-        textModule[0]["intro_attrib"]="sieht ";
-        textModule[1]["intro_attrib"]="looks ";
-        textModule[0]["outro_attrib"]="aus";
-        textModule[1]["outro_attrib"]="";
-        textModule[0]["strength_1"]="ziemlich schwach";
-        textModule[1]["strength_1"]="rather weak";
-        textModule[0]["strength_2"]="durchschnittlich kräftig";
-        textModule[1]["strength_2"]="average strong";
-        textModule[0]["strength_3"]="ziemlich stark";
-        textModule[1]["strength_3"]="rather strong";
-        textModule[0]["strength_4"]="sehr stark";
-        textModule[1]["strength_4"]="really strong";
-        textModule[0]["intro_items"]="trägt ";
-        textModule[1]["intro_items"]="wears ";
-        textModule[0]["genus_0"]="einen ";
-        textModule[1]["genus_0"]="a ";
-        textModule[0]["genus_1"]="eine ";
-        textModule[1]["genus_1"]="a ";
-        textModule[0]["genus_2"]="ein ";
-        textModule[1]["genus_2"]="a ";
-        textModule[0]["below_coat"]="und darunter ";
-        textModule[1]["below_coat"]="and under it ";
-        textModule[0]["intro_belt"]="am Gürtel ";
-        textModule[1]["intro_belt"]="at the belt ";
-        textModule[0]["money_found"]="ein Münzbeutel";
-        textModule[1]["money_found"]="a moneybag";
-        textModule[0]["nacked_breast"]="nichts auf dem Oberkörper";
-        textModule[1]["nacked_breast"]="nothing at the upper part of the body";
-        textModule[0]["and"]=" und ";
-        textModule[1]["and"]=" and ";
-        textModule[0]["intro_health"]=" und wirkt ";
-        textModule[1]["intro_health"]=" and appears to be ";
-        initMod=1;
+    local backPack
+    if user:getItemAt(Character.backpack) then
+        backPack = user:getBackPack()
     end
     
-    return textModule[language][identifier];
-end
-
-function getHPText(HP,language, char)
-    if iniHPT==nil then
-        HPText={};
-        HPText[0]={};
-        HPText[1]={};
-        HPText[0][6]="gesund.";
-        HPText[1][6]="healthy.";
-        HPText[0][5]="leicht verwundet.";
-        HPText[1][5]="lightly wounded.";
-        HPText[0][4]="verwundet.";
-        HPText[1][4]="wounded.";
-        HPText[0][3]="schwer verwundet.";
-        HPText[1][3]="heavily wounded.";
-        HPText[0][2]="sehr schwer verwundet.";
-        HPText[1][2]="extremely heavily wounded.";
-        HPText[0][1]="dem Tod nahe.";
-        HPText[1][1]="nearly dead.";
-        iniHPT=1;
+    if backPack then
+        totalLoad = totalLoad + backPack:weight()
     end
-    interval=math.ceil(HP/1700);
-    return HPText[language][interval];
+    
+    for i = 1, 17 do
+        local currentItem = user:getItemAt(i)
+        if currentItem then
+            totalLoad = totalLoad +  world:getItemStats(currentItem).Weight
+        end
+    end
+    
+    return totalLoad
 end
 
-function getClothesFactor(Char)
-    itCount=0;
-    sumQual=0;
-    sumDura=0;
-    for ipos=1, 11 do
-        thisIt=Char:getItemAt(ipos);
-                -- also count empty slots!!!
-        if ((ipos==2) or (ipos==7) or (ipos==8)) then
-            multi=2;
+local function getCharLoad( TargetCharacter, lang, currentLookingAt)
+    local weightRelation = 0
+    local text = ""
+    local TargetCharacterSex = TargetCharacter:increaseAttrib( "sex", 0 )
+    
+    if (currentLookingAt >= 0) then
+        local backpack = TargetCharacter:getItemAt(Character.backpack)
+        if ( backpack ~= nil ) and ( backpack.id > 0 ) then
+            if ( TargetCharacterSex == 0 ) then
+                text = ( lang == 0 and "\nEr " or "\nHe " )
+            else
+                text = ( lang == 0 and "\nSie " or "\nShe " )
+            end
+            weightRelation = getCharacterLoad(TargetCharacter) / getMaximumLoad(TargetCharacter)
+            if (weightRelation > 0.99) then
+                text = text .. ( lang == 0 and "ist völlig überladen. " or "is totally overloaded. " )
+            elseif  (weightRelation > 0.74) then
+                text = text .. ( lang == 0 and "sieht aus als ob " .. ( TargetCharacterSex == 0 and "\ner " or "\nsie " ) .. " kaum mehr tragen kann. " or "looks as if " .. ( TargetCharacterSex == 0 and "\nhe " or "\nshe " ) .. " is hardly able to carry much more. " )
+            elseif  (weightRelation > 0.2) then
+                text = ""
+            else
+                text = text .. ( lang == 0 and "scheint fast nichts zu tragen. " or "seems to carry almost nothing. " )
+            end
         else
-            multi=1;
+            if ( TargetCharacterSex == 0 ) then
+                text = ( lang == 0 and "\nEr trägt keine Tasche. " or "\nHe has no bag. " )
+            else
+                text = ( lang == 0 and "\nSie trägt keine Tasche. " or "\nShe has no bag. " )
+            end
         end
-        if (((ipos==5) or (ipos==6)) and thisIt.quality==0) then
-            multi=0;
+    end
+    return text
+end
+
+local function getCharHairdresserState( Char, lang, currentLookingAt)
+    local text = ""
+    if (currentLookingAt >= 0) then
+        if Char:getQuestProgress(229) > 0 then
+            text = ( lang == 0 and "\nDie Haare sind frisch geschnitten." or "\nThe hair was made short ago." )
+        elseif Char:getQuestProgress(230) > 0 then
+            text = ( lang == 0 and "\nDer Kamm glänzt wie frisch poliert." or "\nThe comb is freshly polished, making it shine." )
         end
-        itCount=itCount+multi;
-        thisQual=math.floor(thisIt.quality/100);
-        sumQual=sumQual+multi*thisQual;
-        thisDura=thisIt.quality-100*thisQual;
-        sumDura=sumDura+multi*thisDura;
     end
-    return math.floor(sumQual/itCount), math.floor(sumDura/itCount);
+    return text
 end
 
-function getClothesText(qual, dura, lang, sex,char)
-    if initClText==nil then
-        ClQualText={};
-        ClQualText[0]={"adelige",     "noble", "sehr feine", "feine", "sehr gute", "gute", "normale", "billige","schäbige","lumpige"};
-        ClQualText[1]={"aristocratic","noble", "very fine",  "fine",  "very good", "good", "normal",  "cheap",  "shabby",  "measly"};
-        ClDuraText={};
-        ClDuraText[0]={"nagelneu" ,"neu", "leicht abgenutzt","gebraucht","abgenutzt","sehr abgenutzt","alt","dreckig", "kaputt", "zerschlissen"  };
-        ClDuraText[1]={"brand new", "new",  "slightly torn",    "used",      "torn",      "highly torn",    "old","dirty",  "tattered","haggled"};
+local function getClothesFactor(Char)
+    local itCount=0
+    local sumQual=0
+    local sumDura=0
+    local multi
+    local iposList = {}
+    --iposList[ipos] = {position at char, multiplicator}
+    iposList[1] = {11,1}-- robe
+    iposList[2] = {3,1}-- breast
+    iposList[3] = {1,1}-- helmet
+    iposList[4] = {9,1}-- legs
+    iposList[5] = {10,1}-- feet
+    iposList[6] = {4,1}-- hands
+    iposList[7] = {2,2}-- neck
+    iposList[8] = {7,2}-- left finger
+    iposList[9] = {8,2}-- right finger
 
-        sexText={};
-        sexText[0]={}
-        sexText[1]={}
-        sexText[0][0]="Seine " --Kleidung wirkt ";
-        sexText[0][1]="Ihre " --trägt ";
-        sexText[1][0]="His ";
-        sexText[1][1]="Her ";
-        clText={};
-        clText[0]=" Kleidung wirkt "
-        clText[1]=" clothes look "
-        initClText=1;
+    for ipos=1, #iposList do
+        local thisIt=Char:getItemAt(iposList[ipos][1])
+        if thisIt ~= nil and thisIt.id > 0 then
+            multi = iposList[ipos][2]
+            itCount=itCount+multi
+            local thisQual=math.floor(thisIt.quality/100)
+            sumQual=sumQual+multi*thisQual
+            local thisDura=thisIt.quality-100*thisQual
+            sumDura=sumDura+multi*thisDura
+        end
     end
-    return sexText[lang][sex]..ClQualText[lang][10-qual]..clText[lang]..ClDuraText[lang][10-math.floor(dura/10)]..".";
+    if itCount == 0 then
+        return 3,33
+    else
+        return math.floor(sumQual/itCount), math.floor(sumDura/itCount)
+    end
 end
 
+local function getClothesText(qual, dura, lang, sex,char)
+    local ClQualText={}
+    local ClDuraText={}
+    local sexText={}
+    local clText={}
+    ClQualText[0]={"adelige",     "noble", "sehr feine", "feine", "sehr gute", "gute", "normale", "billige","schäbige","lumpige"}
+    ClQualText[1]={"aristocratic","noble", "very fine",  "fine",  "very good", "good", "normal",  "cheap",  "shabby",  "lousy"}
 
-function getClothesQualText(qual, lang)
-    if initClQText==nil then
-        ClQQualText={};
-        ClQQualText[0]={"adelig",     "nobel", "sehr fein", "fein", "sehr gut", "gut", "normal", "billig","schäbig","lumpig"};
-        ClQQualText[1]={"aristocraticly","nobly", "very fine",  "fine",  "very well", "well", "normaly",  "cheaply",  "shabbyly",  "measly"};
-        clQText={};
-        clQText[0]=" gekleidet"
-        clQText[1]=" dressed"
-        initClQText=1;
-    end
-    return ClQQualText[lang][10-qual]..clQText[lang]..", ";
+    ClDuraText[0]={"nagelneu" ,"neu", "leicht abgenutzt","gebraucht","abgenutzt","sehr abgenutzt","alt","dreckig", "kaputt", "zerschlissen"  }
+    ClDuraText[1]={"brand new", "new",  "slightly torn",    "used",      "torn",      "highly torn",    "old","dirty",  "tattered","threadbare"}
+
+    sexText[0]={}
+    sexText[1]={}
+    sexText[0][0]="Seine " --Kleidung wirkt "
+    sexText[0][1]="Ihre " --trägt "
+    sexText[1][0]="His "
+    sexText[1][1]="Her "
+
+    clText[0]=" Kleidung wirkt "
+    clText[1]=" clothes look "
+    return sexText[lang][sex]..ClQualText[lang][10-qual]..clText[lang]..ClDuraText[lang][10-math.floor(dura/10)].."."
 end
 
+local function getClothesQualText(qual, lang)
+    local ClQQualText={}
+    local clQText={}
+    local initClQText=1
+    ClQQualText[0]={"adelig",     "nobel", "sehr fein", "fein", "sehr gut", "gut", "normal", "billig","schäbig","lumpig"}
+    ClQQualText[1]={"aristocratically","nobly", "very finely",  "finely",  "very well", "well", "normally",  "cheaply",  "shabbily",  "lousy"}
 
--- 
+    clQText[0]=" gekleidet"
+    clQText[1]=" dressed"
+    return ClQQualText[lang][10-qual]..clQText[lang]
+end
 
-
-function getAge(race,age, language)
-    if ageList==nil then
-        ageList = { };
-        ageName = { };
-        ageName[0] = { };
-        ageName[1] = { };
-        --                                                                                 human,dwarf,halfling, elf,orc,lizard,gnome,fairy,goblin,default
-        ageName[0][1] = "sehr jung";          ageName[1][1] = "very young";   ageList[1] = {    14,   30,      20, 100, 14,    20,   30,   14,    20,     10 };
-        ageName[0][2] = "jung";               ageName[1][2] = "young";        ageList[2] = {    18,   50,      25, 300, 20,    60,   50,   40,    23,     20 };
-        ageName[0][3] = "";                   ageName[1][3] = "";             ageList[3] = {   nil,  nil,     nil, nil, nil,   nil,  nil,  nil,   nil,    30 };
-        ageName[0][4] = "erwachsen";          ageName[1][4] = "grown up";     ageList[4] = {    25,   80,      40, 500, 30,   130,   80,   80,    28,     40 };
-        ageName[0][5] = "im mittleren Alter"; ageName[1][5] = "in midlife";   ageList[5] = {    35,  125,      60, 1000, 45,   250,  125,  150,    38,     50 };
-        ageName[0][6] = "etwas älter";        ageName[1][6] = "elderly";      ageList[6] = {    45,  175,      80, 2000, 65,   375,  175,  220,    47,     60 };
-        ageName[0][7] = "alt";                ageName[1][7] = "old";          ageList[7] = {    55,  220,     100, 3000, 85,   500,  220,  280,    56,     70 };
-        ageName[0][8] = "sehr alt";           ageName[1][8] = "very old";     ageList[8] = {    70,  260,     115, 4500,105,   600,  260,  340,    63,     80 };
-    end
+local function getAgeDescriptor(race,age,sex, language)
+    local output = ""
+    local ageList = { }
+    local ageName = { }
+    ageName[0] = { }
+    ageName[1] = { }
+    --                                                                                 human,dwarf,halfling, elf,orc,lizard,gnome,fairy,goblin,default
+    ageName[0][1] = "sehr junge";         ageName[1][1] = "very young";   ageList[1] = {    18,   30,      20, 180, 18,    20,   30,   18,    18,     18 }
+    ageName[0][2] = "junge";              ageName[1][2] = "young";        ageList[2] = {    20,   50,      25, 300, 20,    60,   50,   40,    23,     20 }
+    ageName[0][3] = "";                   ageName[1][3] = "";             ageList[3] = {   nil,  nil,     nil, nil, nil,   nil,  nil,  nil,   nil,    22 }
+    ageName[0][4] = "erwachsene";         ageName[1][4] = "grown up";     ageList[4] = {    25,   80,      40, 500, 30,   130,   80,   80,    28,     25 }
+    ageName[0][5] = "mittelalte";         ageName[1][5] = "in midlife";   ageList[5] = {    35,  125,      60, 1000, 45,   250,  125,  150,    38,     35 }
+    ageName[0][6] = "etwas ältere";       ageName[1][6] = "elderly";      ageList[6] = {    45,  175,      80, 2000, 65,   375,  175,  220,    47,     45 }
+    ageName[0][7] = "alte";               ageName[1][7] = "old";          ageList[7] = {    55,  220,     100, 3000, 85,   500,  220,  280,    56,     55 }
+    ageName[0][8] = "sehr alte";           ageName[1][8] = "very old";     ageList[8] = {    70,  260,     115, 4500,105,   600,  260,  340,    63,     70 }
     if ((race==34) or (race==35)) then
-        race=3;
+        race=3
     end
     if (race > 8 ) then
-        race = 9;
+        race = 9
     end
-    
-    i = 0;
+
+    local i = 0
     repeat
         if( ageList[i+1][race+1] and age < ageList[i+1][race+1] )then
-            break;
+            break
         end
-        i = i + 1;
-    until( i >= 8 );
-    i = math.min(8,math.max(1,i));
+        i = i + 1
+    until( i >= 8 )
+    i = math.min(8,math.max(1,i))
+    output = ageName[language][i]
     if( i ~= 3 )then
-        return ageName[language][i]..", ";
-    else
-        return ageName[language][i];
+        if language == 0 and sex == 0 then
+            output = output .. "r"
+        end
+        output = output .. ", "
     end
+    return output
 end
 
-function getFigure(height, mass, str, lang)
-    if iniFig==nil then
-        lowStr={};
-        normalStr={};
-        highStr={};
-        lowStr[0]={"sehr mager ", "sehr zierlich ", "zierlich ", " ", "mollig ", "dick ", "fett "};
-        lowStr[1]={"skinny ", "very petite ", "petite ", " ", "chubby ", "plump ", "fat "};
-        normalStr[0]={"schmächtig ", "dünn ", "schlank ", " ", "mollig ", "dick ", "fett "};
-        normalStr[1]={"lank ", "thin ", "slim ", " ", "chubby", "plump", "fat"};
-        highStr[0]={"drahtig ", "sehr drahtig ", " ", "athletisch ", "muskulös ", "kräftig ", "stämmig "} 
-        highStr[1]={"wiry ", "very wiry ", " ", "athletic ", "muscular ", "robust ", "sturdy " };
-        iniFig=1;
-    end
-    height=height*2.54/100
-    mass=mass/100
-    BMI=mass/(height*height); -- 18.5, 24.9, 29.9, 
-    -- str= 10 average
-    if mass==0 then
-        BMI=22;
-    end
-    Idx=math.ceil((BMI-16)/3)+1
-    Idx=math.max(Idx,1);
-    Idx=math.min(Idx,7);
+function M.getCharDescription( SourceCharacter, TargetCharacter, mode)
+    local addtext = ""
 
-    -- sehr mager, dünn, schlank, (normal), mollig, dick, fett
-    -- athletisch, drahtig, zierlich, kräftig
-    if str<7 then
-        return lowStr[lang][Idx];
-    elseif str<14 then
-        return normalStr[lang][Idx];
-    else
-        return highStr[lang][Idx];
-    end
-end
--- in seinen Händen hat er ein Serinjahschwert[ und ein Schild].
-function getWeaponText( Char, lang, SourceChar )
-    local message = "";
-    local leftItem = Char:getItemAt( Character.left_tool );
-    handleCustomLookat(Char,SourceChar,leftItem);
-	leftItem = ( leftItem == nil and 0 or leftItem.id );
-    local rightItem = Char:getItemAt( Character.right_tool );
-    handleCustomLookat(Char,SourceChar,rightItem);
-	rightItem = ( rightItem == nil and 0 or rightItem.id );
-    if ( leftItem == 228 or leftItem == 93 or leftItem == 99 or leftItem == 100 or leftItem == 382 ) then
-        leftItem = 0;
-    end
-    if ( rightItem == 228 or rightItem == 93 or rightItem == 99 or rightItem == 100 or rightItem == 382 ) then
-        rightItem = 0;
-    end
-    if ( leftItem == 0 and rightItem == 0 ) then
-        return "";
-    end
-    if ( Char:increaseAttrib( "sex", 0 ) == 0 ) then
-        message = message .. ( lang == 0 and " In seinen Händen hat er " or " In his hands he has " );
-    else
-        message = message .. ( lang == 0 and " In ihren Händen hat sie " or " In her hands she has " );
-    end
-    if ( leftItem ~= 0 ) then
-        message = message .. getText( "genus_"..content.genus.GenusData( leftItem ), lang );
-        message = message .. world:getItemName( leftItem, lang );
-    end
-    if ( leftItem ~= 0 and rightItem ~= 0 ) then
-        message = message .. ( lang == 0 and " und " or " and " );
-    end
-    if ( rightItem ~= 0 ) then
-        message = message .. getText( "genus_"..content.genus.GenusData( rightItem ), lang );
-        message = message .. world:getItemName( rightItem, lang );
-    end
-    return message..".";
-end
+    -- Generate the limits
+    -- the related information is shown if limitToSeexxx is >= 0
+    local factorPerception = SourceCharacter:increaseAttrib( "perception", 0 )
+    local factorEssense = SourceCharacter:increaseAttrib( "essence", 0 )
+    local factorDistance = SourceCharacter:distanceMetric( TargetCharacter )
 
-function checkCustomInventory(TargetChar, SourceChar)
-	
-	local checkItem;
-	local posList = {1,4,9,10};
-	-- check rest of inventory
-	for i,pos in pairs(posList) do
-		checkItem = TargetChar:getItemAt(pos);
-		if checkItem.id > 0 then
-			handleCustomLookat(TargetChar,SourceChar,checkItem);
-		end
-	end
-	-- do not show to everyone
-	if LookingAt > 45 then
-		-- check neck
-		handleCustomLookat(TargetChar,SourceChar,TargetChar:getItemAt(2));
-		-- check fingers if no glove is found
-		if TargetChar:getItemAt(4).id == 0 then
-			handleCustomLookat(TargetChar,SourceChar,TargetChar:getItemAt(7));
-			handleCustomLookat(TargetChar,SourceChar,TargetChar:getItemAt(8));
-		end
-	end
-end
+    local bonusSex = (SourceCharacter:increaseAttrib( "sex", 0 ) == 0 and 10 or 20 )
+    if ( mode == MODE_MIRROR) then
+        factorDistance = 1
+    end
+    local limitToSeeAlways = 20 - factorDistance
+    local limitToSeeGeneral = 1 * factorPerception - 1 * factorDistance
+    local limitToSeeHand = 2 * factorPerception - 4 * factorDistance + bonusSex
+    local limitToSeeBreast = 2 * factorPerception - 4 * factorDistance
+    local limitToSeeShoe = 2 * factorPerception - 6 * factorDistance + bonusSex
+    local limitToSeeLeg = 2 * factorPerception - 6 * factorDistance
+    local limitToSeeJewels = 2 * factorPerception - 8 * factorDistance + bonusSex
+    local limitToSeeBag = 2 * factorPerception - 3 * factorDistance
+    local limitToSeePurse = 1 * factorPerception - 3 * factorDistance
+    local limitToSeeBelt = 1 * factorPerception - 3 * factorDistance
+    local limitToSeeHairdresser = 2 * factorPerception - 6 * factorDistance + bonusSex
+    local limitToSeeReligion = 1 * factorEssense - 2 * factorDistance
 
-function handleCustomLookat(TargetChar,SourceChar,Item)
-	
-	if Item == nil or Item.id <= 0 or Item.data <= 2^30 then
-		return;
-	end
-	if CustomLookAt[Item.id] ~= nil then
-		local itemData = Item.data - 2^30;
-		if CustomLookAt[Item.id][itemData] ~= nil then
-			local lang = SourceChar:getPlayerLanguage();
-			local customText;
-			if TargetChar:increaseAttrib("sex",0) == 0 then
-				if Item:getType() == 5 then
-					customText = ( lang == 0 and "Am Gürtel hat er " or "At the belt he has " )
-				else
-					if Item.itempos == 5 or Item.itempos == 6 then
-						customText = ( lang == 0 and "In den Händen hat er " or "In his hands he has " );
-					else
-						customText = ( lang == 0 and "Er trägt " or "He wears " );
-					end
-				end
-			else
-				if Item:getType() == 5 then
-					customText = ( lang == 0 and "Am Gürtel hat sie " or "At the belt she has " )
-				else
-					if Item.itempos == 5 or Item.itempos == 6 then
-						customText = ( lang == 0 and "In den Händen hat sie " or "In her hands she has " );
-					else
-						customText = ( lang == 0 and "Sie trägt " or "She wears " );
-					end
-				end
-			end
-			-- check for changed gender, but no gender text for gloves
-			if Item.itempos ~= 4 then
-				local gender = CustomLookAt[Item.id][itemData][5];
-				if not gender then
-					gender = content.genus.GenusData( Item.id );
-				end
-				customText = customText .. getText( "genus_"..gender, lang );
-			end
-			-- removed item name?
-			if not CustomLookAt[Item.id][itemData][4] then
-				customText = customText .. world:getItemName( Item.id, lang ) .. " ";
-			end
-			customText = customText .. CustomLookAt[Item.id][itemData][lang+1] .. ". ";
-			SourceChar:inform( customText,Player.mediumPriority );
-		end
-	end
+    local lang = SourceCharacter:getPlayerLanguage()
+    -- inform about stats
+    local qual,dura=getClothesFactor(TargetCharacter)
+    local output = ""
+    
+    if ( mode == MODE_MIRROR) then
+        output = output .. ( lang == 0 and "Im Spiegel siehst du eine Person, die dir ähnlich sieht.\n" or "In the mirror you see a person that looks like you.\n" )
+    end
+    
+    if ( limitToSeeAlways >= 0 ) then
+        -- General overview.
+        if ( TargetCharacter:increaseAttrib( "sex", 0 ) == 0 ) then
+            output = output .. ( lang == 0 and "Er ist ein " or "He is a " )
+        else
+            output = output .. ( lang == 0 and "Sie ist eine " or "She is a " )
+        end
+        output = output .. getAgeDescriptor(TargetCharacter:getRace(),TargetCharacter:increaseAttrib("age",0),TargetCharacter:increaseAttrib( "sex", 0 ),lang)
+        if ( limitToSeeGeneral >= 0 ) then
+            output = output .. getCharAtribute( TargetCharacter, lang, "strength", 14, "starke", "strong")
+            output = output .. getCharAtribute( TargetCharacter, lang, "dexterity", 14, "geschickte", "dexterous")
+            output = output .. getCharAtribute( TargetCharacter, lang, "agility", 14, "flinke", "agile")
+            output = output .. getCharAtribute( TargetCharacter, lang, "constitution", 15, "robuste", "robust")
+            output = output .. getCharAtribute( TargetCharacter, lang, "intelligence", 18, "wissende", "nowledgeable")
+            output = output .. getCharAtribute( TargetCharacter, lang, "willpower", 18, "zielstrebige", "determined")
+            output = output .. getCharAtribute( TargetCharacter, lang, "perception", 18, "aufmerksame", "attentive")
+            output = output .. getCharAtribute( TargetCharacter, lang, "essence", 18, "magische", "spiritual")
+        end
+        output = string.sub ( output, 1, string.len(output) - 2) .. " " .. getCharRace( TargetCharacter, lang)
+        if ( limitToSeeGeneral >= 0 ) then
+            output = output .. ( lang == 0 and " und ist " or " and is " ) .. getClothesQualText(qual, lang) .. ". "
+        else
+            output = output .. "."
+        end
+    end
+
+    -- what wears the char?
+    addtext = ""
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 11, limitToSeeBreast, common.IsNilOrEmpty(addtext) , true); -- robe
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 3, limitToSeeBreast, common.IsNilOrEmpty(addtext) , true); -- breast
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 1, limitToSeeBreast, common.IsNilOrEmpty(addtext) , true); -- helmet
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 9, limitToSeeLeg, common.IsNilOrEmpty(addtext) , true); -- legs
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 10, limitToSeeShoe, common.IsNilOrEmpty(addtext) , true); -- feet
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 4, limitToSeeLeg, common.IsNilOrEmpty(addtext) , true); -- hands
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 2, limitToSeeJewels, common.IsNilOrEmpty(addtext) , true); -- neck
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 7, limitToSeeJewels, common.IsNilOrEmpty(addtext) , true); -- left finger
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 8, limitToSeeJewels, common.IsNilOrEmpty(addtext) , true); -- right finger
+
+    if ( common.IsNilOrEmpty(addtext) == false ) then
+        if ( TargetCharacter:increaseAttrib( "sex", 0 ) == 0 ) then
+            addtext = ( lang == 0 and "\nEr trägt: " or "\nHe wears: " ) .. addtext
+        else
+            addtext = ( lang == 0 and "\nSie trägt: " or "\nShe wears: " ) .. addtext
+        end
+        output = output .. addtext .. ". "
+    --else the char is naked, you see that!
+    end
+
+    if ( limitToSeeGeneral >= 0 ) then
+        output = output .. getClothesText(qual, dura, lang, TargetCharacter:increaseAttrib( "sex", 0 ),SourceCharacter)
+    end
+
+    -- what is in the belt?
+    addtext = ""
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 12, limitToSeeBelt, common.IsNilOrEmpty(addtext),false); -- belt 1
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 13, limitToSeeBelt, common.IsNilOrEmpty(addtext),false); -- belt 2
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 14, limitToSeeBelt, common.IsNilOrEmpty(addtext),false); -- belt 3
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 15, limitToSeeBelt, common.IsNilOrEmpty(addtext),false); -- belt 4
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 16, limitToSeeBelt, common.IsNilOrEmpty(addtext),false); -- belt 5
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 17, limitToSeeBelt, common.IsNilOrEmpty(addtext),false); -- belt 6
+
+    if ( common.IsNilOrEmpty(addtext) == false ) then
+        output = output .. ( lang == 0 and "\nIm Gürtel erkennst du: " or "\nYou see in the belt: " ) .. addtext .. ". "
+    --else belt is empty, nothing to tell!
+    end
+
+    -- weight of load
+    output = output .. getCharLoad( TargetCharacter, lang, limitToSeeBag)
+    
+    -- what hold the char in hand?
+    local addtext = ""
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 5, limitToSeeHand, common.IsNilOrEmpty(addtext),true); -- left hand
+    addtext = addtext .. getCharWears ( TargetCharacter, lang, 6, limitToSeeHand, common.IsNilOrEmpty(addtext),true); -- right hand
+
+    if ( common.IsNilOrEmpty(addtext) == false ) then
+        if ( TargetCharacter:increaseAttrib( "sex", 0 ) == 0 ) then
+            addtext = ( lang == 0 and "\nIn seinen Händen hat er: " or "\nIn his hands he has: " ) .. addtext
+        else
+            addtext = ( lang == 0 and "\nIn ihren Händen hat sie: " or "\nIn her hands she has: " ) .. addtext
+        end
+        output = output .. addtext .. ". "
+    --nothing, you see that!
+    end
+
+    -- hairdresser recently
+    addtext = getCharHairdresserState( TargetCharacter, lang, limitToSeeHairdresser)
+    if ( common.IsNilOrEmpty(addtext) == false ) then
+        output = output .. addtext
+    end
+
+    if ( limitToSeeReligion >= 0 ) then
+        output = output .. "\n" .. gods.getReligionLookAt(TargetCharacter, SourceCharacter)
+    end
+
+    if ( common.IsNilOrEmpty(output) ) then
+        output = ( lang == 0 and "Du kannst schwerlich erkennen wie die Person aussieht." or "You can barely make out the figure." )
+    end
+
+    return output
 end
 
-function createDevotionInform(SourceCharacter, TargetCharacter)
-	local devotion = TargetCharacter:getQuestProgress(401);
-	local priesthood = TargetCharacter:getQuestProgress(402);
-	
-	if devotion == 0 then
-		return;
-	end
-	local sex = TargetCharacter:increaseAttrib("sex", 0);
-	
-	if not item.altars.init then
-		item.altars.ini();
-	end
-	local godName = item.altars.godName[devotion];
-	
-	local gText, eText = "","";
-	if sex == 0 then
-		gText = "Er ist ein ";
-		eText = "He is a ";
-		if priesthood > 0 then
-			gText = gText .. "Priester ";
-			eText = eText .. "priest ";
-		else
-			gText = gText .. "Anhänger ";
-			eText = eText .. "devotee ";
-		end
-	else
-		gText = "Sie ist eine ";
-		eText = "She is a ";
-		if priesthood > 0 then
-			gText = gText .. "Priesterin ";
-			eText = eText .. "priestess ";
-		else
-			gText = gText .. "Anhängerin ";
-			eText = eText .. "devotee ";
-		end
-	end
-	gText = gText .. godName .."s.";
-	eText = eText .. "of " .. godName ".";
-	
-	base.common.InformNLS(SourceCharacter, gText, eText);
-end
+return M

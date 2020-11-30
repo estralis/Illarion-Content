@@ -12,12 +12,14 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
-require("base.lookat")
-require("base.common")
 
-module("item.general.jewel", package.seeall)
+local lookat = require("base.lookat")
+local checks = require("item.general.checks")
+local glypheffects = require("magic.glypheffects")
+
+local M = {}
 
 -- Normal Items:
 -- UPDATE common SET com_script='item.general.jewel' WHERE com_itemid IN (225, 1840, 1858);
@@ -28,19 +30,18 @@ module("item.general.jewel", package.seeall)
 -- Weapon Items:
 -- UPDATE common SET com_script='item.general.jewel' WHERE com_itemid IN ();
 
-function LookAtItem(user, item)
-    world:itemInform(user, item, base.lookat.GenerateLookAt(user, item, base.lookat.JEWELLERY));
-end;
-
-
-function UseItem(User, SourceItem, ltstate)
-    -- list with jewles and the functions belonging to them
-    UseMe={}
-	-- UseMe[ITEMID] = function(...) UseJewl_ITEMID(...) end
-	
-	if not UseMe[SourceItem.id] then -- security check
-	    return -- if the jewel is not defined yet, we return
-    else
-        UseMe[SourceItem.id](User, SourceItem, TargetItem, ltstate)
-    end
+function M.LookAtItem(user, item)
+    return lookat.GenerateLookAt(user, item, lookat.JEWELLERY)
 end
+
+function M.MoveItemBeforeMove(User, SourceItem, TargetItem)
+
+    if TargetItem:getType() == 4 then --inventory, not belt
+        glypheffects.equipWithGlyphedItem(User, TargetItem)
+        return checks.checkLevel(User, SourceItem, TargetItem)
+    end
+
+    return true
+end
+
+return M

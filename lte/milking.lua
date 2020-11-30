@@ -17,25 +17,30 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- Long Time Effect Script: Milking cow and sheep
 -- Effect ID: 401
 
+local M = {}
 
-require("base.common");
-module("lte.milking", package.seeall)
-
-function addEffect(milkingEffect, Animal)
+function M.addEffect(milkingEffect, Animal)
 
 end
 
-function callEffect(milkingEffect, Animal)
+function M.callEffect(milkingEffect, Animal)
 
-	local foundAmount, gatherAmount = milkingEffect:findValue("gatherAmount");
-	if (not foundAmount) then
-		return false;
-	end
-	if (gatherAmount <= 0) then
-		return false;
-	end
+    local foundAmount, gatherAmount = milkingEffect:findValue("gatherAmount")
+    if (not foundAmount) then
+        return false
+    end
+    if (gatherAmount <= 0) then
+        return false
+    end
 
-	milkingEffect:addValue("gatherAmount", gatherAmount - 1);
-	milkingEffect.nextCalled = 3000; -- call every 5min
-	return true;
+    if gatherAmount >= 2 then
+        local newAmount=0 --Restock milk
+        milkingEffect:addValue("gatherAmount", newAmount)
+    end
+
+    milkingEffect.nextCalled = 7200 -- call every 12 minutes
+
+    return true
 end
+
+return M

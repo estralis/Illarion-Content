@@ -18,35 +18,38 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 -- by Falk
 -- reworked by Merung
 
-require("base.common")
+local common = require("base.common")
 
-module("alchemy.lte.id_330_language", package.seeall)
+local M = {}
 
 -- INSERT INTO longtimeeffects VALUES (330, 'alchemy_language', 'alchemy.lte.id_330_language');
 
 local ListLanguages={Character.commonLanguage,Character.humanLanguage,Character.dwarfLanguage,Character.elfLanguage,Character.lizardLanguage,Character.orcLanguage,Character.halflingLanguage,Character.ancientLanguage}
 
-function addEffect(Effect, User)               				
+function M.addEffect(Effect, User)                               
 --Nur beim ersten Aufruf
---User:inform("debug func addEffect") 	
+--User:inform("debug func addEffect")     
 end
 
-function callEffect(Effect,User)                  			
-	base.common.InformNLS( User, "Du fühlst, dass der Sprachtrank seine Wirkung verliert.", "You feel that the language potion looses its effect.")
-	return false
+function M.callEffect(Effect,User)                              
+    common.InformNLS( User, "Du fühlst, dass der Sprachtrank seine Wirkung verliert.", "You feel that the language potion loses its effect.")
+    return false
 end
 
-function removeEffect(Effect,User)
-	--[[
-	local find,languageId = Effect:findValue("languageId")
-	local skillName = ListLanguages[languageId]
-	local find,oldSkill = Effect:findValue( "oldSkill")          
-	local find,newSkill = Effect:findValue( "newSkill")
+function M.removeEffect(Effect,User)
+    --[[
+    local find,languageId = Effect:findValue("languageId")
+    local skillName = ListLanguages[languageId]
+    local find,oldSkill = Effect:findValue( "oldSkill")          
+    local find,newSkill = Effect:findValue( "newSkill")
 
-	--original skill level
-	User:increaseSkill(skillName,(-(newSkill-oldSkill))) ]]
+    --original skill level
+    User:increaseSkill(skillName,(-(newSkill-oldSkill))) ]]
 end
 
-function loadEffect(Effect,User)                  			
+function M.loadEffect(Effect,User)                              
 
 end
+
+return M
+

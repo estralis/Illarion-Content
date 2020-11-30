@@ -68,13 +68,13 @@ itemShoes = 53
 
 -- Prison stuff
 attrib(foodlevel) > 14999, english, "hunger" -> "You don't look hungry to me. Work some more!", "No food for lazy scum like you!"
+attrib(foodlevel) > 14999, "hunger" -> "Du siehst mir noch nicht hungrig genug aus. Arbeite weiter!", "Kein Futter für faulen Abschaum wie dich!"
+attrib(foodlevel) > 14999, "hungry", "food" -> "You don't look hungry to me. Work some more!", "No food for lazy scum like you!"
 attrib(foodlevel) > 14999, "hungrig", "essen" -> "Du siehst mir noch nicht hungrig genug aus. Arbeite weiter!", "Kein Futter für faulen Abschaum wie dich!"
 attrib(foodlevel) < 15000, item(49, all) = 0, english, "hunger" -> item(49, 4, 333), "Here, have some mouldy bread. Back to work!"
 attrib(foodlevel) < 15000, item(49, all) ~= 0, english, "hunger" -> "You think I'm giving bread away for nothing, eh? Get back to work or feel my whip."
-attrib(foodlevel) > 14999, german, "hunger" -> "Du siehst mir noch nicht hungrig genug aus. Arbeite weiter!", "Kein Futter für faulen Abschaum wie dich!"
-attrib(foodlevel) < 15000, item(49, all) = 0, german, "hunger" -> item(49, 4, 333), "Hier etwas verschimmeltes Brot. Jetzt arbeite weiter!"
-attrib(foodlevel) < 15000, item(49, all) ~= 0, german, "hunger" -> "Du glaubst wohl, du bekommst Brot fürs nichts tun, häh? Arbeite oder spüre meine Peitsche."
-attrib(foodlevel) > 14999, "hungry", "food" -> "You don't look hungry to me. Work some more!", "No food for lazy scum like you!"
+attrib(foodlevel) < 15000, item(49, all) = 0, "hunger" -> item(49, 4, 333), "Hier etwas verschimmeltes Brot. Jetzt arbeite weiter!"
+attrib(foodlevel) < 15000, item(49, all) ~= 0, "hunger" -> "Du glaubst wohl, du bekommst Brot fürs nichts tun, häh? Arbeite oder spüre meine Peitsche."
 attrib(foodlevel) < 15000, item(49, all) = 0, "hungry", "food" -> item(49, 4, 333), "Here, have some mouldy bread. Back to work!"
 attrib(foodlevel) < 15000, item(49, all) ~= 0, "hungry", "food" -> "You think I'm giving bread away for nothing, eh? Get back to work or feel my whip."
 attrib(foodlevel) < 15000, item(49, all) = 0, "hungrig", "essen" -> item(49, 4, 333), "Hier etwas verschimmeltes Brot. Jetzt arbeite weiter!"
@@ -90,7 +90,7 @@ queststatus(25) < 1, "freilassen", "lass mich frei", "rauslassen", "lass mich ra
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "What do you want? Ah, I know, you want to feel my whip!", "Welcome to my realm, the realm of work, sweat and tears.", "Work, scum! Criminals deserve nothing more than pain.", "Tell me you are innocent and I will laugh for the rest of the day."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Was ist? Ah, ich weiß: Du willst meine Peitsche zu spüren kriegen.", "Willkommen in meinem Reich, dem Reich der Tränen, des Schweißes und der harten Arbeit.", "Arbeite, Abschaum! Kriminelle verdienen nichts als Schmerz!", "Sag mir jetzt noch, du bist unschuldig und ich lache für den Rest des Tages."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Was ist? Ah, ich weiß: Du willst meine Peitsche zu spüren kriegen.", "Willkommen in meinem Reich, dem Reich der Tränen, des Schweißes und der harten Arbeit.", "Arbeite, Abschaum! Kriminelle verdienen nichts als Schmerz!", "Sag mir jetzt noch, du bist unschuldig und ich lache für den Rest des Tages."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "What do you want? Ah, I know, you want to feel my whip!", "Welcome to my realm, the realm of work, sweat and tears.", "Work, scum! Criminals deserve nothing more than pain.", "Tell me you are innocent and I will laugh for the rest of the day."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Was ist? Ah, ich weiß: Du willst meine Peitsche zu spüren kriegen.", "Willkommen in meinem Reich, dem Reich der Tränen, des Schweißes und der harten Arbeit.", "Arbeite, Abschaum! Kriminelle verdienen nichts als Schmerz!", "Sag mir jetzt noch, du bist unschuldig und ich lache für den Rest des Tages."
 "Farewell", "Bye", "Fare well", "See you" -> "I don't think you're leaving right now.", "So you think you're leaving? Surprise! You're not!", "When you find the exit, send me a letter.", "Didn't anyone tell you that you have to stay a bit longer...?", "Nope. Work. Deliver things. Deliver even more things. Then you may get released."
@@ -100,7 +100,7 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "I don't think you're leavin
 "How are you", "How feel", "How do you do" -> "Mind your own business.", "I would feel way better if you'd stop talking and get back to work!", "I feel like whipping you."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Das geht dich nichts an.", "Es würde mir weit besser gehen wenn du die Klappe hieltest und arbeiten würdest.", "Mir ist danach, dich auszupeitschen."
 "your name", "who are you", "who art thou" -> "You can call me 'Master'.", "Percy Dryless. You will remember my name in your nightmares.", "At least I have a name, yours will be forgotten when you are released... one distant day."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Du kannst mich 'Meister' nennen.", "Percy Dryless. Du wirst dich an diesen Namen in deinen Alpträumen erinnern.", "Wenigstens habe ich einen Namen, deinen wird man längst vergessen haben, wenn du entlassen wirst."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Du kannst mich 'Meister' nennen.", "Percy Dryless. Du wirst dich an diesen Namen in deinen Alpträumen erinnern.", "Wenigstens habe ich einen Namen, deinen wird man längst vergessen haben, wenn du entlassen wirst."
 
 -- Catching quest triggers. Modify if the NPC does quests.
 english, "quest", "mission" -> "#me points his finger in your face and laughs out loud.", "Erm, no quest for you.", "My quest is to whip those who are lazy.", "Let me see... your quest is to work!"
@@ -199,18 +199,12 @@ english, "Zhambra" -> "I don't care about your gods. All I care about is that yo
 "was verkauf", "was kauf", "warenliste", "preis von" -> "Ich kann dir ein paar Peitschenhiebe anbieten. Interesse?!", "Ich handel mit Schmerzen.", "Hör auf, rumzufeilschen und arbeite oder ich vergesse mich!"
 "tell something" -> "Shut up and work!", "No talking!", "Shut up and swing the pick, you punk!"
 "erzähl was", "erzähl etwas" -> "Halt deinen Mund und arbeite!", "Hier wird nicht geplaudert!", "Klappe halten, Hacke schwingen, du Gauner!"
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I could sell you some lashes from my whip. Interested!?", "I trade pain.", "Stop bartering and get to work before I lose my patience."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich kann dir ein paar Peitschenhiebe anbieten. Interesse?!", "Ich handel mit Schmerzen.", "Hör auf, rumzufeilschen und arbeite oder ich vergesse mich!"
 
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Percy", "Dryless" -> "I am your master from now on. Obey or be whipped. Your choice."
 "Percy", "Dryless" -> "Ich bin jetzt dein Herr und Meister. Gehorche oder werde ausgepeitscht. Du hast die Wahl."
-"Yes" -> "Yes? Fine, work on.", "Yes? You wanted to say 'Yes Master'!"
-"Ja" -> "Ja? Gut. Arbeite weiter.", "Ja? Das heißt 'Ja, Meister'!"
-"No" -> "No? You dare to disobey?", "#me barks commandingly, 'I will teach you to say 'no'!'"
-"Nein" -> "Nein? Wagst du etwa, zu widersprechen?", "#me bellt: 'Ich werde dich lehren, 'Nein' zu sagen!'"
-
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-english, chance(20.0), ".*" -> "Shut up, and keep working.", "Scum! - Obey!", "#me laughs diabolically.", "Mwahaha!"
-german, chance(20.0), ".*" -> "Halt's Maul und arbeite weiter.", "Abschaum! - Gehorche!", "#me lacht dreckig.", "Mwahaha!"
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.

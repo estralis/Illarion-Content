@@ -14,9 +14,10 @@ details.
 You should have received a copy of the GNU Affero General Public License along
 with this program.  If not, see <http://www.gnu.org/licenses/>. 
 ]]
-module("content.genus")
 
-function GenusData(ItemID) -- returns (0=male, 1=female, 2=neuter)
+local M = {}
+
+function M.GenusData(ItemID) -- returns (0=male, 1=female, 2=neuter)
     local genus={};
     genus[1]=2;
     genus[2]=2;
@@ -274,7 +275,7 @@ function GenusData(ItemID) -- returns (0=male, 1=female, 2=neuter)
     genus[1008]=0;
     genus[1060]=2;
     genus[1061]=2;
-    genus[1062]=2;	
+    genus[1062]=2;    
     genus[1089]=2;
     genus[1245]=0;
     genus[1246]=0;

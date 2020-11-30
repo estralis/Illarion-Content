@@ -91,7 +91,7 @@ queststatus(3) > 21, ".+" -> inform("[Error] Something went wrong, please inform
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Greebas! Yoos be lookin' like yoos could help mes on mes mission."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Greebas! Du sehen aus. Wie helfen mirr, bei Aufgabs meine."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Greebas! Du sehen aus. Wie helfen mirr, bei Aufgabs meine."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greebas! Yoos be lookin' like yoos could help mes on mes mission."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Greebas! Du sehen aus. Wie helfen mirr, bei Aufgabs meine."
 "Farewell", "Bye", "Fare well", "See you" -> "Go wid dat Moshi, and when come back, den bring lotsa shinies fer mes, hurr, hurr."
@@ -101,7 +101,9 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Go wid dat Moshi, and when 
 "How are you", "How feel", "How do you do" -> "Mes be feelin' gud, mes be on important mission fer clan. Mes be realleh sure yoos can do task fer mes."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Mir gutt! Mir Gutt. Mirr auf wichtige Mission. Yubba. Für mein Klan! Fallleicht du machst Aufgabe, mirr?"
 "your name", "who are you", "who art thou" -> "Mes be mighty Graznok, explorer op dem Clan op dem Bonegnawers, dat mes."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Mirr mächtig Graznok sein! Kundschafter von Klan d' Knochenbeißer. Mirr ist."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Mirr mächtig Graznok sein! Kundschafter von Klan d' Knochenbeißer. Mirr ist."
+"sell", "buy", "wares", "price", "trade", "purchase" -> "Mes nub trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Mir nix Händler."
 
 -- Catching quest triggers. Modify if the NPC does quests.
 -- 1st quest: Provide a torch.
@@ -213,8 +215,8 @@ english, "clan" -> "Mes clan be dat clan op dem Bonegnawers. Gnawin' bone all da
 "Erzmagier" -> "Dummig Zauberleuts! Machen Spukh, mirr sein sicher. Zermatsch besser, die!"
 english, "Elvaine", "Morgan" -> "Stoopid majik oomie! Dat be makin' spooks, mes be sure. Bedda smash, dat mes say."
 "Elvaine", "Morgan" -> "Dummig Zauberleuts! Machen Spukh, mirr sein sicher. Zermatsch besser, die!"
-english, "Runewick" -> "Bedda stay away from dat tree town wid lotsa tower. Nub gud dere, nub gud fer orcis fer dwellin'."
-"Runewick" -> "Bleibs weg von Baumdorf mit lauters Turms. Nix gutt da, nix gutt für Orks."
+english, "Runewick" -> "Bedda stay away from dat tree town wid lotsa water. Nub gud dere, nub gud fer orcis fer dwellin'."
+"Runewick" -> "Bleibs weg von Baumdorf mit lauters Wasser. Nix gutt da, nix gutt für Orks."
 english, "Valerio", "Guilianni", "Don" -> "Dat Don be mighty, rich and fat. Mes want become like dat Don, yubba!"
 "Valerio", "Guilianni", "Don" -> "Das Don mächtig, reich und fett. Mirr wollen werden wie das Don, yubba!"
 english, "Galmair" -> "Sum orcis hab say, dat dat be old tent op stumpies. Urgs! Neva gonna dwell in tent op stumpies."
@@ -251,10 +253,6 @@ english, "Malachin" -> "Mala-dingy guide mes smasher. When hunt, den Mala-dingy 
 -- Last catch: Think about keywords the player might say and that are not caught until here.
 english, "Graznok" -> "Hurr? Whub want!?"
 "Graznok" -> "Hurr? Wat woll?"
-"Yes", "yub" -> "Whub want, yoos?", "Whubeva.", "Mes nub understand whub yoos be meanin'."
-"Ja" -> "Wat woll, yoos?", "Watauchimma.", "Mir nix versteh wat yoos meinen."
-"No", "nub" -> "Nub?", "Why nub?", "Whubeva."
-"Nein" -> "Nub?", "Wieso nub?", "Watauchimma."
 
 -- Cycletext: Add as many random messages as possible
 

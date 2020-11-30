@@ -12,24 +12,29 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- I_92 Oel-Lampe
 
--- UPDATE common SET com_script='item.id_92_oillamp' WHERE com_itemid=92;
+-- UPDATE items SET itm_script='item.id_92_oillamp' WHERE itm_id=92;
 
-require("base.common")
+local common = require("base.common")
 
-module("item.id_92_oillamp", package.seeall)
+local M = {}
 
-function UseItem(User, SourceItem)
-    x=math.random(99);
-    if x < 6 then
-        base.common.InformNLS(User,"Du bist nicht sicher, aber es scheint als würde die Lampe etwas leuchten","You are not sure, but it seems the lamp starts to glow a little.");
-    elseif x < 16 then
-        base.common.InformNLS(User,"Du glaubst zu fühlen, dass die Lampe wärmer wird","You think the lamp gets warmer!");
+function M.UseItem(User, SourceItem)
+
+    local randomValue = math.random(1,99)
+    
+    if randomValue < 6 then
+        User:inform("Du bist nicht sicher, aber es scheint als würde die Lampe etwas leuchten","You are not sure, but it seems the lamp starts to glow a little.")
+    elseif randomValue < 16 then
+        User:inform("Du glaubst zu fühlen, dass die Lampe wärmer wird","You think the lamp gets warmer!")
     else
-        base.common.InformNLS(User,"Du reibst an der Lampe, doch nichts passiert.","You rub the lamp but nothing happens.");
-
+        User:inform("Du reibst an der Lampe, doch nichts passiert.","You rub the lamp but nothing happens.")
     end
+    
 end
+
+return M
+

@@ -91,7 +91,7 @@ itemShoes = 53
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Oh, hello, got laundry? Excuse me, I thought you were one of my customers.", "#me looks up from her washing board and replies, 'Hiho! Didn't I see you yesterday at the Anthil brook?", "Hiho! How can I help you?"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Oh, hallo, habt ihr Schmutzwäsche? Entschuldigt, ich dachte, ihr seid einer meiner Kunden.", "#me schaut von ihrem Waschbrett auf und erwidert: 'Hiho! Hab ich euch nicht gestern erst am Bach Anthil gesehen?", "Hiho! Wie kann ich euch helfen?"
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Oh, hallo, habt ihr Schmutzwäsche? Entschuldigt, ich dachte, ihr seid einer meiner Kunden.", "#me schaut von ihrem Waschbrett auf und erwidert: 'Hiho! Hab ich euch nicht gestern erst am Bach Anthil gesehen?", "Hiho! Wie kann ich euch helfen?"
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Oh, hello, got laundry? Excuse me, I thought you were one of my customers.", "#me looks up from her washing board and replies, 'Hiho! Didn't I see you yesterday at the Anthil brook?", "Hiho! How can I help you?"
 "Hiho", "Hallo", "Hey", "Greeb" -> "Oh, hallo, habt ihr Schmutzwäsche? Entschuldigt, ich dachte, ihr seid einer meiner Kunden.", "#me schaut von ihrem Waschbrett auf und erwidert: 'Hiho! Hab ich euch nicht gestern erst am Bach Anthil gesehen?", "Hiho! Wie kann ich euch helfen?"
 "Farewell", "Bye", "Fare well", "See you" -> "Farewell! If your clothes get dirty, just come back to me, will you?", "Oh, you have to leave? I do not feel comfortable here, all alone.", "Ah, I look forward to meeting you again."
@@ -101,7 +101,7 @@ english, "Ciao", "Adieu", "Au revoir" -> "Farewell! If your clothes get dirty, j
 "How are you", "How feel", "How do you do" -> "I feel... clean!", "Oh, I am so worried, maybe you can help me?", "Afraid!"
 "Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Mir geht es... sauber!", "Oh, ich bin so besorgt, vielleicht könnt ihr mir ja helfen.", "Ich hab Angst!"
 "your name", "who are you", "who art thou" -> "I am Myrthe. Hello!", "Myrthe Mildthorn, at your service.", "Washer woman Myrthe Mildthorn reports for duty!"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin die Myrthe. Hallo!", "Myrthe Mildthorn, stets zu Diensten.", "Waschweib Myrthe Mildthorn meldet sich zur Stelle!"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich bin die Myrthe. Hallo!", "Myrthe Mildthorn, stets zu Diensten.", "Waschweib Myrthe Mildthorn meldet sich zur Stelle!"
 
 -- 1st quest: Kill 10 wolves, player receives torch.
 
@@ -112,9 +112,9 @@ queststatus(79) = 0, "task", "adventure" -> inform("[New quest] A Cave in the Wo
 queststatus(79) = 0, "Auftrag", "Aufgabe", "Abenteuer" -> inform("[Neues Quest] Eine Höhle im Wald I"), item(391, 1, 399), queststatus(79) = 1, "Seitdem mein alter Freund der Bär nicht mehr ist, fürchte ich mich jede Nacht vor den Wölfen. Könntet ihr bitte nach Norden ziehen und sie... für immer... zähmen? Nehmt diese Fackel, es ist dunkel da drinnen."
 
 -- Quest 1 solved, reward: 100cp, +5 rankpoints
-queststatus(79) = 11, english, town = Runewick, ".+" -> inform("[Quest solved] You are awarded ten silver coins. You advance in Archmage Elvaine Morgan's favour."), money + 1000, queststatus(79) = 12, rankpoints + 5, "Oh, how great! Now I can sleep without the wolves scaring me. Here, take my weekly pay, please do not refuse it. Another adventure awaits you."
+queststatus(79) = 11, english, town = Runewick, ".+" -> inform("[Quest solved] You are awarded ten silver coins."), money + 1000, queststatus(79) = 12, rankpoints + 5, "Oh, how great! Now I can sleep without the wolves scaring me. Here, take my weekly pay, please do not refuse it. Another adventure awaits you."
 queststatus(79) = 11, english, ".+" -> inform("[Quest solved] You are awarded ten silver coins."), money + 1000, queststatus(79) = 12, "Oh, how great! Now I can sleep without the wolves scaring me. Here, take my weekly pay, please do not refuse it. Another adventure awaits you."
-queststatus(79) = 11, town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst zehn Silberstücke. Dein Ansehen bei Erzmagier Elvaine Morgan steigt."), money + 1000, queststatus(79) = 12, rankpoints + 5, "Oh, wie fein! Jetzt kann ich die Nacht ohne Angst vor den Wölfen durchschlafen. Hier, nehmt meinen Wochenlohn, lehnt ihn bitte nicht ab. Ein weiteres Abenteuer wartet auf euch."
+queststatus(79) = 11, town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst zehn Silberstücke."), money + 1000, queststatus(79) = 12, rankpoints + 5, "Oh, wie fein! Jetzt kann ich die Nacht ohne Angst vor den Wölfen durchschlafen. Hier, nehmt meinen Wochenlohn, lehnt ihn bitte nicht ab. Ein weiteres Abenteuer wartet auf euch."
 queststatus(79) = 11, ".+" -> inform("[Quest gelöst] Du erhältst zehn Silberstücke."), money + 1000, queststatus(79) = 12, "Oh, wie fein! Jetzt kann ich die Nacht ohne Angst vor den Wölfen durchschlafen. Hier, nehmt meinen Wochenlohn, lehnt ihn bitte nicht ab. Ein weiteres Abenteuer wartet auf euch."
 
 -- Quest 1 taken but not solved, repeat the instructions
@@ -131,9 +131,9 @@ queststatus(79) = 12, "task", "adventure" -> inform("[New quest] A Cave in the W
 queststatus(79) = 12, "Auftrag", "Aufgabe", "Abenteuer" -> inform("[Neues Quest] Eine Höhle im Wald II"), queststatus(79) = 13, "Ihr seid wahrhaftig ein Held. Wilde Hunde jagen alles und jeden, sogar Halblinge. Bitte, könntet ihr sie auch... ruhigstellen?"
 
 -- Quest 2 solved, reward: 100cp, yellow robe (195), +10 rankpoints
-queststatus(79) = 18, english, town = Runewick, ".+" -> inform("[Quest solved] You are awarded ten silver coins and a yellow robe. You advance in Archmage Elvaine Morgan's favour."), money + 1000, item(195, 1, 599), queststatus(79) = 19, rankpoints + 10, "Wonder... wonderful! The dogs were so mean. Here, a customer forgot to pick up a robe, it is yours now."
+queststatus(79) = 18, english, town = Runewick, ".+" -> inform("[Quest solved] You are awarded ten silver coins and a yellow robe."), money + 1000, item(195, 1, 599), queststatus(79) = 19, rankpoints + 10, "Wonder... wonderful! The dogs were so mean. Here, a customer forgot to pick up a robe, it is yours now."
 queststatus(79) = 18, english, ".+" -> inform("[Quest solved] You are awarded ten silver coins and a yellow robe."), money + 1000, item(195, 1, 599), queststatus(79) = 19, "Wonder... wonderful! The dogs were so mean. Here, a customer forgot to pick up a robe, it is yours now."
-queststatus(79) = 18, town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst zehn Silberstücke und eine gelbe Robe. Dein Ansehen bei Erzmagier Elvaine Morgan steigt."), money + 1000, item(195, 1, 599), queststatus(79) = 19, rankpoints + 10, "Wunder, wunderbar! Die Hunde waren so böse! Hier, ein Kunde vergaß eine Robe bei mir abzuholen, sie sei nun eure."
+queststatus(79) = 18, town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst zehn Silberstücke und eine gelbe Robe."), money + 1000, item(195, 1, 599), queststatus(79) = 19, rankpoints + 10, "Wunder, wunderbar! Die Hunde waren so böse! Hier, ein Kunde vergaß eine Robe bei mir abzuholen, sie sei nun eure."
 queststatus(79) = 18, ".+" -> inform("[Quest gelöst] Du erhältst zehn Silberstücke und eine gelbe Robe."), money + 1000, item(195, 1, 599), queststatus(79) = 19, "Wunder, wunderbar! Die Hunde waren so böse! Hier, ein Kunde vergaß eine Robe bei mir abzuholen, sie sei nun eure."
 
 -- Quest 2 taken but not solved, repeat the instructions
@@ -150,9 +150,9 @@ queststatus(79) = 19, "task", "adventure" -> inform("[New quest] A Cave in the W
 queststatus(79) = 19, "Auftrag", "Aufgabe", "Abenteuer" -> inform("[Neues Quest] Eine Höhle im Wald III"), queststatus(79) = 20, "Habt ihr dieses Netz gesehen? Dieses riesen Netz im Wald? Es muss einer riesigen Spinne gehören. Stellt euch nur vor, so ein Biest würde hierher kommen! Könnt ihr das... verhindern?"
 
 -- Quest 3 solved, reward: novice robe, +20 rankpoints
-queststatus(79) = 21, english, town = Runewick, ".+" -> inform("[Quest solved] You are awarded a novice robe. You advance in Archmage Elvaine Morgan's favour."), item(547, 1, 799), queststatus(79) = 22, rankpoints + 20, "Hooray! Now the woods are peaceful again and I can continue washing the laundry in peace. An apprentice of Runewick left her robe with me; I think her name was Zaida. Have it!"
+queststatus(79) = 21, english, town = Runewick, ".+" -> inform("[Quest solved] You are awarded a novice robe."), item(547, 1, 799), queststatus(79) = 22, rankpoints + 20, "Hooray! Now the woods are peaceful again and I can continue washing the laundry in peace. An apprentice of Runewick left her robe with me; I think her name was Zaida. Have it!"
 queststatus(79) = 21, english, ".+" -> inform("[Quest solved] You are awarded a novice robe."), item(547, 1, 799), queststatus(79) = 22, "Hooray! Now the woods are peaceful again and I can continue washing the laundry in peace. An apprentice of Runewick left her robe with me; I think her name was Zaida. Have it!"
-queststatus(79) = 21, town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst eine Novizenrobe. Dein Ansehen bei Erzmagier Elvaine Morgan steigt."), item(547, 1, 799), queststatus(79) = 22, rankpoints + 20, "Hurra! Nun, da der Wald wieder friedlich ist, kann ich ungestört meine Wäsche waschen. Eine Novizin aus Runewick hat ihre Robe hier bei mir vergessen; ich glaube, ihr Name war Zaida. Hier!"
+queststatus(79) = 21, town = Runewick, ".+" -> inform("[Quest gelöst] Du erhältst eine Novizenrobe."), item(547, 1, 799), queststatus(79) = 22, rankpoints + 20, "Hurra! Nun, da der Wald wieder friedlich ist, kann ich ungestört meine Wäsche waschen. Eine Novizin aus Runewick hat ihre Robe hier bei mir vergessen; ich glaube, ihr Name war Zaida. Hier!"
 queststatus(79) = 21, ".+" -> inform("[Quest gelöst] Du erhältst eine Novizenrobe."), item(547, 1, 799), queststatus(79) = 22, "Hurra! Nun, da der Wald wieder friedlich ist, kann ich ungestört meine Wäsche waschen. Eine Novizin aus Runewick hat ihre Robe hier bei mir vergessen; ich glaube, ihr Name war Zaida. Hier!"
 
 -- Quest 3 taken but not solved, repeat the instructions
@@ -237,6 +237,8 @@ english, "Tanora", "Zelphia" -> "I pray to Tanora every morning for leaving the 
 "was verkauf", "was kauf", "warenliste", "preis von" -> "Ich kann eure Schmutzwäsche waschen, aber ich handele nicht mit Waren."
 "tell something" -> "First, you have to soak the laundry. Wait an hour, but not more. Then, wash it! And do not forget to rinse it twice."
 "erzähl was", "erzähl etwas" -> "Zunächst müßt ihr die Wäsche einweichen. Wartet eine Stunde, aber nicht mehr. Dann wascht sie! Vergesst nicht, sie hinterher zweimal zu spülen."
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin kein Händler."
 
 -- Easteregg (optional): Think about a funny, unrelated trigger with a surprising answer
 "moan" -> "I do not moan! I just... notice things."
@@ -247,10 +249,6 @@ english, "Ariel", "Sunil", "Persil", "Tandil", "Unamat" -> "I prefer soap."
 -- Last catch: Think about keywords the player might say and that are not caught until here.
 english, "Myrthe", "Mildthorn" -> "Yes, I am Myrthe. My last name is Mildthorn. Because my parents' name was also Mildthorn."
 "Myrthe", "Mildthorn" -> "Ja, ich bin die Myrthe. Mein Nachname ist Mildthorn. Das ist so, weil das auch der Nachname meiner Eltern war."
-"Yes" -> "Yes, no.", "Sure, clear.", "Everything is wonderful!"
-"Ja" -> "Ja, ne.", "Sicherlich, klar.", "Alles wunderbar!"
-"No" -> "Nothing is clear.", "Who is Regor?", "What the heck?"
-"Nein" -> "Nichts ist klar.", "Wer ist Regor?", "Wer verdammt nochmal?"
 
 -- Cycletext: Add as many random messages as possible
 

@@ -12,24 +12,20 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- UPDATE common SET com_script='item.id_2140_tong' WHERE com_itemid=2140;
+-- UPDATE items SET itm_script='item.id_2140_tong' WHERE itm_id=2140;
 
-require("content.craft.gemcutting")
-require("base.licence")
-require("base.lookat")
+local gemcutting = require("craft.final.gemcutting")
+local metal = require("item.general.metal")
 
-module("item.id_2140_tong", package.seeall)
+local M = {}
 
-function UseItem(User, SourceItem, ltstate)
-	if base.licence.licence(User) then --checks if user is citizen or has a licence 
-		return -- avoids crafting if user is neither citizen nor has a licence
-	end
+M.LookAtItem = metal.LookAtItem
 
-    content.craft.gemcutting.gemcutting:showDialog(User, SourceItem)
+function M.UseItem(User, SourceItem, ltstate)
+    gemcutting.gemcutting:showDialog(User, SourceItem)
 end
 
-function LookAtItem(User, Item)
-    world:itemInform(User, Item, base.lookat.GetItemDescription(User, Item, base.lookat.METAL))
-end
+return M
+

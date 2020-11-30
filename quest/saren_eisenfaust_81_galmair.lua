@@ -16,21 +16,21 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
 -- INSERT INTO "quests" ("qst_id", "qst_script") VALUES (81, 'quest.saren_eisenfaust_81_galmair');
 
-require("base.common")
-require("base.factions")
-module("quest.saren_eisenfaust_81_galmair", package.seeall)
+local common = require("base.common")
+local factions = require("base.factions")
+local M = {}
 
-GERMAN = Player.german
-ENGLISH = Player.english
+local GERMAN = Player.german
+local ENGLISH = Player.english
 
 -- Insert the quest title here, in both languages
-Title = {}
+local Title = {}
 Title[GERMAN] = "Der faule Schmied"
-Title[ENGLISH] = "The lazy smith"
+Title[ENGLISH] = "The Lazy Smith"
 
 -- Insert an extensive description of each status here, in both languages
 -- Make sure that the player knows exactly where to go and what to do
-Description = {}
+local Description = {}
 Description[GERMAN] = {}
 Description[ENGLISH] = {}
 Description[GERMAN][1] = "Bring 10 Kohlestücke, 10 Eisenerze und 1 Hammer zu Saren Eisenfaust."
@@ -41,57 +41,59 @@ Description[GERMAN][3] = "Bring 15 Kupfererze, 1 Tiegelzange, 1 Feinschmiedehamm
 Description[ENGLISH][3] = "Bring 15 pieces of copper ore, 1 crucible-pincer, 1 finesmithing hammer and 5 iron ingots to Saren Eisenfaust."
 Description[GERMAN][4] = "Vielleicht solltest du Saren Eisenfaust nochmal ansprechen, er hat sicher noch mehr für dich zu tun."
 Description[ENGLISH][4] = "Perhaps you should talk to Saren Eisenfaust again, he is sure to have more for you to do."
-Description[GERMAN][5] = "Bring 10 Eisenbarren, 10 Goldbarren, 5 zwergische Metallhandschuhe und 4 Schwertgriffe zu Saren Eisenfaust."
-Description[ENGLISH][5] = "Bring 10 iron ingots, 10 gold ingots, 5 dwarven metal gloves and 4 sword handles to Saren Eisenfaust"
+Description[GERMAN][5] = "Bring 10 Eisenplatte, 10 Goldbarren, und 5 Streitaxt zu Saren Eisenfaust."
+Description[ENGLISH][5] = "Bring 10 iron plates, 10 gold ingots, and 5 battle axe to Saren Eisenfaust"
 Description[GERMAN][6] = "Vielleicht solltest du Saren Eisenfaust nochmal ansprechen, er hat sicher noch mehr für dich zu tun."
 Description[ENGLISH][6] = "Perhaps you should talk to Saren Eisenfaust again, he is sure to have more for you to do."
-Description[GERMAN][7] = "Bring 15 Kupferbarren, 10 Kriegshämmer, 10 Hellebarden und 2 salkamaerische Rüstungen zu Saren Eisenfaust."
-Description[ENGLISH][7] = "Bring 15 copper ingots, 10 warhammers, 10 halberds and 2 salkamaerian armours to Saren Eisenfaust"
+Description[GERMAN][7] = "Bring 10 verkupfertes Langschwert und 2 Zweihänder zu Saren Eisenfaust."
+Description[ENGLISH][7] = "Bring 10 coppered longswords and 2 two-handed swords to Saren Eisenfaust"
 Description[GERMAN][8] = "Du hast alle Aufgaben von Saren Eisenfaust erfüllt."
 Description[ENGLISH][8] = "You have fulfilled all tasks of Saren Eisenfaust."
 
 
 -- Insert the position of the quest start here (probably the position of an NPC or item)
-Start = {333, 258, 0}
+local Start = {376, 284, 0}
 
 -- For each status insert a list of positions where the quest will continue, i.e. a new status can be reached there
-QuestTarget = {}
-QuestTarget[1] = {333, 258, 0}
-QuestTarget[3] = {333, 258, 0}
-QuestTarget[5] = {333, 258, 0}
-QuestTarget[7] = {333, 258, 0}
+local QuestTarget = {}
+QuestTarget[1] = {376, 284, 0}
+QuestTarget[3] = {376, 284, 0}
+QuestTarget[5] = {376, 284, 0}
+QuestTarget[7] = {376, 284, 0}
 
 -- Insert the quest status which is reached at the end of the quest
-FINAL_QUEST_STATUS = 8
+local FINAL_QUEST_STATUS = 8
 
 
-function QuestTitle(user)
-    return base.common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
+function M.QuestTitle(user)
+    return common.GetNLS(user, Title[GERMAN], Title[ENGLISH])
 end
 
-function QuestDescription(user, status)
+function M.QuestDescription(user, status)
     local german = Description[GERMAN][status] or ""
     local english = Description[ENGLISH][status] or ""
 
-    return base.common.GetNLS(user, german, english)
+    return common.GetNLS(user, german, english)
 end
 
-function QuestStart()
+function M.QuestStart()
     return Start
 end
 
-function QuestTargets(user, status)
+function M.QuestTargets(user, status)
     return QuestTarget[status]
 end
 
-function QuestFinalStatus()
+function M.QuestFinalStatus()
     return FINAL_QUEST_STATUS
 end
 
-function QuestAvailability(user, status)
-    if base.factions.isGalmairCitizen(user) and user:getSkill(Character.smithing) < 80 and status == 0 then
+function M.QuestAvailability(user, status)
+    if factions.isGalmairCitizen(user) and user:getSkill(Character.blacksmithing) < 80 and status == 0 then
         return Player.questAvailable
     else
         return Player.questNotAvailable
     end
 end
+
+return M

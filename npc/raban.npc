@@ -86,35 +86,41 @@ itemShoes = 369
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Ah, yes, an unsettled soul. Welcome to my grove.", "Who's there? Pardon me, I am not used to visitors.", "So, after all these summers, somebody comes here. I hope your intentions are good."
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Ach ja, wieder eine rastlose Seele. Willkommen in meinem Hain.", "Wer ist da! Entschuldigt, ich bin es nicht gewohnt, Besucher zu empfangen.", "Nun, nach all diesen Sommern sucht wieder jemand diesen Ort auf. Ich hoffe, eure Absichten sind ehrbar."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Ach ja, wieder eine rastlose Seele. Willkommen in meinem Hain.", "Wer ist da! Entschuldigt, ich bin es nicht gewohnt, Besucher zu empfangen.", "Nun, nach all diesen Sommern sucht wieder jemand diesen Ort auf. Ich hoffe, eure Absichten sind ehrbar."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Ah, yes, an unsettled soul. Welcome to my grove.", "Who's there? Pardon me, I am not used to visitors.", "So, after all these summers, somebody comes here. I hope your intentions are good."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Ach ja, wieder eine rastlose Seele. Willkommen in meinem Hain.", "Wer ist da! Entschuldigt, ich bin es nicht gewohnt, Besucher zu empfangen.", "Nun, nach all diesen Sommern sucht wieder jemand diesen Ort auf. Ich hoffe, eure Absichten sind ehrbar."
 "Farewell", "Bye", "Fare well", "See you" -> "Ushara may guide your way.", "Farewell.", "While leaving, do not stomp on any seedlings, will you?"
-"Tschüß", "Tschüss", "Wiedersehen", "Gehab wohl" -> "Möge Ushara deinen Weg begleiten.", "Gehabt euch wohl.", "Wenn ihr geht, mögt ihr Acht geben, nicht auf Setzlinge zu treten?"
+"Tschüß", "Tschüss", "Wiedersehen", "Gehab wohl" -> "Möge Ushara euren Weg begleiten.", "Gehabt euch wohl.", "Wenn ihr geht, mögt ihr Acht geben, nicht auf Setzlinge zu treten?"
 english, "Ciao", "Adieu", "Au revoir" -> "Ushara may guide your way.", "Farewell.", "While leaving, do not stomp on any seedlings, will you?"
-"Ciao", "Adieu", "Au revoir" -> "Möge Ushara deinen Weg begleiten.", "Gehabt euch wohl.", "Wenn ihr geht, mögt ihr Acht geben, nicht auf Setzlinge zu treten?"
+"Ciao", "Adieu", "Au revoir" -> "Möge Ushara euren Weg begleiten.", "Gehabt euch wohl.", "Wenn ihr geht, mögt ihr Acht geben, nicht auf Setzlinge zu treten?"
 "How are you", "How feel", "How do you do" -> "I always feel pacified when surrounded by plants and trees.", "I'd feel much better if everyone honours the woods. Aren't these trees lovely?", "I cannot complain. My trees grow and this little fellow over here just turned ten years. I remember planting him like it was yesterday."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Umgeben von Pflanzen und Bäumen fühle ich mich immer beruhigt.", "Es würde mir weit besser gehen, wenn ein Jeder die Wälder achten würde. Sind diese Bäume nicht wunderbar?", "Ich kann mich nicht beklagen. Meine Bäume wachsen wunderbar und der kleine dort ist gerade zehn geworden. Ich erinnere mich, wie ich ihn gepflanzt habe, als wenn es gestern wäre."
 "your name", "who are you", "who art thou" -> "They used to call me Raban when people still came here.", "Raban.", "I am an old man without use for a name. The trees and plants have their own word for me. You may call me Raban."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Sie haben mich Raban genannt, damals, als noch von Zeit zu Zeit Leute hierher kamen.", "Raban.", "Ich bin ein alter Mann, ohne Bedarf für einen Namen. Die Bäume und Pflanzen haben ihre eigene Bezeichnung für mich. Du kannst mich hingegen Raban nennen."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Sie haben mich Raban genannt, damals, als noch von Zeit zu Zeit Leute hierher kamen.", "Raban.", "Ich bin ein alter Mann, ohne Bedarf für einen Namen. Die Bäume und Pflanzen haben ihre eigene Bezeichnung für mich. Ihr könnt mich hingegen Raban nennen."
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin kein Händler."
+
+-- foreign quest Alberto Dicker
+queststatus(674) = 2, english, ".+" -> inform("[The pictures Alberto Dickers] You get a wolverine fern and an ice leaf. Go back to Runewick and bring them to Numila Irunnleh."), "Thank you. Even if we don't have the same opinion in some cases, the Archmage keeps at least this promise. I found these rare herbs. Please give them to Numila Irunnleh in return for that message. And look to the rooster in the house. You may believe he starts crowing soon.", item(768, 1, 399), item(760, 1, 399), queststatus(674) = 3
+queststatus(674) = 2, ".+" -> inform("[Die Gemälde Alberto Dickers] Du bekommst ein Wolfsfarn und ein Eisblatt. Gehe zurück nach Runewick und bring sie Numila Irunnleh."), "Danke, auch wenn wir uns nicht so gut verstehen, zu diesem Wort steht der Erzmagier. Ich habe hier zwei seltene Kräuter. Bringt sie bitte Numila Irunnleh und sagt ihr, dass ich ihr für die Nachricht danke. Und schaut euch ruhig den Hahn an. Man könnte meinen er kräht gleich.", item(768, 1, 399), item(760, 1, 399), queststatus(674) = 3
 
 -- 1st quest: Take a tool and gather 10 raw materials for 500cp.
 queststatus(66) = 0, english, "quest", "mission" -> inform("[New quest] Raban's Grove I"), item(126, 1, 399), queststatus(66) = 1, "So, you want to help me and the forest? Here, take this sickle and bring me ten fir tree seedling from the trees around."
-queststatus(66) = 0, "quest", "mission" -> inform("[Neues Quest] Rabans Hain I"), item(126, 1, 399), queststatus(66) = 1, "So, so, du willst mir und dem Wald also helfen? Nimm doch diese Sichel und bringe mir zehn Setzlinge von den Fichten des Hains."
+queststatus(66) = 0, "quest", "mission" -> inform("[Neues Quest] Rabans Hain I"), item(126, 1, 399), queststatus(66) = 1, "So, so, ihr wollt mir und dem Wald also helfen? Nehmt doch diese Sichel und bringt mir zehn Sprösslinge von den Tannen des Hains."
 queststatus(66) = 0, "task", "adventure", "order" -> inform("[New quest] Raban's Grove I"), item(126, 1, 399), queststatus(66) = 1, "So, you want to help me and the forest? Here, take this sickle and bring me ten fir tree seedling from the trees around."
-queststatus(66) = 0, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> inform("[Neues Quest] Rabans Hain I"), item(126, 1, 399), queststatus(66) = 1, "So, so, du willst mir und dem Wald also helfen? Nimm doch diese Sichel und bringe mir zehn Setzlinge von den Fichten des Hains."
+queststatus(66) = 0, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> inform("[Neues Quest] Rabans Hain I"), item(126, 1, 399), queststatus(66) = 1, "So, so, ihr wollt mir und dem Wald also helfen? Nehmt doch diese Sichel und bringt mir zehn Sprösslinge von den Tannen des Hains."
 
 -- Quest 1 solved
 skill(herblore) < 90, queststatus(66) = 1, item(149, all) > 9, english, ".+" -> inform("[Quest solved] You are awarded five silver coins and your herb lore skill increases."), skill(herblore) + 1, money + 500, deleteItem(149, 10), queststatus(66) = 2, "Thank you very much for the fir tree seedlings. Here, have these shiny discs, I have no use for them."
 queststatus(66) = 1, item(149, all) > 9, english, ".+" -> inform("[Quest solved] You are awarded five silver coins."), money + 500, deleteItem(149, 10), queststatus(66) = 2, "Thank you very much for the fir tree seedlings. Here, have these shiny discs, I have no use for them."
-skill(herblore) < 90, queststatus(66) = 1, item(149, all) > 9, ".+" -> inform("[Quest gelöst] Du erhältst fünf Silberstücke und deine Kräuterkundefertigkeit steigt."), skill(herblore) + 1, money + 500, deleteItem(149, 10), queststatus(66) = 2, "Habt besten Dank für die Fichtensetzlinge. Nehmt diese glänzenden Scheiben, ich habe keinen Bedarf an ihnen."
-queststatus(66) = 1, item(149, all) > 9, ".+" -> inform("[Quest gelöst] Du erhältst fünf Silberstücke."), money + 500, deleteItem(149, 10), queststatus(66) = 2, "Habt besten Dank für die Fichtensetzlinge. Nehmt diese glänzenden Scheiben, ich habe keinen Bedarf an ihnen."
+skill(herblore) < 90, queststatus(66) = 1, item(149, all) > 9, ".+" -> inform("[Quest gelöst] Du erhältst fünf Silberstücke und deine Kräuterkundefertigkeit steigt."), skill(herblore) + 1, money + 500, deleteItem(149, 10), queststatus(66) = 2, "Habt besten Dank für die Tannensprösslinge. Nehmt diese glänzenden Scheiben, ich habe keinen Bedarf an ihnen."
+queststatus(66) = 1, item(149, all) > 9, ".+" -> inform("[Quest gelöst] Du erhältst fünf Silberstücke."), money + 500, deleteItem(149, 10), queststatus(66) = 2, "Habt besten Dank für die Tannensprösslinge. Nehmt diese glänzenden Scheiben, ich habe keinen Bedarf an ihnen."
 
 -- Quest 1 not solved, repeat the instructions
 queststatus(66) = 1, english, "quest", "mission" -> "So, how is your progress in finding ten fir tree seedlings?"
-queststatus(66) = 1, "quest", "mission" -> "Und, wie kommt ihr voran mit dem Finden von zehn Fichtensetzlingen?"
+queststatus(66) = 1, "quest", "mission" -> "Und, wie kommt ihr voran mit dem Finden von zehn Tannensprösslinge?"
 queststatus(66) = 1, "task", "adventure", "order" -> "So, how is your progress in finding ten fir tree seedlings?"
-queststatus(66) = 1, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Und, wie kommt ihr voran mit dem Finden von zehn Fichtensetzlingen?"
+queststatus(66) = 1, "Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Und, wie kommt ihr voran mit dem Finden von zehn Tannensprösslinge?"
 
 -- 2nd quest: Gather 20 different raw materials for 1000cp.
 queststatus(66) = 2, english, "quest", "mission" -> inform("[New quest] Raban's Grove II"), queststatus(66) = 3, "How kind of you that you want to assist me one more time. Could you gather twenty blackberries, sweet gifts of Oldra?"
@@ -202,7 +208,7 @@ english, "Bruno" -> "That name sounds familiar, but living in solitude, I forget
 "herbs" -> "You can gather herbs with a sickle. But do not cut too many... Ushara won't be pleased if you plunder her treasury."
 "Kräuter" -> "Ihr könnt Kräuter mit einer Sichel sammeln. Aber schneidet nicht zu viele ab - Ushara wird nicht erfreut sein, wenn ihr ihren Garten plündert."
 queststatus(66) = 0, "sickle" -> "With sickles, you can cut fir tree seedlings to plant new trees. If you want to help me, ask me for a task."
-queststatus(66) = 0, "Sichel" -> "Mit einer Sichel könnt ihr Fichtensetzlinge schneiden um neue Bäume zu pflanzen. Wenn ihr mir dabei helfen wollt, fragt mich nach einem Auftrag."
+queststatus(66) = 0, "Sichel" -> "Mit einer Sichel könnt ihr Tannensprösslinge schneiden um neue Bäume zu pflanzen. Wenn ihr mir dabei helfen wollt, fragt mich nach einem Auftrag."
 "sickle" -> "In case you need a new sickle, ask for William in Runewick. If he is still alive after all these years we didn't meet."
 "Sichel" -> "Wenn du einen neue Sichel benötigst, fragt nach William in Runewick. Ich hoffe, er ist nach all diesen Jahren, die wir uns nicht sahen, noch am Leben."
 "virgin" -> "Virgin's weed only grows in rocky terrain, so you'll have to head for the mountains if you need any."
@@ -257,10 +263,6 @@ english, "Falkner" -> "What did you say?", "That's not my name... anymore."
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Raban" -> "Raban... yes, that's what they used to call me."
 "Raban" -> "Raban... ja, so hat man mich mal genannt."
-"Yes" -> "Yes?", "Probably.", "I thought so.", "Are you sure?", "Maybe.", "What makes you so sure about this?", "Definitely.", "Whatever..."
-"Ja" -> "Ja?", "Wahrscheinlich.", "Hab ich mir gedacht.", "Seid ihr sicher?", "Vielleicht.", "Was macht euch so sicher?", "Sicherlich.", "Wie auch immer..."
-"No" -> "No?", "But on the other hand...", "Well...", "Maybe you should reconsider this?", "Is that all you have to say about this?", "I disagree."
-"Nein" -> "Nein?", "Aber andererseits...", "Nun...", "Vielleicht ändert ihr eure Meinung noch einmal?", "Ist das alles, was ihr dazu sagen wollt?", "Ich muss widersprechen."
 
 -- Cycletext: Please add at least(!) five cycletext messages. The more, the better. You can use emotes (#me is green), too.
 

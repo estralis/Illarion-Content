@@ -16,7 +16,7 @@
 -- NPC Name: Joseph Quatrilla                                         Cadomyr --
 -- NPC Job:  Alchemist                                                        --
 --                                                                            --
--- NPC Race: human                      NPC Position:  138, 543, 0            --
+-- NPC Race: human                      NPC Position:  134, 597, 0            --
 -- NPC Sex:  male                       NPC Direction: west                   --
 --                                                                            --
 -- Author:   merung                                                           --
@@ -26,7 +26,7 @@
 name = "Joseph Quatrilla"
 race = human
 sex = male
-position = 138, 543, 0
+position = 134, 597, 0
 direction = west
 affiliation = "Cadomyr"
 job = "Alchemist"
@@ -38,7 +38,7 @@ autointroduce = on
 
 author = "merung"
 
-lookatDE = "Dieser NPC ist Joseph Quatrilla  der Lehrmeister der Alchemie."
+lookatDE = "Dieser NPC ist Joseph Quatrilla der Lehrmeister der Alchemie."
 lookatUS = "This NPC is Joseph Quatrilla the master of alchemy."
 useMsgDE = "Fasst mich nicht an!"
 useMsgUS = "Do not touch me!"
@@ -63,19 +63,7 @@ itemShoes = 53
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItem = id(2622), de("Buch der Alchemie"), en("Book Of Alchemy"), price(1000), stack(1), quality(333)
-sellItem = id(2622), de("Buch der Alchemie"), en("Book Of Alchemy"), price(1000), stack(1), quality(333)
-
--- ----------------------------------------------------------------------------
--- NPC Name: Joseph Quatrilla                                         Cadomyr --
--- NPC Job:  Alchemist                                                        --
--- --
--- NPC Race: human                      NPC Position:  138, 543, 0            --
--- NPC Sex:  male                       NPC Direction: west                   --
--- --
--- Author:   merung                                                           --
--- easyNPC Parser v1.22 --
--- ------------------------------------------------------------------------------
+sellItem = id(2622), de("Buch der Alchemie"), en("Book Of Alchemy"), price(1000), stack(1), quality(999)
 
 -- help
 "Help" -> inform("[Game Help] This NPC is Joseph Quatrilla the master of alchemy. Keywords: recipes, alchemy, book")
@@ -92,7 +80,7 @@ sellItem = id(2622), de("Buch der Alchemie"), en("Book Of Alchemy"), price(1000)
 
 -- general speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Greetings!", "Hello.", "Be greeted!"
-"Grüß", "Gruß", "Gruss", "Grüss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Grüße.", "Hallo.", "Seid gegrüßt!"
+"Grüß", "Gruß", "Grüss", "Gruss", "Gruss", "Grüss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Grüße.", "Hallo.", "Seid gegrüßt!"
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greetings!", "Hello.", "Be greeted!"
 "Hiho", "Hallo", "Hey", "Greeb" -> "Grüße.", "Hallo.", "Seid gegrüßt!"
 "Farewell", "Bye", "Fare well", "See you" -> "Farewell", "Goodbye.", "Have a nice day."
@@ -102,13 +90,13 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Farewell", "Goodbye.", "Hav
 "How are you", "How feel", "How do you do" -> "I have done better, I have done worse.", "I am fine.", "Thanks for asking, I am doing well."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Mir geht es gut.", "Danke der Nachfrage. Ich kann nicht klagen.", "Es ging mir schon besser."
 "your name", "who are you", "who art thou" -> "I am Joseph Quatrilla."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin Joseph Quatrilla."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich bin Joseph Quatrilla."
 
 -- tasks-- leraning recipes
 english, "quest", "mission" -> "If you want to learn the proper creation of a certain potion, have a look at my list here."
-"quest", "mission" -> "Wenn Ihr ein die richtige Herstellung eines Trankes lernen wollt, schaut hier auf die Liste auf meinem Tisch."
+"quest", "mission" -> "Wenn Ihr die richtige Herstellung eines Trankes lernen wollt, schaut hier auf die Liste auf meinem Tisch."
 "task", "adventure", "order", "recipe", "learn", "teach", "lesson" -> "If you want to learn the proper creation of a certain potion, have a look at my list here."
-"Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rezept", "lernen", "lehren", "Unterricht" -> "Wenn Ihr ein die richtige Herstellung eines Trankes lernen wollt, schaut hier auf die Liste auf meinem Tisch."
+"Auftrag", "Aufgabe", "Abenteuer", "Befehl", "Rezept", "lernen", "lehren", "Unterricht" -> "Wenn Ihr die richtige Herstellung eines Trankes lernen wollt, schaut hier auf die Liste auf meinem Tisch."
 
 -- small talk
 "profession" -> "I am an alchemist and if you are an alchemist as well, I am able to teach you something."
@@ -144,9 +132,6 @@ english, "adrazin", "echolon", "hyperborelium", "dracolin", "orcanol", "fenolin"
 english, "Joseph", "Quatrilla" -> "That's me. Correct."
 "Joseph", "Quatrilla" -> "Das bin ich. Richtig erkannt."
 
--- ----------------------------------------------------------------------------
--- cycle Texts
-
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
 -- Every NPC should contain at least 10 of those messages.
@@ -159,6 +144,6 @@ cycletext "#me sortiert einige Kräuter.", "#me sorts some herbs."
 cycletext "#me beschriftet eine Flasche.", "#me labels a bottle."
 cycletext "#me füllt einen Trank ab.", "#me pours a potion into a bottle."
 cycletext "#me lässt einen Rubin fallen und hebt ihn seufzend wieder auf.", "#me drops a ruby, picking it up again with a sigh."
-cycletext "Adrazin...Adrazin...immwer wieder Adrazin!", "Adrazin...Adrazin...and again, Adrazin!"
+cycletext "Adrazin... Adrazin... immer wieder Adrazin!", "Adrazin... Adrazin... and again, Adrazin!"
 cycletext "Das nächste mal sollte ich darauf achten, was ich in den Kessel tue.", "Next time, I should take care what I pour into the cauldron."
-cycletext "Jemand, der noch nie was zum explodieren gebracht hat, ist kein richtiger Alchemist.", "Someone who never have caused and explosion can hardly be called an alchemist."
+cycletext "Jemand, der noch nie was zum explodieren gebracht hat, ist kein richtiger Alchemist.", "Someone who never have caused an explosion can hardly be called an alchemist."

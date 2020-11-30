@@ -63,11 +63,11 @@ itemShoes = 369
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItems = 61, 3076, 3077
-tradeNotEnoughMoneyMsg "Oh, ich fürchte Ihr könnt Euch das nicht leisten.", "Oh, I fear, you can not afford that."
-tradeFinishedMsg "Vielen Dank, beehrt mich bald wieder!", "Thank you, please come again!"
-tradeFinishedWithoutTradingMsg "Auf Bald!", "Farewell!"
-tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
+sellItems = 3076, 3077, 61
+tradeNotEnoughMoneyMsg "Ganz so viel Geld habt ihr auch wieder nicht.", "You don't have that much money."
+tradeFinishedMsg "Weiterhin gute Geschäfte.", "I wish you good business."
+tradeFinishedWithoutTradingMsg "Gehabt euch wohl.", "Godspeed."
+tradeWrongItemMsg "Ich wechsle nur Geld.", "I just change money."
 
 -- Template Version 1.06, 08/29/2012 by Estralis Seborian
 -- Instructions: Replace all talk consequences with strings ending with a full stop, maximum length is 250 characters. Try to provide more than one answer, one is chosen at random.
@@ -92,7 +92,7 @@ tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
 
 -- Mandatory: General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Greeting to you. Did you come here to exchange money?", "Greetings. Do you need money?"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin" -> "Seid gegrüßt. Seid ihr hier um Geld zu wechseln?", "Grüße. Braucht ihr Geld?"
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin" -> "Seid gegrüßt. Seid ihr hier um Geld zu wechseln?", "Grüße. Braucht ihr Geld?"
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greetings.", "Hello."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Grüße.", "Hallo."
 "Farewell", "Bye", "Fare well", "See you" -> "Safe Paths.", "Farewell."
@@ -102,13 +102,17 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Safe Paths.", "Farewell."
 "How are you", "How feel", "How do you do" -> "I'm fine, thank you. Do you want to change money?"
 "Wie geht", "Wie fÃ¼hlst", "Wie ist es ergangen", "Wie Befind" -> "Mir geht es gut, danke der Nachfrage. Möchtet Ihr Geld eintauchen?"
 "your name", "who are you", "who art thou" -> "My name is Laura Pepperbags, I'm the best money changer in Galmair.", "My name is Laura Pepperbags, I'm the the only money changer in Galmair."
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich heiße Laura Pepperbags, ich bin die beste Geldwechslerin in Galmair.", "Ich heiße Laura Pepperbags, ich bin die einzige Geldwechslerin in Galmair."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich heiße Laura Pepperbags, ich bin die beste Geldwechslerin in Galmair.", "Ich heiße Laura Pepperbags, ich bin die einzige Geldwechslerin in Galmair."
 
--- OPTIONAL TRIGGERS
+-- Mandatory: Catching quest triggers. Modify if the NPC does quests
+english, "quest", "mission" -> "I don't have any tasks for you."
+"quest", "mission" -> "Ich vergebe keine Aufgaben."
+"task", "adventure", "order" -> "I don't have any tasks for you."
+"Auftrag", "Aufgabe", "Abenteuer", "Befehl" -> "Ich vergebe keine Aufgaben."
 
 -- Optional: Trade Hooks, use only for traders
 "sell", "buy", "wares", "price", "trade", "purchase" -> "I'm a money changer. Want to change some?", "You can change your money here.", trade
-"kauf", "waren", "preis", "Handel", "veräußer", "erwerb" -> "Ich bin Geldwechsler. Mögt Ihr wechseln?", "Ihr könnt hier Münzen eintauschen.", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin Geldwechsler. Mögt Ihr wechseln?", "Ihr könnt hier Münzen eintauschen.", trade
 
 -- Optional: Small talk - The talk here should focus on possible questions. Feel free to add more!
 "profession" -> "I like my job, I like money."
@@ -125,8 +129,8 @@ english, "Ronagan" -> "Ronagan is almost as evil as the unnamed one, but that's 
 "Ronagan" -> "Ronagan ist fast so schlimm wie der Ungenannte, aber das ist bloß meine Meinung."
 
 -- Optional: Faction stuff
-english, "Runewick" -> "Runewick? Where there are five towers filled with those crazy spellcasters."
-"Runewick" -> "Runewick? Das sind fünf Türme voll mit so verrückten Zauberern."
+english, "Runewick" -> "Runewick? Where there are islands filled with those crazy spellcasters."
+"Runewick" -> "Runewick? Das sind Inseln voll mit so verrückten Zauberern."
 english, "Galmair" -> "Yes, here you are in Galmair."
 "Galmair" -> "Ganz recht, hier seid Ihr in Galmair."
 english, "Cadomyr" -> "Cadomyr is Cadomyr, right?"
@@ -148,3 +152,11 @@ english, "Gobaith", "Gobiath" -> "Where is this place supposed to be?", "I've ne
 cycletext "#me zählt emsig Münzen.", "#me assiduously counts money."
 cycletext "#me betrachtet ihr Spiegelbild in einer Silbermünze.", "#me looks at her reflection in a silver coin."
 cycletext "Wenn ihn euer Kupfer gegen funkelndes Silber tauschen möchtet, so sprecht mich ruhig an.", "If you want to change your copper into some nice shining silver coins, just talk to me!"
+cycletext "#me betrachtet eine Goldmünze.", "#me glances lovingly at a gold coin."
+cycletext "Geld macht nicht glücklich, aber kein Geld macht unglücklich!", "Money doesn't make you happy, but no money makes you sad!"
+cycletext "Ich wechsle Geld!", "I change money!"
+cycletext "#me klimpert mit ein paar Münzen.", "#me rattles some coins."
+cycletext "Psst! Wollt ihr etwas Geld wechseln?", "Shh! Want to change some money?"
+cycletext "Hast mal 'nen Silberling?", "Got some change?"
+cycletext "Wollt ihr mehr Geld? Wechselt eure Goldstücke in Kupferstücke ein!", "Do you want more money? Change your gold coins into copper coins!"
+cycletext "Ihr da. Ja, genau ihr. Kommt doch mal näher.", "You there. Yes, you... Come a little closer."

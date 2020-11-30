@@ -71,7 +71,7 @@ itemShoes = 369
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Greetings my friend and may the Gods be with you. I don't have much time, as this obstinate ox of mine won't take a step forward, but if you know anything about oxen lend me a hand, will you?"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Ich grüße euch mein Freund und mögen die Götter mit euch sein. Ich habe leider nicht sehr viel Zeit, weil mein starrsinniger Ochse keine Schritt mehr tut. Aber falls ihr etwas von Ochsen versteht, dann könnt ihr mir gerne zur Hand gehen."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Ich grüße euch mein Freund und mögen die Götter mit euch sein. Ich habe leider nicht sehr viel Zeit, weil mein starrsinniger Ochse keine Schritt mehr tut. Aber falls ihr etwas von Ochsen versteht, dann könnt ihr mir gerne zur Hand gehen."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greetings my friend and may the Gods be with you. I don't have much time, as this obstinate ox of mine won't take a step forward, but if you know anything about oxen lend me a hand, will you?"
 "Hiho", "Hallo", "Hey", "Greeb" -> "Ich grüße euch mein Freund und mögen die Götter mit euch sein. Ich habe leider nicht sehr viel Zeit, weil mein starrsinniger Ochse keine Schritt mehr tut. Aber falls ihr etwas von Ochsen versteht, dann könnt ihr mir gerne zur Hand gehen."
 "Farewell", "Bye", "Fare well", "See you" -> "Farewell my friend. May Oldra guide your way wherever you go."
@@ -81,7 +81,9 @@ english, "Ciao", "Adieu", "Au revoir" -> "Farewell my friend. May Oldra guide yo
 "How are you", "How feel", "How do you do" -> "#me sighs, 'Well, you know, I was on my way back home, but the Gods blessed me with this old ox, that doesn't want to move.'"
 "Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "#me seufzt: 'Ach, wisst ihr, ich war auf dem Weg nach Hause, aber die Götter haben mich mit diesem alten Ochsen bedacht, der sich nicht mehr bewegen will.'"
 "your name", "who are you", "who art thou" -> "My Name is Milo Deepdelver. I am a herbalist from Runewick. If the Gods are with me, I will be on my way home with this no good ox of mine!"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Mein Name ist Milo Deepdelver. Ich bin ein Kräuterkundiger aus Runewick. So die Götter es wollen, bin ich auf dem Weg nach Hause mit meinem unnützen Ochsen hier!"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Mein Name ist Milo Deepdelver. Ich bin ein Kräuterkundiger aus Runewick. So die Götter es wollen, bin ich auf dem Weg nach Hause mit meinem unnützen Ochsen hier!"
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin kein Händler."
 
 -- quest: give out the mission
 queststatus(106) = 0, english, "problem", "mission", "quest" -> inform("[New quest] Milo's ox"), queststatus(106) = 1, "This stupid ox of mine doesn't move a single step and I am late returning to my family. My ox will do anything for carrots, but a few miles back I ran out. If you could get me ten carrots, I could show you a few tricks with herb lore, as I am quite proficient in this art."
@@ -238,12 +240,12 @@ english, "Hobbit" -> "Some call us Hobbits but most refer to us as Halflings."
 "Zwerg" -> "Es gibt eine recht große Niederlassung der Zwerge in Galmair in den Bergen."
 "Human" -> "Humans provide the biggest group of people in this land. You will find good and bad people amongst them."
 "Menschen" -> "Die Menschen stellen die größte Gruppe in diesen Landen. Du wirst gute und schlechte Leute unter ihnen finden."
-"Elves", "Elfs" -> "I don't really have much to do with the Elves. They are quite snobbish if you ask me."
+"Elves", "Elfes" -> "I don't really have much to do with the Elves. They are quite snobbish if you ask me."
 "Elben", "Elfen" -> "Mit den Elfen habe ich eigentlich nicht viel zu tun. Sie sind mir einfach zu eingebildet."
 english, "Elb", "Elf" -> "I don't really have much to do with the Elves. They are quite snobbish if you ask my."
 "Elb", "Elf" -> "Mit den Elfen habe ich eigentlich nicht viel zu tun. Sie sind mir einfach zu eingebildet."
-"Lizard" -> "The Lizardmen are a very guarded community. With the exception of Zerarisa at Cape Farewell, I don't really know them."
-"Echsen" -> "Die Echsenmenschen sind eine sehr verschlossene Gruppe. Mit Ausnahme von Zerarisa am Kap des Abschiedes kenne ich nicht wirklich jemanden von ihnen."
+"Lizard" -> "The Lizardmen are a very guarded community. With the exception of Zerarisa at Galmair, I don't really know them."
+"Echsen" -> "Die Echsenmenschen sind eine sehr verschlossene Gruppe. Mit Ausnahme von Zerarisa am Galmair kenne ich nicht wirklich jemanden von ihnen."
 "Orc" -> "The Orcs are a kind of brutish lot. You don't want to mess with them."
 "Ork" -> "Die Orks sind recht raue Gesellen. Ihr solltet keinen Streit mit ihnen anfangen."
 "Fairy", "Fairies" -> "The little flying creatures can be annoying sometimes, but in general they are good natured. I haven't seen many of them around though."
@@ -254,8 +256,8 @@ english, "Goblin" -> "In my youth my mother used to tell me lurid tales about th
 "Goblin" -> "In meiner Jugend hat meine Mutter mir immer Horrorgeschichten von den Goblins erzählt. Mein Rat wäre, sich von ihnen fern zu halten."
 
 -- NPCs background: other NPCs
-english, "Zerarisa" -> "A very nice lizardwoman living at Cape Farewell. She works as a fisherwoman."
-"Zerarisa" -> "Eine sehr nette Echsenfrau, die am Kap des Abschiedes lebt. Sie ist eine Fischerin."
+english, "Zerarisa" -> "A very nice lizardwoman living at Galmair. She works as a fisherwoman."
+"Zerarisa" -> "Eine sehr nette Echsenfrau, die am Galmair lebt. Sie ist eine Fischerin."
 english, "Fronita", "Emery" -> "She is the dwarven glass artisan of Runewick. A really good lass with the best bottles in town."
 "Fronita", "Emery" -> "Sie ist die zwergische Glaskünstlerin von Runewick. Ein wirklich sympatisches Mädel, die die besten Flaschen der Stadt bläßt."
 english, "Nana", "Winterbutter" -> "Nana is a good friend of mine. Normally you can find her around the fields in Yewdale."
@@ -280,10 +282,6 @@ english, "my name" -> "My Name is Milo Deepdelver. I am a herbalist from Runewic
 "mein name" -> "Mein Name ist Milo Deepdelver. Ich bin ein Kräuterkundiger aus Runewick. So die Götter es wollen, bin ich auf dem Weg nach Hause mit meinem unnützen Ochsen hier!"
 english, "Milo", "Deepdelver" -> "Yes, this is my name. If you need some information on the Gods or herb lore just talk to me."
 "Milo", "Deepdelver" -> "Ja, so heiße ich. Falls ihr ein paar Informationen zu den Göttern oder Kräuterkunde benötigt, stehe ich zu eurer Verfügung."
-"Yes" -> "Pardon?", "Could you rephrase that?", "Good to hear that.", "Sure?"
-"Ja" -> "Pardon?", "Könntet ihr das anders ausdrücken?", "Gut zu hören!", "Sicher?"
-"No" -> "Pardon?", "Could you rephrase that?", "Oh, I see.", "Sure?"
-"Nein" -> "Pardon?", "Könntet ihr das anders ausdrücken?", "Nun, ich verstehe.", "Sicher?"
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.

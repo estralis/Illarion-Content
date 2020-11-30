@@ -16,7 +16,7 @@
 -- NPC Name: Morri                                                    Galmair --
 -- NPC Job:  Trader                                                           --
 --                                                                            --
--- NPC Race: dwarf                      NPC Position:  353, 266, 0            --
+-- NPC Race: dwarf                      NPC Position:  355, 264, 0            --
 -- NPC Sex:  male                       NPC Direction: south                  --
 --                                                                            --
 -- Author:   Rincewind                                                        --
@@ -26,7 +26,7 @@
 name = "Morri"
 race = dwarf
 sex = male
-position = 353, 266, 0
+position = 355, 264, 0
 direction = south
 affiliation = "Galmair"
 job = "Trader"
@@ -58,36 +58,34 @@ itemShoes = 53
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
--- 10% Tools (Brewer): 51, 227
--- 5% Tools (Cook/Baker): 121 (buys also 118, 2495)
--- 5% Baked food: 1153, 354, 303, 353, 453, 454, 49, 191
--- 5% Baker's resources: 2, 2529 (buys also 5)
--- 5% Dishes: 1155, 554, 559, 555, 557, 2922, 1154, 2277, 556, 2459, 1152, 2276, 2278, 2456, 2923, 306, 2940, 3051
-
-sellItems = 51, 121, 227, 1153, 354, 303, 353, 453, 454, 49, 191, 2, 2529, 1155, 554, 559, 555, 557, 2922, 1154, 2277, 556, 2459, 1152, 2276, 2278, 2456, 2923, 306, 2940, 3051
-buyPrimaryItems = 51, 227
-buySecondaryItems = 121, 118, 2495, 1153, 354, 303, 353, 453, 454, 49, 191, 2, 5, 2529, 1155, 554, 559, 555, 557, 2922, 1154, 2277, 556, 2459, 1152, 2276, 2278, 2456, 2923, 306, 2940, 3051
-
+sellItems = 121, 227, 429, 51, 2495, 2031, 191, 453, 3568, 49, 3631, 3609, 454, 353, 303, 3571, 354, 3723, 1153, 3610, 3051, 3573, 3715, 3716, 2459, 556, 1154, 2277, 2922, 3570, 557, 555, 559, 554, 1155, 2456, 2923, 2278, 2276, 3569, 3572, 3712, 3711, 1152, 307, 1149, 1150, 69, 2586, 2502, 469, 552, 553, 1151, 2934, 2940, 63, 2696, 333, 306, 455, 3914, 3915, 3916, 3606, 3709, 3710, 3713, 3714, 2529, 431, 43
+-- peel, cooking spoon, candle mould, bucket, pan, collection pan
+-- bread roll, cookies, baked potato, bread, sausage on bread, banana bread, blackberry muffin, apple pie, cherry cake, egg salad sandwich, strawberry cake, nutbread, custard pie, elderberry pie, sausage, cheese, veggie hash, mystery meat, trout fillet dish, salmon dish, egg dish, meat dish, sausages dish, egg salad, steak dish, rabbit dish, lamb dish, venison dish, chicken dish, mushroom soup, onion soup, cabbage stew, mulligan, potato soup, fish soup, beer soup, goulash, chicken soup, pork, brown egg, white egg, raw leather, fur, bottle of milk, lamp oil, deer meat, rabbit meat, chicken meat, lamb meat, raw steak, entrails, feathers, horn, ham, smoked trout, smoked horse mackerel, smoked rose fish, smoked salmon, grilled steak, smoked chicken, smoked rabbit, grilled lamb, grilled venison, honeycomb, wax, candles
+buySecondaryItems = 191, 453, 3568, 49, 3631, 3609, 454, 353, 303, 3571, 354, 3723, 1153, 3610, 3051, 3573, 3715, 3716, 2459, 556, 1154, 2277, 2922, 3570, 557, 555, 559, 554, 1155, 2456, 2923, 2278, 2276, 3569, 3572, 3712, 3711, 1152, 307, 1149, 1150, 69, 2586, 2502, 469, 552, 553, 1151, 2934, 2940, 63, 2696, 333, 306, 455, 3914, 3915, 3916, 3606, 3709, 3710, 3713, 3714, 2529, 431, 43
+-- bread roll, cookies, baked potato, bread, sausage on bread, banana bread, blackberry muffin, apple pie, cherry cake, egg salad sandwich, strawberry cake, nutbread, custard pie, elderberry pie, sausage, cheese, veggie hash, mystery meat, trout fillet dish, salmon dish, egg dish, meat dish, sausages dish, egg salad, steak dish, rabbit dish, lamb dish, venison dish, chicken dish, mushroom soup, onion soup, cabbage stew, mulligan, potato soup, fish soup, beer soup, goulash, chicken soup, pork, brown egg, white egg, raw leather, fur, bottle of milk, lamp oil, deer meat, rabbit meat, chicken meat, lamb meat, raw steak, entrails, feathers, horn, ham, smoked trout, smoked horse mackerel, smoked rose fish, smoked salmon, grilled steak, smoked chicken, smoked rabbit, grilled lamb, grilled venison, honeycomb, wax, candles
 tradeNotEnoughMoneyMsg "Du kannst dir das nicht leisten!", "You can not afford that!"
 tradeFinishedMsg "Danke, komm bald wieder!", "Thanks, come again!"
-tradeFinishedWithoutTradingMsg "Auf Bald!", "Farewell!"
-tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
+tradeFinishedWithoutTradingMsg "Auf bald!", "Farewell!"
+tradeWrongItemMsg "Nichts da.", "No way."
 
 -- Template Version 1.03, 01/05/2011 by Estralis Seborian
-"sell", "buy", "wares", "price", "trade", "purchase" -> "I am selling different meals, just have a look!", trade
-"kauf", "waren", "preis", "Handel", "veräußer", "erwerb" -> "Ich verkaufe verschiedenstes Essen schau dich nur um!", trade
 
 -- Help
 "Help" -> inform("[Game Help] This NPC is Morri the cook. Keywords: buy, sell, trade, Profession.")
 "Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Morri der Koch. Schlüsselwörter: kaufe, verkaufe, Handel, Beruf.")
 
+-- Trade
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am selling different meals, just have a look!", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich verkaufe verschiedenstes Essen, schau dich nur um!", trade
+
 -- Quest by Charwis Irongate
-queststatus(702) = 4, english, "charwis", "irongate", "pin", "order" -> queststatus(702) = 5, "Charwis? A pin order? What, now? The pins have already started to corrode? No, thanks. I want new pins, please tell Charwis that."
-queststatus(702) = 4, "charwis", "irongate", "Bestellung", "nägel" -> queststatus(702) = 5, "Charwis?  Eine Nagelbestellung? Was höre ich da, die Nägel beginnen bereits zu rosten? Nein, danke! Ich möchte neue Nägel, bitte sagt das Charwis."
+queststatus(702) = 4, english, "charwis", "irongate" -> queststatus(702) = 5, "Charwis? A pin order? What, now? The pins have already started to corrode? No, thanks. I want new pins, please tell Charwis that."
+queststatus(702) = 4, "pin", "order" -> queststatus(702) = 5, "Charwis? A pin order? What, now? The pins have already started to corrode? No, thanks. I want new pins, please tell Charwis that."
+queststatus(702) = 4, "charwis", "irongate", "Bestellung", "nägel" -> queststatus(702) = 5, "Charwis? Eine Nagelbestellung? Was höre ich da, die Nägel beginnen bereits zu rosten? Nein, danke! Ich möchte neue Nägel, bitte sagt das Charwis."
 
 -- General speech
-"Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Hrm...Greetings. How can I help you?", "#me grumbles moodily, 'Good day'.", "Hail Irmorom. Do you want to buy something?"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Hrm...Grüße. Wie kann ich Euch helfen?", "#me brummt schlecht gelaunt: 'Guten Tag.'", "Heil Irmorom. Wollt ihr was kaufen?"
+"Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Hrm... Greetings. How can I help you?", "#me grumbles moodily, 'Good day'.", "Hail Irmorom. Do you want to buy something?"
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Hrm... Grüße. Wie kann ich Euch helfen?", "#me brummt schlecht gelaunt: 'Guten Tag.'", "Heil Irmorom. Wollt ihr was kaufen?"
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Hrm...Greetings. How can I help you?", "#me grumbles moodily, 'Good day'.", "Hail Irmorom. Do you want to buy something?"
 "Hiho", "Hallo", "Hey", "Greeb" -> "Hrm...Grüße. Wie kann ich Euch helfen?", "#me brummt schlecht gelaunt: 'Guten Tag.'", "Heil Irmorom. Wollt ihr was kaufen?"
 "Farewell", "Bye", "Fare well", "See you" -> "Bye and enjoy your meal.", "Arr... See you soon.", "Fare thee well and come again soon!"
@@ -97,7 +95,7 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Bye and enjoy your meal.", 
 "How are you", "How feel", "How do you do" -> "Great and how are you?", "I'm fine, thanks!"
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Großartig und wie gehts dir?", "Mir gehts gut, dankie!"
 "your name", "who are you", "who art thou" -> "I am Morri the cook.", "The best cook in Galmair, that's me Morri!"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich bin Morri der Koch.", "Der beste Koch in Galmair, das bin ich Morri!"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich bin Morri der Koch.", "Der beste Koch in Galmair, das bin ich Morri!"
 
 -- Catching quest triggers. Modify if the NPC does quests.
 english, "quest", "mission" -> "I don't employ anyone, ask someone else!"
@@ -118,8 +116,8 @@ english, "Gobaith", "Gobiath" -> "There is nothing but bad news about Gobaith. W
 -- More small talk; add at least five triggers, e.g. about the profession of the NPC or his enviroment
 "orc" -> "Arr. Those green noses are annyoing, every last one of them. Actually, we merchants have to stick together. It is all about business!", "Those orcs are smarter than you think, particularly Krudash! Sogg, though, I haven't ever seen him sober.", "Arrr.... I don't know. I think it looks like the entire orc pack here in Galmair belongs to the same clan, but on the other hand... well, I don't know whether that's important."
 "dwarf" -> "What is important to a dwarf? Gold, business and sin-... no... relatives. Therefore, the clan.", "What does a dwarf like? His craft, his wife and his beer.", "We dwarves are a proud folk. I have to warn you, never insult a dwarf! He will remember even after his sons have grown up."
-"ork" -> "Arr. Die Grünschnauzen sind ein Ärgernis. - Nicht's weiter. Im Grunde müssen wir Händler zusammen stehen. Es geht ums Geschäft, das ist was zählt!", "Diese Orks sind klüger als Ihr denkt. Im besonderen diese Krudash! Aber dieser Sogg, den hab ich noch nie nüchtern gesehen...", "Arrr... ich weiß nicht. Aber für mich sieht's so aus als wären die alle, die Ganze Orkmeute in Galmair von der selben Sippe. Andererseits muss das bei Orks ja auch nichts heißen."
-"zwerg" -> "Was ist einem Zwerg von Wert? Gold, Geschäfte und Ge-...nein. Verwandte. Also sprich, der Klan.", "Was darf ein Zwerg lieben? Sein Handwerk, seine Frau und Bier.", "Wir Zwerge sind ein stolzes Folk. Ich will euch warnen, beleidigt ihr einen Zwerg wird er sich noch daran erinnern wenn Eure Söhne erwachsen sind."
+"ork" -> "Arr. Die Grünschnauzen sind ein Ärgernis. Nicht's weiter. Im Grunde müssen wir Händler zusammen stehen. Es geht ums Geschäft, das ist was zählt!", "Diese Orks sind klüger als Ihr denkt. Im besonderen diese Krudash! Aber dieser Sogg, den hab ich noch nie nüchtern gesehen...", "Arrr... ich weiß nicht. Aber für mich sieht's so aus als wären die alle, die Ganze Orkmeute in Galmair von der selben Sippe. Andererseits muss das bei Orks ja auch nichts heißen."
+"zwerg" -> "Was ist einem Zwerg von Wert? Gold, Geschäfte und Ge-...nein. Verwandte. Also sprich, der Klan.", "Was darf ein Zwerg lieben? Sein Handwerk, seine Frau und Bier.", "Wir Zwerge sind ein stolzes Volk. Ich will euch warnen, beleidigt ihr einen Zwerg wird er sich noch daran erinnern wenn Eure Söhne erwachsen sind."
 
 -- Faction stuff. Please remove if you send the template to outsiders!
 "archmage" -> "Ha-ha! I've heard that Archmage wears women's clothes! Wool under the chain mail and so on! *laughs*"
@@ -133,9 +131,9 @@ english, "Valerio", "Guilianni", "Don" -> "Don Guilianni is a nasty fellow. We m
 english, "Galmair" -> "I want to say, my brother and I could not find a better place than this... except for all the riff-raff. Well, and the buildings are falling down, but business is great."
 "Galmair" -> "Ich möchte sagen, an einen besseren Ort hätte es mich und meinen Bruder nicht verschlagen können. Nun gut, hier treibt sich einiges Gesindel herum, und die Mauern sehen ziemlich zerbrechlich aus, aber das Geschäft geht ausgezeichnet!"
 "Queen" -> "Blue blood! Pah! Bring the human royalty under my axe and I'll show you how blue it is. I tell you, they die just like anyone else! I have seen too many fools on the throne!"
-"Königin" -> "Blaues Blut! Pha! - Bringt mir diese Könige der Menschen vor meine Axt und ich demonstriere Euch wie blau es ist. Ich sage Euch, beim sterben ist jeder der Erste! Zu viele Narren hab ich auf dem Thron gesehn!"
+"Königin" -> "Blaues Blut! Pha! Bringt mir diese Könige der Menschen vor meine Axt und ich demonstriere Euch wie blau es ist. Ich sage Euch, beim sterben ist jeder der Erste! Zu viele Narren hab ich auf dem Thron gesehn!"
 english, "rosaline", "edwards" -> "Blue blood! Pah! Bring the human royalty under my axe and I'll show you how blue it is. I tell you, they die just like anyone else! I have seen too many fools on the throne!"
-"rosaline", "edwards" -> "Blaues Blut! Pha! - Bringt mir diese Könige der Menschen vor meine Axt und ich demonstriere Euch wie blau es ist. Ich sage Euch, beim sterben ist jeder der Erste! Zu viele Narren hab ich auf dem Thron gesehn!"
+"rosaline", "edwards" -> "Blaues Blut! Pha! Bringt mir diese Könige der Menschen vor meine Axt und ich demonstriere Euch wie blau es ist. Ich sage Euch, beim sterben ist jeder der Erste! Zu viele Narren hab ich auf dem Thron gesehn!"
 english, "Cadomyr" -> "They give their wealth and belongings to the dead in Cadomyr. Bury their gold in their crypts! Every dwarf knows that gold is an element for the living. How is it of any use to the dead?"
 "Cadomyr" -> "Cadomyrs Reichtum geben sie den Toten. Vergraben das Gold in den Krypten! Jeder Zwerg weiß natürlich, das Gold das Element der Lebenden ist. Wie sollte es den verstorbenen schon von Nutzen sein?"
 
@@ -154,9 +152,9 @@ english, "Ironsiege" -> "Listen to me, Ironsiege is an impregnable fortress. Say
 "Gott", "Götter" -> "Last Euch sagen, Irmorom schuf einst die Zwerge aus einem Stück Felsen. Jenen hatte er von Ushara zum Geschenk bekommen. Und viel mehr möchte ich von den Göttern nicht wissen müssen. Außer...nun ja Adron sei's gedankt für Käse und Bier!"
 english, "Adron" -> "Toast! Toast to Adron. Praised be his beer and cheese."
 "Adron" -> "Trinkt! Trinken wir auf Adron. Gepriesen sein Bier und Käse."
-english, "Irmorom" -> "Hail Irmorom. Protect my brother and his clan. Be praised, the creator of the dwarfs."
+english, "Irmorom" -> "Hail Irmorom. Protect my brother and his clan. Be praised, the creator of the dwarves."
 "Irmorom" -> "Heil Irmorom. Schütze meinen Bruder und unseren Klan. Gedankt sei dir, denn du bist der Zwergen Schöpfer."
-english, "Ushara" -> "Honor to you, Mother of the rock, stone and soil."
+english, "Ushara" -> "Honour to you, Mother of the rock, stone and soil."
 "Ushara" -> "Ehre dir, Mutter der Felsen, Steine und Erde."
 
 -- Catching typical NPC phrases
@@ -164,16 +162,8 @@ english, "Ushara" -> "Honor to you, Mother of the rock, stone and soil."
 "erzähl was", "erzähl etwas" -> "Ich könnte dir eine Menge über das Kochen erzählen, aber ich bin im Moment leider sehr beschäftigt."
 
 -- Last catch: Think about keywords the player might say and that are not caught until here
-"morri" -> "Arr. Bura'zak-ka! - Welches Essen wollt Ihr mir abkaufen?"
+"morri" -> "Arr. Bura'zak-ka! Welches Essen wollt Ihr mir abkaufen?"
 english, "morri" -> "Arr. Bura'zak-ka! What meal would you like to buy?"
-"Yes" -> "Arr. It's good.", "D'kraga...so, and not otherwise!", "It should be fine by me."
-"Ja" -> "Arr. Ist gut!", "D'kraga... so, und nicht anders!", "Mir soll's auch recht sein."
-"No" -> "Hrm, is this your last word?", "Arr. If that's what you want..", "Of course."
-"Nein" -> "Hrm, ist das Euer letztes Wort?", "Arr. Wenn Ihr's so wollt.", "Natürlich."
-
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-english, chance(20.0), ".*" -> "Arr.", "#me wrinkles his nose and shows his tongue in disgust, 'Do you smell that too?'"
-german, chance(20.0), ".*" -> "Arr.", "#me rümpft die Nase und streckt angewidert die Zunge heraus: 'Riecht ihr das auch?'"
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
@@ -183,7 +173,7 @@ german, chance(20.0), ".*" -> "Arr.", "#me rümpft die Nase und streckt angewider
 cycletext "#me brummt schlecht gelaunt und wirft einen missmutigen Blick auf die Straße.", "#me grumbles moodily and looks at the street with a discontent glance."
 cycletext "#me knurrt kopfschüttelnd: 'Dieser Fisch ist niemals frisch...'", "#me grumbles and shakes his head, 'This fish is not fresh...'"
 cycletext "#me rümpft die Nase.", "#me wrinkles his nose."
-cycletext "#me hält sich die Nase zu und streckt die Zunge heraus: 'Igittigitt!'", "#me covers his nose and shows his tongue, 'Igittigitt!'"
+cycletext "#me hält sich die Nase zu und streckt die Zunge heraus: 'Igittigitt!'", "#me covers his nose and shows his tongue, 'Yuck!'"
 cycletext "#me fasst sich mit einer verzweifelt wirkenden Geste, beidhändig in den langen schwarzen Bart und zieht daran. Dabei gibt er ein lautes Grunzen von sich.", "#me pulls his long black beard with both hands despairingly and grunts loudly."
 cycletext "Essen! Feinste Gerichte aller Art! Tretet näher und deckt Euch ein!", "Food! Finest dishes of every kind! Come closer, go ahead take a look and buy!"
 cycletext "Frisches Brot! Schmackhafte Kuchen! Unverwüstliche Kekse!", "Fresh bread! Tasty cakes! Indestructible cookies!"

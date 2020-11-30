@@ -12,23 +12,19 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- UPDATE common SET com_script='item.id_58_mortar' WHERE com_itemid=58;
+-- UPDATE items SET itm_script='item.id_58_mortar' WHERE itm_id=58;
 
-require("base.common")
-require("content.craft.dyemaking")
-require("base.lookat")
+local dyemaking = require("craft.intermediate.dyemaking")
+local jewel = require("item.general.jewel")
 
-module("item.id_58_mortar", package.seeall)
+local M = {}
 
-function UseItem(User, SourceItem, ltstate)
+M.LookAtItem = jewel.LookAtItem
 
-    content.craft.dyemaking.dyemaking:showDialog(User, SourceItem)
-	
-end 
-
-function LookAtItem(User, Item)
-    world:itemInform(User, Item, base.lookat.GetItemDescription(User, Item, base.lookat.JEWELLERY))
+function M.UseItem(User, SourceItem, ltstate)
+    dyemaking.dyemaking:showDialog(User, SourceItem)
 end
 
+return M

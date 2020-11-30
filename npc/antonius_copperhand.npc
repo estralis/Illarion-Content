@@ -14,9 +14,9 @@
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------AC
 -- NPC Name: Antonius Copperhand                                      Galmair --
--- NPC Job:  Goldsmith NPC                                                    --
+-- NPC Job:  Goldsmith                                                        --
 --                                                                            --
--- NPC Race: dwarf                      NPC Position:  359, 278, 0            --
+-- NPC Race: dwarf                      NPC Position:  373, 263, 0            --
 -- NPC Sex:  male                       NPC Direction: north                  --
 --                                                                            --
 -- Author:   Miriam                                                           --
@@ -26,10 +26,10 @@
 name = "Antonius Copperhand"
 race = dwarf
 sex = male
-position = 359, 278, 0
-direction = north
+position = 373, 263, 0
+direction = west
 affiliation = "Galmair"
-job = "Goldsmith NPC"
+job = "Goldsmith"
 
 language = common
 language = dwarf
@@ -55,7 +55,7 @@ itemCoat = 195
 itemMainHand = 23
 itemSecondHand = 8
 itemHands = 48
-itemTrousers = 45
+itemTrousers = 34
 itemShoes = 53
 
 ------------------------------------------------------------------------------AC
@@ -63,38 +63,28 @@ itemShoes = 53
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItems = 122, 2140, 92, 393, 399, 1001, 1840, 2031, 446, 447, 448, 449, 450, 451, 452, 224, 465, 45, 46, 197, 198, 283, 284, 285, 62, 67, 71, 79, 82, 83, 222, 68, 235, 277, 278, 279, 280, 281, 282, 1054, 84, 98, 85, 297, 389, 398, 124, 229, 192
-buySecondaryItems = 122, 2140, 92, 393, 399, 1001, 1840, 2031, 446, 447, 448, 449, 450, 451, 452, 224, 225, 336, 465, 45, 46, 197, 198, 283, 284, 285, 62, 67, 71, 79, 82, 83, 222, 68, 235, 277, 278, 279, 280, 281, 282, 1054, 84, 98, 85, 123, 297, 389, 398, 444, 124, 229, 192, 296
-tradeNotEnoughMoneyMsg "Oh, ich fürchte Ihr könnt Euch das nicht leisten.", "Oh, I fear, you can not afford that."
-tradeFinishedMsg "Vielen Dank, beehrt mich bald wieder!", "Thank you, please come again!"
-tradeFinishedWithoutTradingMsg "Auf Bald!", "Farewell!"
-tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
+sellItems = 122, 2140, 3558, 3535, 222, 3554, 3526, 3528, 79, 3539, 3541, 67, 3536, 3538, 82, 3559, 3543, 71, 3546, 3548, 62, 3549, 3551, 83, 3530, 3532, 334, 3534, 465, 225, 3557, 3556, 399, 92, 393, 336, 3553, 235, 3555, 3527, 3529, 277, 3540, 3560, 68, 3537, 3561, 278, 3542, 3544, 279, 3547, 3545, 281, 3550, 3552, 282, 3531, 3533, 2559, 280, 223, 1840, 1001, 1858, 224, 2647, 311, 450, 447, 446, 449, 448, 451, 452, 197, 46, 284, 283, 45, 198, 285
+-- finesmithing hammer, tongs, copper amulett, golden amulet, iron amulet, silver amulett, copper amethyst amulet, silver amethyst amulet, golden amethyst amulet, copper ruby amulet, silver ruby amulet, golden ruby amulet, copper obsidian amulet, silver obsidian amulet, golden obsidian amulet, copper sapphire amulet, silver sapphire amulet, golden sapphire amulet, copper emerald amulet, silver emerald amulet, golden emerald amulet, copper topaz amulet, silver topaz amulet, golden topaz amulet, copper diamond amulet, silver diamond amulet, charm of the icebird, golden diamond amulet, diadem, crown, kings''s crown, queen''s crown, small candlestick, oil lamp, lantern, mirror, copper ring, golden ring, silver ring, copper amethyst ring, silver amethyst ring, golden amethyst ring, copper ruby ring, silver ruby ring, golden ruby ring, copper obsidian ring, silver obsidian ring, golden obsidian ring, copper sapphire ring, silver sapphire ring, golden sapphire ring, copper emerald ring, silver emerald ring, golden emerald ring, copper topaz ring, silver topaz ring, golden topaz ring, copper diamond ring, silver diamond ring, archmage ring, golden diamond ring, iron goblet, copper goblet, green plate, silver goblet, golden goblet, cutlery, glass blow pipe, amethyst powder, ruby powder, sapphire powder, obsidian powder, emerald powder, topaz powder, diamond powder, amethyst, ruby, sapphire, obsidian, emerald, topaz, diamond
+buyPrimaryItems = 3558, 3535, 222, 3554, 3526, 3528, 79, 3539, 3541, 67, 3536, 3538, 82, 3559, 3543, 71, 3546, 3548, 62, 3549, 3551, 83, 3530, 3532, 334, 3534, 465, 225, 3557, 3556, 399, 92, 393, 336, 3553, 235, 3555, 3527, 3529, 277, 3540, 3560, 68, 3537, 3561, 278, 3542, 3544, 279, 3547, 3545, 281, 3550, 3552, 282, 3531, 3533, 2559, 280, 223, 1840, 1001, 1858, 224, 2647, 311, 450, 447, 446, 449, 448, 451, 452, 197, 46, 284, 283, 45, 198, 285
+-- copper amulett, golden amulet, iron amulet, silver amulett, copper amethyst amulet, silver amethyst amulet, golden amethyst amulet, copper ruby amulet, silver ruby amulet, golden ruby amulet, copper obsidian amulet, silver obsidian amulet, golden obsidian amulet, copper sapphire amulet, silver sapphire amulet, golden sapphire amulet, copper emerald amulet, silver emerald amulet, golden emerald amulet, copper topaz amulet, silver topaz amulet, golden topaz amulet, copper diamond amulet, silver diamond amulet, charm of the icebird, golden diamond amulet, diadem, crown, kings''s crown, queen''s crown, small candlestick, oil lamp, lantern, mirror, copper ring, golden ring, silver ring, copper amethyst ring, silver amethyst ring, golden amethyst ring, copper ruby ring, silver ruby ring, golden ruby ring, copper obsidian ring, silver obsidian ring, golden obsidian ring, copper sapphire ring, silver sapphire ring, golden sapphire ring, copper emerald ring, silver emerald ring, golden emerald ring, copper topaz ring, silver topaz ring, golden topaz ring, copper diamond ring, silver diamond ring, archmage ring, golden diamond ring, iron goblet, copper goblet, green plate, silver goblet, golden goblet, cutlery, glass blow pipe, amethyst powder, ruby powder, sapphire powder, obsidian powder, emerald powder, topaz powder, diamond powder, amethyst, ruby, sapphire, obsidian, emerald, topaz, diamond
+tradeNotEnoughMoneyMsg "Pleite, wah?", "Are ye broke or something?"
+tradeFinishedMsg "Und tschüss.", "And goodbye."
+tradeFinishedWithoutTradingMsg "Arr? Nichts für dich dabeit?", "Arr? Nothing for you in my stock?"
+tradeWrongItemMsg "Behalt das mal. Ich kaufe das nicht.", "Keep that, I won't buy it."
 
 -- Template Version 1.03, 01/05/2011 by Estralis Seborian
--- This NPC is supposed to trade (all goods are sold and bought, percentage indicates ratio of price bough/sold):
-
--- 5% Tools (Finesmith): 122
--- 5% Tools (Gem grinder): 2140
--- 5% Copper goods: 92, 393, 399, 1001, 1840, 2031
--- 5% Gem powder: 446, 447, 448, 449, 450, 451, 452
--- 5% Gold goods: 224, 225, 336, 465
--- 5% Gems: 45, 46, 197, 198, 283, 284, 285
--- 5% Jewellery: 62, 67, 71, 79, 82, 83, 222
--- 5% Rings: 68, 235, 277, 278, 279, 280, 281, 282
--- 5% Boots: 1054
--- 5% Swords: 84, 98, 85 (123)
--- 5% Daggers: 297, 389, 398 (444)
--- 5% Axes: 124, 229, 192 (296)
-"sell", "buy", "wares", "price", "trade", "purchase" -> "Ah, so you are interested in my wares.", "Take your time to look around.", trade
-"kauf", "waren", "preis", "Handel", "veräußer", "erwerb" -> "Ah, dann interessiert Ihr Euch also für meine Waren.", "Schaut Euch ruhig in Ruhe um.", trade
 
 -- Help
-"Help" -> inform("[Game Help] This NPC is Antonius Copperhand the smith. Keywords: buy, sell, trade, job, your name.")
-"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Antonius Copperhand der Schmied. Schlüsselwörter: kaufe, verkaufe, Handel, Beruf, dein Name.")
+"Help" -> inform("[Game Help] This NPC is Antonius Copperhand the smith. Keywords: Buy, sell, trade, job, your name.")
+"Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Antonius Copperhand der Schmied. Schlüsselwörter: Kaufe, verkaufe, Handel, Beruf, dein Name.")
+
+-- Trade
+"sell", "buy", "wares", "price", "trade", "purchase" -> "You came to the right man. Let's see what I can offer you.", "Money, money, money. Always funny.", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Du bist genau zum richtigen Mann gekommen. Schaun 'mer mal, was ich anzubieten habe.", "Geld, Geld, Geld. Das gefällt!", trade
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening" -> "Be greeted in Irmorom's name.", "Greetings.", "Good day."
-"Grüß", "Gruß", "Guten Tag", "Guten Abend", "Mahlzeit", "Tach", "Moin" -> "Zum Gruße.", "Seid gegrüßt in Namen Irmoroms.", "Guten Tach."
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Tag", "Guten Abend", "Mahlzeit", "Tach", "Moin" -> "Zum Gruße.", "Seid gegrüßt in Namen Irmoroms.", "Guten Tach."
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Be greeted.", "Greetings.", "Good day."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Zum Gruße.", "Seid gegrüßt.", "Guten Tach."
 "Farewell", "Bye", "Fare well", "See you" -> "Farewell.", "Goodbye.", "May Irmorom be with you."
@@ -104,7 +94,7 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Farewell.", "Goodbye."
 "How are you", "How feel", "How do you do" -> "I'm fine, thanks... and how are ya?", "Good, good."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befind" -> "Mir jeht ett wunderbar und wie jeht et Euch?", "Jut, jut."
 "your name", "who are you", "who art thou" -> "Me? I'm the goldsmith of Galmair, the hard working Antonius."
-"dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ick? Ick bin der Goldchmied von Galmair, der fleißge Antonius."
+"dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ick? Ick bin der Goldchmied von Galmair, der fleißge Antonius."
 
 -- Catching quest triggers. Modify if the NPC does quests.
 english, "quest", "mission" -> "At the moment I have nothing for ya to do. Sorry."

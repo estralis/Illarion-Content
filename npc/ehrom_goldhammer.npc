@@ -85,7 +85,7 @@ itemShoes = 53
 
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "Greetings! Could it be that Ronagan has sent you to help with my task?"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Ronagan zum Gruße! Könnte es sein, dass Ronagan Euch zu mir geschickt hat, um mir bei meiner Aufgabe zu helfen?"
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Ronagan zum Gruße! Könnte es sein, dass Ronagan Euch zu mir geschickt hat, um mir bei meiner Aufgabe zu helfen?"
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Greetings! Could it be that Ronagan has sent you to help with my task?"
 "Hiho", "Hallo", "Hey", "Greeb" -> "Ronagan zum Gruße! Könnte es sein, dass Ronagan Euch zu mir geschickt hat, um mir bei meiner Aufgabe zu helfen?"
 "Farewell", "Bye", "Fare well", "See you" -> "Ronagan's blessing and watch your back!"
@@ -95,7 +95,9 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Ronagan's blessing and watc
 "How are you", "How feel", "How do you do" -> "Besides my poor back I'm fine, thank you! Maybe you can help me with a task?"
 "Wie geht", "Wie fühlst", "Wie ist es ergangen" -> "Abgesehen von meinem Rücken geht es mir gut, danke sehr! Vielleicht könnte Ihr mir ja bei einer Aufgabe helfen."
 "your name", "who are you", "who art thou" -> "In front of you stands the smuggler Ehrom Goldhammer, aye!"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Vor Euch steht der Schmuggler Ehrom Goldhammer, aye!"
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Vor Euch steht der Schmuggler Ehrom Goldhammer, aye!"
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I am not a trader."
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich bin kein Händler."
 
 -- Catching quest triggers. Modify if the NPC does quests.
 -- 1st quest: Get five copper goblets.
@@ -127,8 +129,8 @@ queststatus(72) = 4, english, "quest", "mission" -> inform("[New quest] The Smug
 queststatus(72) = 4, "quest", "mission" -> inform("[Neues Quest] Der Schmuggler III"), queststatus(72) = 5, "Einer meiner Auftraggeber, der unerkannt bleiben möchte, hat fünf schwarze Priesterroben nach Runewick-Machart bestellt. 'Für seine Frischlinge', hat er gesagt. Besorgt ihr mir die?"
 queststatus(72) = 4, "task", "adventure" -> inform("[New quest] The Smuggler III"), queststatus(72) = 5, "A customer, who prefers to remain unnamed, ordered five black priest robes of Runewick origin, 'For his freshmen', he said. Will you bring me those?"
 queststatus(72) = 4, "Auftrag", "Aufgabe", "Abenteuer" -> inform("[Neues Quest] Der Schmuggler III"), queststatus(72) = 5, "Einer meiner Auftraggeber, der unerkannt bleiben möchte, hat fünf schwarze Priesterroben nach Runewick-Machart bestellt. 'Für seine Frischlinge', hat er gesagt. Besorgt ihr mir die?"
-queststatus(72) = 5, item(2420, all) > 4, english, ".+" -> inform("[Quest solved] You are awarded an obsidian ring and a magical obsidian."), deleteItem(2420, 5), item(278, 1, 999), item(283, 1, 333, "gemLevel" = "1"), queststatus(72) = 6, "It seems as though Ronagan is looking on you benevolently. My customer gave me this ring in advance, it is now yours."
-queststatus(72) = 5, item(2420, all) > 4, ".+" -> inform("[Quest gelöst] Du erhältst einen Obsidianring und einen magischen Obsidian."), deleteItem(2420, 5), item(278, 1, 999), item(283, 1, 333, "gemLevel" = "1"), queststatus(72) = 6, "Es scheint, als wäre Ronagan Euch wohlgesonnen. Mein Auftraggeber gab mir diesen Ring als Anzahlung, er ist nun Euer."
+queststatus(72) = 5, item(2420, all) > 4, english, ".+" -> inform("[Quest solved] You are awarded an obsidian ring and a magical obsidian."), deleteItem(2420, 5), item(278, 1, 999), item(3524, 1, 333, "gemLevel" = "1"), queststatus(72) = 6, "It seems as though Ronagan is looking on you benevolently. My customer gave me this ring in advance, it is now yours."
+queststatus(72) = 5, item(2420, all) > 4, ".+" -> inform("[Quest gelöst] Du erhältst einen Obsidianring und einen magischen Obsidian."), deleteItem(2420, 5), item(278, 1, 999), item(3524, 1, 333, "gemLevel" = "1"), queststatus(72) = 6, "Es scheint, als wäre Ronagan Euch wohlgesonnen. Mein Auftraggeber gab mir diesen Ring als Anzahlung, er ist nun Euer."
 queststatus(72) = 5, english, "quest", "mission" -> "Just five black priest robes is all I still need for my customer... and no questions."
 queststatus(72) = 5, "quest", "mission" -> "Fünf schwarze Priesterroben sind alles, was ich für meinen Kunden brauche. Und keine Fragen."
 queststatus(72) = 5, "task", "adventure" -> "Just five black priest robes is all I still need for my customer... and no questions."
@@ -182,7 +184,7 @@ english, "portal" -> "I have heard that there are portals all over the land. The
 "pickaxe" -> "The pickaxe is the best tool for mining, but don't be fooled by the simple appearance. It is difficult to master. You wouldn't be the first to end up with a pickaxe in your leg, so please be careful!"
 "Spitzhacke" -> "Die Spitzhacke ist das beste Werkzeug für den Bergbau. Aber laßt Euch nicht vom einfachen Äußeren täuschen. Es ist schwer zu meistern. Ihr wäret nicht der Erste mit einer Spitzhacke im Bein endet, also seid bitte vorsichtig!"
 english, "hammer" -> "The hammer is the token of any smith. There are different hammers for each and every purpose. It is important to use the right hammer for each task."
-german, "Hammer" -> "Der Hammer ist das Erkennungsmerkmaler aller Schmiede. Es gibt verschiedene Hämmer für jeden Zweck. Es ist wichtig den richtigen Hammer für die entsprechende Aufgabe zu benutzen."
+"Hammer" -> "Der Hammer ist das Erkennungsmerkmaler aller Schmiede. Es gibt verschiedene Hämmer für jeden Zweck. Es ist wichtig den richtigen Hammer für die entsprechende Aufgabe zu benutzen."
 "gem" -> "Gems are the true treasures of the mountains. There are many different gems but they all have something in common, they are all rare and you'll need a lot of luck to find suitable raw pieces, I can tell you."
 "Edelstein" -> "Edelsteine sind der wahre Schatz des Berges. Es gibt viele verschiedene Edelsteine, aber alle haben etwas gemeinsam. Sie sind alle sehr selten und Ihr braucht schon viel Glück passende rohe Stücke zu finden, das kann ich Euch sagen."
 
@@ -229,10 +231,6 @@ english, "Ronagan" -> "I pray to Ronagan, but it is more a matter of respect tha
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Ehrom", "Goldhammer" -> "Ehrom Goldhammer is indeed my name. Who told you? Me?"
 "Ehrom", "Goldhammer" -> "Ehrom Goldhammer ist in der Tat mein Name. Wer hat euch den verraten? Ich etwa?"
-"Yes" -> "Pardon, I don't understand what you are referring to.", "What do you mean with 'Yes'?"
-"Ja" -> "Verzeiht, ich verstehe nicht, worauf Ihr Euch bezieht.", "Was meint Ihr mit 'Ja'?"
-"No" -> "Pardon, I don't understand what you are referring to.", "What do you mean with 'No'?"
-"Nein" -> "Verzeiht, ich verstehe nicht, worauf Ihr Euch bezieht.", "Was meint Ihr mit 'Nein'?"
 
 -- Cycletext: Please add at least(!) five cycletext messages. The more, the better. You can use emotes (#me is green), too.
 

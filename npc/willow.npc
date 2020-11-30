@@ -1,0 +1,61 @@
+-- Illarion Server
+-- 
+-- This program is free software: you can redistribute it and/or modify it under
+-- the terms of the GNU Affero General Public License as published by the Free
+-- Software Foundation, either version 3 of the License, or (at your option) any
+-- later version.
+-- 
+-- This program is distributed in the hope that it will be useful, but WITHOUT
+-- ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+-- FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+-- details.
+-- 
+-- You should have received a copy of the GNU Affero General Public License
+-- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+------------------------------------------------------------------------------AC
+-- NPC Name: Willow                                                       None--
+-- NPC Job:  Pet                                                              --
+--                                                                            --
+-- NPC Race: rabbit                     NPC Position:  787, 303, -3           --
+-- NPC Sex:  female                     NPC Direction: south                   --
+--                                                                            --
+-- Authors:  Evie                                                             --
+--                                                                            --
+--                                                     easyNPC Parser v1.23.1 --
+--------------------------------------------------------------------------------
+
+name = "Willow"
+race = halfling
+sex = female
+position = 787, 303, -3
+direction = south
+affiliation = "None"
+job = "pet"
+
+language = common
+defaultLanguage = common
+autointroduce = on
+
+author = "Evie"
+
+lookatDE = "Das ist Willow, der energetische Hase."
+lookatUS = "This is Willow, the energetic bunny."
+useMsgDE = "#me trommelt mit ihren Füßen."
+useMsgUS = "#me thumps her foot."
+wrongLangDE = "#me trommelt mit ihren Füßen."
+wrongLangUS = "#me thumps her foot."
+
+-- NPC by Evie
+
+------------------------------------------------------------------------------AC
+-- Cycle Texts - Messages spoken automatically in random intervals.
+-- Every NPC should contain at least 10 of those messages.
+-- Emotes are possible also starting with "#me ....".
+
+cycletext "#me trommelt mit ihren Füßen.","#me thumps her foot."
+cycletext "#me hopst wild umher.", "#me jumps about hyperly."
+cycletext "#me ist in ständiger Bewegung.", "#me is in constant movement."
+cycletext "#me zuckt mit ihrer Nase.", "#me twitches her nose."
+cycletext "#me zieht ein Grashalm aus der Wiese du mümmelt ihn langsam.", "#me pulls a blade of grass from the ground and chews it slowly."
+cycletext "#me kratzt sich hinter einem Löffel.", "#me scratches her ear."
+cycletext "#me knabbert an einer halb gegessenen Karotte.", "#me takes a bite of a half eaten carrot."

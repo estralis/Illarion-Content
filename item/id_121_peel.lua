@@ -12,25 +12,19 @@ PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
 details.
 
 You should have received a copy of the GNU Affero General Public License along
-with this program.  If not, see <http://www.gnu.org/licenses/>. 
+with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]
--- UPDATE common SET com_script='item.id_121_peel' WHERE com_itemid IN (121);
+-- UPDATE items SET itm_script='item.id_121_peel' WHERE itm_id IN (121);
 
-require("content.craft.baking")
-require("base.licence")
-require("base.lookat")
+local baking = require("craft.final.baking")
+local wood = require("item.general.wood")
 
-module("item.id_121_peel", package.seeall)
+local M = {}
 
-function UseItem(User, SourceItem, ltstate)
-	if base.licence.licence(User) then --checks if user is citizen or has a licence 
-		return -- avoids crafting if user is neither citizen nor has a licence
-	end
+M.LookAtItem = wood.LookAtItem
 
-    content.craft.baking.baking:showDialog(User, SourceItem)
+function M.UseItem(User, SourceItem, ltstate)
+    baking.baking:showDialog(User, SourceItem)
 end
 
-function LookAtItem(User, Item)
-    world:itemInform(User, Item, base.lookat.GetItemDescription(User, Item, base.lookat.WOOD))
-end
-
+return M

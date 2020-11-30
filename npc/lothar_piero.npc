@@ -16,8 +16,8 @@
 -- NPC Name: Lothar Piero                                                None --
 -- NPC Job:  trader                                                           --
 --                                                                            --
--- NPC Race: halfling                   NPC Position:  896, 816, 1            --
--- NPC Sex:  male                       NPC Direction: east                   --
+-- NPC Race: halfling                   NPC Position:  945, 829, 0            --
+-- NPC Sex:  male                       NPC Direction: south                  --
 --                                                                            --
 -- Authors:  Rincewind                                                        --
 --           Estralis Seborian                                                --
@@ -27,9 +27,9 @@
 name = "Lothar Piero"
 race = halfling
 sex = male
-position = 896, 816, 1
-direction = east
-affiliation = "None"
+position = 945, 829, 0
+direction = south
+affiliation = "Runewick"
 job = "trader"
 
 language = common
@@ -65,47 +65,29 @@ itemShoes = 53
 -- Here are all items the NPCs is able to trade. They will be displayed inside
 -- the merchant dialog.
 
-sellItems = 9, 74, 2709, 2715, 2752, 64, 237, 1266, 545, 546, 2543, 2716, 65, 89, 2646, 2708, 2714, 2723, 2727, 2780, 2525, 2527, 2528, 2530, 2541, 2544, 2548, 2549, 2561, 2566, 2567, 2570, 2572, 2573, 2584, 2585, 2193, 2194, 2935, 2952, 17, 18, 19, 20, 95, 186, 917, 2388, 2445, 2448, 3, 56, 543, 544, 2560, 2786, 39, 40, 57, 76, 209, 90, 332, 333, 335, 323
-buyPrimaryItems = 9, 74, 2709, 2715, 2752, 64, 237, 322, 1266, 545, 546, 2543, 2716, 65, 70, 89, 2646, 2685, 2708, 2714, 2718, 2723, 2727, 2780, 2525, 2527, 2528, 2530, 2541, 2544, 2548, 2549, 2561, 2566, 2567, 2570, 2572, 2573, 2584, 2585, 2193, 2194, 2935, 2952, 17, 18, 19, 20, 95, 96, 186, 916, 917, 2284, 2388, 2439, 2445, 2447, 2448, 3, 56, 543, 544, 2560, 2786, 39, 40, 57, 76, 207, 208, 209, 90, 332, 333, 335, 323, 2782, 2783, 2784, 2785
-tradeNotEnoughMoneyMsg "Oh, ich fürchte Ihr könnt Euch das nicht leisten.", "Oh, I fear, you can not afford that."
-tradeFinishedMsg "Vielen Dank, beehrt mich bald wieder!", "Thank you, please come again!"
-tradeFinishedWithoutTradingMsg "Auf Bald!", "Farewell!"
-tradeWrongItemMsg "Das kaufe ich nicht.", "I'm not buying this."
+sellItems = 2752, 2715, 9, 312, 74, 64, 237, 322, 445, 1045, 2664, 230, 1521, 231, 1522, 2737, 1044, 226, 1523, 1041, 1043, 1052, 65, 1531, 2646, 2714, 2708, 70, 2685, 2780, 2718, 2727, 2525, 2530, 2548, 2572, 2584, 2528, 2541, 2561, 2566, 2567, 2570, 2585, 2527, 2544, 2549, 2573, 90, 532, 533, 335, 332, 2185, 391, 2717, 2719, 2744, 1059, 374, 2445, 17, 18, 917, 19, 20, 186, 2388, 2448, 95, 96, 916, 2284, 2447, 2439, 1046, 1038, 1047, 1049, 1040, 1048, 77, 1042, 1053, 1039, 1050, 1051, 1090, 39, 40, 1528, 57, 1529, 76, 209, 207, 208, 1530, 2031, 2935, 2952, 293, 51, 72, 118, 121, 227, 258, 312, 429, 734, 2781, 323, 2782, 2783, 2784, 2785, 3608, 545, 546, 2543, 2716, 56, 3, 543, 544, 2560, 3786, 314
+-- carving tools, plane, saw, wooden shovel, hatchet 
+-- simple mage's staff, adepts's staff, mage's staff, elven mage's staff, battle staff, ornate mage's staff, master's staff, plate, soup bowl, wooden plate, javelin, bucket, fishing rod, rolling pin, peel, cooking spoon, flail, wooden shovel, candle mould, brick mould, dyeing rod, wand, wand of earth, wand of fire, wand of water, wand of air, wand of spirit, cherry wood boards, naldor wood boards, conifer wood boards, apple wood boards, bough, conifer wood, cherry wood, naldor wood, applewood, heartwood, potash
+buyPrimaryItems = 64, 237, 322, 445, 1045, 2664, 230, 1521, 231, 1522, 2737, 1044, 226, 1523, 1041, 1043, 1052, 65, 1531, 2646, 2714, 2708, 70, 2685, 2780, 2718, 2727, 2525, 2530, 2548, 2572, 2584, 2528, 2541, 2561, 2566, 2567, 2570, 2585, 2527, 2544, 2549, 2573, 90, 532, 533, 335, 332, 2185, 391, 2717, 2719, 2744, 1059, 374, 2445, 17, 18, 917, 19, 20, 186, 2388, 2448, 95, 96, 916, 2284, 2447, 2439, 1046, 1038, 1047, 1049, 1040, 1048, 77, 1042, 1053, 1039, 1050, 1051, 1090, 39, 40, 1528, 57, 1529, 76, 209, 207, 208, 1530, 2031, 2935, 2952, 293, 51, 72, 118, 121, 227, 258, 312, 429, 734, 2781, 323, 2782, 2783, 2784, 2785, 3608, 545, 546, 2543, 2716, 56, 3, 543, 544, 2560, 3786, 314
+-- simple mage's staff, adepts's staff, mage's staff, elven mage's staff, battle staff, ornate mage's staff, master's staff, plate, soup bowl, wooden plate, javelin, bucket, fishing rod, rolling pin, peel, cooking spoon, flail, wooden shovel, candle mould, brick mould, dyeing rod, wand, wand of earth, wand of fire, wand of water, wand of air, wand of spirit, cherry wood boards, naldor wood boards, conifer wood boards, apple wood boards, bough, conifer wood, cherry wood, naldor wood, applewood, heartwood, potash
+tradeNotEnoughMoneyMsg "Besorgt euch bitte das nötige Kleingeld.", "Get the necessary change first."
+tradeFinishedMsg "Beehrt mich bald wieder!", "Please come again!"
+tradeFinishedWithoutTradingMsg "Auf bald! Und passt auf euch auf.", "Farewell! And watch yourself."
+tradeWrongItemMsg "Das kaufe ich euch nicht ab.", "I won't buy this from you."
 
 -- Template Version 1.02, 12/02/2010 by Estralis Seborian
--- Instructions: Replace all talk consequences with strings ending with a full stop, maximum length is 250 characters. Try to provide more than one answer, one is chosen at random.
--- Valid races: human, elf, dwarf, lizardman, orc, halfling
--- Valid directions: north, northeast, east, southeast, south, southwest, west, northwest
--- Appearance: If you don't change it your NPC will wear a blue shirt, black trousers, leather glowes and leather boots at least. S/he will also have fair skin and brown hairs. Please use red-green-blue values as indicator. Ex.: colorHair = 123 (red), 62 (green), 9 (blue) = brown hair.
--- Keep radius=0 and the NPC won't walk around, a value greater than 0 will make the NPC run around his position randomly.
--- When you are done, please hit the "Rebuild Script" button.
-
--- NPC by Estralis Seborian
-
--- This NPC is supposed to trade (all goods are sold and bought, percentage indicates ratio of price bought/sold):
-
--- 10% Tools (Carpenter/Lumberjack): 9, 74, 2709, 2715, 2752
--- 10% Ammo: 64, 237, 322, 1266
--- 10% Boards: 545, 546, 2543, 2716
--- 10% Distance weapons: 65, 70, 89, 2646, 2685, 2708, 2714, 2718, 2723, 2727, 2780
--- 10% Handles: 2525, 2527, 2528, 2530, 2541, 2544, 2548, 2549, 2561, 2566, 2567, 2570, 2572, 2573, 2584, 2585
--- 10% Wooden leg armour: 2193, 2194
--- 10% Wooden plates: 2935, 2952
--- 10% Shields: 17, 18, 19, 20, 95, 96, 186, 916, 917, 2284, 2388, 2439, 2445, 2447, 2448
--- 10% Lumber: 3, 56, 543, 544, 2560, 2786
--- 10% Staffs: 39, 40, 57, 76, 207, 208, 209
--- 10% Instruments: 90, 332, 333, 335
--- 10% Wands: 323, 2782, 2783, 2784, 2785
-"sell", "buy", "wares", "price", "trade", "purchase" -> "Ah, so you are interested in my wares.", "Take your time to look around.", trade
-"kauf", "waren", "preis", "Handel", "veräußer", "erwerb" -> "Ah, dann interessiert Ihr Euch also für meine Waren.", "Schaut Euch ruhig in Ruhe um.", trade
 
 -- Help
 "Help" -> inform("[Game Help] This NPC is Lothar Piero the timber merchant. Keywords: buy, sell, trade, Hello, profession, poetry, Pennymill, Archmage Morgan.")
 "Hilfe" -> inform("[Spielhilfe] Dieser NPC ist Lothar Piero der Holzhändler. Schlüsselwörter: kaufe, verkaufe, Handel, Hallo, Beruf, Poesie, Pfennigmühle, Erzmagier Morgan.")
 
+-- Trade
+"sell", "buy", "wares", "price", "trade", "purchase" -> "I have wood.", "What do you need?", trade
+"kauf", "waren", "preis", "Handel", "veräußer", "veräusser", "erwerb" -> "Ich habe Holz.", "Was benötigt ihr?", trade
+
 -- General speech
 "Hello", "Greet", "Hail", "Good day", "Good morning", "Good evening", "Good night" -> "May Oldra bless you. Do you need wooden goods?", "#me nods slowly: 'Wisdom and patience. How can I help you?'", "Hiho! How can I help you?"
-"Grüß", "Gruß", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Oldra mit Euch. Benötigt Ihr hölzernes Gut?", "#me neigt seinen Kopf: 'Weisheit und Ausgeglichenheit. Wie darf ich Euch behilfich sein?'", "Hiho! Womit kann ich dienlich sein?"
+"Grüß", "Gruß", "Grüss", "Gruss", "Guten Morgen", "Guten Tag", "Guten Abend", "Gute Nacht", "Mahlzeit", "Tach", "Moin", "Mohltied" -> "Oldra mit Euch. Benötigt Ihr hölzernes Gut?", "#me neigt seinen Kopf: 'Weisheit und Ausgeglichenheit. Wie darf ich Euch behilfich sein?'", "Hiho! Womit kann ich dienlich sein?"
 english, "Hiho", "Hallo", "Hey", "Greeb" -> "Sounds sloppy, but I'm not picky. Be greeted!", "Honour the Gods, do you need boards?", "Good day. I welcome you on behalf of all my collegues."
 "Hiho", "Hallo", "Hey", "Greeb" -> "Das ist durchwegs salopp gesagt, aber ich bin nicht kleinlich. Seid gegrüßt.", "Ehre den Göttern, wollt ihr Bretter kaufen?", "Guten Tag. Im Namen aller Händler will ich Euch willkommen heißen."
 "Farewell", "Bye", "Fare well", "See you" -> "Good bye. May Oldra bless your gardens and fields.", "Farewell and see you soon.", "Adieu! Come back anytime soon."
@@ -115,7 +97,7 @@ english, "Ciao", "Adieu", "Au revoir", "Farebba" -> "Good bye. May Oldra bless y
 "How are you", "How feel", "How do you do" -> "Wonderful! Indeed, Oldra smiles upon me.", "Even if a cloud covers the sun, I know that it shines on me every day.", "A dark night is defeated by the sunrise."
 "Wie geht", "Wie fühlst", "Wie ist es ergangen", "Wie Befinden" -> "Ausgezeichnet. Ja, Oldra blickt wohlwollend auf mich herab.", "Auch wenn hier und dort eine Wolke die Sonne verdecken mag, ich weiß, dass sie trotzdem jeden neuen Tag am Himmel stehen wird.", "So finster Euch manche Nacht erscheinen kann, die Sonne wird erwachen und alles Finstere vertreiben."
 "your name", "who are you", "who art thou" -> "My name is Lothar Piero. Welcome to the market of Runewick.", "I am Lothar Piero and I... wood.", "Boards, shields, bows, what do you desire? I am Lothar Piero and I have wood!"
-"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt" -> "Ich heiße Lothar Piero. Seid mir willkommen am Markt von Runewick.", "Ich bin Lothar Piero und handle mit allerlei hölzernen Gut.", "Bretter, Schilde, Bögen, was wollt Ihr wohl mögen? Ich bin Lothar Piero und handle mit Holz."
+"ihr name", "dein name", "wer bist du", "wer seid ihr", "wie heißt", "wie heisst" -> "Ich heiße Lothar Piero. Seid mir willkommen am Markt von Runewick.", "Ich bin Lothar Piero und handle mit allerlei hölzernen Gut.", "Bretter, Schilde, Bögen, was wollt Ihr wohl mögen? Ich bin Lothar Piero und handle mit Holz."
 
 -- Catching quest triggers
 english, "quest", "mission" -> "Sorry, I have no job for you."
@@ -147,8 +129,8 @@ english, "Gobaith", "Gobiath" -> "Gobaith, isn't that a tiny a island in the oce
 "Erzmagier" -> "Niemals würde ich unserem Erzmagier widersprechen. Ist doch jedem hier bewusst, dass sein Plan niemals fehlt.", "Erzmagier Morgan, ihm gebührt mein Vertrauen und all meine Hoffnungen. Die Zukunft Runewicks liegt in seinen fähigen Händen!", "Der Erzmagier ist der Weiseste von uns. Wie könnte ich jemals an seinen Worten zweifeln?"
 english, "Elvaine", "Morgan" -> "I'd never disagree with the Archmage. Everyone knows he has the master plan!", "I trust Archmage Morgan, he is my guide. His able hands will forge Runewick's future.", "The Archmage is the most wise person of all of us. Who dares to think they know better?"
 "Elvaine", "Morgan" -> "Niemals würde ich unserem Erzmagier widersprechen. Ist doch jedem hier bewusst, das sein Plan niemals fehlt.", "Erzmagier Morgan, ihm gebührt mein Vertrauen und all meine Hoffnungen. Die Zukunft Runewicks liegt in seinen fähigen Händen!", "Der Erzmagier ist der Weiseste von uns. Wie könnte ich jemals an seinen Worten zweifeln?"
-english, "Runewick" -> "May Elara bless Runewick. The four towers are built to honour the Gods and to demonstrate our might to our neighbours."
-"Runewick" -> "Elara möge Runewick bewahren. Die vier Türme sollen den Göttern schmeicheln und benachbarten Städten unsere Macht demonstrieren."
+english, "Runewick" -> "May Elara bless Runewick. The islands are create to honour the Gods and to demonstrate our might to our neighbours."
+"Runewick" -> "Elara möge Runewick bewahren. Die Inseln sollen den Göttern schmeicheln und benachbarten Städten unsere Macht demonstrieren."
 english, "Valerio", "Guilianni", "Don" -> "He is stubborn I was told. All he cares for is gold. It is only a matter time until another thug takes over Galmair."
 "Valerio", "Guilianni", "Don" -> "Ein wahrer Dickkopf, habe ich mir sagen lassen. Ihm ist nur daran gelegen Gold zu häufen. Es ist nur eine Frage der Zeit bis einer seiner Konkurenten das Ruder Galmairs aus seinen Händen reißt."
 english, "Galmair" -> "Us traders have a proverb: Do not trust Galmair, gold opens the door of the stupid, but if you want to walk into the house of wisdom, you have to open a book instead."
@@ -179,14 +161,6 @@ english, "Oldra" -> "Oldra, I thank thee for my wood, for the trees and for all 
 -- Last catch: Think about keywords the player might say and that are not caught until here
 english, "Lothar", "Piero" -> "Hiho! What goods may I offer you?"
 "Lothar", "Piero" -> "Hiho! Welche meiner Güter vermögen Euch zu begeistern?"
-"Yes" -> "Yes, very well.", "Indeed, just what I wanted to say.", "How marvellous, we have the same opinion."
-"Ja" -> "Ja, das ist mir auch Recht.", "Bestimmt, das denke ich auch.", "Wie fantastisch, wir sind einer Meinung."
-"No" -> "If you think that's good...", "I meant it the way I said it.", "No? Maybe we should discuss that at Elara's shrine."
-"Nein" -> "So denn ihr das für weise haltet.", "Das meine ich wie ich es sagte.", "Nein? Vielleicht sollten wir uns an Elaras Altar beratschlagen."
-
--- Optional: Everything a player says and is not caught earlier. Response is only given 1/5 of the time
-english, chance(20.0), ".*" -> "Oldra's blessing for your gardens.", "Elara's wisdom may guide you.", "Hiho, that's funny!"
-german, chance(20.0), ".*" -> "Oldras Segen über Eure Gärten.", "Elaras Weisheit sei mit Euch.", "Hiho, das gefällt mir."
 
 ------------------------------------------------------------------------------AC
 -- Cycle Texts - Messages spoken automatically in random intervals.
